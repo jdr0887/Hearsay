@@ -28,13 +28,21 @@
       <groupId>com.sun.xml.bind</groupId>
       <artifactId>jaxb-impl</artifactId>
     </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.jaxrs</groupId>
+      <artifactId>jackson-jaxrs-json-provider</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins> 
       <plugin>
 	<groupId>org.codehaus.mojo</groupId>
 	<artifactId>jaxb2-maven-plugin</artifactId>
-	<version>1.3.1</version>
+	<version>1.5</version>
 	<executions>
 	  <execution>
 	    <id>schemagen</id>
@@ -46,7 +54,6 @@
 	<configuration>
 	  <includes>
 	    <include>**/model/*.java</include>
-	    <include>**/model/opm/*.java</include>
 	  </includes>
 	</configuration>
       </plugin>
@@ -67,8 +74,8 @@
         <artifactId>openjpa-maven-plugin</artifactId>
         <version>${openjpa.version}</version>
 	<configuration>
-	  <includes>org/renci/hearsay/dao/model/*.class,org/renci/hearsay/dao/model/opm/*.class</includes>
-	  <excludes>org/renci/hearsay/dao/model/*_.class,org/renci/hearsay/dao/model/*Type.class,org/renci/hearsay/dao/model/opm/*_.class,org/renci/hearsay/dao/model/opm/*Adapter.class,org/renci/hearsay/dao/model/opm/*Factory.class</excludes>
+	  <includes>org/renci/hearsay/dao/model/*.class</includes>
+	  <excludes>org/renci/hearsay/dao/model/*_.class,org/renci/hearsay/dao/model/*Type.class</excludes>
 	  <addDefaultConstructor>true</addDefaultConstructor>               
 	  <enforcePropertyRestrictions>true</enforcePropertyRestrictions>
 	</configuration>
@@ -108,14 +115,10 @@
 	      <compilerArgument>-Aopenjpa.metamodel=true</compilerArgument>
 	      <includes>
 		<include>**/model/*.java</include>
-		<include>**/model/opm/*.java</include>
 	      </includes>
 	      <excludes>
 		<exclude>**/model/*_.java</exclude>
 		<exclude>**/model/*Type.java</exclude>
-		<exclude>**/model/opm/*_.java</exclude>
-		<exclude>**/model/opm/*Adapter.java</exclude>
-		<exclude>**/model/opm/*Factory.java</exclude>
 	      </excludes>
 	    </configuration>
 	    <goals>
