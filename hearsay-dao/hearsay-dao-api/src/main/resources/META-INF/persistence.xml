@@ -8,52 +8,10 @@
     <jta-data-source>aries:services/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/hearsayJTA)</jta-data-source>
     <non-jta-data-source>aries:services/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/hearsayNoJTA)</non-jta-data-source>
 
-    <class>org.renci.hearsay.dao.model.CaseInformation</class>
-    
-    <class>org.renci.hearsay.dao.model.opm.Activity</class>
-    <class>org.renci.hearsay.dao.model.opm.Agent</class>
-    <class>org.renci.hearsay.dao.model.opm.Alternate</class>
-    <class>org.renci.hearsay.dao.model.opm.Association</class>
-    <class>org.renci.hearsay.dao.model.opm.Attribution</class>
-    <class>org.renci.hearsay.dao.model.opm.Bundle</class>
-    <class>org.renci.hearsay.dao.model.opm.BundleConstructor</class>
-    <class>org.renci.hearsay.dao.model.opm.Collection</class>
-    <class>org.renci.hearsay.dao.model.opm.Communication</class>
-    <class>org.renci.hearsay.dao.model.opm.Delegation</class>
-    <class>org.renci.hearsay.dao.model.opm.Derivation</class>
-    <class>org.renci.hearsay.dao.model.opm.Dictionary</class>
-    <class>org.renci.hearsay.dao.model.opm.DictionaryMembership</class>
-    <class>org.renci.hearsay.dao.model.opm.Document</class>
-    <class>org.renci.hearsay.dao.model.opm.EmptyCollection</class>
-    <class>org.renci.hearsay.dao.model.opm.EmptyDictionary</class>
-    <class>org.renci.hearsay.dao.model.opm.End</class>
-    <class>org.renci.hearsay.dao.model.opm.Entity</class>
-    <class>org.renci.hearsay.dao.model.opm.Generation</class>
-    <class>org.renci.hearsay.dao.model.opm.Influence</class>
-    <class>org.renci.hearsay.dao.model.opm.Insertion</class>
-    <class>org.renci.hearsay.dao.model.opm.InternationalizedString</class>
-    <class>org.renci.hearsay.dao.model.opm.Invalidation</class>
-    <class>org.renci.hearsay.dao.model.opm.Key</class>
-    <class>org.renci.hearsay.dao.model.opm.KeyEntityPair</class>
-    <class>org.renci.hearsay.dao.model.opm.Location</class>
-    <class>org.renci.hearsay.dao.model.opm.Membership</class>
-    <class>org.renci.hearsay.dao.model.opm.Mention</class>
-    <class>org.renci.hearsay.dao.model.opm.Organization</class>
-    <class>org.renci.hearsay.dao.model.opm.Other</class>
-    <class>org.renci.hearsay.dao.model.opm.Person</class>
-    <class>org.renci.hearsay.dao.model.opm.Plan</class>
-    <class>org.renci.hearsay.dao.model.opm.PrimarySource</class>
-    <class>org.renci.hearsay.dao.model.opm.QualifiedName</class>
-    <class>org.renci.hearsay.dao.model.opm.Quotation</class>
-    <class>org.renci.hearsay.dao.model.opm.Removal</class>
-    <class>org.renci.hearsay.dao.model.opm.Revision</class>
-    <class>org.renci.hearsay.dao.model.opm.Role</class>
-    <class>org.renci.hearsay.dao.model.opm.SoftwareAgent</class>
-    <class>org.renci.hearsay.dao.model.opm.Specialization</class>
-    <class>org.renci.hearsay.dao.model.opm.Start</class>
-    <class>org.renci.hearsay.dao.model.opm.Type</class>
-    <class>org.renci.hearsay.dao.model.opm.Usage</class>
-    
+    <class>org.renci.hearsay.dao.model.BaseEntity</class>
+    <class>org.renci.hearsay.dao.model.Transcript</class>
+    <class>org.renci.hearsay.dao.model.TranscriptInterval</class>
+
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
     <properties>
@@ -65,8 +23,8 @@
       <property name="openjpa.Log" value="slf4j" />
       <property name="openjpa.Multithreaded" value="true" />
       <property name="openjpa.jdbc.DBDictionary" value="postgres(SearchStringEscape=\, SupportsXMLColumn=false)" />
-      <property name="openjpa.DataCache" value="true" />
       <property name="openjpa.RemoteCommitProvider" value="sjvm" />
+      <property name="openjpa.DataCache" value="false" />
       <property name="openjpa.QueryCache" value="false" />
     </properties>
 
