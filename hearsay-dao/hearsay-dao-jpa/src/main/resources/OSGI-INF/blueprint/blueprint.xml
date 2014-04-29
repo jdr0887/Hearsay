@@ -2,11 +2,18 @@
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://aries.apache.org/xmlns/transactions/v1.0.0"
   xmlns:jpa="http://aries.apache.org/xmlns/jpa/v1.0.0" default-activation="eager">
 
-  <bean id="caseInformationDAOImpl" class="org.renci.hearsay.dao.jpa.CaseInformationDAOImpl">
+  <bean id="transcriptDAOImpl" class="org.renci.hearsay.dao.jpa.TranscriptDAOImpl">
     <tx:transaction method="*" value="Required" />
     <jpa:context property="entityManager" unitname="hearsay" />
   </bean>
 
-  <service ref="caseInformationDAOImpl" interface="org.renci.hearsay.dao.CaseInformationDAO" />
+  <service ref="transcriptDAOImpl" interface="org.renci.hearsay.dao.TranscriptDAO" />
+
+  <bean id="transcriptIntervalDAOImpl" class="org.renci.hearsay.dao.jpa.TranscriptIntervalDAOImpl">
+    <tx:transaction method="*" value="Required" />
+    <jpa:context property="entityManager" unitname="hearsay" />
+  </bean>
+
+  <service ref="transcriptIntervalDAOImpl" interface="org.renci.hearsay.dao.TranscriptIntervalDAO" />
 
 </blueprint>
