@@ -2,7 +2,7 @@
   <parent>
     <groupId>org.renci.hearsay</groupId>
     <artifactId>parent</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
   </parent>
   <name>Hearsay</name>
   <modelVersion>4.0.0</modelVersion>
@@ -13,9 +13,8 @@
   <url>https://ci-dev.renci.org/site/hearsay</url>
   <properties>
     <karaf.version>2.3.5</karaf.version>
-    <cxf.version>2.7.6</cxf.version>
+    <cxf.version>2.7.8</cxf.version>
     <spring.version>3.2.4.RELEASE</spring.version>
-    <openjpa.version>2.2.2</openjpa.version>
     <jackson.version>2.3.1</jackson.version>
   </properties>
   <issueManagement>
@@ -125,9 +124,9 @@
       	<version>3.1.1</version>
       </dependency>
       <dependency>
-      	<groupId>postgresql</groupId>
+      	<groupId>org.postgresql</groupId>
       	<artifactId>postgresql</artifactId>
-      	<version>9.1-901.jdbc4</version>
+      	<version>9.3-1100-jdbc4</version>
       </dependency>
       <dependency>
       	<groupId>org.springframework</groupId>
