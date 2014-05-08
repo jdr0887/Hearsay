@@ -7,9 +7,11 @@
     <bundle>mvn:commons-cli/commons-cli/${commons.cli.version}</bundle>
     <bundle>mvn:commons-pool/commons-pool/${commons.pool.version}</bundle>
     <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.commons-dbcp/${commons.dbcp.version}_3</bundle>
-    <bundle>mvn:org.apache.commons/commons-lang3/3.1</bundle>
-    <bundle>mvn:commons-lang/commons-lang/${commons.lang.version}</bundle>
-    <bundle>mvn:commons-collections/commons-collections/${commons.collections.version}</bundle>
+    <bundle>mvn:org.apache.commons/commons-lang3/${commons.lang.version}</bundle>
+    <bundle>mvn:commons-lang/commons-lang/2.4</bundle>
+    <bundle>mvn:org.apache.xbean/xbean-asm4-shaded/3.16</bundle>
+    <bundle>mvn:commons-collections/commons-collections/3.2.1</bundle>
+    <bundle>mvn:org.apache.commons/commons-collections4/${commons.collections.version}</bundle>
     <bundle>mvn:commons-beanutils/commons-beanutils/${commons.beanutils.version}</bundle>
     <bundle>mvn:commons-discovery/commons-discovery/${commons.discovery.version}</bundle>
     <bundle>mvn:org.apache.commons/commons-email/1.3.1</bundle>
@@ -35,7 +37,7 @@
     <bundle>mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/${jackson.version}</bundle>
     <bundle>mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/${jackson.version}</bundle>
     <bundle>mvn:com.fasterxml.jackson.module/jackson-module-jaxb-annotations/${jackson.version}</bundle>
-    <bundle>mvn:org.renci.osgi.bundles/postgresql-9.1-901.jdbc4-bundle/0.0.1</bundle>
+    <bundle>mvn:org.renci.osgi.bundles/postgresql-9.3-1100-jdbc4-bundle/0.0.6</bundle>
   </feature>
 
   <feature name="hearsay-dao" version="${project.version}" resolver="(obr)">
