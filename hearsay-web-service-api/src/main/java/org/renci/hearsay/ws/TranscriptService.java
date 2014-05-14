@@ -1,5 +1,7 @@
 package org.renci.hearsay.ws;
 
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -14,6 +16,10 @@ import org.renci.hearsay.dao.model.Transcript;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public interface TranscriptService {
+
+    @GET
+    @Path("/findAll")
+    public List<Transcript> findAll();
 
     @GET
     @Path("/findById/{id}")
