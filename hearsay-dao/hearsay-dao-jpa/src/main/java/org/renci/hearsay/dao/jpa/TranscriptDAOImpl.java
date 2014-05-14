@@ -33,9 +33,7 @@ public class TranscriptDAOImpl extends BaseEntityDAOImpl<Transcript, Long> imple
     @Override
     public List<Transcript> findAll() throws HearsayDAOException {
         logger.debug("ENTERING findAll()");
-        CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
-        CriteriaQuery<Transcript> crit = critBuilder.createQuery(getPersistentClass());
-        TypedQuery<Transcript> query = getEntityManager().createQuery(crit);
+        TypedQuery<Transcript> query = getEntityManager().createNamedQuery("Transcript.findAll", Transcript.class);
         List<Transcript> ret = query.getResultList();
         return ret;
     }
