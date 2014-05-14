@@ -49,4 +49,24 @@ public class TranscriptIntervalDAOImpl extends BaseEntityDAOImpl<TranscriptInter
         return ret;
     }
 
+    @Override
+    public List<TranscriptInterval> findByExample(TranscriptInterval t) throws HearsayDAOException {
+        logger.debug("ENTERING findByExample(TranscriptInterval)");
+        CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<TranscriptInterval> crit = critBuilder.createQuery(getPersistentClass());
+        List<Predicate> predicates = new ArrayList<Predicate>();
+
+        Root<TranscriptInterval> fromTranscriptInterval = crit.from(TranscriptInterval.class);
+
+        if (t.getRegionType() != null) {
+            predicates.add(critBuilder.equal(fromTranscriptInterval.get(TranscriptInterval_.regionType),
+                    t.getRegionType()));
+        }
+
+        crit.where(predicates.toArray(new Predicate[predicates.size()]));
+        TypedQuery<TranscriptInterval> query = getEntityManager().createQuery(crit);
+        List<TranscriptInterval> ret = query.getResultList();
+        return ret;
+    }
+
 }
