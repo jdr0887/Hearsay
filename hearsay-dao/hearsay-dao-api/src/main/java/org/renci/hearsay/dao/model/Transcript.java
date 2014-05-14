@@ -30,6 +30,9 @@ public class Transcript extends BaseEntity {
     @Column(name = "gene_id")
     private Long geneId;
 
+    @Column(name = "opm_document_id")
+    private Long documentId;
+
     @Column(name = "gene_name")
     private String geneName;
 
@@ -77,6 +80,14 @@ public class Transcript extends BaseEntity {
 
     public void setGeneId(Long geneId) {
         this.geneId = geneId;
+    }
+
+    public Long getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(Long documentId) {
+        this.documentId = documentId;
     }
 
     public String getGeneName() {
