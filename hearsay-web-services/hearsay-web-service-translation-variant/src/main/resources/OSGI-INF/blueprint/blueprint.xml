@@ -9,7 +9,7 @@
   http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0 http://aries.apache.org/schemas/blueprint-cm/blueprint-cm-1.1.0.xsd
   ">
 
-  <reference id="translationVariantDAO" interface="org.renci.hearsay.dao.TranslationVariantVariantDAO" />
+  <reference id="translationVariantDAO" interface="org.renci.hearsay.dao.TranslationVariantDAO" />
 
   <bean id="translationVariant" class="org.renci.hearsay.ws.impl.TranslationVariantServiceImpl">
     <property name="translationVariantDAO" ref="translationVariantDAO" />
