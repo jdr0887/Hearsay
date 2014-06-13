@@ -8,4 +8,6 @@ public interface TranscriptDAO extends BaseEntityDAO<Transcript, Long> {
 
     public List<Transcript> findAll() throws HearsayDAOException;
 
+    public abstract List<Transcript> findByExample(Transcript transcript) throws HearsayDAOException;
+
 }
