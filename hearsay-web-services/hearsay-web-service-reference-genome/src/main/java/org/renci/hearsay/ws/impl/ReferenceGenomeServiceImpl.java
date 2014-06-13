@@ -1,12 +1,8 @@
 package org.renci.hearsay.ws.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.ReferenceGenomeDAO;
 import org.renci.hearsay.dao.model.ReferenceGenome;
-import org.renci.hearsay.dao.model.Transcript;
 import org.renci.hearsay.ws.ReferenceGenomeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
