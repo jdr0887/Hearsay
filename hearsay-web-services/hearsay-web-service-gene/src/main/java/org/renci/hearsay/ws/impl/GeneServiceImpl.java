@@ -42,9 +42,22 @@ public class GeneServiceImpl implements GeneService {
 
     @Override
     public List<Gene> findAll() {
+        logger.debug("ENTERING findAll()");
         List<Gene> ret = new ArrayList<Gene>();
         try {
             ret.addAll(geneDAO.findAll());
+        } catch (HearsayDAOException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    @Override
+    public List<Gene> findByName(String name) {
+        logger.debug("ENTERING findAll()");
+        List<Gene> ret = new ArrayList<Gene>();
+        try {
+            ret.addAll(geneDAO.findByName(name));
         } catch (HearsayDAOException e) {
             e.printStackTrace();
         }

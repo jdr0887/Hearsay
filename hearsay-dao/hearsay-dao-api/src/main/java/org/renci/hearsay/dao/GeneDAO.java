@@ -8,4 +8,6 @@ public interface GeneDAO extends BaseEntityDAO<Gene, Long> {
 
     public List<Gene> findAll() throws HearsayDAOException;
 
+    public List<Gene> findByName(String name) throws HearsayDAOException;
+
 }

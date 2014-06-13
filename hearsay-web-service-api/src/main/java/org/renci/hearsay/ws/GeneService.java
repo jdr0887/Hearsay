@@ -25,6 +25,10 @@ public interface GeneService {
     @Path("/findById/{id}")
     public Gene findById(@PathParam("id") Long id);
 
+    @GET
+    @Path("/findByName/{name}")
+    public List<Gene> findByName(@PathParam("name") String name);
+
     @POST
     @Path("/")
     public Long save(Gene gene);
