@@ -27,7 +27,7 @@ public class TranslationVariantServiceImpl implements TranslationVariantService 
 
     @Override
     public Long save(TranslationVariant transcriptVariant) {
-        logger.debug("ENTERING save(Transcript)");
+        logger.debug("ENTERING save(TranslationVariant)");
         Long ret = null;
         try {
             ret = translationVariantDAO.save(transcriptVariant);
