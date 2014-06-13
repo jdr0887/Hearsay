@@ -2,18 +2,70 @@
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://aries.apache.org/xmlns/transactions/v1.0.0"
   xmlns:jpa="http://aries.apache.org/xmlns/jpa/v1.0.0" default-activation="eager">
 
+  <bean id="geneDAOImpl" class="org.renci.hearsay.dao.jpa.GeneDAOImpl">
+    <tx:transaction method="*" value="Required" />
+    <jpa:context property="entityManager" unitname="hearsay" />
+  </bean>
+  <service ref="geneDAOImpl" interface="org.renci.hearsay.dao.GeneDAO" />
+
+  <bean id="genomicSequenceVariantDAOImpl" class="org.renci.hearsay.dao.jpa.GenomicSequenceVariantDAOImpl">
+    <tx:transaction method="*" value="Required" />
+    <jpa:context property="entityManager" unitname="hearsay" />
+  </bean>
+  <service ref="genomicSequenceVariantDAOImpl" interface="org.renci.hearsay.dao.GenomicSequenceVariantDAO" />
+
+  <bean id="mappedTranscriptDAOImpl" class="org.renci.hearsay.dao.jpa.MappedTranscriptDAOImpl">
+    <tx:transaction method="*" value="Required" />
+    <jpa:context property="entityManager" unitname="hearsay" />
+  </bean>
+  <service ref="mappedTranscriptDAOImpl" interface="org.renci.hearsay.dao.MappedTranscriptDAO" />
+
+  <bean id="referenceGenomeDAOImpl" class="org.renci.hearsay.dao.jpa.ReferenceGenomeDAOImpl">
+    <tx:transaction method="*" value="Required" />
+    <jpa:context property="entityManager" unitname="hearsay" />
+  </bean>
+  <service ref="referenceGenomeDAOImpl" interface="org.renci.hearsay.dao.ReferenceGenomeDAO" />
+
+  <bean id="referenceSequenceDAOImpl" class="org.renci.hearsay.dao.jpa.ReferenceSequenceDAOImpl">
+    <tx:transaction method="*" value="Required" />
+    <jpa:context property="entityManager" unitname="hearsay" />
+  </bean>
+  <service ref="referenceSequenceDAOImpl" interface="org.renci.hearsay.dao.ReferenceSequenceDAO" />
+
   <bean id="transcriptDAOImpl" class="org.renci.hearsay.dao.jpa.TranscriptDAOImpl">
     <tx:transaction method="*" value="Required" />
     <jpa:context property="entityManager" unitname="hearsay" />
   </bean>
-
   <service ref="transcriptDAOImpl" interface="org.renci.hearsay.dao.TranscriptDAO" />
 
-  <bean id="transcriptIntervalDAOImpl" class="org.renci.hearsay.dao.jpa.TranscriptIntervalDAOImpl">
+  <bean id="transcriptVariantDAOImpl" class="org.renci.hearsay.dao.jpa.TranscriptVariantDAOImpl">
     <tx:transaction method="*" value="Required" />
     <jpa:context property="entityManager" unitname="hearsay" />
   </bean>
+  <service ref="transcriptVariantDAOImpl" interface="org.renci.hearsay.dao.TranscriptVariantDAO" />
 
-  <service ref="transcriptIntervalDAOImpl" interface="org.renci.hearsay.dao.TranscriptIntervalDAO" />
+  <bean id="translationDAOImpl" class="org.renci.hearsay.dao.jpa.TranslationDAOImpl">
+    <tx:transaction method="*" value="Required" />
+    <jpa:context property="entityManager" unitname="hearsay" />
+  </bean>
+  <service ref="translationDAOImpl" interface="org.renci.hearsay.dao.TranslationDAO" />
+
+  <bean id="translationVariantDAOImpl" class="org.renci.hearsay.dao.jpa.TranslationVariantDAOImpl">
+    <tx:transaction method="*" value="Required" />
+    <jpa:context property="entityManager" unitname="hearsay" />
+  </bean>
+  <service ref="translationVariantDAOImpl" interface="org.renci.hearsay.dao.TranslationVariantDAO" />
+
+  <bean id="variantDAOImpl" class="org.renci.hearsay.dao.jpa.VariantDAOImpl">
+    <tx:transaction method="*" value="Required" />
+    <jpa:context property="entityManager" unitname="hearsay" />
+  </bean>
+  <service ref="variantDAOImpl" interface="org.renci.hearsay.dao.VariantDAO" />
+
+  <bean id="variantEffectDAOImpl" class="org.renci.hearsay.dao.jpa.VariantEffectDAOImpl">
+    <tx:transaction method="*" value="Required" />
+    <jpa:context property="entityManager" unitname="hearsay" />
+  </bean>
+  <service ref="variantEffectDAOImpl" interface="org.renci.hearsay.dao.VariantEffectDAO" />
 
 </blueprint>
