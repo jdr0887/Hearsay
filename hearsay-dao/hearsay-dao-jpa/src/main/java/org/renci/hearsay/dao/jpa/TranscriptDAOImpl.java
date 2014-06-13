@@ -47,10 +47,6 @@ public class TranscriptDAOImpl extends BaseEntityDAOImpl<Transcript, Long> imple
 
         Root<Transcript> fromTranscript = crit.from(Transcript.class);
 
-        if (StringUtils.isNotEmpty(t.getGeneName())) {
-            predicates.add(critBuilder.equal(fromTranscript.get(Transcript_.geneName), t.getGeneName()));
-        }
-
         if (StringUtils.isNotEmpty(t.getHgncSymbol())) {
             predicates.add(critBuilder.equal(fromTranscript.get(Transcript_.hgncSymbol), t.getHgncSymbol()));
         }
