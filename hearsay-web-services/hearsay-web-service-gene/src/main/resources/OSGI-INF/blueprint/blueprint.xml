@@ -9,7 +9,7 @@
   http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0 http://aries.apache.org/schemas/blueprint-cm/blueprint-cm-1.1.0.xsd
   ">
 
-  <reference id="transcriptDAO" interface="org.renci.hearsay.dao.GeneDAO" />
+  <reference id="geneDAO" interface="org.renci.hearsay.dao.GeneDAO" />
 
   <bean id="gene" class="org.renci.hearsay.ws.impl.GeneServiceImpl">
     <property name="geneDAO" ref="geneDAO" />
