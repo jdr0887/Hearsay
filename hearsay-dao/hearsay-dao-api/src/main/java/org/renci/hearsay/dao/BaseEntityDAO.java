@@ -13,6 +13,4 @@ public interface BaseEntityDAO<T extends Persistable, ID extends Serializable> {
 
     public abstract T findById(ID id) throws HearsayDAOException;
 
-    public abstract List<T> findByExample(T t) throws HearsayDAOException;
-
 }
