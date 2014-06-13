@@ -1,7 +1,6 @@
 package org.renci.hearsay.dao.jpa;
 
 import org.renci.hearsay.dao.ReferenceSequenceDAO;
-import org.renci.hearsay.dao.model.Gene;
 import org.renci.hearsay.dao.model.ReferenceSequence;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

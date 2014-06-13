@@ -5,7 +5,8 @@ import org.renci.hearsay.dao.model.GenomicSequenceVariant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GenomicSequenceVariantDAOImpl extends BaseEntityDAOImpl<GenomicSequenceVariant, Long> implements GenomicSequenceVariantDAO {
+public class GenomicSequenceVariantDAOImpl extends BaseEntityDAOImpl<GenomicSequenceVariant, Long> implements
+        GenomicSequenceVariantDAO {
 
     private final Logger logger = LoggerFactory.getLogger(GenomicSequenceVariantDAOImpl.class);
 

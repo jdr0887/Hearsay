@@ -1,12 +1,7 @@
 package org.renci.hearsay.ws.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.renci.hearsay.dao.HearsayDAOException;
-import org.renci.hearsay.dao.TranscriptDAO;
 import org.renci.hearsay.dao.VariantDAO;
-import org.renci.hearsay.dao.model.Transcript;
 import org.renci.hearsay.dao.model.Variant;
 import org.renci.hearsay.ws.VariantService;
 import org.slf4j.Logger;
@@ -41,7 +36,6 @@ public class VariantServiceImpl implements VariantService {
         }
         return ret;
     }
-
 
     public VariantDAO getVariantDAO() {
         return variantDAO;
