@@ -57,6 +57,14 @@ public class Gene extends BaseEntity {
         this.name = name;
     }
 
+    public Set<Transcript> getTranscripts() {
+        return transcripts;
+    }
+
+    public void setTranscripts(Set<Transcript> transcripts) {
+        this.transcripts = transcripts;
+    }
+
     @Override
     public String toString() {
         return String.format("Gene [geneId=%s, name=%s, id=%s]", geneId, name, id);
