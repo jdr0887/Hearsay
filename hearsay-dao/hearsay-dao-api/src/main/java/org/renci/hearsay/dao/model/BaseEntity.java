@@ -43,7 +43,7 @@ public class BaseEntity implements Persistable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entity_id_seq")
     @SequenceGenerator(name = "entity_id_seq", sequenceName = "entity_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
-    private Long id;
+    protected Long id;
 
     public BaseEntity() {
         super();
