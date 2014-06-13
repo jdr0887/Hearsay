@@ -11,7 +11,7 @@
 
   <reference id="referenceGenomeDAO" interface="org.renci.hearsay.dao.ReferenceGenomeDAO" />
 
-  <bean id="ReferenceGenome" class="org.renci.hearsay.ws.impl.ReferenceGenomeServiceImpl">
+  <bean id="referenceGenome" class="org.renci.hearsay.ws.impl.ReferenceGenomeServiceImpl">
     <property name="referenceGenomeDAO" ref="referenceGenomeDAO" />
   </bean>
 
