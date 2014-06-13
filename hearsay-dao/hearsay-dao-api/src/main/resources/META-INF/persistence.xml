@@ -9,9 +9,18 @@
     <non-jta-data-source>aries:services/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/hearsayNoJTA)</non-jta-data-source>
 
     <class>org.renci.hearsay.dao.model.BaseEntity</class>
+    <class>org.renci.hearsay.dao.model.Gene</class>
+    <class>org.renci.hearsay.dao.model.GenomicSequenceVariant</class>
+    <class>org.renci.hearsay.dao.model.MappedTranscript</class>
+    <class>org.renci.hearsay.dao.model.ReferenceGenome</class>
+    <class>org.renci.hearsay.dao.model.ReferenceSequence</class>
     <class>org.renci.hearsay.dao.model.Transcript</class>
-    <class>org.renci.hearsay.dao.model.TranscriptInterval</class>
-
+    <class>org.renci.hearsay.dao.model.TranscriptVariant</class>
+    <class>org.renci.hearsay.dao.model.Translation</class>
+    <class>org.renci.hearsay.dao.model.TranslationVariant</class>
+    <class>org.renci.hearsay.dao.model.Variant</class>
+    <class>org.renci.hearsay.dao.model.VariantEffect</class>
+    
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
     <properties>
