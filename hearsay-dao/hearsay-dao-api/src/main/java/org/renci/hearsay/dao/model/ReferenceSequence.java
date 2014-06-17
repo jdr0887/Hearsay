@@ -38,6 +38,11 @@ public class ReferenceSequence extends BaseEntity {
         super();
     }
 
+    public ReferenceSequence(String accession) {
+        super();
+        this.accession = accession;
+    }
+
     public String getAccession() {
         return accession;
     }
