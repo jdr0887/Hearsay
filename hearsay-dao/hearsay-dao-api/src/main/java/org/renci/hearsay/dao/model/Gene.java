@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -29,11 +30,12 @@ public class Gene extends BaseEntity {
 
     private static final long serialVersionUID = -6242780201446218630L;
 
-    @Column(name = "gene_id")
-    private Long geneId;
-
-    @Column(name = "gene_name")
+    @Column(name = "name")
     private String name;
+
+    @Lob
+    @Column(name = "description")
+    private String description;
 
     @OneToMany(mappedBy = "gene", fetch = FetchType.LAZY)
     private Set<Transcript> transcripts;
@@ -42,12 +44,18 @@ public class Gene extends BaseEntity {
         super();
     }
 
-    public Long getGeneId() {
-        return geneId;
+    public Gene(String name, String description) {
+        super();
+        this.name = name;
+        this.description = description;
     }
 
-    public void setGeneId(Long geneId) {
-        this.geneId = geneId;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getName() {
@@ -71,14 +79,14 @@ public class Gene extends BaseEntity {
 
     @Override
     public String toString() {
-        return String.format("Gene [geneId=%s, name=%s, id=%s]", geneId, name, id);
+        return String.format("Gene [name=%s, id=%s]", name, id);
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = super.hashCode();
-        result = prime * result + ((geneId == null) ? 0 : geneId.hashCode());
+        result = prime * result + ((description == null) ? 0 : description.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         return result;
     }
@@ -92,10 +100,10 @@ public class Gene extends BaseEntity {
         if (getClass() != obj.getClass())
             return false;
         Gene other = (Gene) obj;
-        if (geneId == null) {
-            if (other.geneId != null)
+        if (description == null) {
+            if (other.description != null)
                 return false;
-        } else if (!geneId.equals(other.geneId))
+        } else if (!description.equals(other.description))
             return false;
         if (name == null) {
             if (other.name != null)
