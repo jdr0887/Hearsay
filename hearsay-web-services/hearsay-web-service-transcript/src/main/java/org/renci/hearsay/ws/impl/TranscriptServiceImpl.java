@@ -51,6 +51,17 @@ public class TranscriptServiceImpl implements TranscriptService {
         return ret;
     }
 
+    @Override
+    public List<Transcript> findByGeneId(Long geneId) {
+        List<Transcript> ret = new ArrayList<Transcript>();
+        try {
+            ret.addAll(transcriptDAO.findByGeneId(geneId));
+        } catch (HearsayDAOException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
     public TranscriptDAO getTranscriptDAO() {
         return transcriptDAO;
     }
