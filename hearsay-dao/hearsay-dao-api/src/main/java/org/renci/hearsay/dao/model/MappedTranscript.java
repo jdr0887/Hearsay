@@ -16,11 +16,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
-@XmlRootElement(name = "transcriptInterval")
-@XmlType(name = "TranscriptInterval")
+@XmlRootElement(name = "mappedTranscript")
+@XmlType(name = "MappedTranscript")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "transcript_interval")
+@Table(name = "mapped_transcript")
 public class MappedTranscript extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
@@ -36,6 +36,10 @@ public class MappedTranscript extends BaseEntity {
     @Column(name = "region_type")
     @Enumerated(EnumType.STRING)
     private RegionType regionType;
+
+    @Column(name = "strand_type")
+    @Enumerated(EnumType.STRING)
+    private StrandType strandType;
 
     @Column(name = "region_end")
     private Integer regionStart;
@@ -67,12 +71,28 @@ public class MappedTranscript extends BaseEntity {
         this.transcript = transcript;
     }
 
+    public ReferenceSequence getReferenceSequence() {
+        return referenceSequence;
+    }
+
+    public void setReferenceSequence(ReferenceSequence referenceSequence) {
+        this.referenceSequence = referenceSequence;
+    }
+
     public RegionType getRegionType() {
         return regionType;
     }
 
     public void setRegionType(RegionType regionType) {
         this.regionType = regionType;
+    }
+
+    public StrandType getStrandType() {
+        return strandType;
+    }
+
+    public void setStrandType(StrandType strandType) {
+        this.strandType = strandType;
     }
 
     public Integer getRegionStart() {
@@ -126,9 +146,9 @@ public class MappedTranscript extends BaseEntity {
     @Override
     public String toString() {
         return String
-                .format("TranscriptExon [transcript=%s, regionType=%s, regionStart=%s, regionEnd=%s, cdsStart=%s, cdsEnd=%s, transcriptStart=%s, transcriptEnd=%s]",
-                        transcript, regionType, regionStart, regionEnd, cdsStart, cdsEnd, transcriptStart,
-                        transcriptEnd);
+                .format("MappedTranscript [regionType=%s, strandType=%s, regionStart=%s, regionEnd=%s, cdsStart=%s, cdsEnd=%s, transcriptStart=%s, transcriptEnd=%s, id=%s]",
+                        regionType, strandType, regionStart, regionEnd, cdsStart, cdsEnd, transcriptStart,
+                        transcriptEnd, id);
     }
 
     @Override
@@ -137,9 +157,11 @@ public class MappedTranscript extends BaseEntity {
         int result = super.hashCode();
         result = prime * result + ((cdsEnd == null) ? 0 : cdsEnd.hashCode());
         result = prime * result + ((cdsStart == null) ? 0 : cdsStart.hashCode());
+        result = prime * result + ((referenceSequence == null) ? 0 : referenceSequence.hashCode());
         result = prime * result + ((regionEnd == null) ? 0 : regionEnd.hashCode());
         result = prime * result + ((regionStart == null) ? 0 : regionStart.hashCode());
         result = prime * result + ((regionType == null) ? 0 : regionType.hashCode());
+        result = prime * result + ((strandType == null) ? 0 : strandType.hashCode());
         result = prime * result + ((transcript == null) ? 0 : transcript.hashCode());
         result = prime * result + ((transcriptEnd == null) ? 0 : transcriptEnd.hashCode());
         result = prime * result + ((transcriptStart == null) ? 0 : transcriptStart.hashCode());
@@ -165,6 +187,11 @@ public class MappedTranscript extends BaseEntity {
                 return false;
         } else if (!cdsStart.equals(other.cdsStart))
             return false;
+        if (referenceSequence == null) {
+            if (other.referenceSequence != null)
+                return false;
+        } else if (!referenceSequence.equals(other.referenceSequence))
+            return false;
         if (regionEnd == null) {
             if (other.regionEnd != null)
                 return false;
@@ -176,6 +203,8 @@ public class MappedTranscript extends BaseEntity {
         } else if (!regionStart.equals(other.regionStart))
             return false;
         if (regionType != other.regionType)
+            return false;
+        if (strandType != other.strandType)
             return false;
         if (transcript == null) {
             if (other.transcript != null)
