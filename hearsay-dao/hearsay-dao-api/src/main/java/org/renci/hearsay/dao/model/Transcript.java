@@ -4,8 +4,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -36,33 +34,14 @@ public class Transcript extends BaseEntity {
     @JoinColumn(name = "gene_fid")
     private Gene gene;
 
-    @Column(name = "hgnc_symbol")
-    private String hgncSymbol;
-
-    @Column(name = "map_index")
-    private Integer mapIndex;
-
-    @Column(name = "total_maps")
-    private Integer mapsTotal;
-
-    @Column(name = "protein_refseq_accession")
-    private String proteinRefSeqAccession;
-
-    @Column(name = "strand_type")
-    @Enumerated(EnumType.STRING)
-    private StrandType strandType;
+    @Column(name = "accession")
+    private String accession;
 
     @Column(name = "bounds_start")
     private Integer boundsStart;
 
     @Column(name = "bounds_end")
     private Integer boundsEnd;
-
-    @Column(name = "coding_start")
-    private Integer codingStart;
-
-    @Column(name = "coding_end")
-    private Integer codingEnd;
 
     @OneToMany(mappedBy = "transcript", fetch = FetchType.LAZY)
     private Set<MappedTranscript> exons;
@@ -82,44 +61,12 @@ public class Transcript extends BaseEntity {
         this.gene = gene;
     }
 
-    public String getHgncSymbol() {
-        return hgncSymbol;
+    public String getAccession() {
+        return accession;
     }
 
-    public void setHgncSymbol(String hgncSymbol) {
-        this.hgncSymbol = hgncSymbol;
-    }
-
-    public Integer getMapIndex() {
-        return mapIndex;
-    }
-
-    public void setMapIndex(Integer mapIndex) {
-        this.mapIndex = mapIndex;
-    }
-
-    public Integer getMapsTotal() {
-        return mapsTotal;
-    }
-
-    public void setMapsTotal(Integer mapsTotal) {
-        this.mapsTotal = mapsTotal;
-    }
-
-    public String getProteinRefSeqAccession() {
-        return proteinRefSeqAccession;
-    }
-
-    public void setProteinRefSeqAccession(String proteinRefSeqAccession) {
-        this.proteinRefSeqAccession = proteinRefSeqAccession;
-    }
-
-    public StrandType getStrandType() {
-        return strandType;
-    }
-
-    public void setStrandType(StrandType strandType) {
-        this.strandType = strandType;
+    public void setAccession(String accession) {
+        this.accession = accession;
     }
 
     public Integer getBoundsStart() {
@@ -136,22 +83,6 @@ public class Transcript extends BaseEntity {
 
     public void setBoundsEnd(Integer boundsEnd) {
         this.boundsEnd = boundsEnd;
-    }
-
-    public Integer getCodingStart() {
-        return codingStart;
-    }
-
-    public void setCodingStart(Integer codingStart) {
-        this.codingStart = codingStart;
-    }
-
-    public Integer getCodingEnd() {
-        return codingEnd;
-    }
-
-    public void setCodingEnd(Integer codingEnd) {
-        this.codingEnd = codingEnd;
     }
 
     public Set<MappedTranscript> getExons() {
@@ -172,10 +103,8 @@ public class Transcript extends BaseEntity {
 
     @Override
     public String toString() {
-        return String
-                .format("Transcript [hgncSymbol=%s, mapIndex=%s, mapsTotal=%s, proteinRefSeqAccession=%s, strandType=%s, boundsStart=%s, boundsEnd=%s, codingStart=%s, codingEnd=%s, id=%s]",
-                        hgncSymbol, mapIndex, mapsTotal, proteinRefSeqAccession, strandType, boundsStart, boundsEnd,
-                        codingStart, codingEnd, id);
+        return String.format("Transcript [accession=%s, boundsStart=%s, boundsEnd=%s, id=%s]", accession, boundsStart,
+                boundsEnd, id);
     }
 
 }
