@@ -2,6 +2,8 @@ package org.renci.hearsay.dao.model;
 
 public enum RegionType {
 
+    UTR("UTR"),
+
     UTR5("UTR-5"),
 
     UTR3("UTR-3"),
