@@ -15,7 +15,7 @@
     <property name="mappedTranscriptDAO" ref="mappedTranscriptDAO" />
   </bean>
 
-  <jaxrs:server id="MappedTranscriptServiceRS" address="/MappedTranscriptInterval">
+  <jaxrs:server id="MappedTranscriptServiceRS" address="/MappedTranscript">
     <jaxrs:serviceBeans>
       <ref component-id="mappedTranscript" />
     </jaxrs:serviceBeans>
