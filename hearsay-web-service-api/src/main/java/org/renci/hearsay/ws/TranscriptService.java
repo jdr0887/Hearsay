@@ -29,6 +29,10 @@ public interface TranscriptService {
     @Path("/findByGeneId/{geneId}")
     public List<Transcript> findByGeneId(@PathParam("geneId") Long geneId);
 
+    @GET
+    @Path("/findByGeneName/{geneName}")
+    public List<Transcript> findByGeneName(@PathParam("geneName") String geneName);
+
     @POST
     @Path("/")
     public Long save(Transcript transcript);

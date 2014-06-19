@@ -88,4 +88,19 @@ public class TranscriptDAOImpl extends BaseEntityDAOImpl<Transcript, Long> imple
         return ret;
     }
 
+    @Override
+    public List<Transcript> findByGeneName(String geneName) throws HearsayDAOException {
+        logger.debug("ENTERING findByGeneName(String)");
+        CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<Transcript> crit = critBuilder.createQuery(getPersistentClass());
+        List<Predicate> predicates = new ArrayList<Predicate>();
+        Root<Transcript> fromTranscript = crit.from(Transcript.class);
+        Join<Transcript, Gene> transcriptGeneJoin = fromTranscript.join(Transcript_.gene);
+        predicates.add(critBuilder.like(transcriptGeneJoin.get(Gene_.name), geneName));
+        crit.where(predicates.toArray(new Predicate[predicates.size()]));
+        TypedQuery<Transcript> query = getEntityManager().createQuery(crit);
+        List<Transcript> ret = query.getResultList();
+        return ret;
+    }
+
 }
