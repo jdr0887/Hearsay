@@ -52,6 +52,30 @@ public class MappedTranscriptServiceImpl implements MappedTranscriptService {
         return ret;
     }
 
+    @Override
+    public List<MappedTranscript> findByTranscriptAccession(String accession) {
+        logger.debug("ENTERING findByTranscriptAccession(String)");
+        List<MappedTranscript> ret = new ArrayList<MappedTranscript>();
+        try {
+            ret.addAll(mappedTranscriptDAO.findByTranscriptAccession(accession));
+        } catch (HearsayDAOException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    @Override
+    public List<MappedTranscript> findByGeneName(String name) {
+        logger.debug("ENTERING findByGeneName(String)");
+        List<MappedTranscript> ret = new ArrayList<MappedTranscript>();
+        try {
+            ret.addAll(mappedTranscriptDAO.findByGeneName(name));
+        } catch (HearsayDAOException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
     public MappedTranscriptDAO getMappedTranscriptDAO() {
         return mappedTranscriptDAO;
     }

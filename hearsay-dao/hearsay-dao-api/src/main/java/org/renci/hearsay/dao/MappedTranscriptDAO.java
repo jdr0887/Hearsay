@@ -8,6 +8,10 @@ public interface MappedTranscriptDAO extends BaseEntityDAO<MappedTranscript, Lon
 
     public List<MappedTranscript> findByTranscriptId(Long transcriptId) throws HearsayDAOException;
 
-    public abstract List<MappedTranscript> findByExample(MappedTranscript mappedTranscript) throws HearsayDAOException;
+    public List<MappedTranscript> findByTranscriptAccession(String accession) throws HearsayDAOException;
+
+    public List<MappedTranscript> findByExample(MappedTranscript mappedTranscript) throws HearsayDAOException;
+
+    public List<MappedTranscript> findByGeneName(String name) throws HearsayDAOException;
 
 }

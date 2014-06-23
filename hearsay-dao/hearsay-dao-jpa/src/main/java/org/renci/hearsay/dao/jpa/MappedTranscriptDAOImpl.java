@@ -12,6 +12,8 @@ import javax.persistence.criteria.Root;
 
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.MappedTranscriptDAO;
+import org.renci.hearsay.dao.model.Gene;
+import org.renci.hearsay.dao.model.Gene_;
 import org.renci.hearsay.dao.model.MappedTranscript;
 import org.renci.hearsay.dao.model.MappedTranscript_;
 import org.renci.hearsay.dao.model.Transcript;
@@ -48,6 +50,21 @@ public class MappedTranscriptDAOImpl extends BaseEntityDAOImpl<MappedTranscript,
     }
 
     @Override
+    public List<MappedTranscript> findByTranscriptAccession(String accession) throws HearsayDAOException {
+        logger.debug("ENTERING findByTranscriptAccession(String)");
+        CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<MappedTranscript> crit = critBuilder.createQuery(getPersistentClass());
+        Root<MappedTranscript> fromTranscriptInterval = crit.from(MappedTranscript.class);
+        Join<MappedTranscript, Transcript> fromTranscript = fromTranscriptInterval.join(MappedTranscript_.transcript);
+        List<Predicate> predicates = new ArrayList<Predicate>();
+        predicates.add(critBuilder.equal(fromTranscript.get(Transcript_.accession), accession));
+        crit.where(predicates.toArray(new Predicate[predicates.size()]));
+        TypedQuery<MappedTranscript> query = getEntityManager().createQuery(crit);
+        List<MappedTranscript> ret = query.getResultList();
+        return ret;
+    }
+
+    @Override
     public List<MappedTranscript> findByExample(MappedTranscript t) throws HearsayDAOException {
         logger.debug("ENTERING findByExample(TranscriptInterval)");
         CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
@@ -61,6 +78,22 @@ public class MappedTranscriptDAOImpl extends BaseEntityDAOImpl<MappedTranscript,
                     t.getRegionType()));
         }
 
+        crit.where(predicates.toArray(new Predicate[predicates.size()]));
+        TypedQuery<MappedTranscript> query = getEntityManager().createQuery(crit);
+        List<MappedTranscript> ret = query.getResultList();
+        return ret;
+    }
+
+    @Override
+    public List<MappedTranscript> findByGeneName(String name) throws HearsayDAOException {
+        logger.debug("ENTERING findByGeneName(String)");
+        CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<MappedTranscript> crit = critBuilder.createQuery(getPersistentClass());
+        List<Predicate> predicates = new ArrayList<Predicate>();
+        Root<MappedTranscript> fromMappedTranscript = crit.from(MappedTranscript.class);
+        Join<MappedTranscript, Transcript> transcriptJoin = fromMappedTranscript.join(MappedTranscript_.transcript);
+        Join<Transcript, Gene> geneJoin = transcriptJoin.join(Transcript_.gene);
+        predicates.add(critBuilder.equal(geneJoin.get(Gene_.name), name));
         crit.where(predicates.toArray(new Predicate[predicates.size()]));
         TypedQuery<MappedTranscript> query = getEntityManager().createQuery(crit);
         List<MappedTranscript> ret = query.getResultList();

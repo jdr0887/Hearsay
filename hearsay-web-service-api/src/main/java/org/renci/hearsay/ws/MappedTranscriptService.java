@@ -22,6 +22,14 @@ public interface MappedTranscriptService {
     public List<MappedTranscript> findByTranscriptId(@PathParam("id") Long id);
 
     @GET
+    @Path("/findByTranscriptAccession/{accession}")
+    public List<MappedTranscript> findByTranscriptAccession(@PathParam("accession") String accession);
+
+    @GET
+    @Path("/findByGeneName/{name}")
+    public List<MappedTranscript> findByGeneName(@PathParam("name") String name);
+
+    @GET
     @Path("/findById/{id}")
     public MappedTranscript findById(@PathParam("id") Long id);
 
