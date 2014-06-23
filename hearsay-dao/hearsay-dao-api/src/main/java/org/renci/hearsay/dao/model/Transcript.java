@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -30,18 +31,19 @@ public class Transcript extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "gene_fid")
     private Gene gene;
 
     @Column(name = "accession")
-    private String accession;
+    private String genomicAccession;
 
-    @Column(name = "bounds_start")
-    private Integer boundsStart;
+    @Column(name = "genomic_start")
+    private Integer genomicStart;
 
-    @Column(name = "bounds_end")
-    private Integer boundsEnd;
+    @Column(name = "genomic_end")
+    private Integer genomicEnd;
 
     @OneToMany(mappedBy = "transcript", fetch = FetchType.LAZY)
     private Set<MappedTranscript> exons;
@@ -61,28 +63,28 @@ public class Transcript extends BaseEntity {
         this.gene = gene;
     }
 
-    public String getAccession() {
-        return accession;
+    public String getGenomicAccession() {
+        return genomicAccession;
     }
 
-    public void setAccession(String accession) {
-        this.accession = accession;
+    public void setGenomicAccession(String genomicAccession) {
+        this.genomicAccession = genomicAccession;
     }
 
-    public Integer getBoundsStart() {
-        return boundsStart;
+    public Integer getGenomicStart() {
+        return genomicStart;
     }
 
-    public void setBoundsStart(Integer boundsStart) {
-        this.boundsStart = boundsStart;
+    public void setGenomicStart(Integer genomicStart) {
+        this.genomicStart = genomicStart;
     }
 
-    public Integer getBoundsEnd() {
-        return boundsEnd;
+    public Integer getGenomicEnd() {
+        return genomicEnd;
     }
 
-    public void setBoundsEnd(Integer boundsEnd) {
-        this.boundsEnd = boundsEnd;
+    public void setGenomicEnd(Integer genomicEnd) {
+        this.genomicEnd = genomicEnd;
     }
 
     public Set<MappedTranscript> getExons() {
@@ -103,8 +105,51 @@ public class Transcript extends BaseEntity {
 
     @Override
     public String toString() {
-        return String.format("Transcript [accession=%s, boundsStart=%s, boundsEnd=%s, id=%s]", accession, boundsStart,
-                boundsEnd, id);
+        return String.format("Transcript [genomicAccession=%s, genomicStart=%s, genomicEnd=%s, id=%s]",
+                genomicAccession, genomicStart, genomicEnd, id);
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((gene == null) ? 0 : gene.hashCode());
+        result = prime * result + ((genomicAccession == null) ? 0 : genomicAccession.hashCode());
+        result = prime * result + ((genomicEnd == null) ? 0 : genomicEnd.hashCode());
+        result = prime * result + ((genomicStart == null) ? 0 : genomicStart.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!super.equals(obj))
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Transcript other = (Transcript) obj;
+        if (gene == null) {
+            if (other.gene != null)
+                return false;
+        } else if (!gene.equals(other.gene))
+            return false;
+        if (genomicAccession == null) {
+            if (other.genomicAccession != null)
+                return false;
+        } else if (!genomicAccession.equals(other.genomicAccession))
+            return false;
+        if (genomicEnd == null) {
+            if (other.genomicEnd != null)
+                return false;
+        } else if (!genomicEnd.equals(other.genomicEnd))
+            return false;
+        if (genomicStart == null) {
+            if (other.genomicStart != null)
+                return false;
+        } else if (!genomicStart.equals(other.genomicStart))
+            return false;
+        return true;
     }
 
 }
