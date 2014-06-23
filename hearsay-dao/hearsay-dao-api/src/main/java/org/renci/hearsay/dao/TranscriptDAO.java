@@ -14,4 +14,6 @@ public interface TranscriptDAO extends BaseEntityDAO<Transcript, Long> {
 
     public abstract List<Transcript> findByGeneName(String name) throws HearsayDAOException;
 
+    public abstract List<Transcript> findByAccession(String accession) throws HearsayDAOException;
+
 }

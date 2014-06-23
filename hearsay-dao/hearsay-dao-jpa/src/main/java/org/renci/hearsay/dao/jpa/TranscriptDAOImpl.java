@@ -50,16 +50,16 @@ public class TranscriptDAOImpl extends BaseEntityDAOImpl<Transcript, Long> imple
 
         Root<Transcript> fromTranscript = crit.from(Transcript.class);
 
-        if (StringUtils.isNotEmpty(t.getAccession())) {
-            predicates.add(critBuilder.equal(fromTranscript.get(Transcript_.accession), t.getAccession()));
+        if (StringUtils.isNotEmpty(t.getGenomicAccession())) {
+            predicates.add(critBuilder.equal(fromTranscript.get(Transcript_.accession), t.getGenomicAccession()));
         }
 
-        if (t.getBoundsStart() != null) {
-            predicates.add(critBuilder.equal(fromTranscript.get(Transcript_.boundsStart), t.getBoundsStart()));
+        if (t.getGenomicStart() != null) {
+            predicates.add(critBuilder.equal(fromTranscript.get(Transcript_.boundsStart), t.getGenomicStart()));
         }
 
-        if (t.getBoundsEnd() != null) {
-            predicates.add(critBuilder.equal(fromTranscript.get(Transcript_.boundsEnd), t.getBoundsEnd()));
+        if (t.getGenomicEnd() != null) {
+            predicates.add(critBuilder.equal(fromTranscript.get(Transcript_.boundsEnd), t.getGenomicEnd()));
         }
 
         if (t.getGene() != null && t.getGene().getId() != null) {
@@ -97,6 +97,20 @@ public class TranscriptDAOImpl extends BaseEntityDAOImpl<Transcript, Long> imple
         Root<Transcript> fromTranscript = crit.from(Transcript.class);
         Join<Transcript, Gene> transcriptGeneJoin = fromTranscript.join(Transcript_.gene);
         predicates.add(critBuilder.like(transcriptGeneJoin.get(Gene_.name), geneName));
+        crit.where(predicates.toArray(new Predicate[predicates.size()]));
+        TypedQuery<Transcript> query = getEntityManager().createQuery(crit);
+        List<Transcript> ret = query.getResultList();
+        return ret;
+    }
+
+    @Override
+    public List<Transcript> findByAccession(String accession) throws HearsayDAOException {
+        logger.debug("ENTERING findByAccession(String)");
+        CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<Transcript> crit = critBuilder.createQuery(getPersistentClass());
+        List<Predicate> predicates = new ArrayList<Predicate>();
+        Root<Transcript> fromTranscript = crit.from(Transcript.class);
+        predicates.add(critBuilder.like(fromTranscript.get(Transcript_.accession), accession));
         crit.where(predicates.toArray(new Predicate[predicates.size()]));
         TypedQuery<Transcript> query = getEntityManager().createQuery(crit);
         List<Transcript> ret = query.getResultList();

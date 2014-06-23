@@ -26,6 +26,10 @@ public interface TranscriptService {
     public Transcript findById(@PathParam("id") Long id);
 
     @GET
+    @Path("/findByAccession/{accession}")
+    public List<Transcript> findByAccession(@PathParam("accession") String accession);
+
+    @GET
     @Path("/findByGeneId/{geneId}")
     public List<Transcript> findByGeneId(@PathParam("geneId") Long geneId);
 
