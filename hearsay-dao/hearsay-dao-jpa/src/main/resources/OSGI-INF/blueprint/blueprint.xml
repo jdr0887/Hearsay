@@ -32,6 +32,12 @@
   </bean>
   <service ref="referenceSequenceDAOImpl" interface="org.renci.hearsay.dao.ReferenceSequenceDAO" />
 
+  <bean id="regionDAOImpl" class="org.renci.hearsay.dao.jpa.RegionDAOImpl">
+    <tx:transaction method="*" value="Required" />
+    <jpa:context property="entityManager" unitname="hearsay" />
+  </bean>
+  <service ref="regionDAOImpl" interface="org.renci.hearsay.dao.RegionDAO" />
+
   <bean id="transcriptDAOImpl" class="org.renci.hearsay.dao.jpa.TranscriptDAOImpl">
     <tx:transaction method="*" value="Required" />
     <jpa:context property="entityManager" unitname="hearsay" />
