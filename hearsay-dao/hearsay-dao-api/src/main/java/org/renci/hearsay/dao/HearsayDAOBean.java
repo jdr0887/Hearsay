@@ -12,6 +12,8 @@ public class HearsayDAOBean {
 
     private ReferenceSequenceDAO referenceSequenceDAO;
 
+    private RegionDAO regionDAO;
+
     private TranscriptDAO transcriptDAO;
 
     private TranscriptVariantDAO transcriptVariantDAO;
@@ -66,6 +68,14 @@ public class HearsayDAOBean {
 
     public void setReferenceSequenceDAO(ReferenceSequenceDAO referenceSequenceDAO) {
         this.referenceSequenceDAO = referenceSequenceDAO;
+    }
+
+    public RegionDAO getRegionDAO() {
+        return regionDAO;
+    }
+
+    public void setRegionDAO(RegionDAO regionDAO) {
+        this.regionDAO = regionDAO;
     }
 
     public TranscriptDAO getTranscriptDAO() {
