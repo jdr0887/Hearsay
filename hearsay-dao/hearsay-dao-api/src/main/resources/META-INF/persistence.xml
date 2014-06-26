@@ -14,6 +14,7 @@
     <class>org.renci.hearsay.dao.model.MappedTranscript</class>
     <class>org.renci.hearsay.dao.model.ReferenceGenome</class>
     <class>org.renci.hearsay.dao.model.ReferenceSequence</class>
+    <class>org.renci.hearsay.dao.model.Region</class>
     <class>org.renci.hearsay.dao.model.Transcript</class>
     <class>org.renci.hearsay.dao.model.TranscriptVariant</class>
     <class>org.renci.hearsay.dao.model.Translation</class>

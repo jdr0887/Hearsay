@@ -5,7 +5,19 @@
 
     <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
 
-    <class>org.renci.hearsay.dao.model.CaseInformation</class>
+    <class>org.renci.hearsay.dao.model.BaseEntity</class>
+    <class>org.renci.hearsay.dao.model.Gene</class>
+    <class>org.renci.hearsay.dao.model.GenomicSequenceVariant</class>
+    <class>org.renci.hearsay.dao.model.MappedTranscript</class>
+    <class>org.renci.hearsay.dao.model.ReferenceGenome</class>
+    <class>org.renci.hearsay.dao.model.ReferenceSequence</class>
+    <class>org.renci.hearsay.dao.model.Region</class>
+    <class>org.renci.hearsay.dao.model.Transcript</class>
+    <class>org.renci.hearsay.dao.model.TranscriptVariant</class>
+    <class>org.renci.hearsay.dao.model.Translation</class>
+    <class>org.renci.hearsay.dao.model.TranslationVariant</class>
+    <class>org.renci.hearsay.dao.model.Variant</class>
+    <class>org.renci.hearsay.dao.model.VariantEffect</class>
 
     <properties>
       <property name="openjpa.ConnectionProperties"
