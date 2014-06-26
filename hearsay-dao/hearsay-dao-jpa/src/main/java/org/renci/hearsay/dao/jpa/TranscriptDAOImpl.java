@@ -54,14 +54,6 @@ public class TranscriptDAOImpl extends BaseEntityDAOImpl<Transcript, Long> imple
             predicates.add(critBuilder.equal(fromTranscript.get(Transcript_.accession), t.getAccession()));
         }
 
-        if (t.getGenomicStart() != null) {
-            predicates.add(critBuilder.equal(fromTranscript.get(Transcript_.genomicStart), t.getGenomicStart()));
-        }
-
-        if (t.getGenomicEnd() != null) {
-            predicates.add(critBuilder.equal(fromTranscript.get(Transcript_.genomicEnd), t.getGenomicEnd()));
-        }
-
         if (t.getGene() != null && t.getGene().getId() != null) {
             Join<Transcript, Gene> transcriptGeneJoin = fromTranscript.join(Transcript_.gene);
             predicates.add(critBuilder.equal(transcriptGeneJoin.get(Gene_.id), t.getGene().getId()));

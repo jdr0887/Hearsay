@@ -78,6 +78,7 @@
     <module>hearsay-web-service-mapped-transcript</module>
     <module>hearsay-web-service-reference-genome</module>
     <module>hearsay-web-service-reference-sequence</module>
+    <module>hearsay-web-service-region</module>
     <module>hearsay-web-service-transcript</module>
     <module>hearsay-web-service-transcript-variant</module>
     <module>hearsay-web-service-translation</module>
