@@ -52,6 +52,7 @@
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-web-service-genomic-sequence-variant/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-web-service-reference-genome/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-web-service-reference-sequence/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-web-service-region/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-web-service-mapped-transcript/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-web-service-transcript/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-web-service-transcript-variant/${project.version}</bundle>
