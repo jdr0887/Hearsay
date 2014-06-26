@@ -29,7 +29,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @NamedQueries({ @NamedQuery(name = "Transcript.findAll", query = "SELECT a FROM Transcript a") })
 public class Transcript extends BaseEntity {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 3621851350760327992L;
 
     @JsonIgnore
     @ManyToOne
@@ -39,14 +39,8 @@ public class Transcript extends BaseEntity {
     @Column(name = "accession")
     private String accession;
 
-    @Column(name = "genomic_start")
-    private Integer genomicStart;
-
-    @Column(name = "genomic_end")
-    private Integer genomicEnd;
-
     @OneToMany(mappedBy = "transcript", fetch = FetchType.EAGER)
-    private Set<MappedTranscript> regions;
+    private Set<MappedTranscript> mappedTranscripts;
 
     @OneToMany(mappedBy = "transcript", fetch = FetchType.EAGER)
     private Set<Translation> translations;
@@ -71,28 +65,12 @@ public class Transcript extends BaseEntity {
         this.accession = accession;
     }
 
-    public Integer getGenomicStart() {
-        return genomicStart;
+    public Set<MappedTranscript> getMappedTranscripts() {
+        return mappedTranscripts;
     }
 
-    public void setGenomicStart(Integer genomicStart) {
-        this.genomicStart = genomicStart;
-    }
-
-    public Integer getGenomicEnd() {
-        return genomicEnd;
-    }
-
-    public void setGenomicEnd(Integer genomicEnd) {
-        this.genomicEnd = genomicEnd;
-    }
-
-    public Set<MappedTranscript> getRegions() {
-        return regions;
-    }
-
-    public void setRegions(Set<MappedTranscript> regions) {
-        this.regions = regions;
+    public void setMappedTranscripts(Set<MappedTranscript> mappedTranscripts) {
+        this.mappedTranscripts = mappedTranscripts;
     }
 
     public Set<Translation> getTranslations() {
@@ -105,18 +83,14 @@ public class Transcript extends BaseEntity {
 
     @Override
     public String toString() {
-        return String.format("Transcript [accession=%s, genomicStart=%s, genomicEnd=%s, id=%s]", accession,
-                genomicStart, genomicEnd, id);
+        return String.format("Transcript [accession=%s, id=%s]", accession, id);
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = super.hashCode();
-        result = prime * result + ((gene == null) ? 0 : gene.hashCode());
         result = prime * result + ((accession == null) ? 0 : accession.hashCode());
-        result = prime * result + ((genomicEnd == null) ? 0 : genomicEnd.hashCode());
-        result = prime * result + ((genomicStart == null) ? 0 : genomicStart.hashCode());
         return result;
     }
 
@@ -129,25 +103,10 @@ public class Transcript extends BaseEntity {
         if (getClass() != obj.getClass())
             return false;
         Transcript other = (Transcript) obj;
-        if (gene == null) {
-            if (other.gene != null)
-                return false;
-        } else if (!gene.equals(other.gene))
-            return false;
         if (accession == null) {
             if (other.accession != null)
                 return false;
         } else if (!accession.equals(other.accession))
-            return false;
-        if (genomicEnd == null) {
-            if (other.genomicEnd != null)
-                return false;
-        } else if (!genomicEnd.equals(other.genomicEnd))
-            return false;
-        if (genomicStart == null) {
-            if (other.genomicStart != null)
-                return false;
-        } else if (!genomicStart.equals(other.genomicStart))
             return false;
         return true;
     }
