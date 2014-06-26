@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @Table(name = "variant_effect")
 public class VariantEffect extends BaseEntity {
 
-    private static final long serialVersionUID = 6938206007642149853L;
+    private static final long serialVersionUID = 1990524702764321911L;
 
     @Column(name = "sequence_ontology_term")
     private String sequenceOntologyTerm;
