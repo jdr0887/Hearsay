@@ -57,7 +57,7 @@ public class MappedTranscriptDAOImpl extends BaseEntityDAOImpl<MappedTranscript,
         Root<MappedTranscript> fromTranscriptInterval = crit.from(MappedTranscript.class);
         Join<MappedTranscript, Transcript> fromTranscript = fromTranscriptInterval.join(MappedTranscript_.transcript);
         List<Predicate> predicates = new ArrayList<Predicate>();
-        predicates.add(critBuilder.equal(fromTranscript.get(Transcript_.genomicAccession), accession));
+        predicates.add(critBuilder.equal(fromTranscript.get(Transcript_.accession), accession));
         crit.where(predicates.toArray(new Predicate[predicates.size()]));
         TypedQuery<MappedTranscript> query = getEntityManager().createQuery(crit);
         List<MappedTranscript> ret = query.getResultList();
