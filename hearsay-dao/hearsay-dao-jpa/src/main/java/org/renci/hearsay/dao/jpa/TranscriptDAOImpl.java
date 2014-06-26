@@ -50,9 +50,8 @@ public class TranscriptDAOImpl extends BaseEntityDAOImpl<Transcript, Long> imple
 
         Root<Transcript> fromTranscript = crit.from(Transcript.class);
 
-        if (StringUtils.isNotEmpty(t.getGenomicAccession())) {
-            predicates
-                    .add(critBuilder.equal(fromTranscript.get(Transcript_.genomicAccession), t.getGenomicAccession()));
+        if (StringUtils.isNotEmpty(t.getAccession())) {
+            predicates.add(critBuilder.equal(fromTranscript.get(Transcript_.accession), t.getAccession()));
         }
 
         if (t.getGenomicStart() != null) {
@@ -111,7 +110,7 @@ public class TranscriptDAOImpl extends BaseEntityDAOImpl<Transcript, Long> imple
         CriteriaQuery<Transcript> crit = critBuilder.createQuery(getPersistentClass());
         List<Predicate> predicates = new ArrayList<Predicate>();
         Root<Transcript> fromTranscript = crit.from(Transcript.class);
-        predicates.add(critBuilder.like(fromTranscript.get(Transcript_.genomicAccession), accession));
+        predicates.add(critBuilder.like(fromTranscript.get(Transcript_.accession), accession));
         crit.where(predicates.toArray(new Predicate[predicates.size()]));
         TypedQuery<Transcript> query = getEntityManager().createQuery(crit);
         List<Transcript> ret = query.getResultList();
