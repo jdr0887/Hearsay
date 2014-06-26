@@ -52,7 +52,7 @@ public class MappedTranscript extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private StrandType strandType;
 
-    @OneToMany(mappedBy = "region", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "mappedTranscript", fetch = FetchType.EAGER)
     private Set<Region> regions;
 
     public MappedTranscript() {
