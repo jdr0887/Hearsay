@@ -37,7 +37,7 @@ public class Transcript extends BaseEntity {
     private Gene gene;
 
     @Column(name = "accession")
-    private String genomicAccession;
+    private String accession;
 
     @Column(name = "genomic_start")
     private Integer genomicStart;
@@ -45,10 +45,10 @@ public class Transcript extends BaseEntity {
     @Column(name = "genomic_end")
     private Integer genomicEnd;
 
-    @OneToMany(mappedBy = "transcript", fetch = FetchType.LAZY)
-    private Set<MappedTranscript> exons;
+    @OneToMany(mappedBy = "transcript", fetch = FetchType.EAGER)
+    private Set<MappedTranscript> regions;
 
-    @OneToMany(mappedBy = "transcript", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "transcript", fetch = FetchType.EAGER)
     private Set<Translation> translations;
 
     public Transcript() {
@@ -63,12 +63,12 @@ public class Transcript extends BaseEntity {
         this.gene = gene;
     }
 
-    public String getGenomicAccession() {
-        return genomicAccession;
+    public String getAccession() {
+        return accession;
     }
 
-    public void setGenomicAccession(String genomicAccession) {
-        this.genomicAccession = genomicAccession;
+    public void setAccession(String accession) {
+        this.accession = accession;
     }
 
     public Integer getGenomicStart() {
@@ -87,12 +87,12 @@ public class Transcript extends BaseEntity {
         this.genomicEnd = genomicEnd;
     }
 
-    public Set<MappedTranscript> getExons() {
-        return exons;
+    public Set<MappedTranscript> getRegions() {
+        return regions;
     }
 
-    public void setExons(Set<MappedTranscript> exons) {
-        this.exons = exons;
+    public void setRegions(Set<MappedTranscript> regions) {
+        this.regions = regions;
     }
 
     public Set<Translation> getTranslations() {
@@ -105,8 +105,8 @@ public class Transcript extends BaseEntity {
 
     @Override
     public String toString() {
-        return String.format("Transcript [genomicAccession=%s, genomicStart=%s, genomicEnd=%s, id=%s]",
-                genomicAccession, genomicStart, genomicEnd, id);
+        return String.format("Transcript [accession=%s, genomicStart=%s, genomicEnd=%s, id=%s]", accession,
+                genomicStart, genomicEnd, id);
     }
 
     @Override
@@ -114,7 +114,7 @@ public class Transcript extends BaseEntity {
         final int prime = 31;
         int result = super.hashCode();
         result = prime * result + ((gene == null) ? 0 : gene.hashCode());
-        result = prime * result + ((genomicAccession == null) ? 0 : genomicAccession.hashCode());
+        result = prime * result + ((accession == null) ? 0 : accession.hashCode());
         result = prime * result + ((genomicEnd == null) ? 0 : genomicEnd.hashCode());
         result = prime * result + ((genomicStart == null) ? 0 : genomicStart.hashCode());
         return result;
@@ -134,10 +134,10 @@ public class Transcript extends BaseEntity {
                 return false;
         } else if (!gene.equals(other.gene))
             return false;
-        if (genomicAccession == null) {
-            if (other.genomicAccession != null)
+        if (accession == null) {
+            if (other.accession != null)
                 return false;
-        } else if (!genomicAccession.equals(other.genomicAccession))
+        } else if (!accession.equals(other.accession))
             return false;
         if (genomicEnd == null) {
             if (other.genomicEnd != null)

@@ -43,19 +43,19 @@ public class MappedTranscript extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private StrandType strandType;
 
-    @Column(name = "region_end")
+    @Column(name = "region_start")
     private Integer regionStart;
 
     @Column(name = "region_end")
     private Integer regionEnd;
 
-    @Column(name = "cds_end")
+    @Column(name = "cds_start")
     private Integer cdsStart;
 
     @Column(name = "cds_end")
     private Integer cdsEnd;
 
-    @Column(name = "transcript_end")
+    @Column(name = "transcript_start")
     private Integer transcriptStart;
 
     @Column(name = "transcript_end")
