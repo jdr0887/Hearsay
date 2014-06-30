@@ -2,9 +2,9 @@ package org.renci.hearsay.dao.model;
 
 public enum StrandType {
 
-    POSITIVE("+"),
+    PLUS("+"),
 
-    NEGATIVE("-");
+    MINUS("-");
 
     private String value;
 
