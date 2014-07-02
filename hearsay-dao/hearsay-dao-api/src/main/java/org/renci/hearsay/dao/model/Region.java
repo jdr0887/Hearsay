@@ -57,6 +57,18 @@ public class Region extends BaseEntity {
         super();
     }
 
+    public Region(RegionType regionType, Integer regionStart, Integer regionStop, Integer cdsStart, Integer cdsStop,
+            Integer transcriptStart, Integer transcriptStop) {
+        super();
+        this.regionType = regionType;
+        this.regionStart = regionStart;
+        this.regionStop = regionStop;
+        this.cdsStart = cdsStart;
+        this.cdsStop = cdsStop;
+        this.transcriptStart = transcriptStart;
+        this.transcriptStop = transcriptStop;
+    }
+
     public MappedTranscript getMappedTranscript() {
         return mappedTranscript;
     }
