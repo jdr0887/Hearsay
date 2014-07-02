@@ -1,5 +1,6 @@
 package org.renci.hearsay.dao.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -108,6 +109,9 @@ public class MappedTranscript extends BaseEntity {
     }
 
     public Set<Region> getRegions() {
+        if (regions == null) {
+            regions = new HashSet<Region>();
+        }
         return regions;
     }
 
