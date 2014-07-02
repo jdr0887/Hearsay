@@ -3,13 +3,13 @@
   <parent>
     <groupId>org.renci</groupId>
     <artifactId>hearsay</artifactId>
-    <version>0.0.8-SNAPSHOT</version>
+    <version>0.0.9-SNAPSHOT</version>
   </parent>
   <name>Hearsay :: Server</name>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.renci.hearsay</groupId>
   <artifactId>hearsay-server</artifactId>
-  <version>0.0.8-SNAPSHOT</version>
+  <version>0.0.9-SNAPSHOT</version>
   <packaging>pom</packaging>
   <dependencies>
     <dependency>
