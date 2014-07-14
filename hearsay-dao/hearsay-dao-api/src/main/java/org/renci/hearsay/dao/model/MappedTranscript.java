@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -54,6 +55,7 @@ public class MappedTranscript extends BaseEntity {
     private StrandType strandType;
 
     @OneToMany(mappedBy = "mappedTranscript", fetch = FetchType.EAGER)
+    @OrderBy("regionStart ASC")
     private Set<Region> regions;
 
     public MappedTranscript() {
