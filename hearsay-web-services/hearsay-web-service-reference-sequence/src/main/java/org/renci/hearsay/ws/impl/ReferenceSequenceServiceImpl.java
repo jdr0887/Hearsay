@@ -14,6 +14,18 @@ public class ReferenceSequenceServiceImpl implements ReferenceSequenceService {
     private ReferenceSequenceDAO referenceSequenceDAO;
 
     @Override
+    public ReferenceSequence findByAccession(String accession) {
+        logger.debug("ENTERING findByAccession(String)");
+        ReferenceSequence ret = null;
+        try {
+            ret = referenceSequenceDAO.findByAccession(accession);
+        } catch (HearsayDAOException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    @Override
     public ReferenceSequence findById(Long id) {
         logger.debug("ENTERING findById(Long)");
         ReferenceSequence ret = null;

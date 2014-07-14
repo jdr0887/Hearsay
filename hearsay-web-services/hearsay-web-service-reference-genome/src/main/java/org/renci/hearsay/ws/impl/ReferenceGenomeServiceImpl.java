@@ -1,5 +1,7 @@
 package org.renci.hearsay.ws.impl;
 
+import java.util.List;
+
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.ReferenceGenomeDAO;
 import org.renci.hearsay.dao.model.ReferenceGenome;
@@ -12,6 +14,23 @@ public class ReferenceGenomeServiceImpl implements ReferenceGenomeService {
     private final Logger logger = LoggerFactory.getLogger(ReferenceGenomeServiceImpl.class);
 
     private ReferenceGenomeDAO referenceGenomeDAO;
+
+    @Override
+    public List<ReferenceGenome> findBySource(String source) {
+        return null;
+    }
+
+    @Override
+    public ReferenceGenome findBySourceAndVersion(String source, String version) {
+        logger.debug("ENTERING findBySourceAndVersion(String, String)");
+        ReferenceGenome ret = null;
+        try {
+            ret = referenceGenomeDAO.findBySourceAndVersion(source, version);
+        } catch (HearsayDAOException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
 
     @Override
     public ReferenceGenome findById(Long id) {

@@ -1,5 +1,6 @@
 package org.renci.hearsay.dao.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -25,7 +26,10 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "reference_genome")
-@NamedQueries({ @NamedQuery(name = "ReferenceGenome.findAll", query = "SELECT a FROM ReferenceGenome a") })
+@NamedQueries({
+        @NamedQuery(name = "ReferenceGenome.findAll", query = "SELECT a FROM ReferenceGenome a"),
+        @NamedQuery(name = "ReferenceGenome.findBySource", query = "SELECT a FROM ReferenceGenome a where a.source = :source"),
+        @NamedQuery(name = "ReferenceGenome.findBySourceAndVersion", query = "SELECT a FROM ReferenceGenome a where a.source = :source and a.version = :version") })
 public class ReferenceGenome extends BaseEntity {
 
     private static final long serialVersionUID = -5286845209354037261L;
@@ -42,6 +46,12 @@ public class ReferenceGenome extends BaseEntity {
 
     public ReferenceGenome() {
         super();
+    }
+
+    public ReferenceGenome(String source, String version) {
+        super();
+        this.source = source;
+        this.version = version;
     }
 
     public String getSource() {
@@ -61,6 +71,9 @@ public class ReferenceGenome extends BaseEntity {
     }
 
     public Set<ReferenceSequence> getReferenceSequences() {
+        if (referenceSequences == null) {
+            referenceSequences = new HashSet<ReferenceSequence>();
+        }
         return referenceSequences;
     }
 

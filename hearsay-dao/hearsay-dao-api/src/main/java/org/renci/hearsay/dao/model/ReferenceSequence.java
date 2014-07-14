@@ -1,5 +1,6 @@
 package org.renci.hearsay.dao.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -23,7 +24,9 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "reference_sequence")
-@NamedQueries({ @NamedQuery(name = "ReferenceSequence.findAll", query = "SELECT a FROM ReferenceSequence a") })
+@NamedQueries({
+        @NamedQuery(name = "ReferenceSequence.findAll", query = "SELECT a FROM ReferenceSequence a"),
+        @NamedQuery(name = "ReferenceSequence.findByAccession", query = "SELECT a FROM ReferenceSequence a where a.accession = :accession") })
 public class ReferenceSequence extends BaseEntity {
 
     private static final long serialVersionUID = 1327461104847251913L;
@@ -52,6 +55,9 @@ public class ReferenceSequence extends BaseEntity {
     }
 
     public Set<ReferenceGenome> getReferenceGenomes() {
+        if (referenceGenomes == null) {
+            referenceGenomes = new HashSet<ReferenceGenome>();
+        }
         return referenceGenomes;
     }
 
