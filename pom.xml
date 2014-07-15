@@ -8,7 +8,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.renci</groupId>
   <artifactId>hearsay</artifactId>
-  <version>0.0.12-SNAPSHOT</version>
+  <version>0.0.12</version>
   <packaging>pom</packaging>
   <url>https://ci-dev.renci.org/site/hearsay</url>
   <properties>
@@ -31,7 +31,7 @@
   <scm>
     <developerConnection>scm:git:ssh://${user.name}@code.renci.org/gitroot/hearsay</developerConnection>
     <connection>scm:git:ssh://code.renci.org/gitroot/hearsay</connection>
-    <tag>HEAD</tag>
+    <tag>hearsay-0.0.12</tag>
   </scm>
   <dependencyManagement>
     <dependencies>
@@ -151,17 +151,17 @@
       <dependency>
       	<groupId>org.renci.hearsay</groupId>
       	<artifactId>hearsay-web-service-api</artifactId>
-      	<version>0.0.12-SNAPSHOT</version>
+      	<version>0.0.12</version>
       </dependency>
       <dependency>
       	<groupId>org.renci.hearsay.hearsay-dao</groupId>
       	<artifactId>hearsay-dao-api</artifactId>
-      	<version>0.0.12-SNAPSHOT</version>
+      	<version>0.0.12</version>
       </dependency>
       <dependency>
       	<groupId>org.renci.hearsay.hearsay-dao</groupId>
       	<artifactId>hearsay-dao-jpa</artifactId>
-      	<version>0.0.12-SNAPSHOT</version>
+      	<version>0.0.12</version>
       </dependency>
       <dependency>
 	<groupId>commons-httpclient</groupId>
