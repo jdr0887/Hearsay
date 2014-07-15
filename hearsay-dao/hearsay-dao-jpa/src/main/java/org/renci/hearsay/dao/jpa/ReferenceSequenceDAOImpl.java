@@ -1,5 +1,7 @@
 package org.renci.hearsay.dao.jpa;
 
+import java.util.List;
+
 import javax.persistence.TypedQuery;
 
 import org.renci.hearsay.dao.HearsayDAOException;
@@ -23,12 +25,12 @@ public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequenc
     }
 
     @Override
-    public ReferenceSequence findByAccession(String accession) throws HearsayDAOException {
+    public List<ReferenceSequence> findByAccession(String accession) throws HearsayDAOException {
         logger.debug("ENTERING findByAccession(String)");
         TypedQuery<ReferenceSequence> query = getEntityManager().createNamedQuery("ReferenceSequence.findByAccession",
                 ReferenceSequence.class);
         query.setParameter("accession", accession);
-        return query.getSingleResult();
+        return query.getResultList();
     }
 
 }
