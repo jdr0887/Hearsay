@@ -1,5 +1,7 @@
 package org.renci.hearsay.ws;
 
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -21,7 +23,7 @@ public interface ReferenceSequenceService {
 
     @GET
     @Path("/findByAccession/{accession}")
-    public ReferenceSequence findByAccession(@PathParam("accession") String accession);
+    public List<ReferenceSequence> findByAccession(@PathParam("accession") String accession);
 
     @POST
     @Path("/")

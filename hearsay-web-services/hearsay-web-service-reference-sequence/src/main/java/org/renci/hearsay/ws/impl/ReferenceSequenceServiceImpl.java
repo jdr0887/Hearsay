@@ -1,5 +1,8 @@
 package org.renci.hearsay.ws.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.ReferenceSequenceDAO;
 import org.renci.hearsay.dao.model.ReferenceSequence;
@@ -14,11 +17,11 @@ public class ReferenceSequenceServiceImpl implements ReferenceSequenceService {
     private ReferenceSequenceDAO referenceSequenceDAO;
 
     @Override
-    public ReferenceSequence findByAccession(String accession) {
+    public List<ReferenceSequence> findByAccession(String accession) {
         logger.debug("ENTERING findByAccession(String)");
-        ReferenceSequence ret = null;
+        List<ReferenceSequence> ret = new ArrayList<ReferenceSequence>();
         try {
-            ret = referenceSequenceDAO.findByAccession(accession);
+            ret.addAll(referenceSequenceDAO.findByAccession(accession));
         } catch (HearsayDAOException e) {
             e.printStackTrace();
         }
