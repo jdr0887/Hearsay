@@ -72,4 +72,29 @@ public class GenomicSequenceVariant extends BaseEntity {
         return String.format("GenomicSequenceVariant [position=%s, id=%s]", position, id);
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((position == null) ? 0 : position.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!super.equals(obj))
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        GenomicSequenceVariant other = (GenomicSequenceVariant) obj;
+        if (position == null) {
+            if (other.position != null)
+                return false;
+        } else if (!position.equals(other.position))
+            return false;
+        return true;
+    }
+
 }
