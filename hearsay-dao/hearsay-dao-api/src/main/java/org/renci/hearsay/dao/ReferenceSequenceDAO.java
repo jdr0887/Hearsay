@@ -8,4 +8,6 @@ public interface ReferenceSequenceDAO extends BaseEntityDAO<ReferenceSequence, L
 
     public List<ReferenceSequence> findByAccession(String accession) throws HearsayDAOException;
 
+    public List<ReferenceSequence> findByReferenceGenomeId(Long id) throws HearsayDAOException;
+
 }
