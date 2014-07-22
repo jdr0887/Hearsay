@@ -29,6 +29,18 @@ public class ReferenceSequenceServiceImpl implements ReferenceSequenceService {
     }
 
     @Override
+    public List<ReferenceSequence> findByReferenceGenomeId(Long id) {
+        logger.debug("ENTERING findByReferenceGenomeId(Long)");
+        List<ReferenceSequence> ret = new ArrayList<ReferenceSequence>();
+        try {
+            ret.addAll(referenceSequenceDAO.findByReferenceGenomeId(id));
+        } catch (HearsayDAOException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    @Override
     public ReferenceSequence findById(Long id) {
         logger.debug("ENTERING findById(Long)");
         ReferenceSequence ret = null;

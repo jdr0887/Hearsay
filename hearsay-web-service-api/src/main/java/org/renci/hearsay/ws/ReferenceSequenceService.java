@@ -25,6 +25,10 @@ public interface ReferenceSequenceService {
     @Path("/findByAccession/{accession}")
     public List<ReferenceSequence> findByAccession(@PathParam("accession") String accession);
 
+    @GET
+    @Path("/findByReferenceGenomeId/{id}")
+    public List<ReferenceSequence> findByReferenceGenomeId(@PathParam("id") Long id);
+
     @POST
     @Path("/")
     public Long save(ReferenceSequence referenceSequence);
