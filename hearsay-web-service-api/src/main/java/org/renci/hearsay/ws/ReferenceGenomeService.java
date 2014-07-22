@@ -22,6 +22,10 @@ public interface ReferenceGenomeService {
     public ReferenceGenome findById(@PathParam("id") Long id);
 
     @GET
+    @Path("/findByAll")
+    public List<ReferenceGenome> findAll();
+
+    @GET
     @Path("/findBySource/{source}")
     public List<ReferenceGenome> findBySource(@PathParam("source") String source);
 
