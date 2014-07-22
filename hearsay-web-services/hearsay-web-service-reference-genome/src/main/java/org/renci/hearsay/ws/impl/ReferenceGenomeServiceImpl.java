@@ -17,7 +17,26 @@ public class ReferenceGenomeServiceImpl implements ReferenceGenomeService {
 
     @Override
     public List<ReferenceGenome> findBySource(String source) {
-        return null;
+        logger.debug("ENTERING findBySource(String)");
+        List<ReferenceGenome> ret = null;
+        try {
+            ret = referenceGenomeDAO.findBySource(source);
+        } catch (HearsayDAOException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    @Override
+    public List<ReferenceGenome> findAll() {
+        logger.debug("ENTERING findAll()");
+        List<ReferenceGenome> ret = null;
+        try {
+            ret = referenceGenomeDAO.findAll();
+        } catch (HearsayDAOException e) {
+            e.printStackTrace();
+        }
+        return ret;
     }
 
     @Override
