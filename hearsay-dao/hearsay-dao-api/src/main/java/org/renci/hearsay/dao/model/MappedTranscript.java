@@ -41,9 +41,6 @@ public class MappedTranscript extends BaseEntity {
     @JoinColumn(name = "reference_sequence_fid")
     private ReferenceSequence referenceSequence;
 
-    @Column(name = "genomic_accession")
-    private String genomicAccession;
-
     @Column(name = "genomic_start")
     private Integer genomicStart;
 
@@ -76,14 +73,6 @@ public class MappedTranscript extends BaseEntity {
 
     public void setReferenceSequence(ReferenceSequence referenceSequence) {
         this.referenceSequence = referenceSequence;
-    }
-
-    public String getGenomicAccession() {
-        return genomicAccession;
-    }
-
-    public void setGenomicAccession(String genomicAccession) {
-        this.genomicAccession = genomicAccession;
     }
 
     public Integer getGenomicStart() {
@@ -125,14 +114,13 @@ public class MappedTranscript extends BaseEntity {
     public String toString() {
         return String.format(
                 "MappedTranscript [genomicAccession=%s, genomicStart=%s, genomicStop=%s, strandType=%s, id=%s]",
-                genomicAccession, genomicStart, genomicStop, strandType, id);
+                genomicStart, genomicStop, strandType, id);
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = super.hashCode();
-        result = prime * result + ((genomicAccession == null) ? 0 : genomicAccession.hashCode());
         result = prime * result + ((genomicStart == null) ? 0 : genomicStart.hashCode());
         result = prime * result + ((genomicStop == null) ? 0 : genomicStop.hashCode());
         result = prime * result + ((strandType == null) ? 0 : strandType.hashCode());
@@ -148,11 +136,6 @@ public class MappedTranscript extends BaseEntity {
         if (getClass() != obj.getClass())
             return false;
         MappedTranscript other = (MappedTranscript) obj;
-        if (genomicAccession == null) {
-            if (other.genomicAccession != null)
-                return false;
-        } else if (!genomicAccession.equals(other.genomicAccession))
-            return false;
         if (genomicStart == null) {
             if (other.genomicStart != null)
                 return false;
