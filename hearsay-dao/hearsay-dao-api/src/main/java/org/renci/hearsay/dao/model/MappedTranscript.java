@@ -112,9 +112,8 @@ public class MappedTranscript extends BaseEntity {
 
     @Override
     public String toString() {
-        return String.format(
-                "MappedTranscript [genomicAccession=%s, genomicStart=%s, genomicStop=%s, strandType=%s, id=%s]",
-                genomicStart, genomicStop, strandType, id);
+        return String.format("MappedTranscript [genomicStart=%s, genomicStop=%s, strandType=%s, id=%s]", genomicStart,
+                genomicStop, strandType, id);
     }
 
     @Override
