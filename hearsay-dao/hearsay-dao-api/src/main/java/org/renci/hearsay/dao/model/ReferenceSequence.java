@@ -10,6 +10,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -23,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType(name = "ReferenceSequence")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "reference_sequence")
+@Table(name = "reference_sequence", uniqueConstraints = { @UniqueConstraint(columnNames = { "accession" }) })
 @NamedQueries({
         @NamedQuery(name = "ReferenceSequence.findAll", query = "SELECT a FROM ReferenceSequence a"),
         @NamedQuery(name = "ReferenceSequence.findByAccession", query = "SELECT a FROM ReferenceSequence a where a.accession = :accession") })
@@ -34,7 +35,7 @@ public class ReferenceSequence extends BaseEntity {
     @Column(name = "accession")
     private String accession;
 
-    @ManyToMany(mappedBy = "referenceSequences", cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "referenceSequences")
     private Set<ReferenceGenome> referenceGenomes;
 
     public ReferenceSequence() {
