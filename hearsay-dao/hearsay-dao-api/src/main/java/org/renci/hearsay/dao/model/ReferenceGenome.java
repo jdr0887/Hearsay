@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -40,7 +41,7 @@ public class ReferenceGenome extends BaseEntity {
     @Column(name = "version")
     private String version;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(targetEntity = ReferenceSequence.class, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
     @JoinTable(name = "reference_genome_reference_sequence", joinColumns = @JoinColumn(name = "reference_genome_fid"), inverseJoinColumns = @JoinColumn(name = "reference_sequence_id"))
     private Set<ReferenceSequence> referenceSequences;
 
