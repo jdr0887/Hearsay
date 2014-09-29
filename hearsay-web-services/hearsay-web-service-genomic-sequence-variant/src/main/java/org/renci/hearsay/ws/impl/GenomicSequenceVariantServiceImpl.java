@@ -1,6 +1,6 @@
 package org.renci.hearsay.ws.impl;
 
-import org.renci.hearsay.dao.GenomicSequenceVariantDAO;
+import org.renci.hearsay.dao.GenomicVariantDAO;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.model.GenomicSequenceVariant;
 import org.renci.hearsay.ws.GenomicSequenceVariantService;
@@ -11,7 +11,7 @@ public class GenomicSequenceVariantServiceImpl implements GenomicSequenceVariant
 
     private final Logger logger = LoggerFactory.getLogger(GenomicSequenceVariantServiceImpl.class);
 
-    private GenomicSequenceVariantDAO genomicSequenceVariantDAO;
+    private GenomicVariantDAO genomicSequenceVariantDAO;
 
     @Override
     public GenomicSequenceVariant findById(Long id) {
@@ -37,11 +37,11 @@ public class GenomicSequenceVariantServiceImpl implements GenomicSequenceVariant
         return ret;
     }
 
-    public GenomicSequenceVariantDAO getGenomicSequenceVariantDAO() {
+    public GenomicVariantDAO getGenomicSequenceVariantDAO() {
         return genomicSequenceVariantDAO;
     }
 
-    public void setGenomicSequenceVariantDAO(GenomicSequenceVariantDAO genomicSequenceVariantDAO) {
+    public void setGenomicSequenceVariantDAO(GenomicVariantDAO genomicSequenceVariantDAO) {
         this.genomicSequenceVariantDAO = genomicSequenceVariantDAO;
     }
 
