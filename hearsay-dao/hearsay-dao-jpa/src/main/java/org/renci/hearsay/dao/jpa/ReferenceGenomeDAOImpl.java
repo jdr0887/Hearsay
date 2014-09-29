@@ -11,13 +11,13 @@ import javax.persistence.criteria.Root;
 
 import org.apache.commons.lang.StringUtils;
 import org.renci.hearsay.dao.HearsayDAOException;
-import org.renci.hearsay.dao.ReferenceGenomeDAO;
+import org.renci.hearsay.dao.GenomicRefSeqDAO;
 import org.renci.hearsay.dao.model.ReferenceGenome;
 import org.renci.hearsay.dao.model.ReferenceGenome_;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ReferenceGenomeDAOImpl extends BaseEntityDAOImpl<ReferenceGenome, Long> implements ReferenceGenomeDAO {
+public class ReferenceGenomeDAOImpl extends BaseEntityDAOImpl<ReferenceGenome, Long> implements GenomicRefSeqDAO {
 
     private final Logger logger = LoggerFactory.getLogger(ReferenceGenomeDAOImpl.class);
 
