@@ -52,15 +52,15 @@ public class TranscriptAlignmentDAOImpl extends BaseEntityDAOImpl<TranscriptAlig
     }
 
     @Override
-    public List<TranscriptAlignment> findByTranscriptAccession(String accession) throws HearsayDAOException {
+    public List<TranscriptAlignment> findByRefSeqAccession(String accession) throws HearsayDAOException {
         logger.debug("ENTERING findByTranscriptAccession(String)");
         CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<TranscriptAlignment> crit = critBuilder.createQuery(getPersistentClass());
         Root<TranscriptAlignment> fromTranscriptInterval = crit.from(TranscriptAlignment.class);
-        Join<TranscriptAlignment, TranscriptSequence> fromTranscript = fromTranscriptInterval
-                .join(MappedTranscript_.transcript);
+        Join<TranscriptAlignment, TranscriptRefSeq> fromTranscript = fromTranscriptInterval
+                .join(TranscriptAlignment_.transcriptRefSeq);
         List<Predicate> predicates = new ArrayList<Predicate>();
-        predicates.add(critBuilder.equal(fromTranscript.get(Transcript_.accession), accession));
+        predicates.add(critBuilder.equal(fromTranscript.get(TranscriptRefSeq_.accession), accession));
         crit.where(predicates.toArray(new Predicate[predicates.size()]));
         TypedQuery<TranscriptAlignment> query = getEntityManager().createQuery(crit);
         List<TranscriptAlignment> ret = query.getResultList();
@@ -74,9 +74,9 @@ public class TranscriptAlignmentDAOImpl extends BaseEntityDAOImpl<TranscriptAlig
         CriteriaQuery<TranscriptAlignment> crit = critBuilder.createQuery(getPersistentClass());
         List<Predicate> predicates = new ArrayList<Predicate>();
         Root<TranscriptAlignment> fromMappedTranscript = crit.from(TranscriptAlignment.class);
-        Join<TranscriptAlignment, TranscriptSequence> transcriptJoin = fromMappedTranscript
-                .join(MappedTranscript_.transcript);
-        Join<TranscriptSequence, Gene> geneJoin = transcriptJoin.join(Transcript_.gene);
+        Join<TranscriptAlignment, TranscriptRefSeq> transcriptJoin = fromMappedTranscript
+                .join(TranscriptAlignment_.transcriptRefSeq);
+        Join<TranscriptRefSeq, Gene> geneJoin = transcriptJoin.join(TranscriptRefSeq_.gene);
         predicates.add(critBuilder.equal(geneJoin.get(Gene_.name), name));
         crit.where(predicates.toArray(new Predicate[predicates.size()]));
         TypedQuery<TranscriptAlignment> query = getEntityManager().createQuery(crit);
