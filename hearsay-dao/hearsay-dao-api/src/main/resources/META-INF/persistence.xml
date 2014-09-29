@@ -9,18 +9,33 @@
     <non-jta-data-source>aries:services/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/hearsayNoJTA)</non-jta-data-source>
 
     <class>org.renci.hearsay.dao.model.BaseEntity</class>
+    <class>org.renci.hearsay.dao.model.CanonicalVariant</class>
+    <class>org.renci.hearsay.dao.model.ConditionSubmission</class>
     <class>org.renci.hearsay.dao.model.Gene</class>
-    <class>org.renci.hearsay.dao.model.GenomicSequenceVariant</class>
-    <class>org.renci.hearsay.dao.model.MappedTranscript</class>
-    <class>org.renci.hearsay.dao.model.ReferenceGenome</class>
+    <class>org.renci.hearsay.dao.model.GeneCondition</class>
+    <class>org.renci.hearsay.dao.model.GeneConditionAssertion</class>
+    <class>org.renci.hearsay.dao.model.GenomicRefSeq</class>
+    <class>org.renci.hearsay.dao.model.GenomicVariant</class>
+    <class>org.renci.hearsay.dao.model.Individual</class>
+    <class>org.renci.hearsay.dao.model.IndividualVariant</class>
+    <class>org.renci.hearsay.dao.model.MolecularConsequence</class>
+    <class>org.renci.hearsay.dao.model.PhaseGroup</class>
     <class>org.renci.hearsay.dao.model.ReferenceSequence</class>
     <class>org.renci.hearsay.dao.model.Region</class>
-    <class>org.renci.hearsay.dao.model.Transcript</class>
+    <class>org.renci.hearsay.dao.model.ResolvedCondition</class>
+    <class>org.renci.hearsay.dao.model.ResolvedConditionIdentifier</class>
+    <class>org.renci.hearsay.dao.model.Submitter</class>
+    <class>org.renci.hearsay.dao.model.SupportingObservation</class>
+    <class>org.renci.hearsay.dao.model.SuspectedDiagnosis</class>
+    <class>org.renci.hearsay.dao.model.TranscriptAlignment</class>
+    <class>org.renci.hearsay.dao.model.TranscriptRefSeq</class>
     <class>org.renci.hearsay.dao.model.TranscriptVariant</class>
-    <class>org.renci.hearsay.dao.model.Translation</class>
+    <class>org.renci.hearsay.dao.model.TranslationRefSeq</class>
     <class>org.renci.hearsay.dao.model.TranslationVariant</class>
-    <class>org.renci.hearsay.dao.model.Variant</class>
-    <class>org.renci.hearsay.dao.model.VariantEffect</class>
+    <class>org.renci.hearsay.dao.model.VariantAssertion</class>
+    <class>org.renci.hearsay.dao.model.VariantConditionSet</class>
+    <class>org.renci.hearsay.dao.model.VariantRepresentation</class>
+    <class>org.renci.hearsay.dao.model.VariantSubmission</class>
     
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
