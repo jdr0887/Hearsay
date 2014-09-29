@@ -14,6 +14,6 @@ public interface TranscriptRefSeqDAO extends BaseEntityDAO<TranscriptRefSeq, Lon
 
     public abstract List<TranscriptRefSeq> findByGeneName(String name) throws HearsayDAOException;
 
-    public abstract List<TranscriptRefSeq> findByRefSeqAccession(String accession) throws HearsayDAOException;
+    public abstract List<TranscriptRefSeq> findByAccession(String accession) throws HearsayDAOException;
 
 }
