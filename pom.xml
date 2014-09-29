@@ -10,7 +10,7 @@
   <artifactId>hearsay</artifactId>
   <version>0.0.15-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <url>https://ci-dev.renci.org/site/hearsay</url>
+  <url>https://jdr0887.github.io/Hearsay</url>
   <properties>
     <karaf.version>2.3.5</karaf.version>
     <cxf.version>2.7.8</cxf.version>
@@ -29,9 +29,9 @@
     </license>
   </licenses>
   <scm>
-    <developerConnection>scm:git:ssh://${user.name}@code.renci.org/gitroot/hearsay</developerConnection>
-    <connection>scm:git:ssh://code.renci.org/gitroot/hearsay</connection>
-    <tag>HEAD</tag>
+    <url>https://github.com/jdr0887/Hearsay</url>
+    <developerConnection>scm:git:git:git@github.com:jdr0887/Hearsay</developerConnection>
+    <connection>scm:git:git:git@github.com:jdr0887/Hearsay</connection>
   </scm>
   <dependencyManagement>
     <dependencies>
