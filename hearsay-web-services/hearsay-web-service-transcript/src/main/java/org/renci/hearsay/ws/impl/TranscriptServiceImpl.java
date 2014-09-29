@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.renci.hearsay.dao.HearsayDAOException;
-import org.renci.hearsay.dao.TranscriptDAO;
+import org.renci.hearsay.dao.TranscriptRefSeqDAO;
 import org.renci.hearsay.dao.model.TranscriptSequence;
 import org.renci.hearsay.ws.TranscriptService;
 import org.slf4j.Logger;
@@ -14,7 +14,7 @@ public class TranscriptServiceImpl implements TranscriptService {
 
     private final Logger logger = LoggerFactory.getLogger(TranscriptServiceImpl.class);
 
-    private TranscriptDAO transcriptDAO;
+    private TranscriptRefSeqDAO transcriptDAO;
 
     @Override
     public TranscriptSequence findById(Long id) {
@@ -84,11 +84,11 @@ public class TranscriptServiceImpl implements TranscriptService {
         return ret;
     }
 
-    public TranscriptDAO getTranscriptDAO() {
+    public TranscriptRefSeqDAO getTranscriptDAO() {
         return transcriptDAO;
     }
 
-    public void setTranscriptDAO(TranscriptDAO transcriptDAO) {
+    public void setTranscriptDAO(TranscriptRefSeqDAO transcriptDAO) {
         this.transcriptDAO = transcriptDAO;
     }
 
