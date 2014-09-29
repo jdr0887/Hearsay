@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.MappedTranscriptDAO;
-import org.renci.hearsay.dao.model.MappedTranscript;
+import org.renci.hearsay.dao.model.TranscriptAlignment;
 import org.renci.hearsay.ws.MappedTranscriptService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,9 +17,9 @@ public class MappedTranscriptServiceImpl implements MappedTranscriptService {
     private MappedTranscriptDAO mappedTranscriptDAO;
 
     @Override
-    public MappedTranscript findById(Long id) {
+    public TranscriptAlignment findById(Long id) {
         logger.debug("ENTERING findById(Long)");
-        MappedTranscript ret = null;
+        TranscriptAlignment ret = null;
         try {
             ret = mappedTranscriptDAO.findById(id);
         } catch (HearsayDAOException e) {
@@ -29,7 +29,7 @@ public class MappedTranscriptServiceImpl implements MappedTranscriptService {
     }
 
     @Override
-    public Long save(MappedTranscript transcriptInterval) {
+    public Long save(TranscriptAlignment transcriptInterval) {
         logger.debug("ENTERING save(Document)");
         Long ret = null;
         try {
@@ -41,9 +41,9 @@ public class MappedTranscriptServiceImpl implements MappedTranscriptService {
     }
 
     @Override
-    public List<MappedTranscript> findByTranscriptId(Long transcriptId) {
+    public List<TranscriptAlignment> findByTranscriptId(Long transcriptId) {
         logger.debug("ENTERING findByTranscriptId(Long)");
-        List<MappedTranscript> ret = new ArrayList<MappedTranscript>();
+        List<TranscriptAlignment> ret = new ArrayList<TranscriptAlignment>();
         try {
             ret.addAll(mappedTranscriptDAO.findByTranscriptId(transcriptId));
         } catch (HearsayDAOException e) {
@@ -53,9 +53,9 @@ public class MappedTranscriptServiceImpl implements MappedTranscriptService {
     }
 
     @Override
-    public List<MappedTranscript> findByTranscriptAccession(String accession) {
+    public List<TranscriptAlignment> findByTranscriptAccession(String accession) {
         logger.debug("ENTERING findByTranscriptAccession(String)");
-        List<MappedTranscript> ret = new ArrayList<MappedTranscript>();
+        List<TranscriptAlignment> ret = new ArrayList<TranscriptAlignment>();
         try {
             ret.addAll(mappedTranscriptDAO.findByTranscriptAccession(accession));
         } catch (HearsayDAOException e) {
@@ -65,9 +65,9 @@ public class MappedTranscriptServiceImpl implements MappedTranscriptService {
     }
 
     @Override
-    public List<MappedTranscript> findByGeneName(String name) {
+    public List<TranscriptAlignment> findByGeneName(String name) {
         logger.debug("ENTERING findByGeneName(String)");
-        List<MappedTranscript> ret = new ArrayList<MappedTranscript>();
+        List<TranscriptAlignment> ret = new ArrayList<TranscriptAlignment>();
         try {
             ret.addAll(mappedTranscriptDAO.findByGeneName(name));
         } catch (HearsayDAOException e) {

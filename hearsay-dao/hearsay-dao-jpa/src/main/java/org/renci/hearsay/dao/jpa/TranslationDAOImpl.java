@@ -1,11 +1,11 @@
 package org.renci.hearsay.dao.jpa;
 
 import org.renci.hearsay.dao.TranslationDAO;
-import org.renci.hearsay.dao.model.Translation;
+import org.renci.hearsay.dao.model.TranslationSequence;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TranslationDAOImpl extends BaseEntityDAOImpl<Translation, Long> implements TranslationDAO {
+public class TranslationDAOImpl extends BaseEntityDAOImpl<TranslationSequence, Long> implements TranslationDAO {
 
     private final Logger logger = LoggerFactory.getLogger(TranslationDAOImpl.class);
 
@@ -14,8 +14,8 @@ public class TranslationDAOImpl extends BaseEntityDAOImpl<Translation, Long> imp
     }
 
     @Override
-    public Class<Translation> getPersistentClass() {
-        return Translation.class;
+    public Class<TranslationSequence> getPersistentClass() {
+        return TranslationSequence.class;
     }
 
 }

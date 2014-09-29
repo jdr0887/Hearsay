@@ -2,7 +2,7 @@ package org.renci.hearsay.ws.impl;
 
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.VariantDAO;
-import org.renci.hearsay.dao.model.Variant;
+import org.renci.hearsay.dao.model.CanonicalVariant;
 import org.renci.hearsay.ws.VariantService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,9 +14,9 @@ public class VariantServiceImpl implements VariantService {
     private VariantDAO variantDAO;
 
     @Override
-    public Variant findById(Long id) {
+    public CanonicalVariant findById(Long id) {
         logger.debug("ENTERING findById(Long)");
-        Variant ret = null;
+        CanonicalVariant ret = null;
         try {
             ret = variantDAO.findById(id);
         } catch (HearsayDAOException e) {
@@ -26,7 +26,7 @@ public class VariantServiceImpl implements VariantService {
     }
 
     @Override
-    public Long save(Variant variant) {
+    public Long save(CanonicalVariant variant) {
         logger.debug("ENTERING save(Variant)");
         Long ret = null;
         try {

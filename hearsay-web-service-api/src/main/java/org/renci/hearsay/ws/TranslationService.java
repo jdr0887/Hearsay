@@ -8,7 +8,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.renci.hearsay.dao.model.Translation;
+import org.renci.hearsay.dao.model.TranslationSequence;
 
 @Path("/TranslationService/")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -17,10 +17,10 @@ public interface TranslationService {
 
     @GET
     @Path("/findById/{id}")
-    public Translation findById(@PathParam("id") Long id);
+    public TranslationSequence findById(@PathParam("id") Long id);
 
     @POST
     @Path("/")
-    public Long save(Translation translation);
+    public Long save(TranslationSequence translation);
 
 }

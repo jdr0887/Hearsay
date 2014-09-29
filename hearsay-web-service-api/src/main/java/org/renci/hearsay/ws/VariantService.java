@@ -8,7 +8,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.renci.hearsay.dao.model.Variant;
+import org.renci.hearsay.dao.model.CanonicalVariant;
 
 @Path("/VariantService/")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -17,10 +17,10 @@ public interface VariantService {
 
     @GET
     @Path("/findById/{id}")
-    public Variant findById(@PathParam("id") Long id);
+    public CanonicalVariant findById(@PathParam("id") Long id);
 
     @POST
     @Path("/")
-    public Long save(Variant variant);
+    public Long save(CanonicalVariant variant);
 
 }

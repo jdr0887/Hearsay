@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.TranscriptDAO;
-import org.renci.hearsay.dao.model.Transcript;
+import org.renci.hearsay.dao.model.TranscriptSequence;
 import org.renci.hearsay.ws.TranscriptService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,9 +17,9 @@ public class TranscriptServiceImpl implements TranscriptService {
     private TranscriptDAO transcriptDAO;
 
     @Override
-    public Transcript findById(Long id) {
+    public TranscriptSequence findById(Long id) {
         logger.debug("ENTERING findById(Long)");
-        Transcript ret = null;
+        TranscriptSequence ret = null;
         try {
             ret = transcriptDAO.findById(id);
         } catch (HearsayDAOException e) {
@@ -29,7 +29,7 @@ public class TranscriptServiceImpl implements TranscriptService {
     }
 
     @Override
-    public Long save(Transcript transcript) {
+    public Long save(TranscriptSequence transcript) {
         logger.debug("ENTERING save(Transcript)");
         Long ret = null;
         try {
@@ -41,8 +41,8 @@ public class TranscriptServiceImpl implements TranscriptService {
     }
 
     @Override
-    public List<Transcript> findAll() {
-        List<Transcript> ret = new ArrayList<Transcript>();
+    public List<TranscriptSequence> findAll() {
+        List<TranscriptSequence> ret = new ArrayList<TranscriptSequence>();
         try {
             ret.addAll(transcriptDAO.findAll());
         } catch (HearsayDAOException e) {
@@ -52,8 +52,8 @@ public class TranscriptServiceImpl implements TranscriptService {
     }
 
     @Override
-    public List<Transcript> findByGeneId(Long geneId) {
-        List<Transcript> ret = new ArrayList<Transcript>();
+    public List<TranscriptSequence> findByGeneId(Long geneId) {
+        List<TranscriptSequence> ret = new ArrayList<TranscriptSequence>();
         try {
             ret.addAll(transcriptDAO.findByGeneId(geneId));
         } catch (HearsayDAOException e) {
@@ -63,8 +63,8 @@ public class TranscriptServiceImpl implements TranscriptService {
     }
 
     @Override
-    public List<Transcript> findByAccession(String accession) {
-        List<Transcript> ret = new ArrayList<Transcript>();
+    public List<TranscriptSequence> findByAccession(String accession) {
+        List<TranscriptSequence> ret = new ArrayList<TranscriptSequence>();
         try {
             ret.addAll(transcriptDAO.findByAccession(accession));
         } catch (HearsayDAOException e) {
@@ -74,8 +74,8 @@ public class TranscriptServiceImpl implements TranscriptService {
     }
 
     @Override
-    public List<Transcript> findByGeneName(String geneName) {
-        List<Transcript> ret = new ArrayList<Transcript>();
+    public List<TranscriptSequence> findByGeneName(String geneName) {
+        List<TranscriptSequence> ret = new ArrayList<TranscriptSequence>();
         try {
             ret.addAll(transcriptDAO.findByGeneName(geneName));
         } catch (HearsayDAOException e) {

@@ -8,7 +8,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.renci.hearsay.dao.model.VariantEffect;
+import org.renci.hearsay.dao.model.VariantRepresentation;
 
 @Path("/VariantEffectService/")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -17,10 +17,10 @@ public interface VariantEffectService {
 
     @GET
     @Path("/findById/{id}")
-    public VariantEffect findById(@PathParam("id") Long id);
+    public VariantRepresentation findById(@PathParam("id") Long id);
 
     @POST
     @Path("/")
-    public Long save(VariantEffect variantEffect);
+    public Long save(VariantRepresentation variantEffect);
 
 }

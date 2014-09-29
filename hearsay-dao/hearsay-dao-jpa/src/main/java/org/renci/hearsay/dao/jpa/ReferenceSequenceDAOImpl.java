@@ -12,7 +12,7 @@ import javax.persistence.criteria.Root;
 
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.ReferenceSequenceDAO;
-import org.renci.hearsay.dao.model.MappedTranscript;
+import org.renci.hearsay.dao.model.TranscriptAlignment;
 import org.renci.hearsay.dao.model.ReferenceGenome;
 import org.renci.hearsay.dao.model.ReferenceGenome_;
 import org.renci.hearsay.dao.model.ReferenceSequence;

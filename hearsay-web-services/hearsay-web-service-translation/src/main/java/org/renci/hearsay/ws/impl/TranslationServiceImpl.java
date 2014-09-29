@@ -2,7 +2,7 @@ package org.renci.hearsay.ws.impl;
 
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.TranslationDAO;
-import org.renci.hearsay.dao.model.Translation;
+import org.renci.hearsay.dao.model.TranslationSequence;
 import org.renci.hearsay.ws.TranslationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,9 +14,9 @@ public class TranslationServiceImpl implements TranslationService {
     private TranslationDAO translationDAO;
 
     @Override
-    public Translation findById(Long id) {
+    public TranslationSequence findById(Long id) {
         logger.debug("ENTERING findById(Long)");
-        Translation ret = null;
+        TranslationSequence ret = null;
         try {
             ret = translationDAO.findById(id);
         } catch (HearsayDAOException e) {
@@ -26,7 +26,7 @@ public class TranslationServiceImpl implements TranslationService {
     }
 
     @Override
-    public Long save(Translation translation) {
+    public Long save(TranslationSequence translation) {
         logger.debug("ENTERING save(Translation)");
         Long ret = null;
         try {

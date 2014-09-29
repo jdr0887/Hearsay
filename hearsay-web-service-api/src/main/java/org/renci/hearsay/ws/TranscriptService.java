@@ -10,7 +10,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.renci.hearsay.dao.model.Transcript;
+import org.renci.hearsay.dao.model.TranscriptSequence;
 
 @Path("/TranscriptService/")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -19,26 +19,26 @@ public interface TranscriptService {
 
     @GET
     @Path("/findAll")
-    public List<Transcript> findAll();
+    public List<TranscriptSequence> findAll();
 
     @GET
     @Path("/findById/{id}")
-    public Transcript findById(@PathParam("id") Long id);
+    public TranscriptSequence findById(@PathParam("id") Long id);
 
     @GET
     @Path("/findByAccession/{accession}")
-    public List<Transcript> findByAccession(@PathParam("accession") String accession);
+    public List<TranscriptSequence> findByAccession(@PathParam("accession") String accession);
 
     @GET
     @Path("/findByGeneId/{geneId}")
-    public List<Transcript> findByGeneId(@PathParam("geneId") Long geneId);
+    public List<TranscriptSequence> findByGeneId(@PathParam("geneId") Long geneId);
 
     @GET
     @Path("/findByGeneName/{geneName}")
-    public List<Transcript> findByGeneName(@PathParam("geneName") String geneName);
+    public List<TranscriptSequence> findByGeneName(@PathParam("geneName") String geneName);
 
     @POST
     @Path("/")
-    public Long save(Transcript transcript);
+    public Long save(TranscriptSequence transcript);
 
 }

@@ -10,7 +10,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.renci.hearsay.dao.model.MappedTranscript;
+import org.renci.hearsay.dao.model.TranscriptAlignment;
 
 @Path("/MappedTranscriptService/")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -19,22 +19,22 @@ public interface MappedTranscriptService {
 
     @GET
     @Path("/findByTranscriptId/{id}")
-    public List<MappedTranscript> findByTranscriptId(@PathParam("id") Long id);
+    public List<TranscriptAlignment> findByTranscriptId(@PathParam("id") Long id);
 
     @GET
     @Path("/findByTranscriptAccession/{accession}")
-    public List<MappedTranscript> findByTranscriptAccession(@PathParam("accession") String accession);
+    public List<TranscriptAlignment> findByTranscriptAccession(@PathParam("accession") String accession);
 
     @GET
     @Path("/findByGeneName/{name}")
-    public List<MappedTranscript> findByGeneName(@PathParam("name") String name);
+    public List<TranscriptAlignment> findByGeneName(@PathParam("name") String name);
 
     @GET
     @Path("/findById/{id}")
-    public MappedTranscript findById(@PathParam("id") Long id);
+    public TranscriptAlignment findById(@PathParam("id") Long id);
 
     @POST
     @Path("/")
-    public Long save(MappedTranscript mappedTranscript);
+    public Long save(TranscriptAlignment mappedTranscript);
 
 }
