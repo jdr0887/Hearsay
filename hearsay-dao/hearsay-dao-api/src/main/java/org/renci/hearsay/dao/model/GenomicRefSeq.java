@@ -28,4 +28,42 @@ public class GenomicRefSeq extends ReferenceSequence {
         super();
     }
 
+    public String getChromosome() {
+        return chromosome;
+    }
+
+    public void setChromosome(String chromosome) {
+        this.chromosome = chromosome;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("GenomicRefSeq [accession=%s, id=%s, chromosome=%s]", accession, id, chromosome);
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((chromosome == null) ? 0 : chromosome.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!super.equals(obj))
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        GenomicRefSeq other = (GenomicRefSeq) obj;
+        if (chromosome == null) {
+            if (other.chromosome != null)
+                return false;
+        } else if (!chromosome.equals(other.chromosome))
+            return false;
+        return true;
+    }
+
 }
