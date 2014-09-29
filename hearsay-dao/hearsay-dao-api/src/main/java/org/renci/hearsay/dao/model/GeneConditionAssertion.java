@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -22,6 +24,10 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class GeneConditionAssertion extends BaseEntity {
 
     private static final long serialVersionUID = 2500491400614225551L;
+
+    @ManyToOne
+    @JoinColumn(name = "gene_condition_fid")
+    private GeneCondition condition;
 
     @Column(name = "clinical_significance")
     private String clinicalSignificance;
