@@ -12,7 +12,7 @@ import javax.persistence.criteria.Root;
 
 import org.apache.commons.lang.StringUtils;
 import org.renci.hearsay.dao.HearsayDAOException;
-import org.renci.hearsay.dao.TranscriptDAO;
+import org.renci.hearsay.dao.TranscriptRefSeqDAO;
 import org.renci.hearsay.dao.model.Gene;
 import org.renci.hearsay.dao.model.Gene_;
 import org.renci.hearsay.dao.model.TranscriptSequence;
@@ -20,7 +20,7 @@ import org.renci.hearsay.dao.model.Transcript_;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TranscriptDAOImpl extends BaseEntityDAOImpl<TranscriptSequence, Long> implements TranscriptDAO {
+public class TranscriptDAOImpl extends BaseEntityDAOImpl<TranscriptSequence, Long> implements TranscriptRefSeqDAO {
 
     private final Logger logger = LoggerFactory.getLogger(TranscriptDAOImpl.class);
 
