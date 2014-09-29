@@ -22,10 +22,43 @@ public class ReferenceSequence extends BaseEntity {
     private static final long serialVersionUID = -4834591952141068328L;
 
     @Column(name = "accession")
-    private String accession;
+    protected String accession;
 
     public ReferenceSequence() {
         super();
+    }
+
+    public String getAccession() {
+        return accession;
+    }
+
+    public void setAccession(String accession) {
+        this.accession = accession;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((accession == null) ? 0 : accession.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!super.equals(obj))
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ReferenceSequence other = (ReferenceSequence) obj;
+        if (accession == null) {
+            if (other.accession != null)
+                return false;
+        } else if (!accession.equals(other.accession))
+            return false;
+        return true;
     }
 
 }
