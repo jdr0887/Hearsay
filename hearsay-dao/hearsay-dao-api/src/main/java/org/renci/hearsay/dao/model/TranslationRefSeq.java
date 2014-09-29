@@ -24,11 +24,19 @@ public class TranslationRefSeq extends ReferenceSequence {
 
     private static final long serialVersionUID = 8028669733155889888L;
 
-    @OneToMany(mappedBy = "translationSequence", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "transcriptRefSeq", fetch = FetchType.EAGER)
     private Set<TranscriptAlignment> alignments;
 
     public TranslationRefSeq() {
         super();
     }
 
+    public Set<TranscriptAlignment> getAlignments() {
+        return alignments;
+    }
+
+    public void setAlignments(Set<TranscriptAlignment> alignments) {
+        this.alignments = alignments;
+    }
+    
 }
