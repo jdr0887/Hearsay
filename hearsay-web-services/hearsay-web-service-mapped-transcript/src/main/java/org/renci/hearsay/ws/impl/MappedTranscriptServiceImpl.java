@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.renci.hearsay.dao.HearsayDAOException;
-import org.renci.hearsay.dao.MappedTranscriptDAO;
+import org.renci.hearsay.dao.TranscriptAlignmentDAO;
 import org.renci.hearsay.dao.model.TranscriptAlignment;
 import org.renci.hearsay.ws.MappedTranscriptService;
 import org.slf4j.Logger;
@@ -14,7 +14,7 @@ public class MappedTranscriptServiceImpl implements MappedTranscriptService {
 
     private final Logger logger = LoggerFactory.getLogger(MappedTranscriptServiceImpl.class);
 
-    private MappedTranscriptDAO mappedTranscriptDAO;
+    private TranscriptAlignmentDAO mappedTranscriptDAO;
 
     @Override
     public TranscriptAlignment findById(Long id) {
@@ -76,11 +76,11 @@ public class MappedTranscriptServiceImpl implements MappedTranscriptService {
         return ret;
     }
 
-    public MappedTranscriptDAO getMappedTranscriptDAO() {
+    public TranscriptAlignmentDAO getMappedTranscriptDAO() {
         return mappedTranscriptDAO;
     }
 
-    public void setMappedTranscriptDAO(MappedTranscriptDAO mappedTranscriptDAO) {
+    public void setMappedTranscriptDAO(TranscriptAlignmentDAO mappedTranscriptDAO) {
         this.mappedTranscriptDAO = mappedTranscriptDAO;
     }
 
