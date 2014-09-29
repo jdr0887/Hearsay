@@ -3,7 +3,7 @@ package org.renci.hearsay.ws.impl;
 import java.util.List;
 
 import org.renci.hearsay.dao.HearsayDAOException;
-import org.renci.hearsay.dao.ReferenceGenomeDAO;
+import org.renci.hearsay.dao.GenomicRefSeqDAO;
 import org.renci.hearsay.dao.model.ReferenceGenome;
 import org.renci.hearsay.ws.ReferenceGenomeService;
 import org.slf4j.Logger;
@@ -13,7 +13,7 @@ public class ReferenceGenomeServiceImpl implements ReferenceGenomeService {
 
     private final Logger logger = LoggerFactory.getLogger(ReferenceGenomeServiceImpl.class);
 
-    private ReferenceGenomeDAO referenceGenomeDAO;
+    private GenomicRefSeqDAO referenceGenomeDAO;
 
     @Override
     public List<ReferenceGenome> findBySource(String source) {
@@ -75,11 +75,11 @@ public class ReferenceGenomeServiceImpl implements ReferenceGenomeService {
         return ret;
     }
 
-    public ReferenceGenomeDAO getReferenceGenomeDAO() {
+    public GenomicRefSeqDAO getReferenceGenomeDAO() {
         return referenceGenomeDAO;
     }
 
-    public void setReferenceGenomeDAO(ReferenceGenomeDAO referenceGenomeDAO) {
+    public void setReferenceGenomeDAO(GenomicRefSeqDAO referenceGenomeDAO) {
         this.referenceGenomeDAO = referenceGenomeDAO;
     }
 
