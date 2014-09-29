@@ -2,6 +2,8 @@ package org.renci.hearsay.dao.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -12,22 +14,23 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
-@XmlRootElement(name = "translationVariant")
-@XmlType(name = "TranslationVariant")
+@XmlRootElement(name = "molecularConsequence")
+@XmlType(name = "MolecularConsequence")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "translation_variant")
-public class TranslationVariant extends VariantRepresentation {
+@Table(name = "molecular_consequence")
+public class MolecularConsequence extends BaseEntity {
 
-    private static final long serialVersionUID = -2099239641922673897L;
+    private static final long serialVersionUID = -1712420135432481226L;
 
-    @Column(name = "ref_allele")
-    private String referenceAllele;
+    @Column(name = "sequence_ontology_term")
+    private String sequenceOntologyTerm;
 
-    @Column(name = "var_allele")
-    private String variantAllele;
+    @ManyToOne
+    @JoinColumn(name = "variant_fid")
+    private VariantRepresentation variant;
 
-    public TranslationVariant() {
+    public MolecularConsequence() {
         super();
     }
 

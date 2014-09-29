@@ -1,6 +1,5 @@
 package org.renci.hearsay.dao.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,22 +11,16 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
-@XmlRootElement(name = "translationVariant")
-@XmlType(name = "TranslationVariant")
+@XmlRootElement(name = "")
+@XmlType(name = "")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "translation_variant")
-public class TranslationVariant extends VariantRepresentation {
+@Table(name = "")
+public class ControlGroup extends PeopleGroup {
 
-    private static final long serialVersionUID = -2099239641922673897L;
+    private static final long serialVersionUID = -552764833215619223L;
 
-    @Column(name = "ref_allele")
-    private String referenceAllele;
-
-    @Column(name = "var_allele")
-    private String variantAllele;
-
-    public TranslationVariant() {
+    public ControlGroup() {
         super();
     }
 

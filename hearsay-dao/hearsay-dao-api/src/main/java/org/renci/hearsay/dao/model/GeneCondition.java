@@ -2,6 +2,8 @@ package org.renci.hearsay.dao.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -12,22 +14,24 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
-@XmlRootElement(name = "translationVariant")
-@XmlType(name = "TranslationVariant")
+@XmlRootElement(name = "geneCondition")
+@XmlType(name = "GeneCondition")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "translation_variant")
-public class TranslationVariant extends VariantRepresentation {
+@Table(name = "gene_condition")
+public class GeneCondition extends BaseEntity {
 
-    private static final long serialVersionUID = -2099239641922673897L;
+    private static final long serialVersionUID = -1407404805678953995L;
 
-    @Column(name = "ref_allele")
-    private String referenceAllele;
+    @ManyToOne
+    @JoinColumn(name = "gene_fid")
+    private Gene gene;
 
-    @Column(name = "var_allele")
-    private String variantAllele;
+    @ManyToOne
+    @JoinColumn(name = "resolved_condition_fid")
+    private ResolvedCondition resolvedCondition;
 
-    public TranslationVariant() {
+    public GeneCondition() {
         super();
     }
 

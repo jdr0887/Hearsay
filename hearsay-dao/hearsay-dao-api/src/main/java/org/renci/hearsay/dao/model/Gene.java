@@ -1,14 +1,12 @@
 package org.renci.hearsay.dao.model;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.Lob;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -25,69 +23,73 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "gene")
-@NamedQueries({ @NamedQuery(name = "Gene.findAll", query = "SELECT a FROM Gene a") })
 public class Gene extends BaseEntity {
 
-    private static final long serialVersionUID = -6242780201446218630L;
+    private static final long serialVersionUID = -4342595098613821909L;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "hgnc_symbol")
+    private String hgncSymbol;
 
-    @Lob
-    @Column(name = "description")
-    private String description;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type")
+    private GeneType type;
 
-    @OneToMany(mappedBy = "gene", fetch = FetchType.LAZY)
-    private Set<Transcript> transcripts;
+    @OneToMany(mappedBy = "gene", fetch = FetchType.EAGER)
+    private Set<GeneCondition> conditions;
+
+    @OneToMany(mappedBy = "gene", fetch = FetchType.EAGER)
+    private Set<TranscriptRefSeq> transcriptRefSeqs;
 
     public Gene() {
         super();
     }
 
-    public Gene(String name, String description) {
-        super();
-        this.name = name;
-        this.description = description;
+    public String getHgncSymbol() {
+        return hgncSymbol;
     }
 
-    public String getDescription() {
-        return description;
+    public void setHgncSymbol(String hgncSymbol) {
+        this.hgncSymbol = hgncSymbol;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public GeneType getType() {
+        return type;
     }
 
-    public String getName() {
-        return name;
+    public void setType(GeneType type) {
+        this.type = type;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Set<GeneCondition> getConditions() {
+        return conditions;
     }
 
-    public Set<Transcript> getTranscripts() {
-        if (transcripts == null) {
-            transcripts = new HashSet<Transcript>();
-        }
-        return transcripts;
+    public void setConditions(Set<GeneCondition> conditions) {
+        this.conditions = conditions;
     }
 
-    public void setTranscripts(Set<Transcript> transcripts) {
-        this.transcripts = transcripts;
+    public Set<TranscriptRefSeq> getTranscriptRefSeqs() {
+        return transcriptRefSeqs;
+    }
+
+    public void setTranscriptRefSeqs(Set<TranscriptRefSeq> transcriptRefSeqs) {
+        this.transcriptRefSeqs = transcriptRefSeqs;
     }
 
     @Override
     public String toString() {
-        return String.format("Gene [name=%s, id=%s]", name, id);
+        return String.format("Gene [id=%s, hgncSymbol=%s, type=%s, conditions=%s, transcriptRefSeqs=%s]", id,
+                hgncSymbol, type, conditions, transcriptRefSeqs);
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = super.hashCode();
-        result = prime * result + ((description == null) ? 0 : description.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((conditions == null) ? 0 : conditions.hashCode());
+        result = prime * result + ((hgncSymbol == null) ? 0 : hgncSymbol.hashCode());
+        result = prime * result + ((transcriptRefSeqs == null) ? 0 : transcriptRefSeqs.hashCode());
+        result = prime * result + ((type == null) ? 0 : type.hashCode());
         return result;
     }
 
@@ -100,15 +102,22 @@ public class Gene extends BaseEntity {
         if (getClass() != obj.getClass())
             return false;
         Gene other = (Gene) obj;
-        if (description == null) {
-            if (other.description != null)
+        if (conditions == null) {
+            if (other.conditions != null)
                 return false;
-        } else if (!description.equals(other.description))
+        } else if (!conditions.equals(other.conditions))
             return false;
-        if (name == null) {
-            if (other.name != null)
+        if (hgncSymbol == null) {
+            if (other.hgncSymbol != null)
                 return false;
-        } else if (!name.equals(other.name))
+        } else if (!hgncSymbol.equals(other.hgncSymbol))
+            return false;
+        if (transcriptRefSeqs == null) {
+            if (other.transcriptRefSeqs != null)
+                return false;
+        } else if (!transcriptRefSeqs.equals(other.transcriptRefSeqs))
+            return false;
+        if (type != other.type)
             return false;
         return true;
     }

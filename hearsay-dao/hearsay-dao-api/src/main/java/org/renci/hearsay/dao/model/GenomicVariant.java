@@ -12,14 +12,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
-@XmlRootElement(name = "translationVariant")
-@XmlType(name = "TranslationVariant")
+@XmlRootElement(name = "genomicVariant")
+@XmlType(name = "GenomicVariant")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "translation_variant")
-public class TranslationVariant extends VariantRepresentation {
+@Table(name = "genomic_variant")
+public class GenomicVariant extends VariantRepresentation {
 
-    private static final long serialVersionUID = -2099239641922673897L;
+    private static final long serialVersionUID = 8070379578229091997L;
 
     @Column(name = "ref_allele")
     private String referenceAllele;
@@ -27,7 +27,7 @@ public class TranslationVariant extends VariantRepresentation {
     @Column(name = "var_allele")
     private String variantAllele;
 
-    public TranslationVariant() {
+    public GenomicVariant() {
         super();
     }
 
