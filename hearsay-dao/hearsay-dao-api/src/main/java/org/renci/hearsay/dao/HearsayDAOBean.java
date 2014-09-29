@@ -4,27 +4,25 @@ public class HearsayDAOBean {
 
     private GeneDAO geneDAO;
 
-    private GenomicSequenceVariantDAO genomicSequenceVariantDAO;
+    private GenomicVariantDAO genomicSequenceVariantDAO;
 
-    private MappedTranscriptDAO mappedTranscriptDAO;
+    private TranscriptAlignmentDAO mappedTranscriptDAO;
 
-    private ReferenceGenomeDAO referenceGenomeDAO;
+    private GenomicRefSeqDAO referenceGenomeDAO;
 
     private ReferenceSequenceDAO referenceSequenceDAO;
 
     private RegionDAO regionDAO;
 
-    private TranscriptDAO transcriptDAO;
+    private TranscriptRefSeqDAO transcriptDAO;
 
     private TranscriptVariantDAO transcriptVariantDAO;
 
-    private TranslationDAO translationDAO;
+    private TranslationRefSeqDAO translationDAO;
 
     private TranslationVariantDAO translationVariantDAO;
 
-    private VariantDAO variantDAO;
-
-    private VariantEffectDAO variantEffectDAO;
+    private CanonicalVariantDAO variantDAO;
 
     public HearsayDAOBean() {
         super();
@@ -38,27 +36,27 @@ public class HearsayDAOBean {
         this.geneDAO = geneDAO;
     }
 
-    public GenomicSequenceVariantDAO getGenomicSequenceVariantDAO() {
+    public GenomicVariantDAO getGenomicSequenceVariantDAO() {
         return genomicSequenceVariantDAO;
     }
 
-    public void setGenomicSequenceVariantDAO(GenomicSequenceVariantDAO genomicSequenceVariantDAO) {
+    public void setGenomicSequenceVariantDAO(GenomicVariantDAO genomicSequenceVariantDAO) {
         this.genomicSequenceVariantDAO = genomicSequenceVariantDAO;
     }
 
-    public MappedTranscriptDAO getMappedTranscriptDAO() {
+    public TranscriptAlignmentDAO getMappedTranscriptDAO() {
         return mappedTranscriptDAO;
     }
 
-    public void setMappedTranscriptDAO(MappedTranscriptDAO mappedTranscriptDAO) {
+    public void setMappedTranscriptDAO(TranscriptAlignmentDAO mappedTranscriptDAO) {
         this.mappedTranscriptDAO = mappedTranscriptDAO;
     }
 
-    public ReferenceGenomeDAO getReferenceGenomeDAO() {
+    public GenomicRefSeqDAO getReferenceGenomeDAO() {
         return referenceGenomeDAO;
     }
 
-    public void setReferenceGenomeDAO(ReferenceGenomeDAO referenceGenomeDAO) {
+    public void setReferenceGenomeDAO(GenomicRefSeqDAO referenceGenomeDAO) {
         this.referenceGenomeDAO = referenceGenomeDAO;
     }
 
@@ -78,11 +76,11 @@ public class HearsayDAOBean {
         this.regionDAO = regionDAO;
     }
 
-    public TranscriptDAO getTranscriptDAO() {
+    public TranscriptRefSeqDAO getTranscriptDAO() {
         return transcriptDAO;
     }
 
-    public void setTranscriptDAO(TranscriptDAO transcriptDAO) {
+    public void setTranscriptDAO(TranscriptRefSeqDAO transcriptDAO) {
         this.transcriptDAO = transcriptDAO;
     }
 
@@ -94,11 +92,11 @@ public class HearsayDAOBean {
         this.transcriptVariantDAO = transcriptVariantDAO;
     }
 
-    public TranslationDAO getTranslationDAO() {
+    public TranslationRefSeqDAO getTranslationDAO() {
         return translationDAO;
     }
 
-    public void setTranslationDAO(TranslationDAO translationDAO) {
+    public void setTranslationDAO(TranslationRefSeqDAO translationDAO) {
         this.translationDAO = translationDAO;
     }
 
@@ -110,20 +108,12 @@ public class HearsayDAOBean {
         this.translationVariantDAO = translationVariantDAO;
     }
 
-    public VariantDAO getVariantDAO() {
+    public CanonicalVariantDAO getVariantDAO() {
         return variantDAO;
     }
 
-    public void setVariantDAO(VariantDAO variantDAO) {
+    public void setVariantDAO(CanonicalVariantDAO variantDAO) {
         this.variantDAO = variantDAO;
-    }
-
-    public VariantEffectDAO getVariantEffectDAO() {
-        return variantEffectDAO;
-    }
-
-    public void setVariantEffectDAO(VariantEffectDAO variantEffectDAO) {
-        this.variantEffectDAO = variantEffectDAO;
     }
 
 }
