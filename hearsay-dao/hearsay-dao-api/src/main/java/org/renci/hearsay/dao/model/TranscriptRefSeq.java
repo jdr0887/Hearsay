@@ -30,11 +30,32 @@ public class TranscriptRefSeq extends ReferenceSequence {
     @JoinColumn(name = "gene_fid")
     private Gene gene;
 
-    @OneToMany(mappedBy = "transcriptSequence", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "transcriptRefSeq", fetch = FetchType.EAGER)
     private Set<TranscriptAlignment> alignments;
 
     public TranscriptRefSeq() {
         super();
+    }
+
+    public Gene getGene() {
+        return gene;
+    }
+
+    public void setGene(Gene gene) {
+        this.gene = gene;
+    }
+
+    public Set<TranscriptAlignment> getAlignments() {
+        return alignments;
+    }
+
+    public void setAlignments(Set<TranscriptAlignment> alignments) {
+        this.alignments = alignments;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("TranscriptRefSeq [id=%s, accession=%s]", id, accession);
     }
 
 }
