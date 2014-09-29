@@ -27,6 +27,9 @@ public class Gene extends BaseEntity {
 
     private static final long serialVersionUID = -4342595098613821909L;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "hgnc_symbol")
     private String hgncSymbol;
 
@@ -42,6 +45,14 @@ public class Gene extends BaseEntity {
 
     public Gene() {
         super();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getHgncSymbol() {
@@ -78,17 +89,15 @@ public class Gene extends BaseEntity {
 
     @Override
     public String toString() {
-        return String.format("Gene [id=%s, hgncSymbol=%s, type=%s, conditions=%s, transcriptRefSeqs=%s]", id,
-                hgncSymbol, type, conditions, transcriptRefSeqs);
+        return String.format("Gene [id=%s, name=%s, hgncSymbol=%s, type=%s]", id, name, hgncSymbol, type);
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = super.hashCode();
-        result = prime * result + ((conditions == null) ? 0 : conditions.hashCode());
         result = prime * result + ((hgncSymbol == null) ? 0 : hgncSymbol.hashCode());
-        result = prime * result + ((transcriptRefSeqs == null) ? 0 : transcriptRefSeqs.hashCode());
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((type == null) ? 0 : type.hashCode());
         return result;
     }
@@ -102,20 +111,15 @@ public class Gene extends BaseEntity {
         if (getClass() != obj.getClass())
             return false;
         Gene other = (Gene) obj;
-        if (conditions == null) {
-            if (other.conditions != null)
-                return false;
-        } else if (!conditions.equals(other.conditions))
-            return false;
         if (hgncSymbol == null) {
             if (other.hgncSymbol != null)
                 return false;
         } else if (!hgncSymbol.equals(other.hgncSymbol))
             return false;
-        if (transcriptRefSeqs == null) {
-            if (other.transcriptRefSeqs != null)
+        if (name == null) {
+            if (other.name != null)
                 return false;
-        } else if (!transcriptRefSeqs.equals(other.transcriptRefSeqs))
+        } else if (!name.equals(other.name))
             return false;
         if (type != other.type)
             return false;
