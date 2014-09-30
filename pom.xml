@@ -12,10 +12,10 @@
   <packaging>pom</packaging>
   <url>https://jdr0887.github.io/Hearsay</url>
   <properties>
-    <karaf.version>2.3.5</karaf.version>
-    <cxf.version>2.7.8</cxf.version>
+    <karaf.version>3.0.1</karaf.version>
+    <cxf.version>2.7.12</cxf.version>
     <spring.version>3.2.4.RELEASE</spring.version>
-    <jackson.version>2.3.1</jackson.version>
+    <jackson.version>2.4.1</jackson.version>
   </properties>
   <issueManagement>
     <system>GitHub Issues</system>
@@ -36,17 +36,20 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-	<groupId>org.apache.karaf</groupId>
-	<artifactId>apache-karaf</artifactId>
-	<version>${karaf.version}</version>
-	<type>tar.gz</type>
+      	<groupId>org.apache.karaf</groupId>
+      	<artifactId>org.apache.karaf.util</artifactId>
+      	<version>${karaf.version}</version>
       </dependency>
       <dependency>
-	<groupId>org.apache.karaf</groupId>
-	<artifactId>apache-karaf</artifactId>
-	<version>${karaf.version}</version>
-	<type>xml</type>
-	<classifier>features</classifier>
+      	<groupId>org.apache.karaf.shell</groupId>
+      	<artifactId>org.apache.karaf.shell.console</artifactId>
+      	<version>${karaf.version}</version>
+      </dependency>
+      <dependency>
+      	<groupId>org.apache.karaf</groupId>
+      	<artifactId>apache-karaf</artifactId>
+      	<version>${karaf.version}</version>
+      	<type>tar.gz</type>
       </dependency>
       <dependency>
 	<groupId>com.fasterxml.jackson.module</groupId>
@@ -258,5 +261,6 @@
     <module>hearsay-web-service-api</module>
     <module>hearsay-web-services</module>
     <module>hearsay-features</module>
+    <module>hearsay-server</module>
   </modules>
 </project>
