@@ -221,8 +221,8 @@
 	      <artifactId>maven-project-info-reports-plugin</artifactId>
 	      <version>${maven.project.info.reports.plugin.version}</version>
 	      <configuration>
-		<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
-		<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+		<dependencyDetailsEnabled>true</dependencyDetailsEnabled>
+		<dependencyLocationsEnabled>true</dependencyLocationsEnabled>
 	      </configuration>
 	      <reports>
 	      </reports>
@@ -231,14 +231,6 @@
 	      <groupId>org.apache.maven.plugins</groupId>
 	      <artifactId>maven-javadoc-plugin</artifactId>
 	      <version>${maven.javadoc.plugin.version}</version>
-	    </plugin>
-	    <plugin>
-	      <groupId>org.apache.maven.plugins</groupId>
-	      <artifactId>maven-jxr-plugin</artifactId>
-	      <version>${maven.jxr.plugin.version}</version>
-	      <configuration>
-		<aggregate>true</aggregate>
-	      </configuration>
 	    </plugin>
 	    <plugin>
 	      <groupId>org.apache.maven.plugins</groupId>
@@ -261,6 +253,6 @@
     <module>hearsay-web-service-api</module>
     <module>hearsay-web-services</module>
     <module>hearsay-features</module>
-    <module>hearsay-server</module>
+    <!-- <module>hearsay-server</module> -->
   </modules>
 </project>
