@@ -48,18 +48,21 @@
 
   <feature name="hearsay-web-services" version="${project.version}" resolver="(obr)">
     <bundle>mvn:org.renci.hearsay/hearsay-web-service-api/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-web-service-gene/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-web-service-genomic-sequence-variant/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-web-service-reference-genome/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-web-service-reference-sequence/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-web-service-region/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-web-service-mapped-transcript/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-web-service-transcript/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-web-service-transcript-variant/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-web-service-translation/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-web-service-translation-variant/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-web-service-variant/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-web-service-variant-effect/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-canonical-variant/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-gene/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-gene-condition/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-gene-condition-assertion/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-genomic-refseq/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-genomic-variant/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-individual/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-individual-variant/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-region/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-resolved-condition/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-transcript-alignment/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-transcript-refseq/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-transcript-variant/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-translation-refseq/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-translation-variant/${project.version}</bundle>
   </feature>
 
   <feature name="hearsay" version="${project.version}" resolver="(obr)">    
