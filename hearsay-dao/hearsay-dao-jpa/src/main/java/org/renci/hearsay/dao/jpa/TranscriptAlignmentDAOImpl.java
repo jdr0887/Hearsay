@@ -52,8 +52,8 @@ public class TranscriptAlignmentDAOImpl extends BaseEntityDAOImpl<TranscriptAlig
     }
 
     @Override
-    public List<TranscriptAlignment> findByRefSeqAccession(String accession) throws HearsayDAOException {
-        logger.debug("ENTERING findByTranscriptAccession(String)");
+    public List<TranscriptAlignment> findByTranscriptRefSeqAccession(String accession) throws HearsayDAOException {
+        logger.debug("ENTERING findByTranscriptRefSeqAccession(String)");
         CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<TranscriptAlignment> crit = critBuilder.createQuery(getPersistentClass());
         Root<TranscriptAlignment> fromTranscriptInterval = crit.from(TranscriptAlignment.class);

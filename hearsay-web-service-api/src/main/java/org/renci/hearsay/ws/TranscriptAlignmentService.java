@@ -22,8 +22,8 @@ public interface TranscriptAlignmentService {
     public List<TranscriptAlignment> findByTranscriptRefSeqId(@PathParam("id") Long id);
 
     @GET
-    @Path("/findByAccession/{accession}")
-    public List<TranscriptAlignment> findByAccession(@PathParam("accession") String accession);
+    @Path("/findByTranscriptRefSeqAccession/{accession}")
+    public List<TranscriptAlignment> findByTranscriptRefSeqAccession(@PathParam("accession") String accession);
 
     @GET
     @Path("/findByGeneName/{name}")
