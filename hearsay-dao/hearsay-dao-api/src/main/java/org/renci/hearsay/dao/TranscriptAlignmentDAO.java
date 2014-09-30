@@ -8,7 +8,7 @@ public interface TranscriptAlignmentDAO extends BaseEntityDAO<TranscriptAlignmen
 
     public List<TranscriptAlignment> findByTranscriptRefSeqId(Long transcriptId) throws HearsayDAOException;
 
-    public List<TranscriptAlignment> findByRefSeqAccession(String accession) throws HearsayDAOException;
+    public List<TranscriptAlignment> findByTranscriptRefSeqAccession(String accession) throws HearsayDAOException;
 
     public List<TranscriptAlignment> findByGeneName(String name) throws HearsayDAOException;
 
