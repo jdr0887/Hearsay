@@ -73,17 +73,20 @@
     </dependency>
   </dependencies>
   <modules>
-    <module>hearsay-web-service-gene</module>
-    <module>hearsay-web-service-genomic-sequence-variant</module>
-    <module>hearsay-web-service-mapped-transcript</module>
-    <module>hearsay-web-service-reference-genome</module>
-    <module>hearsay-web-service-reference-sequence</module>
-    <module>hearsay-web-service-region</module>
-    <module>hearsay-web-service-transcript</module>
-    <module>hearsay-web-service-transcript-variant</module>
-    <module>hearsay-web-service-translation</module>
-    <module>hearsay-web-service-translation-variant</module>
-    <module>hearsay-web-service-variant</module>
-    <module>hearsay-web-service-variant-effect</module>
+    <module>hearsay-ws-canonical-variant</module>
+    <module>hearsay-ws-gene</module>
+    <module>hearsay-ws-gene-condition</module>
+    <module>hearsay-ws-gene-condition-assertion</module>
+    <module>hearsay-ws-genomic-refseq</module>
+    <module>hearsay-ws-genomic-variant</module>
+    <module>hearsay-ws-individual</module>
+    <module>hearsay-ws-individual-variant</module>
+    <module>hearsay-ws-region</module>
+    <module>hearsay-ws-resolved-condition</module>
+    <module>hearsay-ws-transcript-alignment</module>
+    <module>hearsay-ws-transcript-refseq</module>
+    <module>hearsay-ws-transcript-variant</module>
+    <module>hearsay-ws-translation-refseq</module>
+    <module>hearsay-ws-translation-variant</module>
   </modules>
 </project>
