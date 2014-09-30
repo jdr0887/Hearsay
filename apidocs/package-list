@@ -1,0 +1,5 @@
+org.renci.hearsay.dao
+org.renci.hearsay.dao.jpa
+org.renci.hearsay.dao.model
+org.renci.hearsay.ws
+org.renci.hearsay.ws.impl
