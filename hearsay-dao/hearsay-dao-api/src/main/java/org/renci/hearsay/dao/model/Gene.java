@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -23,12 +26,17 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "gene")
+@NamedQueries({ @NamedQuery(name = "Gene.findAll", query = "SELECT a FROM Gene a order by a.name") })
 public class Gene extends BaseEntity {
 
     private static final long serialVersionUID = -4342595098613821909L;
 
     @Column(name = "name")
     private String name;
+
+    @Lob
+    @Column(name = "description")
+    private String description;
 
     @Column(name = "hgnc_symbol")
     private String hgncSymbol;
@@ -45,6 +53,14 @@ public class Gene extends BaseEntity {
 
     public Gene() {
         super();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getName() {
@@ -96,6 +112,7 @@ public class Gene extends BaseEntity {
     public int hashCode() {
         final int prime = 31;
         int result = super.hashCode();
+        result = prime * result + ((description == null) ? 0 : description.hashCode());
         result = prime * result + ((hgncSymbol == null) ? 0 : hgncSymbol.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((type == null) ? 0 : type.hashCode());
@@ -111,6 +128,11 @@ public class Gene extends BaseEntity {
         if (getClass() != obj.getClass())
             return false;
         Gene other = (Gene) obj;
+        if (description == null) {
+            if (other.description != null)
+                return false;
+        } else if (!description.equals(other.description))
+            return false;
         if (hgncSymbol == null) {
             if (other.hgncSymbol != null)
                 return false;
