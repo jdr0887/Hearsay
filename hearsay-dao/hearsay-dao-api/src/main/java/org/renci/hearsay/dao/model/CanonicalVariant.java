@@ -34,4 +34,20 @@ public class CanonicalVariant extends BaseEntity {
         super();
     }
 
+    public Set<VariantRepresentation> getVariantRepresentations() {
+        return variantRepresentations;
+    }
+
+    public void setVariantRepresentations(Set<VariantRepresentation> variantRepresentations) {
+        this.variantRepresentations = variantRepresentations;
+    }
+
+    public Set<VariantSubmission> getVariantsubmissions() {
+        return variantsubmissions;
+    }
+
+    public void setVariantsubmissions(Set<VariantSubmission> variantsubmissions) {
+        this.variantsubmissions = variantsubmissions;
+    }
+
 }
