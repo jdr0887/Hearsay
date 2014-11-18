@@ -47,4 +47,86 @@ public class VariantRepresentation extends BaseEntity {
         super();
     }
 
+    public String getHgvs() {
+        return hgvs;
+    }
+
+    public void setHgvs(String hgvs) {
+        this.hgvs = hgvs;
+    }
+
+    public Integer getStart() {
+        return start;
+    }
+
+    public void setStart(Integer start) {
+        this.start = start;
+    }
+
+    public Integer getStop() {
+        return stop;
+    }
+
+    public void setStop(Integer stop) {
+        this.stop = stop;
+    }
+
+    public CanonicalVariant getCanonicalVariant() {
+        return canonicalVariant;
+    }
+
+    public void setCanonicalVariant(CanonicalVariant canonicalVariant) {
+        this.canonicalVariant = canonicalVariant;
+    }
+
+    public Set<MolecularConsequence> getConsequences() {
+        return consequences;
+    }
+
+    public void setConsequences(Set<MolecularConsequence> consequences) {
+        this.consequences = consequences;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("VariantRepresentation [id=%s, hgvs=%s, start=%s, stop=%s]", id, hgvs, start, stop);
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((hgvs == null) ? 0 : hgvs.hashCode());
+        result = prime * result + ((start == null) ? 0 : start.hashCode());
+        result = prime * result + ((stop == null) ? 0 : stop.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!super.equals(obj))
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        VariantRepresentation other = (VariantRepresentation) obj;
+        if (hgvs == null) {
+            if (other.hgvs != null)
+                return false;
+        } else if (!hgvs.equals(other.hgvs))
+            return false;
+        if (start == null) {
+            if (other.start != null)
+                return false;
+        } else if (!start.equals(other.start))
+            return false;
+        if (stop == null) {
+            if (other.stop != null)
+                return false;
+        } else if (!stop.equals(other.stop))
+            return false;
+        return true;
+    }
+
 }
