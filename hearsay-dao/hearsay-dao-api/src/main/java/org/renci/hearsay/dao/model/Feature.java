@@ -3,6 +3,7 @@ package org.renci.hearsay.dao.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -33,6 +34,7 @@ public class Feature extends BaseEntity {
     @JoinColumn(name = "transcript_alignment_fid")
     private TranscriptAlignment transcriptAlignment;
 
+    @Lob
     @Column(name = "note")
     private String note;
 
