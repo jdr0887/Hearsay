@@ -4,6 +4,8 @@ public class HearsayDAOBean {
 
     private CanonicalVariantDAO canonicalVariantDAO;
 
+    private FeatureDAO featureDAO;
+
     private GeneConditionAssertionDAO geneConditionAssertionDAO;
 
     private GeneConditionDAO geneConditionDAO;
@@ -36,6 +38,14 @@ public class HearsayDAOBean {
 
     public HearsayDAOBean() {
         super();
+    }
+
+    public FeatureDAO getFeatureDAO() {
+        return featureDAO;
+    }
+
+    public void setFeatureDAO(FeatureDAO featureDAO) {
+        this.featureDAO = featureDAO;
     }
 
     public CanonicalVariantDAO getCanonicalVariantDAO() {
