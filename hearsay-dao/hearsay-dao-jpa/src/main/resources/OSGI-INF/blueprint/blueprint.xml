@@ -8,6 +8,12 @@
   </bean>
   <service ref="canonicalVariantDAOImpl" interface="org.renci.hearsay.dao.CanonicalVariantDAO" />
 
+  <bean id="featureDAOImpl" class="org.renci.hearsay.dao.jpa.FeatureDAOImpl">
+    <tx:transaction method="*" value="Required" />
+    <jpa:context property="entityManager" unitname="hearsay" />
+  </bean>
+  <service ref="featureDAOImpl" interface="org.renci.hearsay.dao.FeatureDAO" />
+
   <bean id="geneConditionAssertionDAOImpl" class="org.renci.hearsay.dao.jpa.GeneConditionAssertionDAOImpl">
     <tx:transaction method="*" value="Required" />
     <jpa:context property="entityManager" unitname="hearsay" />
