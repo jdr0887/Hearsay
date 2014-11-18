@@ -1,7 +1,9 @@
 package org.renci.hearsay.dao.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -52,6 +54,19 @@ public class TranscriptAlignment extends BaseEntity {
     @OrderBy("regionStart ASC")
     private Set<Region> regions;
 
+    @Column(name = "protein")
+    private String protein;
+
+    @Column(name = "protein_region_start")
+    private Integer proteinRegionStart;
+
+    @Column(name = "protein_region_stop")
+    private Integer proteinRegionStop;
+
+    @OneToMany(mappedBy = "transcriptAlignment", cascade = { CascadeType.REMOVE, CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
+    @OrderBy("regionStart ASC")
+    private Set<Feature> features;
+
     public TranscriptAlignment() {
         super();
     }
@@ -97,6 +112,9 @@ public class TranscriptAlignment extends BaseEntity {
     }
 
     public Set<Region> getRegions() {
+        if (regions == null) {
+            regions = new HashSet<Region>();
+        }
         return regions;
     }
 
@@ -104,10 +122,35 @@ public class TranscriptAlignment extends BaseEntity {
         this.regions = regions;
     }
 
+    public String getProtein() {
+        return protein;
+    }
+
+    public void setProtein(String protein) {
+        this.protein = protein;
+    }
+
+    public Integer getProteinRegionStart() {
+        return proteinRegionStart;
+    }
+
+    public void setProteinRegionStart(Integer proteinRegionStart) {
+        this.proteinRegionStart = proteinRegionStart;
+    }
+
+    public Integer getProteinRegionStop() {
+        return proteinRegionStop;
+    }
+
+    public void setProteinRegionStop(Integer proteinRegionStop) {
+        this.proteinRegionStop = proteinRegionStop;
+    }
+
     @Override
     public String toString() {
-        return String.format("TranscriptAlignment [id=%s, genomicStart=%s, genomicStop=%s, strandType=%s, regions=%s]",
-                id, genomicStart, genomicStop, strandType, regions);
+        return String
+                .format("TranscriptAlignment [id=%s, genomicStart=%s, genomicStop=%s, strandType=%s, protein=%s, proteinRegionStart=%s, proteinRegionStop=%s]",
+                        id, genomicStart, genomicStop, strandType, protein, proteinRegionStart, proteinRegionStop);
     }
 
     @Override
@@ -116,7 +159,9 @@ public class TranscriptAlignment extends BaseEntity {
         int result = super.hashCode();
         result = prime * result + ((genomicStart == null) ? 0 : genomicStart.hashCode());
         result = prime * result + ((genomicStop == null) ? 0 : genomicStop.hashCode());
-        result = prime * result + ((regions == null) ? 0 : regions.hashCode());
+        result = prime * result + ((protein == null) ? 0 : protein.hashCode());
+        result = prime * result + ((proteinRegionStart == null) ? 0 : proteinRegionStart.hashCode());
+        result = prime * result + ((proteinRegionStop == null) ? 0 : proteinRegionStop.hashCode());
         result = prime * result + ((strandType == null) ? 0 : strandType.hashCode());
         return result;
     }
@@ -140,10 +185,20 @@ public class TranscriptAlignment extends BaseEntity {
                 return false;
         } else if (!genomicStop.equals(other.genomicStop))
             return false;
-        if (regions == null) {
-            if (other.regions != null)
+        if (protein == null) {
+            if (other.protein != null)
                 return false;
-        } else if (!regions.equals(other.regions))
+        } else if (!protein.equals(other.protein))
+            return false;
+        if (proteinRegionStart == null) {
+            if (other.proteinRegionStart != null)
+                return false;
+        } else if (!proteinRegionStart.equals(other.proteinRegionStart))
+            return false;
+        if (proteinRegionStop == null) {
+            if (other.proteinRegionStop != null)
+                return false;
+        } else if (!proteinRegionStop.equals(other.proteinRegionStop))
             return false;
         if (strandType != other.strandType)
             return false;
