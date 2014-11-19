@@ -9,15 +9,15 @@
   http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0 http://aries.apache.org/schemas/blueprint-cm/blueprint-cm-1.1.0.xsd
   ">
 
-  <reference id="geneDAO" interface="org.renci.hearsay.dao.GeneDAO" />
+  <reference id="geneConditionAssertionDAO" interface="org.renci.hearsay.dao.GeneConditionAssertionDAO" />
 
-  <bean id="gene" class="org.renci.hearsay.ws.impl.GeneServiceImpl">
-    <property name="geneDAO" ref="geneDAO" />
+  <bean id="geneConditionAssertion" class="org.renci.hearsay.ws.impl.GeneConditionAssertionServiceImpl">
+    <property name="geneConditionAssertionDAO" ref="geneConditionAssertionDAO" />
   </bean>
 
-  <jaxrs:server id="GeneServiceRS" address="/Gene">
+  <jaxrs:server id="GeneConditionAssertionServiceRS" address="/GeneConditionAssertion">
     <jaxrs:serviceBeans>
-      <ref component-id="gene" />
+      <ref component-id="geneConditionAssertion" />
     </jaxrs:serviceBeans>
     <jaxrs:providers>
       <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />
