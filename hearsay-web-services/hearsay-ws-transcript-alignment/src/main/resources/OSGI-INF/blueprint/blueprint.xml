@@ -9,15 +9,15 @@
   http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0 http://aries.apache.org/schemas/blueprint-cm/blueprint-cm-1.1.0.xsd
   ">
 
-  <reference id="mappedTranscriptDAO" interface="org.renci.hearsay.dao.MappedTranscriptDAO" />
+  <reference id="transcriptAlignmentDAO" interface="org.renci.hearsay.dao.TranscriptAlignmentDAO" />
 
-  <bean id="mappedTranscript" class="org.renci.hearsay.ws.impl.MappedTranscriptServiceImpl">
-    <property name="mappedTranscriptDAO" ref="mappedTranscriptDAO" />
+  <bean id="transcriptAlignment" class="org.renci.hearsay.ws.impl.TranscriptAlignmentServiceImpl">
+    <property name="transcriptAlignmentDAO" ref="transcriptAlignmentDAO" />
   </bean>
 
-  <jaxrs:server id="MappedTranscriptServiceRS" address="/MappedTranscript">
+  <jaxrs:server id="TranscriptAlignmentServiceRS" address="/TranscriptAlignment">
     <jaxrs:serviceBeans>
-      <ref component-id="mappedTranscript" />
+      <ref component-id="transcriptAlignment" />
     </jaxrs:serviceBeans>
     <jaxrs:providers>
       <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />

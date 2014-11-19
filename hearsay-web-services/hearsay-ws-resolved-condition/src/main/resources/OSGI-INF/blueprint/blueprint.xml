@@ -9,15 +9,15 @@
   http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0 http://aries.apache.org/schemas/blueprint-cm/blueprint-cm-1.1.0.xsd
   ">
 
-  <reference id="variantDAO" interface="org.renci.hearsay.dao.VariantDAO" />
+  <reference id="resolvedConditionDAO" interface="org.renci.hearsay.dao.ResolvedConditionDAO" />
 
-  <bean id="variant" class="org.renci.hearsay.ws.impl.VariantServiceImpl">
-    <property name="variantDAO" ref="variantDAO" />
+  <bean id="resolvedCondition" class="org.renci.hearsay.ws.impl.ResolvedConditionServiceImpl">
+    <property name="resolvedConditionDAO" ref="resolvedConditionDAO" />
   </bean>
 
-  <jaxrs:server id="VariantServiceRS" address="/Variant">
+  <jaxrs:server id="ResolvedConditionServiceRS" address="/ResolvedCondition">
     <jaxrs:serviceBeans>
-      <ref component-id="variant" />
+      <ref component-id="resolvedCondition" />
     </jaxrs:serviceBeans>
     <jaxrs:providers>
       <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />
