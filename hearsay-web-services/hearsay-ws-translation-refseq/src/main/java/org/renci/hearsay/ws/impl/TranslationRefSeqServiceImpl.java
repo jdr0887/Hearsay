@@ -13,6 +13,10 @@ public class TranslationRefSeqServiceImpl implements TranslationRefSeqService {
 
     private TranslationRefSeqDAO translationRefSeqDAO;
 
+    public TranslationRefSeqServiceImpl() {
+        super();
+    }
+
     @Override
     public TranslationRefSeq findById(Long id) {
         logger.debug("ENTERING findById(Long)");

@@ -13,6 +13,10 @@ public class GenomicVariantServiceImpl implements GenomicVariantService {
 
     private GenomicVariantDAO genomicVariantDAO;
 
+    public GenomicVariantServiceImpl() {
+        super();
+    }
+
     @Override
     public GenomicVariant findById(Long id) {
         logger.debug("ENTERING findById(Long)");

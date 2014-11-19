@@ -13,6 +13,10 @@ public class ResolvedConditionServiceImpl implements ResolvedConditionService {
 
     private ResolvedConditionDAO resolvedConditionDAO;
 
+    public ResolvedConditionServiceImpl() {
+        super();
+    }
+
     @Override
     public ResolvedCondition findById(Long id) {
         logger.debug("ENTERING findById(Long)");

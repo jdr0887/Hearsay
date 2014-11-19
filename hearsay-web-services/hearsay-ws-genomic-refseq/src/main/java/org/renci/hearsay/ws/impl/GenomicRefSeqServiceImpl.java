@@ -13,6 +13,10 @@ public class GenomicRefSeqServiceImpl implements GenomicRefSeqService {
 
     private GenomicRefSeqDAO genomicRefSeqDAO;
 
+    public GenomicRefSeqServiceImpl() {
+        super();
+    }
+
     @Override
     public GenomicRefSeq findById(Long id) {
         logger.debug("ENTERING findById(Long)");

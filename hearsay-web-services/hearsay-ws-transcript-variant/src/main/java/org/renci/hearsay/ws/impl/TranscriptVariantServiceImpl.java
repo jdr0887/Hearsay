@@ -13,6 +13,10 @@ public class TranscriptVariantServiceImpl implements TranscriptVariantService {
 
     private TranscriptVariantDAO transcriptVariantDAO;
 
+    public TranscriptVariantServiceImpl() {
+        super();
+    }
+
     @Override
     public TranscriptVariant findById(Long id) {
         logger.debug("ENTERING findById(Long)");

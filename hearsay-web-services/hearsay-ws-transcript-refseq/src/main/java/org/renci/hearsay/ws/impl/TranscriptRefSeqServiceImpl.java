@@ -16,6 +16,10 @@ public class TranscriptRefSeqServiceImpl implements TranscriptRefSeqService {
 
     private TranscriptRefSeqDAO transcriptRefSeqDAO;
 
+    public TranscriptRefSeqServiceImpl() {
+        super();
+    }
+
     @Override
     public TranscriptRefSeq findById(Long id) {
         logger.debug("ENTERING findById(Long)");

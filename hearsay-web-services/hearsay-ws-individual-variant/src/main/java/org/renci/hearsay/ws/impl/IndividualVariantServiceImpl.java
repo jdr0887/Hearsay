@@ -7,11 +7,15 @@ import org.renci.hearsay.ws.IndividualVariantService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class IndividualServiceImpl implements IndividualVariantService {
+public class IndividualVariantServiceImpl implements IndividualVariantService {
 
-    private final Logger logger = LoggerFactory.getLogger(IndividualServiceImpl.class);
+    private final Logger logger = LoggerFactory.getLogger(IndividualVariantServiceImpl.class);
 
     private IndividualVariantDAO individualVariantDAO;
+
+    public IndividualVariantServiceImpl() {
+        super();
+    }
 
     @Override
     public IndividualVariant findById(Long id) {

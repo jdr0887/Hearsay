@@ -13,6 +13,10 @@ public class TranslationVariantServiceImpl implements TranslationVariantService 
 
     private TranslationVariantDAO translationVariantDAO;
 
+    public TranslationVariantServiceImpl() {
+        super();
+    }
+
     @Override
     public TranslationVariant findById(Long id) {
         logger.debug("ENTERING findById(Long)");

@@ -13,6 +13,10 @@ public class IndividualServiceImpl implements IndividualService {
 
     private IndividualDAO individualDAO;
 
+    public IndividualServiceImpl() {
+        super();
+    }
+
     @Override
     public Individual findById(Long id) {
         logger.debug("ENTERING findById(Long)");

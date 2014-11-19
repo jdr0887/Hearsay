@@ -16,6 +16,10 @@ public class TranscriptAlignmentServiceImpl implements TranscriptAlignmentServic
 
     private TranscriptAlignmentDAO transcriptAlignmentDAO;
 
+    public TranscriptAlignmentServiceImpl() {
+        super();
+    }
+
     @Override
     public TranscriptAlignment findById(Long id) {
         logger.debug("ENTERING findById(Long)");
