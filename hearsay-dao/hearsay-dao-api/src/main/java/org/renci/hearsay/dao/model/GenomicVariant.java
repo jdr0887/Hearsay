@@ -31,4 +31,20 @@ public class GenomicVariant extends VariantRepresentation {
         super();
     }
 
+    public String getReferenceAllele() {
+        return referenceAllele;
+    }
+
+    public void setReferenceAllele(String referenceAllele) {
+        this.referenceAllele = referenceAllele;
+    }
+
+    public String getVariantAllele() {
+        return variantAllele;
+    }
+
+    public void setVariantAllele(String variantAllele) {
+        this.variantAllele = variantAllele;
+    }
+
 }
