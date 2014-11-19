@@ -2,13 +2,13 @@
   <parent>
     <groupId>org.renci</groupId>
     <artifactId>hearsay</artifactId>
-    <version>0.0.19</version>
+    <version>0.0.20-SNAPSHOT</version>
   </parent>
   <name>Hearsay :: Features</name>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.renci.hearsay</groupId>
   <artifactId>hearsay-features</artifactId>
-  <version>0.0.19</version>
+  <version>0.0.20-SNAPSHOT</version>
   <packaging>pom</packaging>
   <build>
     <resources>
