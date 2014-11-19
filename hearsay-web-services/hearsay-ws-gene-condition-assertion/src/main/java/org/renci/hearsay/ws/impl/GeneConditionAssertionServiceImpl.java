@@ -1,27 +1,28 @@
 package org.renci.hearsay.ws.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.renci.hearsay.dao.GeneDAO;
+import org.renci.hearsay.dao.GeneConditionAssertionDAO;
 import org.renci.hearsay.dao.HearsayDAOException;
-import org.renci.hearsay.dao.model.Gene;
-import org.renci.hearsay.ws.GeneService;
+import org.renci.hearsay.dao.model.GeneConditionAssertion;
+import org.renci.hearsay.ws.GeneConditionAssertionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GeneServiceImpl implements GeneService {
+public class GeneConditionAssertionServiceImpl implements GeneConditionAssertionService {
 
-    private final Logger logger = LoggerFactory.getLogger(GeneServiceImpl.class);
+    private final Logger logger = LoggerFactory.getLogger(GeneConditionAssertionServiceImpl.class);
 
-    private GeneDAO geneDAO;
+    private GeneConditionAssertionDAO geneConditionAssertionDAO;
+
+    public GeneConditionAssertionServiceImpl() {
+        super();
+    }
 
     @Override
-    public Gene findById(Long id) {
+    public GeneConditionAssertion findById(Long id) {
         logger.debug("ENTERING findById(Long)");
-        Gene ret = null;
+        GeneConditionAssertion ret = null;
         try {
-            ret = geneDAO.findById(id);
+            ret = geneConditionAssertionDAO.findById(id);
         } catch (HearsayDAOException e) {
             e.printStackTrace();
         }
@@ -29,47 +30,23 @@ public class GeneServiceImpl implements GeneService {
     }
 
     @Override
-    public Long save(Gene gene) {
-        logger.debug("ENTERING save(Gene)");
+    public Long save(GeneConditionAssertion geneConditionAssertion) {
+        logger.debug("ENTERING save(GeneConditionAssertion)");
         Long ret = null;
         try {
-            ret = geneDAO.save(gene);
+            ret = geneConditionAssertionDAO.save(geneConditionAssertion);
         } catch (HearsayDAOException e) {
             e.printStackTrace();
         }
         return ret;
     }
 
-    @Override
-    public List<Gene> findAll() {
-        logger.debug("ENTERING findAll()");
-        List<Gene> ret = new ArrayList<Gene>();
-        try {
-            ret.addAll(geneDAO.findAll());
-        } catch (HearsayDAOException e) {
-            e.printStackTrace();
-        }
-        return ret;
+    public GeneConditionAssertionDAO getGeneConditionAssertionDAO() {
+        return geneConditionAssertionDAO;
     }
 
-    @Override
-    public List<Gene> findByName(String name) {
-        logger.debug("ENTERING findAll()");
-        List<Gene> ret = new ArrayList<Gene>();
-        try {
-            ret.addAll(geneDAO.findByName(name));
-        } catch (HearsayDAOException e) {
-            e.printStackTrace();
-        }
-        return ret;
-    }
-
-    public GeneDAO getGeneDAO() {
-        return geneDAO;
-    }
-
-    public void setGeneDAO(GeneDAO geneDAO) {
-        this.geneDAO = geneDAO;
+    public void setGeneConditionAssertionDAO(GeneConditionAssertionDAO geneConditionAssertionDAO) {
+        this.geneConditionAssertionDAO = geneConditionAssertionDAO;
     }
 
 }

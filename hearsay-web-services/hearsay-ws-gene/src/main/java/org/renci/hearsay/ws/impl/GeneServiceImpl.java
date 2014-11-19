@@ -16,6 +16,10 @@ public class GeneServiceImpl implements GeneService {
 
     private GeneDAO geneDAO;
 
+    public GeneServiceImpl() {
+        super();
+    }
+
     @Override
     public Gene findById(Long id) {
         logger.debug("ENTERING findById(Long)");

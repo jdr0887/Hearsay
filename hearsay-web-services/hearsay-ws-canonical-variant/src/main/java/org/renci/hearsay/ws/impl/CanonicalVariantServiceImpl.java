@@ -11,26 +11,30 @@ public class CanonicalVariantServiceImpl implements CanonicalVariantService {
 
     private final Logger logger = LoggerFactory.getLogger(CanonicalVariantServiceImpl.class);
 
-    private CanonicalVariantDAO variantDAO;
+    private CanonicalVariantDAO canonicalVariantDAO;
+
+    public CanonicalVariantServiceImpl() {
+        super();
+    }
 
     @Override
     public CanonicalVariant findById(Long id) {
         logger.debug("ENTERING findById(Long)");
         CanonicalVariant ret = null;
         try {
-            ret = variantDAO.findById(id);
+            ret = canonicalVariantDAO.findById(id);
         } catch (HearsayDAOException e) {
             e.printStackTrace();
         }
         return ret;
     }
 
-    public CanonicalVariantDAO getVariantDAO() {
-        return variantDAO;
+    public CanonicalVariantDAO getCanonicalVariantDAO() {
+        return canonicalVariantDAO;
     }
 
-    public void setVariantDAO(CanonicalVariantDAO variantDAO) {
-        this.variantDAO = variantDAO;
+    public void setCanonicalVariantDAO(CanonicalVariantDAO canonicalVariantDAO) {
+        this.canonicalVariantDAO = canonicalVariantDAO;
     }
 
 }
