@@ -38,6 +38,12 @@
   </bean>
   <service ref="genomicRefSeqDAOImpl" interface="org.renci.hearsay.dao.GenomicRefSeqDAO" />
 
+  <bean id="genomicVariantDAOImpl" class="org.renci.hearsay.dao.jpa.GenomicVariantDAOImpl">
+    <tx:transaction method="*" value="Required" />
+    <jpa:context property="entityManager" unitname="hearsay" />
+  </bean>
+  <service ref="genomicVariantDAOImpl" interface="org.renci.hearsay.dao.GenomicVariantDAO" />
+
   <bean id="individualDAOImpl" class="org.renci.hearsay.dao.jpa.IndividualDAOImpl">
     <tx:transaction method="*" value="Required" />
     <jpa:context property="entityManager" unitname="hearsay" />
