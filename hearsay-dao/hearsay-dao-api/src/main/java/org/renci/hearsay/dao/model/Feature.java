@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -20,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "feature")
+@NamedQueries({ @NamedQuery(name = "Feature.findByTranscriptRefSeqId", query = "SELECT a FROM Feature a where a.transcriptRefSeq.id = :id order by a.regionStart") })
 public class Feature extends BaseEntity {
 
     private static final long serialVersionUID = -3134761754434008259L;
@@ -31,8 +34,8 @@ public class Feature extends BaseEntity {
     private Integer regionStop;
 
     @ManyToOne
-    @JoinColumn(name = "transcript_alignment_fid")
-    private TranscriptAlignment transcriptAlignment;
+    @JoinColumn(name = "transcript_refseq_fid")
+    private TranscriptRefSeq transcriptRefSeq;
 
     @Lob
     @Column(name = "note")
@@ -58,12 +61,12 @@ public class Feature extends BaseEntity {
         this.regionStop = regionStop;
     }
 
-    public TranscriptAlignment getTranscriptAlignment() {
-        return transcriptAlignment;
+    public TranscriptRefSeq getTranscriptRefSeq() {
+        return transcriptRefSeq;
     }
 
-    public void setTranscriptAlignment(TranscriptAlignment transcriptAlignment) {
-        this.transcriptAlignment = transcriptAlignment;
+    public void setTranscriptRefSeq(TranscriptRefSeq transcriptRefSeq) {
+        this.transcriptRefSeq = transcriptRefSeq;
     }
 
     public String getNote() {

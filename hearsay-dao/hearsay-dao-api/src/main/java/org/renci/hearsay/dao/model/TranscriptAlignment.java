@@ -3,7 +3,6 @@ package org.renci.hearsay.dao.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -62,10 +61,6 @@ public class TranscriptAlignment extends BaseEntity {
 
     @Column(name = "protein_region_stop")
     private Integer proteinRegionStop;
-
-    @OneToMany(mappedBy = "transcriptAlignment", cascade = { CascadeType.REMOVE, CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
-    @OrderBy("regionStart ASC")
-    private Set<Feature> features;
 
     public TranscriptAlignment() {
         super();

@@ -6,7 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -22,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "transcript_sequence")
+@NamedQueries({ @NamedQuery(name = "TranscriptRefSeq.findAll", query = "SELECT a FROM TranscriptRefSeq a order by a.accession") })
 public class TranscriptRefSeq extends ReferenceSequence {
 
     private static final long serialVersionUID = 7343059748383867273L;
@@ -30,8 +34,12 @@ public class TranscriptRefSeq extends ReferenceSequence {
     @JoinColumn(name = "gene_fid")
     private Gene gene;
 
-    @OneToMany(mappedBy = "transcriptRefSeq", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "transcriptRefSeq", fetch = FetchType.LAZY)
     private Set<TranscriptAlignment> alignments;
+
+    @OneToMany(mappedBy = "transcriptRefSeq", fetch = FetchType.LAZY)
+    @OrderBy("regionStart ASC")
+    private Set<Feature> features;
 
     public TranscriptRefSeq() {
         super();

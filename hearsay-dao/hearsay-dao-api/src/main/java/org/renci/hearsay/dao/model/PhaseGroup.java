@@ -26,4 +26,12 @@ public class PhaseGroup extends BaseEntity {
         super();
     }
 
+    public String getPhasing() {
+        return phasing;
+    }
+
+    public void setPhasing(String phasing) {
+        this.phasing = phasing;
+    }
+
 }

@@ -45,10 +45,10 @@ public class Gene extends BaseEntity {
     @Column(name = "type")
     private GeneType type;
 
-    @OneToMany(mappedBy = "gene", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "gene", fetch = FetchType.LAZY)
     private Set<GeneCondition> conditions;
 
-    @OneToMany(mappedBy = "gene", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "gene", fetch = FetchType.LAZY)
     private Set<TranscriptRefSeq> transcriptRefSeqs;
 
     public Gene() {
