@@ -74,6 +74,7 @@
   </dependencies>
   <modules>
     <module>hearsay-ws-canonical-variant</module>
+    <module>hearsay-ws-feature</module>
     <module>hearsay-ws-gene</module>
     <module>hearsay-ws-gene-condition</module>
     <module>hearsay-ws-gene-condition-assertion</module>
