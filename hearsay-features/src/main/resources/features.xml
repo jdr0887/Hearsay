@@ -1,7 +1,5 @@
 <features name="hearsay-${project.version}">
 
-  <repository>mvn:org.apache.cxf.karaf/apache-cxf/${cxf.version}/xml/features</repository>
-
   <feature name="hearsay-common" version="${project.version}" resolver="(obr)">
     <bundle>mvn:commons-io/commons-io/${commons.io.version}</bundle>
     <bundle>mvn:commons-cli/commons-cli/${commons.cli.version}</bundle>
@@ -49,6 +47,7 @@
   <feature name="hearsay-web-services" version="${project.version}" resolver="(obr)">
     <bundle>mvn:org.renci.hearsay/hearsay-web-service-api/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-canonical-variant/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-feature/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-gene/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-gene-condition/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-gene-condition-assertion/${project.version}</bundle>
@@ -66,12 +65,6 @@
   </feature>
 
   <feature name="hearsay" version="${project.version}" resolver="(obr)">    
-    <feature>spring</feature>
-    <feature>eventadmin</feature>
-    <feature>jndi</feature>
-    <feature>jpa</feature>
-    <feature>transaction</feature>
-    <feature>cxf</feature>
     <feature version="${project.version}">hearsay-common</feature>
     <feature version="${project.version}">hearsay-dao</feature>
     <feature version="${project.version}">hearsay-web-services</feature>
