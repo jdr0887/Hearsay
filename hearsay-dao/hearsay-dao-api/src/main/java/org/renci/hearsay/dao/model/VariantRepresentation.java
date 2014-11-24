@@ -37,6 +37,10 @@ public class VariantRepresentation extends BaseEntity {
     private Integer stop;
 
     @ManyToOne
+    @JoinColumn(name = "gene_fid")
+    private Gene gene;
+
+    @ManyToOne
     @JoinColumn(name = "canonical_variant_fid")
     private CanonicalVariant canonicalVariant;
 
@@ -45,6 +49,14 @@ public class VariantRepresentation extends BaseEntity {
 
     public VariantRepresentation() {
         super();
+    }
+
+    public Gene getGene() {
+        return gene;
+    }
+
+    public void setGene(Gene gene) {
+        this.gene = gene;
     }
 
     public String getHgvs() {
@@ -89,7 +101,7 @@ public class VariantRepresentation extends BaseEntity {
 
     @Override
     public String toString() {
-        return String.format("VariantRepresentation [id=%s, hgvs=%s, start=%s, stop=%s]", id, hgvs, start, stop);
+        return String.format("VariantRepresentation [hgvs=%s, start=%s, stop=%s]", hgvs, start, stop);
     }
 
     @Override
