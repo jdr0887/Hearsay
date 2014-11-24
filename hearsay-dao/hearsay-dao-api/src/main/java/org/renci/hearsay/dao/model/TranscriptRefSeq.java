@@ -34,10 +34,10 @@ public class TranscriptRefSeq extends ReferenceSequence {
     @JoinColumn(name = "gene_fid")
     private Gene gene;
 
-    @OneToMany(mappedBy = "transcriptRefSeq", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "transcriptRefSeq", fetch = FetchType.EAGER)
     private Set<TranscriptAlignment> alignments;
 
-    @OneToMany(mappedBy = "transcriptRefSeq", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "transcriptRefSeq", fetch = FetchType.EAGER)
     @OrderBy("regionStart ASC")
     private Set<Feature> features;
 
