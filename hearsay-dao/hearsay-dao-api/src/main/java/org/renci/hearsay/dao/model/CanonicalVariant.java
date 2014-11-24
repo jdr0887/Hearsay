@@ -25,29 +25,18 @@ public class CanonicalVariant extends BaseEntity {
     private static final long serialVersionUID = -9258968674837262L;
 
     @OneToMany(mappedBy = "canonicalVariant", fetch = FetchType.EAGER)
-    private Set<VariantRepresentation> variantRepresentations;
-
-    @OneToMany(mappedBy = "canonicalVariant", fetch = FetchType.EAGER)
-    private Set<VariantSubmission> variantsubmissions;
+    private Set<VariantRepresentation> variants;
 
     public CanonicalVariant() {
         super();
     }
 
-    public Set<VariantRepresentation> getVariantRepresentations() {
-        return variantRepresentations;
+    public Set<VariantRepresentation> getVariants() {
+        return variants;
     }
 
-    public void setVariantRepresentations(Set<VariantRepresentation> variantRepresentations) {
-        this.variantRepresentations = variantRepresentations;
-    }
-
-    public Set<VariantSubmission> getVariantsubmissions() {
-        return variantsubmissions;
-    }
-
-    public void setVariantsubmissions(Set<VariantSubmission> variantsubmissions) {
-        this.variantsubmissions = variantsubmissions;
+    public void setVariants(Set<VariantRepresentation> variants) {
+        this.variants = variants;
     }
 
 }
