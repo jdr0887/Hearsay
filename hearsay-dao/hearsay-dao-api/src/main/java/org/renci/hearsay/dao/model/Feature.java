@@ -2,6 +2,7 @@ package org.renci.hearsay.dao.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
@@ -33,7 +34,7 @@ public class Feature extends BaseEntity {
     @Column(name = "region_stop")
     private Integer regionStop;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "transcript_refseq_fid")
     private TranscriptRefSeq transcriptRefSeq;
 
