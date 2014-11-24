@@ -27,8 +27,30 @@ public class TranscriptVariant extends VariantRepresentation {
     @Column(name = "var_allele")
     private String variantAllele;
 
+    @Column(name = "variant_effect")
+    private String variantEffect;
+
+    @Column(name = "transcript")
+    private String transcript;
+
     public TranscriptVariant() {
         super();
+    }
+
+    public String getTranscript() {
+        return transcript;
+    }
+
+    public void setTranscript(String transcript) {
+        this.transcript = transcript;
+    }
+
+    public String getVariantEffect() {
+        return variantEffect;
+    }
+
+    public void setVariantEffect(String variantEffect) {
+        this.variantEffect = variantEffect;
     }
 
     public String getReferenceAllele() {
@@ -49,8 +71,9 @@ public class TranscriptVariant extends VariantRepresentation {
 
     @Override
     public String toString() {
-        return String.format("TranscriptVariant [id=%s, referenceAllele=%s, variantAllele=%s]", id, referenceAllele,
-                variantAllele);
+        return String.format(
+                "TranscriptVariant [referenceAllele=%s, variantAllele=%s, variantEffect=%s, transcript=%s]",
+                referenceAllele, variantAllele, variantEffect, transcript);
     }
 
     @Override
@@ -58,7 +81,9 @@ public class TranscriptVariant extends VariantRepresentation {
         final int prime = 31;
         int result = super.hashCode();
         result = prime * result + ((referenceAllele == null) ? 0 : referenceAllele.hashCode());
+        result = prime * result + ((transcript == null) ? 0 : transcript.hashCode());
         result = prime * result + ((variantAllele == null) ? 0 : variantAllele.hashCode());
+        result = prime * result + ((variantEffect == null) ? 0 : variantEffect.hashCode());
         return result;
     }
 
@@ -76,10 +101,20 @@ public class TranscriptVariant extends VariantRepresentation {
                 return false;
         } else if (!referenceAllele.equals(other.referenceAllele))
             return false;
+        if (transcript == null) {
+            if (other.transcript != null)
+                return false;
+        } else if (!transcript.equals(other.transcript))
+            return false;
         if (variantAllele == null) {
             if (other.variantAllele != null)
                 return false;
         } else if (!variantAllele.equals(other.variantAllele))
+            return false;
+        if (variantEffect == null) {
+            if (other.variantEffect != null)
+                return false;
+        } else if (!variantEffect.equals(other.variantEffect))
             return false;
         return true;
     }
