@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -30,6 +31,7 @@ public class TranscriptRefSeq extends ReferenceSequence {
 
     private static final long serialVersionUID = 7343059748383867273L;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "gene_fid")
     private Gene gene;

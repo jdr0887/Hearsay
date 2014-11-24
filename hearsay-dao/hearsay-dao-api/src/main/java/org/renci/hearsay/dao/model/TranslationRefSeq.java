@@ -24,7 +24,7 @@ public class TranslationRefSeq extends ReferenceSequence {
 
     private static final long serialVersionUID = 8028669733155889888L;
 
-    @OneToMany(mappedBy = "transcriptRefSeq", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "transcriptRefSeq", fetch = FetchType.LAZY)
     private Set<TranscriptAlignment> alignments;
 
     public TranslationRefSeq() {

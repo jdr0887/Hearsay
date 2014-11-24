@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -31,10 +32,12 @@ public class TranscriptAlignment extends BaseEntity {
 
     private static final long serialVersionUID = 8025021469243818100L;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "translation_ref_seq_fid")
     private TranslationRefSeq translationRefSeq;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "transcript_ref_seq_fid")
     private TranscriptRefSeq transcriptRefSeq;
