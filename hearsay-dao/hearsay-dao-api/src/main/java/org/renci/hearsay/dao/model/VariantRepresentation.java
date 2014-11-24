@@ -14,6 +14,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -36,10 +37,12 @@ public class VariantRepresentation extends BaseEntity {
     @Column(name = "stop")
     private Integer stop;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "gene_fid")
     private Gene gene;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "canonical_variant_fid")
     private CanonicalVariant canonicalVariant;

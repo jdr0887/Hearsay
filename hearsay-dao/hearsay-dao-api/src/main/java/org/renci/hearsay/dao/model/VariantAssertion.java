@@ -15,6 +15,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -43,6 +44,7 @@ public class VariantAssertion extends BaseEntity {
     @Column(name = "review_level_status")
     private String reviewLevelStatus;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "submitter_fid")
     private Submitter submitter;
