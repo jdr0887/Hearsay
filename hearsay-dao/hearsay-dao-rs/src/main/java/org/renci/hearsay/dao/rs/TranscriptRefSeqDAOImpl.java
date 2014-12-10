@@ -26,11 +26,6 @@ public class TranscriptRefSeqDAOImpl extends BaseEntityDAOImpl<TranscriptRefSeq,
         super(TranscriptRefSeq.class);
     }
 
-    public void init() {
-        setRestServiceURL(String.format("http://%1$s:%2$d/cxf/%3$s/%3$sService", getHost(), 8181,
-                TranscriptRefSeq.class.getSimpleName()));
-    }
-
     @Override
     public Long save(TranscriptRefSeq entity) throws HearsayDAOException {
         logger.debug("ENTERING save(TranscriptRefSeq)");

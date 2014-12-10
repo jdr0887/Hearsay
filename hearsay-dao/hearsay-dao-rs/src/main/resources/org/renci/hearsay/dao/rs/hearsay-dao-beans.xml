@@ -2,12 +2,10 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
 
-  <bean id="accountDAO" class="edu.unc.mapseq.dao.rs.AccountDAOImpl" init-method="init" singleton="true">
-    <property name="" ref="configurationService" />
-  </bean>
+  <bean id="transcriptRefSeqDAO" class="org.renci.hearsay.dao.rs.TranscriptRefSeqDAOImpl" init-method="init" singleton="true" />
 
   <bean id="hearsayDAOBean" class="org.renci.hearsay.dao.HearsayDAOBean">
-    <property name="accountDAO" ref="accountDAO" />
+    <property name="transcriptRefSeqDAO" ref="transcriptRefSeqDAO" />
   </bean>
 
 </beans>

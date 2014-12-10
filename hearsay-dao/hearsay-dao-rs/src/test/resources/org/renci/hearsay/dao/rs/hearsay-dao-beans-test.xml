@@ -2,9 +2,7 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
 
-  <bean id="transcriptRefSeqDAO" class="org.renci.hearsay.dao.rs.TranscriptRefSeqDAOImpl" init-method="init" singleton="true">
-    <property name="host" value="152.54.9.99" />
-  </bean>
+  <bean id="transcriptRefSeqDAO" class="org.renci.hearsay.dao.rs.TranscriptRefSeqDAOImpl" singleton="true" />
 
   <bean id="hearsayDAOBean" class="org.renci.hearsay.dao.HearsayDAOBean">
     <property name="transcriptRefSeqDAO" ref="transcriptRefSeqDAO" />

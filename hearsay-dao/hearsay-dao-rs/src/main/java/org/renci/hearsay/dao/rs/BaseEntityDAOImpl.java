@@ -1,9 +1,14 @@
 package org.renci.hearsay.dao.rs;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.PropertiesConfiguration;
+import org.apache.commons.io.FileUtils;
 import org.renci.hearsay.dao.BaseEntityDAO;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.Persistable;
@@ -16,12 +21,29 @@ public abstract class BaseEntityDAOImpl<T extends Persistable, ID extends Serial
 
     private final List<Object> providers = new ArrayList<Object>();
 
-    private String host;
-
     private String restServiceURL;
+
+    private PropertiesConfiguration config;
 
     public BaseEntityDAOImpl() {
         super();
+        String userHome = System.getProperty("user.home");
+        File hearsayPropertyFile = new File(userHome, ".hearsayrc");
+        try {
+            config = new PropertiesConfiguration(hearsayPropertyFile);
+            if (!hearsayPropertyFile.exists()) {
+                try {
+                    FileUtils.touch(hearsayPropertyFile);
+                    config.setProperty("host", "localhost");
+                    config.save();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (ConfigurationException e) {
+            e.printStackTrace();
+        }
+
         JacksonJaxbJsonProvider provider = new JacksonJaxbJsonProvider();
         providers.add(provider);
     }
@@ -29,6 +51,8 @@ public abstract class BaseEntityDAOImpl<T extends Persistable, ID extends Serial
     public BaseEntityDAOImpl(Class<T> persistentClass) {
         this();
         this.persistentClass = persistentClass;
+        setRestServiceURL(String.format("http://%1$s:%2$d/cxf/%3$s/%3$sService", config.getString("host"), 8181,
+                this.persistentClass.getSimpleName()));
     }
 
     @Override
@@ -60,14 +84,6 @@ public abstract class BaseEntityDAOImpl<T extends Persistable, ID extends Serial
 
     public void setRestServiceURL(String restServiceURL) {
         this.restServiceURL = restServiceURL;
-    }
-
-    public String getHost() {
-        return host;
-    }
-
-    public void setHost(String host) {
-        this.host = host;
     }
 
 }
