@@ -21,8 +21,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
-@XmlRootElement(name = "transcriptSequence")
-@XmlType(name = "TranscriptSequence")
+@XmlRootElement(name = "transcriptRefSeq")
+@XmlType(name = "TranscriptRefSeq")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "transcript_sequence")
