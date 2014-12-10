@@ -1,46 +1,45 @@
-package edu.unc.mapseq.dao.rs;
+package org.renci.hearsay.dao.rs;
 
+import org.renci.hearsay.dao.HearsayDAOBean;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import edu.unc.mapseq.dao.MaPSeqDAOBean;
 
 /**
  * 
  * @author jdr0887
  */
-public class RSDAOManager {
+public class RESTDAOManager {
 
-    private static RSDAOManager instance;
+    private static RESTDAOManager instance;
 
-    private String beanXMLFile = "edu/unc/mapseq/dao/rs/mapseq-dao-beans.xml";
+    private String beanXMLFile = "org/renci/hearsay/dao/rs/hearsay-dao-beans.xml";
 
     private ClassPathXmlApplicationContext applicationContext = null;
 
-    public static RSDAOManager getInstance() {
+    public static RESTDAOManager getInstance() {
         if (instance == null) {
-            instance = new RSDAOManager();
+            instance = new RESTDAOManager();
         }
         return instance;
     }
 
-    public static RSDAOManager getInstance(String beanXMLFile) {
+    public static RESTDAOManager getInstance(String beanXMLFile) {
         if (instance == null) {
-            instance = new RSDAOManager(beanXMLFile);
+            instance = new RESTDAOManager(beanXMLFile);
         }
         return instance;
     }
 
-    private RSDAOManager() {
+    private RESTDAOManager() {
         this.applicationContext = new ClassPathXmlApplicationContext(this.beanXMLFile);
     }
 
-    private RSDAOManager(String beanXMLFile) {
+    private RESTDAOManager(String beanXMLFile) {
         this.beanXMLFile = beanXMLFile;
         this.applicationContext = new ClassPathXmlApplicationContext(this.beanXMLFile);
     }
 
-    public MaPSeqDAOBean getMaPSeqDAOBean() {
-        MaPSeqDAOBean bean = (MaPSeqDAOBean) applicationContext.getBean("mapseqBean", MaPSeqDAOBean.class);
+    public HearsayDAOBean getHearsayDAOBean() {
+        HearsayDAOBean bean = (HearsayDAOBean) applicationContext.getBean("hearsayDAOBean", HearsayDAOBean.class);
         return bean;
     }
 
