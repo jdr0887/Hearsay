@@ -26,7 +26,6 @@
           <instructions>
 	    <Export-Package>org.renci.hearsay.ws.impl.*</Export-Package>
             <Private-Package>org.renci.hearsay.ws.impl</Private-Package>
-	    <Require-Bundle>org.apache.cxf.bundle</Require-Bundle>
           </instructions>
         </configuration>
       </plugin>      
