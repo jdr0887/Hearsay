@@ -124,8 +124,8 @@ public class Region extends BaseEntity {
     @Override
     public String toString() {
         return String
-                .format("Region [regionType=%s, regionStart=%s, regionStop=%s, cdsStart=%s, cdsStop=%s, transcriptStart=%s, transcriptStop=%s, id=%s]",
-                        regionType, regionStart, regionStop, cdsStart, cdsStop, transcriptStart, transcriptStop, id);
+                .format("Region [id=%s, regionType=%s, regionStart=%s, regionStop=%s, transcriptStart=%s, transcriptStop=%s, cdsStart=%s, cdsStop=%s]",
+                        id, regionType, regionStart, regionStop, transcriptStart, transcriptStop, cdsStart, cdsStop);
     }
 
     @Override
