@@ -2,9 +2,12 @@
   <properties>
   </properties>
   <body>
-    <section name="Client Access">
+    <section name="Client Access">      
     </section>
     <subsection name="REST API">
+      <p>Please refer to the <a
+      href="../images/org.renci.hearsay.ws.png">Web Service API</a> for
+      further details.</p>
     </subsection>
     <subsection name="SSH">
       <p>Hearsay is built from a custom Apache Karaf distribution.
