@@ -28,12 +28,16 @@ public abstract class BaseEntityDAOImpl<T extends Persistable, ID extends Serial
     public BaseEntityDAOImpl() {
         super();
         String userHome = System.getProperty("user.home");
-        File hearsayPropertyFile = new File(userHome, ".hearsayrc");
+        File hiddenHearsayDir = new File(userHome, ".hearsay");
+        if (!hiddenHearsayDir.exists()) {
+            hiddenHearsayDir.mkdirs();
+        }
+        File hearsayConfigFile = new File(hiddenHearsayDir, "config.properties");
         try {
-            config = new PropertiesConfiguration(hearsayPropertyFile);
-            if (!hearsayPropertyFile.exists()) {
+            config = new PropertiesConfiguration(hearsayConfigFile);
+            if (!hearsayConfigFile.exists()) {
                 try {
-                    FileUtils.touch(hearsayPropertyFile);
+                    FileUtils.touch(hearsayConfigFile);
                     config.setProperty("host", "localhost");
                     config.save();
                 } catch (IOException e) {
