@@ -179,68 +179,6 @@
 <p>To stop the Hearsay Server, run
       'hearsay-server-&lt;version&gt;/bin/stop'.</p>
     </div>    
-    
-<div class="section">
-<h3>Commands<a name="Commands"></a></h3>
-      
-<p>To list TranscriptRefSeq instances by accession:</p>
-      
-<div>
-<pre>
-karaf@hearsay()&gt; hearsay:list-transcript-refseqs --accession NM_%
-ID         Accession                GeneName
-2          NM_033663.3              DRD3
-219        NM_212481.1              ARID5A
-236        NM_001079807.1           PGA3
-264        NM_015965.6              NDUFA13
-      </pre></div>
-      
-<p>To list TranscriptRefSeq instances by Gene name:</p>
-      
-<div>
-<pre>
-karaf@hearsay()&gt; list-transcript-refseqs --geneName DRD3
-ID         Accession                GeneName
-2          NM_033663.3              DRD3
-20072      NM_000796.3              DRD3
-58479      XM_005247170.1           DRD3
-67225      XM_005247171.1           DRD3
-      </pre></div>
-      
-<p>To list TranscriptAlignment instances:</p>
-      
-<div>
-<pre>
-karaf@hearsay()&gt; list-transcript-alignments 67225
-ID         Strand     Genomic Start        Genomic Stop
-1231808    -          113847557            113897545
-      </pre></div>
-      
-<p>To list TranscriptAlignment regions:</p>
-      
-<div>
-<pre>
-karaf@hearsay()&gt; list-transcript-alignment-regions 1231808
-ID         Type       Start                Stop                 Transcript Start     Transcript Stop      CDS Start            CDS Stop
-1231809    UTR-3      113847557            113847562            1554                 1549                                      
-1231810    exon       113847563            113847759            1548                 1352                 1203                 1007
-1231811    intron     113847760            113849964                                                                           
-1231812    exon       113849965            113850247            1351                 1069                 1006                 724
-1231813    intron     113850248            113858346                                                                           
-1231814    exon       113858347            113858543            1068                 872                  723                  527
-1231815    intron     113858544            113866261                                                                           
-1231816    exon       113866262            113866404            871                  729                  526                  384
-1231817    intron     113866405            113878601                                                                           
-1231818    exon       113878602            113878714            728                  616                  383                  271
-1231819    intron     113878715            113890569                                                                           
-1231820    exon       113890570            113890839            615                  346                  270                  1
-1231821    UTR-5      113890840            113890874            345                  311                                       
-1231822    intron     113890875            113894772                                                                           
-1231823    UTR-5      113894773            113895040            310                  43                                        
-1231824    intron     113895041            113897503                                                                           
-1231825    UTR-5      113897504            113897545            42                   1      
-      </pre></div>
-    </div>    
   
 
                   </div>
