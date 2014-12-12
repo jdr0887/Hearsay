@@ -1,0 +1,20 @@
+<document>
+  <properties>
+  </properties>
+  <body>
+    <section name="Client Access">
+    </section>
+    <subsection name="REST API">
+    </subsection>
+    <subsection name="SSH">
+      <p>Hearsay is built from a custom Apache Karaf distribution.
+      This means that all the operations available from a default
+      installation of Karaf are available in Hearsay...which
+      includes remote access via SSH to a sandboxed console.  The
+      default port for the SSH daemon is 8101 and can be changed by
+      etc/org.apache.karaf.shell.cfg configuration file.  Replace
+      "serverName" with the hostname of your server.</p>
+      <pre>$ ssh -p 8101 -l karaf &lt;serverName&gt;</pre>
+    </subsection>
+  </body>
+</document>

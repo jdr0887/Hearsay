@@ -1,0 +1,23 @@
+<document>
+  <properties>
+  </properties>
+  <body>
+    <section name="Server">
+    </section>
+    <subsection name="Building">
+      <p>After cloning and building the project, change into the
+      'hearsay-server' directory and run 'mvn clean install'.  This
+      will generate a 'target/hearsay-server-&lt;version&gt;.tar.gz
+      file that is a custom distribution of the Karaf container with
+      Hearsay integrated.</p>
+    </subsection>
+    <subsection name="Running">
+      <p>To start the Hearsay Server, explode the
+      hearsay-server-&lt;version&gt;.tar.gz file into a directory.
+      Then run 'hearsay-server-&lt;version&gt;/bin/start'.</p> 
+      
+      <p>To stop the Hearsay Server, run
+      'hearsay-server-&lt;version&gt;/bin/stop'.</p>
+    </subsection>    
+  </body>
+</document>

@@ -1,0 +1,20 @@
+<document>
+  <properties>
+  </properties>
+  <body>
+    <section name="Plugins">
+      <p>Hearsay is built upon the OSGi framework (a plugin
+      framework), and as such, a Hearsay Plugin is defined as a
+      collection of bundles that include, at a minimum, the
+      following:</p>
+      <table border="1" class="bodyTable">
+	<tr class="a">
+	  <td align="left">a features file</td>
+	  <td align="left">The features file is used at deployment
+	  time.  It describes all the bundles associated with this
+	  plugin.</td>
+	</tr>
+      </table>
+    </section>
+  </body>
+</document>
