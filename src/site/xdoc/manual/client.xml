@@ -8,6 +8,12 @@
       <p>Please refer to the <a
       href="../images/org.renci.hearsay.ws.png">Web Service API</a> for
       further details.</p>
+      <p>RESTful Java Client to list TranscriptRefSeq instances by gene:</p>
+      <source><![CDATA[
+String serviceurl = "http://localhost:8181/cxf/TranscriptRefSeq/TranscriptRefSeqService";
+WebClient client = WebClient.create(serviceurl, getProviders(), true);
+Collection<? extends TranscriptRefSeq> results = client.path("findByGeneName/{geneName}", "DRD3").accept(MediaType.APPLICATION_JSON).getCollection(TranscriptRefSeq.class);
+]]></source>
     </subsection>
     <subsection name="SSH">
       <p>Hearsay is built from a custom Apache Karaf distribution.
