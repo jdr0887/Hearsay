@@ -1,5 +1,7 @@
 package org.renci.hearsay.dao.rs;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -9,7 +11,6 @@ import java.util.Set;
 import org.junit.Test;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.model.Region;
-import org.renci.hearsay.dao.model.StrandType;
 import org.renci.hearsay.dao.model.TranscriptAlignment;
 import org.renci.hearsay.dao.model.TranscriptRefSeq;
 
@@ -27,8 +28,10 @@ public class TranscriptRefSeqTest {
             // .findByGeneName("PRKAG2");
             // List<TranscriptRefSeq> transcripts = daoMgr.getHearsayDAOBean().getTranscriptRefSeqDAO()
             // .findByGeneName("PKP2");
+//            List<TranscriptRefSeq> transcripts = daoMgr.getHearsayDAOBean().getTranscriptRefSeqDAO()
+//                    .findByGeneName("PRSS1");
             List<TranscriptRefSeq> transcripts = daoMgr.getHearsayDAOBean().getTranscriptRefSeqDAO()
-                    .findByGeneName("PRSS1");
+                    .findByGeneName("ABCC9");
 
             if (transcripts != null && !transcripts.isEmpty()) {
                 for (TranscriptRefSeq entity : transcripts) {
@@ -51,9 +54,7 @@ public class TranscriptRefSeqTest {
                                 for (Region region : sortedRegions) {
                                     System.out.println(region.toString());
                                     if (previousRegionStop != 0) {
-                                        if (previousRegionStop + 1 != region.getRegionStart()) {
-                                            System.out.println("PROBLEM");
-                                        }
+                                        assertTrue(previousRegionStop + 1 == region.getRegionStart());
                                     }
                                     previousRegionStop = region.getRegionStop();
                                 }
