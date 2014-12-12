@@ -103,6 +103,12 @@
 	<version>4.3.1</version>
       </dependency>
       <dependency>
+      	<groupId>org.osgi</groupId>
+      	<artifactId>org.osgi.core</artifactId>
+      	<version>4.3.1</version>
+      	<scope>provided</scope>
+      </dependency>
+      <dependency>
 	<groupId>org.apache.felix</groupId>
 	<artifactId>org.osgi.core</artifactId>
 	<version>1.4.0</version>
@@ -161,6 +167,11 @@
       	<groupId>org.springframework</groupId>
       	<artifactId>spring-core</artifactId>
       	<version>${spring.version}</version>
+      </dependency>
+      <dependency>
+      	<groupId>org.apache.felix</groupId>
+      	<artifactId>org.apache.felix.gogo.runtime</artifactId>
+      	<version>0.10.0</version>
       </dependency>
       <dependency>
       	<groupId>org.renci.hearsay</groupId>
@@ -259,6 +270,7 @@
     </plugins>
   </build>
   <modules>
+    <module>hearsay-commands</module>
     <module>hearsay-datasource</module>
     <module>hearsay-dao</module>
     <module>hearsay-web-service-api</module>
