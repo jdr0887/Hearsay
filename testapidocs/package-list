@@ -1,1 +1,3 @@
+org.renci.hearsay.dao.jpa
 org.renci.hearsay.dao.model
+org.renci.hearsay.dao.rs

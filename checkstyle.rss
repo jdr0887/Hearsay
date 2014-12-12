@@ -25,8 +25,8 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2014 RENCI</copyright>
     <item>
-      <title>File: 94,
-             Errors: 1456,
+      <title>File: 111,
+             Errors: 2051,
              Warnings: 0,
              Infos: 0
       </title>
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.MolecularConsequenceService.java">org/renci/hearsay/ws/MolecularConsequenceService.java</a>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.GenomicRefSeq.java">org/renci/hearsay/dao/model/GenomicRefSeq.java</a>
                 </td>
                 <td>
                   0
@@ -55,21 +55,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  3
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.Persistable.java">org/renci/hearsay/dao/Persistable.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  3
+                  22
                 </td>
               </tr>
                           <tr>
@@ -88,34 +74,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.IndividualVariantDAOImpl.java">org/renci/hearsay/dao/jpa/IndividualVariantDAOImpl.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  6
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.GenomicRefSeq.java">org/renci/hearsay/dao/model/GenomicRefSeq.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  22
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.BaseEntityDAO.java">org/renci/hearsay/dao/BaseEntityDAO.java</a>
                 </td>
                 <td>
@@ -130,7 +88,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.TranscriptVariantDAOImpl.java">org/renci/hearsay/dao/jpa/TranscriptVariantDAOImpl.java</a>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.impl.IndividualVariantServiceImpl.java">org/renci/hearsay/ws/impl/IndividualVariantServiceImpl.java</a>
                 </td>
                 <td>
                   0
@@ -139,7 +97,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  15
                 </td>
               </tr>
                           <tr>
@@ -158,7 +116,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.GeneConditionDAOImpl.java">org/renci/hearsay/dao/jpa/GeneConditionDAOImpl.java</a>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.GenomicVariantDAOImpl.java">org/renci/hearsay/dao/jpa/GenomicVariantDAOImpl.java</a>
                 </td>
                 <td>
                   0
@@ -167,12 +125,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  7
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.ResolvedConditionIdentifier.java">org/renci/hearsay/dao/model/ResolvedConditionIdentifier.java</a>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.FeatureDAO.java">org/renci/hearsay/dao/FeatureDAO.java</a>
                 </td>
                 <td>
                   0
@@ -181,35 +139,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.TranscriptAlignmentDAOImpl.java">org/renci/hearsay/dao/jpa/TranscriptAlignmentDAOImpl.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  31
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.TranslationRefSeqDAO.java">org/renci/hearsay/dao/TranslationRefSeqDAO.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
+                  5
                 </td>
               </tr>
                           <tr>
@@ -237,7 +167,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  27
+                  14
                 </td>
               </tr>
                           <tr>
@@ -251,77 +181,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  54
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.VariantRepresentation.java">org/renci/hearsay/dao/model/VariantRepresentation.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  8
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.TranscriptAlignment.java">org/renci/hearsay/dao/model/TranscriptAlignment.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  67
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.ReferenceSequence.java">org/renci/hearsay/dao/model/ReferenceSequence.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  21
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.GenomicRefSeqDAOImpl.java">org/renci/hearsay/dao/jpa/GenomicRefSeqDAOImpl.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  17
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.VariantAssertion.java">org/renci/hearsay/dao/model/VariantAssertion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  11
+                  19
                 </td>
               </tr>
                           <tr>
@@ -335,7 +195,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  5
+                  10
                 </td>
               </tr>
                           <tr>
@@ -349,7 +209,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  13
+                  14
                 </td>
               </tr>
                           <tr>
@@ -377,21 +237,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  27
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.TranscriptAlignmentService.java">org/renci/hearsay/ws/TranscriptAlignmentService.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  14
+                  28
                 </td>
               </tr>
                           <tr>
@@ -410,7 +256,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.TranslationVariantService.java">org/renci/hearsay/ws/TranslationVariantService.java</a>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.FeatureDAOImpl.java">org/renci/hearsay/dao/jpa/FeatureDAOImpl.java</a>
                 </td>
                 <td>
                   0
@@ -419,7 +265,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  5
+                  9
                 </td>
               </tr>
                           <tr>
@@ -438,20 +284,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.GenomicVariant.java">org/renci/hearsay/dao/model/GenomicVariant.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.VariantSubmission.java">org/renci/hearsay/dao/model/VariantSubmission.java</a>
                 </td>
                 <td>
@@ -461,7 +293,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  11
+                  87
                 </td>
               </tr>
                           <tr>
@@ -480,20 +312,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.TranslationVariantDAOImpl.java">org/renci/hearsay/dao/jpa/TranslationVariantDAOImpl.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  6
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.ConditionSubmission.java">org/renci/hearsay/dao/model/ConditionSubmission.java</a>
                 </td>
                 <td>
@@ -508,7 +326,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.CanonicalVariantDAOImpl.java">org/renci/hearsay/dao/jpa/CanonicalVariantDAOImpl.java</a>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.commands.ListTranscriptAlignmentRegionsAction.java">org/renci/hearsay/commands/ListTranscriptAlignmentRegionsAction.java</a>
                 </td>
                 <td>
                   0
@@ -517,40 +335,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  37
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.TranscriptVariantDAO.java">org/renci/hearsay/dao/TranscriptVariantDAO.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.TranslationVariant.java">org/renci/hearsay/dao/model/TranslationVariant.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.RegionDAO.java">org/renci/hearsay/dao/RegionDAO.java</a>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.GenomicVariantDAO.java">org/renci/hearsay/dao/GenomicVariantDAO.java</a>
                 </td>
                 <td>
                   0
@@ -578,7 +368,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.GenomicVariantDAO.java">org/renci/hearsay/dao/GenomicVariantDAO.java</a>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.commands.ListTranscriptRefSeqsAction.java">org/renci/hearsay/commands/ListTranscriptRefSeqsAction.java</a>
                 </td>
                 <td>
                   0
@@ -587,7 +377,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  36
                 </td>
               </tr>
                           <tr>
@@ -601,7 +391,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  13
+                  18
                 </td>
               </tr>
                           <tr>
@@ -620,48 +410,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.impl.ResolvedConditionServiceImpl.java">org/renci/hearsay/ws/impl/ResolvedConditionServiceImpl.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  14
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.IndividualService.java">org/renci/hearsay/ws/IndividualService.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  3
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.RegionDAOImpl.java">org/renci/hearsay/dao/jpa/RegionDAOImpl.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.impl.TranscriptRefSeqServiceImpl.java">org/renci/hearsay/ws/impl/TranscriptRefSeqServiceImpl.java</a>
                 </td>
                 <td>
@@ -671,7 +419,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  23
+                  24
                 </td>
               </tr>
                           <tr>
@@ -690,76 +438,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.StrandType.java">org/renci/hearsay/dao/model/StrandType.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  11
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.MolecularConsequenceDAO.java">org/renci/hearsay/dao/MolecularConsequenceDAO.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.HearsayDAOBean.java">org/renci/hearsay/dao/HearsayDAOBean.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  124
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.ResolvedConditionService.java">org/renci/hearsay/ws/ResolvedConditionService.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  3
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.TranscriptAlignmentDAO.java">org/renci/hearsay/dao/TranscriptAlignmentDAO.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  11
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.Region.java">org/renci/hearsay/dao/model/Region.java</a>
                 </td>
                 <td>
@@ -774,7 +452,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.impl.GenomicRefSeqServiceImpl.java">org/renci/hearsay/ws/impl/GenomicRefSeqServiceImpl.java</a>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.CanonicalVariantDAO.java">org/renci/hearsay/dao/CanonicalVariantDAO.java</a>
                 </td>
                 <td>
                   0
@@ -783,7 +461,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  13
+                  5
                 </td>
               </tr>
                           <tr>
@@ -798,34 +476,6 @@ under the License.
                 </td>
                 <td>
                   5
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.PhaseGroup.java">org/renci/hearsay/dao/model/PhaseGroup.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.CanonicalVariantDAO.java">org/renci/hearsay/dao/CanonicalVariantDAO.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
                 </td>
               </tr>
                           <tr>
@@ -858,7 +508,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.CanonicalVariantService.java">org/renci/hearsay/ws/CanonicalVariantService.java</a>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.impl.FeatureServiceImpl.java">org/renci/hearsay/ws/impl/FeatureServiceImpl.java</a>
                 </td>
                 <td>
                   0
@@ -867,35 +517,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  3
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.TranslationRefSeqDAOImpl.java">org/renci/hearsay/dao/jpa/TranslationRefSeqDAOImpl.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  6
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.BaseEntity.java">org/renci/hearsay/dao/model/BaseEntity.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  23
+                  16
                 </td>
               </tr>
                           <tr>
@@ -923,7 +545,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  19
+                  21
                 </td>
               </tr>
                           <tr>
@@ -942,20 +564,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.IndividualVariantService.java">org/renci/hearsay/ws/IndividualVariantService.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  3
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.impl.TranscriptVariantServiceImpl.java">org/renci/hearsay/ws/impl/TranscriptVariantServiceImpl.java</a>
                 </td>
                 <td>
@@ -965,7 +573,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  16
+                  17
                 </td>
               </tr>
                           <tr>
@@ -998,48 +606,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.ResolvedConditionDAOImpl.java">org/renci/hearsay/dao/jpa/ResolvedConditionDAOImpl.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  6
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.GeneDAOImpl.java">org/renci/hearsay/dao/jpa/GeneDAOImpl.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  10
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.IndividualVariant.java">org/renci/hearsay/dao/model/IndividualVariant.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  52
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.SuspectedDiagnosis.java">org/renci/hearsay/dao/model/SuspectedDiagnosis.java</a>
                 </td>
                 <td>
@@ -1050,20 +616,6 @@ under the License.
                 </td>
                 <td>
                   10
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.impl.TranslationRefSeqServiceImpl.java">org/renci/hearsay/ws/impl/TranslationRefSeqServiceImpl.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  16
                 </td>
               </tr>
                           <tr>
@@ -1082,7 +634,525 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.impl.RegionServiceImpl.java">org/renci/hearsay/ws/impl/RegionServiceImpl.java</a>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.TranscriptRefSeqDAOImpl.java">org/renci/hearsay/dao/jpa/TranscriptRefSeqDAOImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  40
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.GeneType.java">org/renci/hearsay/dao/model/GeneType.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.SupportingObservation.java">org/renci/hearsay/dao/model/SupportingObservation.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.TranscriptVariant.java">org/renci/hearsay/dao/model/TranscriptVariant.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  55
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.MolecularConsequenceDAOImpl.java">org/renci/hearsay/dao/jpa/MolecularConsequenceDAOImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.Gene.java">org/renci/hearsay/dao/model/Gene.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  67
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.DeNovoType.java">org/renci/hearsay/dao/model/DeNovoType.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.Persistable.java">org/renci/hearsay/dao/Persistable.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.MolecularConsequenceService.java">org/renci/hearsay/ws/MolecularConsequenceService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.IndividualVariantDAOImpl.java">org/renci/hearsay/dao/jpa/IndividualVariantDAOImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.GeneConditionService.java">org/renci/hearsay/ws/GeneConditionService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.TranscriptVariantDAOImpl.java">org/renci/hearsay/dao/jpa/TranscriptVariantDAOImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.rs.RESTDAOManager.java">org/renci/hearsay/dao/rs/RESTDAOManager.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  18
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.rs.TranscriptRefSeqDAOImpl.java">org/renci/hearsay/dao/rs/TranscriptRefSeqDAOImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  34
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.GeneConditionDAOImpl.java">org/renci/hearsay/dao/jpa/GeneConditionDAOImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.ResolvedConditionIdentifier.java">org/renci/hearsay/dao/model/ResolvedConditionIdentifier.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.impl.GeneConditionServiceImpl.java">org/renci/hearsay/ws/impl/GeneConditionServiceImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  20
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.TranscriptAlignmentDAOImpl.java">org/renci/hearsay/dao/jpa/TranscriptAlignmentDAOImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  30
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.TranslationRefSeqDAO.java">org/renci/hearsay/dao/TranslationRefSeqDAO.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.commands.ListTranscriptAlignmentsAction.java">org/renci/hearsay/commands/ListTranscriptAlignmentsAction.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  25
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.VariantRepresentation.java">org/renci/hearsay/dao/model/VariantRepresentation.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  62
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.ReferenceSequence.java">org/renci/hearsay/dao/model/ReferenceSequence.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  21
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.TranscriptAlignment.java">org/renci/hearsay/dao/model/TranscriptAlignment.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  97
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.VariantAssertion.java">org/renci/hearsay/dao/model/VariantAssertion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  11
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.GenomicRefSeqDAOImpl.java">org/renci/hearsay/dao/jpa/GenomicRefSeqDAOImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  17
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.GeneConditionAssertionService.java">org/renci/hearsay/ws/GeneConditionAssertionService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.TranscriptAlignmentService.java">org/renci/hearsay/ws/TranscriptAlignmentService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  14
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.TranslationVariantService.java">org/renci/hearsay/ws/TranslationVariantService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.impl.GeneConditionAssertionServiceImpl.java">org/renci/hearsay/ws/impl/GeneConditionAssertionServiceImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  18
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.GenomicVariant.java">org/renci/hearsay/dao/model/GenomicVariant.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  44
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.Feature.java">org/renci/hearsay/dao/model/Feature.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  51
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.TranslationVariantDAOImpl.java">org/renci/hearsay/dao/jpa/TranslationVariantDAOImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.TranscriptVariantDAO.java">org/renci/hearsay/dao/TranscriptVariantDAO.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.CanonicalVariantDAOImpl.java">org/renci/hearsay/dao/jpa/CanonicalVariantDAOImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  14
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.FeatureService.java">org/renci/hearsay/ws/FeatureService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.TranslationVariant.java">org/renci/hearsay/dao/model/TranslationVariant.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.RegionDAO.java">org/renci/hearsay/dao/RegionDAO.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.impl.ResolvedConditionServiceImpl.java">org/renci/hearsay/ws/impl/ResolvedConditionServiceImpl.java</a>
                 </td>
                 <td>
                   0
@@ -1096,7 +1166,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.TranscriptRefSeqDAOImpl.java">org/renci/hearsay/dao/jpa/TranscriptRefSeqDAOImpl.java</a>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.IndividualService.java">org/renci/hearsay/ws/IndividualService.java</a>
                 </td>
                 <td>
                   0
@@ -1105,7 +1175,245 @@ under the License.
                   0
                 </td>
                 <td>
-                  40
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.RegionDAOImpl.java">org/renci/hearsay/dao/jpa/RegionDAOImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.MolecularConsequenceDAO.java">org/renci/hearsay/dao/MolecularConsequenceDAO.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.StrandType.java">org/renci/hearsay/dao/model/StrandType.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  11
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.HearsayDAOBean.java">org/renci/hearsay/dao/HearsayDAOBean.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  131
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.TranscriptAlignmentDAO.java">org/renci/hearsay/dao/TranscriptAlignmentDAO.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  11
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.ResolvedConditionService.java">org/renci/hearsay/ws/ResolvedConditionService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.impl.GenomicRefSeqServiceImpl.java">org/renci/hearsay/ws/impl/GenomicRefSeqServiceImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  14
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.PhaseGroup.java">org/renci/hearsay/dao/model/PhaseGroup.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.TranslationRefSeqDAOImpl.java">org/renci/hearsay/dao/jpa/TranslationRefSeqDAOImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.CanonicalVariantService.java">org/renci/hearsay/ws/CanonicalVariantService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.BaseEntity.java">org/renci/hearsay/dao/model/BaseEntity.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  23
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.IndividualVariantService.java">org/renci/hearsay/ws/IndividualVariantService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.GeneDAOImpl.java">org/renci/hearsay/dao/jpa/GeneDAOImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.ResolvedConditionDAOImpl.java">org/renci/hearsay/dao/jpa/ResolvedConditionDAOImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.IndividualVariant.java">org/renci/hearsay/dao/model/IndividualVariant.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  52
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.impl.TranslationRefSeqServiceImpl.java">org/renci/hearsay/ws/impl/TranslationRefSeqServiceImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  17
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.impl.RegionServiceImpl.java">org/renci/hearsay/ws/impl/RegionServiceImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  15
                 </td>
               </tr>
                           <tr>
@@ -1124,6 +1432,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.rs.BaseEntityDAOImpl.java">org/renci/hearsay/dao/rs/BaseEntityDAOImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  29
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.TranscriptRefSeqDAO.java">org/renci/hearsay/dao/TranscriptRefSeqDAO.java</a>
                 </td>
                 <td>
@@ -1134,20 +1456,6 @@ under the License.
                 </td>
                 <td>
                   16
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.GeneType.java">org/renci/hearsay/dao/model/GeneType.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
                 </td>
               </tr>
                           <tr>
@@ -1175,21 +1483,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.SupportingObservation.java">org/renci/hearsay/dao/model/SupportingObservation.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  7
+                  5
                 </td>
               </tr>
                           <tr>
@@ -1208,20 +1502,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.TranscriptVariant.java">org/renci/hearsay/dao/model/TranscriptVariant.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.ws.impl.TranslationVariantServiceImpl.java">org/renci/hearsay/ws/impl/TranslationVariantServiceImpl.java</a>
                 </td>
                 <td>
@@ -1231,35 +1511,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  17
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.jpa.MolecularConsequenceDAOImpl.java">org/renci/hearsay/dao/jpa/MolecularConsequenceDAOImpl.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  6
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.MolecularConsequence.java">org/renci/hearsay/dao/model/MolecularConsequence.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
+                  18
                 </td>
               </tr>
                           <tr>
@@ -1274,6 +1526,20 @@ under the License.
                 </td>
                 <td>
                   45
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.MolecularConsequence.java">org/renci/hearsay/dao/model/MolecularConsequence.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
                 </td>
               </tr>
                           <tr>
@@ -1306,20 +1572,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.Gene.java">org/renci/hearsay/dao/model/Gene.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  55
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.TranslationRefSeq.java">org/renci/hearsay/dao/model/TranslationRefSeq.java</a>
                 </td>
                 <td>
@@ -1330,20 +1582,6 @@ under the License.
                 </td>
                 <td>
                   11
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://jdr0887.github.io/Hearsay/checkstyle.html#org.renci.hearsay.dao.model.DeNovoType.java">org/renci/hearsay/dao/model/DeNovoType.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
                 </td>
               </tr>
                           <tr>
