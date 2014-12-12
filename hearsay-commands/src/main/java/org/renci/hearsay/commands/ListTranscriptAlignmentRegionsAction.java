@@ -14,7 +14,6 @@ import org.renci.hearsay.dao.HearsayDAOBean;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.TranscriptAlignmentDAO;
 import org.renci.hearsay.dao.model.Region;
-import org.renci.hearsay.dao.model.StrandType;
 import org.renci.hearsay.dao.model.TranscriptAlignment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
