@@ -16,8 +16,8 @@
       <artifactId>hearsay-dao-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-jaxrs_1.1_spec</artifactId>
+      <groupId>javax.ws.rs</groupId>
+      <artifactId>javax.ws.rs-api</artifactId>
       <scope>provided</scope>
     </dependency>
     <dependency>
