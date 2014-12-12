@@ -31,17 +31,6 @@
 	    <enabled>false</enabled>
 	  </snapshots>
 	</repository>
-	<repository>
-	  <id>renci.snapshot.repository</id>
-	  <name>renci.repository</name>
-	  <url>http://archiva.renci.org:8080/repository/snapshots</url>
-	  <releases>
-	    <enabled>false</enabled>
-	  </releases>
-	  <snapshots>
-	    <enabled>true</enabled>
-	  </snapshots>
-	</repository>
       </repositories>
     </profile>
   </profiles>
@@ -56,7 +45,7 @@
 	  <tr class="a">
 	    <td align="left">mvn clean install</td> 
 	    <td align="left">"clean" removes the target directory &amp;
-	    "install" compiles the code</td>
+	    "install" compiles the code into the target directory</td>
 	  </tr>
 	  <tr class="a">
 	    <td align="left">mvn eclipse:eclipse</td>

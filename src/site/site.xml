@@ -15,14 +15,16 @@
   </bannerLeft>
   <body>
     <menu name="Overview">
-      <item name="Home" href="index.html"/>
+      <item name="About" href="index.html"/>
       <item name="FAQ" href="faq.html"/>
       <item name="Download" href="download.html"/>
     </menu>
     <menu name="Documentation">
-      <item name="Overview" href="overview.html"/>
       <item name="Manual" href="manual/index.html">
 	<item name="Building" href="manual/building.html"/>
+	<item name="Server" href="manual/server.html"/>
+	<item name="Client" href="manual/client.html"/>
+	<item name="Plugins" href="manual/plugins.html"/>
       </item>    
     </menu>
     <menu ref="reports"/>
