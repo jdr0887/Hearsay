@@ -2,6 +2,7 @@ package org.renci.hearsay.dao.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -21,9 +22,11 @@ public class TranscriptVariant extends VariantRepresentation {
 
     private static final long serialVersionUID = 6115001489678011601L;
 
+    @Lob
     @Column(name = "ref_allele")
     private String referenceAllele;
 
+    @Lob
     @Column(name = "var_allele")
     private String variantAllele;
 
