@@ -67,7 +67,6 @@ public abstract class BaseEntityDAOImpl<T extends Persistable, ID extends Serial
     @Override
     public void delete(T entity) throws HearsayDAOException {
         // TODO Auto-generated method stub
-
     }
 
     public Class<T> getPersistentClass() {
