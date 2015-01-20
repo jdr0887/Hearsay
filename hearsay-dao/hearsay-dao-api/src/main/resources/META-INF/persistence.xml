@@ -20,6 +20,7 @@
     <class>org.renci.hearsay.dao.model.Individual</class>
     <class>org.renci.hearsay.dao.model.IndividualVariant</class>
     <class>org.renci.hearsay.dao.model.MolecularConsequence</class>
+    <class>org.renci.hearsay.dao.model.PopulationFrequency</class>
     <class>org.renci.hearsay.dao.model.PhaseGroup</class>
     <class>org.renci.hearsay.dao.model.ReferenceSequence</class>
     <class>org.renci.hearsay.dao.model.Region</class>

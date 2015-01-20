@@ -56,6 +56,8 @@
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-genomic-variant/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-individual/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-individual-variant/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-molecular-consequence/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-population-frequency/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-region/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-resolved-condition/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-transcript-alignment/${project.version}</bundle>

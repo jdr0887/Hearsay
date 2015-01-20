@@ -52,6 +52,9 @@ public class VariantRepresentation extends BaseEntity {
     @OneToMany(mappedBy = "variant", fetch = FetchType.EAGER)
     private Set<MolecularConsequence> consequences;
 
+    @OneToMany(mappedBy = "variantRepresentation", fetch = FetchType.EAGER)
+    private Set<PopulationFrequency> populationFrequencies;
+
     public VariantRepresentation() {
         super();
     }
@@ -86,6 +89,14 @@ public class VariantRepresentation extends BaseEntity {
 
     public void setStop(Integer stop) {
         this.stop = stop;
+    }
+
+    public Set<PopulationFrequency> getPopulationFrequencies() {
+        return populationFrequencies;
+    }
+
+    public void setPopulationFrequencies(Set<PopulationFrequency> populationFrequencies) {
+        this.populationFrequencies = populationFrequencies;
     }
 
     public CanonicalVariant getCanonicalVariant() {

@@ -86,6 +86,8 @@
     <module>hearsay-ws-genomic-variant</module>
     <module>hearsay-ws-individual</module>
     <module>hearsay-ws-individual-variant</module>
+    <module>hearsay-ws-molecular-consequence</module>
+    <module>hearsay-ws-population-frequency</module>
     <module>hearsay-ws-region</module>
     <module>hearsay-ws-resolved-condition</module>
     <module>hearsay-ws-transcript-alignment</module>
