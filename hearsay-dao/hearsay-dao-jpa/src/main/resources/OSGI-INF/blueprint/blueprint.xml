@@ -68,12 +68,6 @@
   </bean>
   <service ref="populationFrequencyDAOImpl" interface="org.renci.hearsay.dao.PopulationFrequencyDAO" />
 
-  <bean id="populationFrequencyIdentifierDAOImpl" class="org.renci.hearsay.dao.jpa.PopulationFrequencyIdentifierDAOImpl">
-    <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="hearsay" />
-  </bean>
-  <service ref="populationFrequencyIdentifierDAOImpl" interface="org.renci.hearsay.dao.PopulationFrequencyIdentifierDAO" />
-
   <bean id="regionDAOImpl" class="org.renci.hearsay.dao.jpa.RegionDAOImpl">
     <tx:transaction method="*" value="Required" />
     <jpa:context property="entityManager" unitname="hearsay" />
