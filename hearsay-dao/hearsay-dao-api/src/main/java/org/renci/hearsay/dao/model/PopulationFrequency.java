@@ -25,7 +25,7 @@ public class PopulationFrequency extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "variant_representation_fid")
-    private VariantRepresentation variantRespresentation;
+    private VariantRepresentation variantRepresentation;
 
     @Column(name = "population")
     private String population;
@@ -39,12 +39,16 @@ public class PopulationFrequency extends BaseEntity {
     @Column(name = "version")
     private String version;
 
-    public VariantRepresentation getVariantRespresentation() {
-        return variantRespresentation;
+    public PopulationFrequency() {
+        super();
     }
 
-    public void setVariantRespresentation(VariantRepresentation variantRespresentation) {
-        this.variantRespresentation = variantRespresentation;
+    public VariantRepresentation getVariantRepresentation() {
+        return variantRepresentation;
+    }
+
+    public void setVariantRepresentation(VariantRepresentation variantRepresentation) {
+        this.variantRepresentation = variantRepresentation;
     }
 
     public String getSource() {
