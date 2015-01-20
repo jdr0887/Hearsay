@@ -22,6 +22,8 @@ public class HearsayDAOBean {
 
     private MolecularConsequenceDAO molecularConsequenceDAO;
 
+    private PopulationFrequencyDAO populationFrequencyDAO;
+
     private RegionDAO regionDAO;
 
     private ResolvedConditionDAO resolvedConditionDAO;
@@ -40,20 +42,20 @@ public class HearsayDAOBean {
         super();
     }
 
-    public FeatureDAO getFeatureDAO() {
-        return featureDAO;
-    }
-
-    public void setFeatureDAO(FeatureDAO featureDAO) {
-        this.featureDAO = featureDAO;
-    }
-
     public CanonicalVariantDAO getCanonicalVariantDAO() {
         return canonicalVariantDAO;
     }
 
     public void setCanonicalVariantDAO(CanonicalVariantDAO canonicalVariantDAO) {
         this.canonicalVariantDAO = canonicalVariantDAO;
+    }
+
+    public FeatureDAO getFeatureDAO() {
+        return featureDAO;
+    }
+
+    public void setFeatureDAO(FeatureDAO featureDAO) {
+        this.featureDAO = featureDAO;
     }
 
     public GeneConditionAssertionDAO getGeneConditionAssertionDAO() {
@@ -118,6 +120,14 @@ public class HearsayDAOBean {
 
     public void setMolecularConsequenceDAO(MolecularConsequenceDAO molecularConsequenceDAO) {
         this.molecularConsequenceDAO = molecularConsequenceDAO;
+    }
+
+    public PopulationFrequencyDAO getPopulationFrequencyDAO() {
+        return populationFrequencyDAO;
+    }
+
+    public void setPopulationFrequencyDAO(PopulationFrequencyDAO populationFrequencyDAO) {
+        this.populationFrequencyDAO = populationFrequencyDAO;
     }
 
     public RegionDAO getRegionDAO() {
