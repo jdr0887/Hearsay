@@ -2,13 +2,13 @@
   <parent>
     <groupId>org.renci.hearsay</groupId>
     <artifactId>hearsay-web-services</artifactId>
-    <version>0.0.30-SNAPSHOT</version>
+    <version>0.0.30</version>
   </parent>
   <name>Hearsay :: Web Service :: Translation RefSeq</name>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.renci.hearsay.hearsay-web-services</groupId>
   <artifactId>hearsay-ws-translation-refseq</artifactId>
-  <version>0.0.30-SNAPSHOT</version>
+  <version>0.0.30</version>
   <packaging>bundle</packaging>
   <dependencies>
     <dependency>
