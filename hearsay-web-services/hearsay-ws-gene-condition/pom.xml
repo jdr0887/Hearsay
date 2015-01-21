@@ -2,13 +2,13 @@
   <parent>
     <groupId>org.renci.hearsay</groupId>
     <artifactId>hearsay-web-services</artifactId>
-    <version>0.0.31</version>
+    <version>0.0.32-SNAPSHOT</version>
   </parent>
   <name>Hearsay :: Web Service :: Gene Condition</name>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.renci.hearsay.hearsay-web-services</groupId>
   <artifactId>hearsay-ws-gene-condition</artifactId>
-  <version>0.0.31</version>
+  <version>0.0.32-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <dependencies>
     <dependency>
