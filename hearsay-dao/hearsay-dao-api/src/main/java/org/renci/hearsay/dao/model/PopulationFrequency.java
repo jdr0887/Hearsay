@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -23,6 +24,7 @@ public class PopulationFrequency extends BaseEntity {
 
     private static final long serialVersionUID = -1159199321634924874L;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "variant_representation_fid")
     private VariantRepresentation variantRepresentation;
