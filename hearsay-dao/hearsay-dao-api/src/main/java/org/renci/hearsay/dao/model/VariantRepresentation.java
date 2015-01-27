@@ -3,17 +3,28 @@ package org.renci.hearsay.dao.model;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+
+import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -25,9 +36,18 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "variant_representation")
-public class VariantRepresentation extends BaseEntity {
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
+public class VariantRepresentation implements Persistable {
 
     private static final long serialVersionUID = 6277477885518977679L;
+
+    @XmlAttribute(name = "id")
+    @Id()
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "variant_representation_id_seq")
+    @SequenceGenerator(name = "variant_representation_id_seq", sequenceName = "variant_representation_id_seq", allocationSize = 1, initialValue = 1)
+    @Column(name = "id")
+    protected Long id;
 
     @Lob
     @Column(name = "hgvs")
@@ -57,6 +77,14 @@ public class VariantRepresentation extends BaseEntity {
 
     public VariantRepresentation() {
         super();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Gene getGene() {
