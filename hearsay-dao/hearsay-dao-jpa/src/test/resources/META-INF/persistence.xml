@@ -8,6 +8,7 @@
     <class>org.renci.hearsay.dao.model.BaseEntity</class>
     <class>org.renci.hearsay.dao.model.CanonicalVariant</class>
     <class>org.renci.hearsay.dao.model.ConditionSubmission</class>
+    <class>org.renci.hearsay.dao.model.Feature</class>
     <class>org.renci.hearsay.dao.model.Gene</class>
     <class>org.renci.hearsay.dao.model.GeneCondition</class>
     <class>org.renci.hearsay.dao.model.GeneConditionAssertion</class>
@@ -17,6 +18,7 @@
     <class>org.renci.hearsay.dao.model.IndividualVariant</class>
     <class>org.renci.hearsay.dao.model.MolecularConsequence</class>
     <class>org.renci.hearsay.dao.model.PhaseGroup</class>
+    <class>org.renci.hearsay.dao.model.PopulationFrequency</class>
     <class>org.renci.hearsay.dao.model.ReferenceSequence</class>
     <class>org.renci.hearsay.dao.model.Region</class>
     <class>org.renci.hearsay.dao.model.ResolvedCondition</class>
