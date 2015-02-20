@@ -38,8 +38,18 @@ public class HearsayDAOBean {
 
     private TranslationVariantDAO translationVariantDAO;
 
+    private VariantAssertionDAO variantAssertionDAO;
+
     public HearsayDAOBean() {
         super();
+    }
+
+    public VariantAssertionDAO getVariantAssertionDAO() {
+        return variantAssertionDAO;
+    }
+
+    public void setVariantAssertionDAO(VariantAssertionDAO variantAssertionDAO) {
+        this.variantAssertionDAO = variantAssertionDAO;
     }
 
     public CanonicalVariantDAO getCanonicalVariantDAO() {
