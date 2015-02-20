@@ -28,7 +28,7 @@ public class VariantAssertion extends BaseEntity {
     private String accession;
 
     @Column(name = "version")
-    private String version;
+    private Integer version;
 
     @Column(name = "assertion")
     private String assertion;
@@ -58,11 +58,11 @@ public class VariantAssertion extends BaseEntity {
         this.accession = accession;
     }
 
-    public String getVersion() {
+    public Integer getVersion() {
         return version;
     }
 
-    public void setVersion(String version) {
+    public void setVersion(Integer version) {
         this.version = version;
     }
 
