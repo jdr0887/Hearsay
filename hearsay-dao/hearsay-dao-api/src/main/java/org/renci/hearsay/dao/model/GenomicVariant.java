@@ -1,8 +1,12 @@
 package org.renci.hearsay.dao.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -33,6 +37,9 @@ public class GenomicVariant extends VariantRepresentation {
     @Column(name = "chromosome")
     private String chromosome;
 
+    @OneToMany(mappedBy = "genomicVariant", fetch = FetchType.EAGER)
+    private Set<VariantAssertion> assertions;
+
     public GenomicVariant() {
         super();
     }
@@ -59,6 +66,14 @@ public class GenomicVariant extends VariantRepresentation {
 
     public void setVariantAllele(String variantAllele) {
         this.variantAllele = variantAllele;
+    }
+
+    public Set<VariantAssertion> getAssertions() {
+        return assertions;
+    }
+
+    public void setAssertions(Set<VariantAssertion> assertions) {
+        this.assertions = assertions;
     }
 
     @Override

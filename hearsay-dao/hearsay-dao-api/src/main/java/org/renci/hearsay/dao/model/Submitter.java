@@ -1,12 +1,8 @@
 package org.renci.hearsay.dao.model;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Lob;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -39,11 +35,43 @@ public class Submitter extends BaseEntity {
     @Column(name = "organization")
     private String organization;
 
-    @OneToMany(mappedBy = "submitter", fetch = FetchType.EAGER)
-    private Set<VariantAssertion> assertions;
+    // @OneToMany(mappedBy = "submitter", fetch = FetchType.EAGER)
+    // private Set<VariantAssertion> assertions;
 
     public Submitter() {
         super();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getEvidenceSummaryStatement() {
+        return evidenceSummaryStatement;
+    }
+
+    public void setEvidenceSummaryStatement(String evidenceSummaryStatement) {
+        this.evidenceSummaryStatement = evidenceSummaryStatement;
+    }
+
+    public String getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
     }
 
 }
