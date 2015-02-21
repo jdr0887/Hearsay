@@ -110,4 +110,10 @@
   </bean>
   <service ref="translationVariantDAOImpl" interface="org.renci.hearsay.dao.TranslationVariantDAO" />
 
+  <bean id="variantAssertionDAOImpl" class="org.renci.hearsay.dao.jpa.VariantAssertionDAOImpl">
+    <tx:transaction method="*" value="Required" />
+    <jpa:context property="entityManager" unitname="hearsay" />
+  </bean>
+  <service ref="variantAssertionDAOImpl" interface="org.renci.hearsay.dao.VariantAssertionDAO" />
+
 </blueprint>
