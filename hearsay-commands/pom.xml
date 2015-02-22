@@ -3,13 +3,13 @@
   <parent>
     <groupId>org.renci</groupId>
     <artifactId>hearsay</artifactId>
-    <version>0.0.38</version>
+    <version>0.0.39-SNAPSHOT</version>
   </parent>
   <name>Hearsay :: Commands</name>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.renci.hearsay</groupId>
   <artifactId>hearsay-commands</artifactId>
-  <version>0.0.38</version>
+  <version>0.0.39-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <dependencies>
     <dependency>
