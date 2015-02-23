@@ -3,6 +3,8 @@ package org.renci.hearsay.dao.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -18,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "transcript_variant")
+@NamedQueries({ @NamedQuery(name = "TranscriptVariant.findByGeneName", query = "SELECT a FROM TranscriptVariant a where a.gene.name = :name") })
 public class TranscriptVariant extends VariantRepresentation {
 
     private static final long serialVersionUID = 6115001489678011601L;
