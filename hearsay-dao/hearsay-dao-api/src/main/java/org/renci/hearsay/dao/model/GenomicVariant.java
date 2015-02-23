@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -22,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "genomic_variant")
+@NamedQueries({ @NamedQuery(name = "GenomicVariant.findByGeneName", query = "SELECT a FROM GenomicVariant a where a.gene.name = :name") })
 public class GenomicVariant extends VariantRepresentation {
 
     private static final long serialVersionUID = 8070379578229091997L;
