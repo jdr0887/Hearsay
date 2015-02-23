@@ -1,5 +1,8 @@
 package org.renci.hearsay.ws.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.renci.hearsay.dao.GenomicVariantDAO;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.model.GenomicVariant;
@@ -23,6 +26,18 @@ public class GenomicVariantServiceImpl implements GenomicVariantService {
         GenomicVariant ret = null;
         try {
             ret = genomicVariantDAO.findById(id);
+        } catch (HearsayDAOException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    @Override
+    public List<GenomicVariant> findByGeneName(String name) {
+        logger.debug("ENTERING findByGeneName(String)");
+        List<GenomicVariant> ret = new ArrayList<GenomicVariant>();
+        try {
+            ret.addAll(genomicVariantDAO.findByGeneName(name));
         } catch (HearsayDAOException e) {
             e.printStackTrace();
         }

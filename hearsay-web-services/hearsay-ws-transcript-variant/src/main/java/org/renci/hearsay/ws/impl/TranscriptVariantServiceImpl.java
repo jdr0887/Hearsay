@@ -1,5 +1,8 @@
 package org.renci.hearsay.ws.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.TranscriptVariantDAO;
 import org.renci.hearsay.dao.model.TranscriptVariant;
@@ -35,6 +38,18 @@ public class TranscriptVariantServiceImpl implements TranscriptVariantService {
         Long ret = null;
         try {
             ret = transcriptVariantDAO.save(transcriptVariant);
+        } catch (HearsayDAOException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    @Override
+    public List<TranscriptVariant> findByGeneName(String name) {
+        logger.debug("ENTERING findByGeneName(String)");
+        List<TranscriptVariant> ret = new ArrayList<TranscriptVariant>();
+        try {
+            ret.addAll(transcriptVariantDAO.findByGeneName(name));
         } catch (HearsayDAOException e) {
             e.printStackTrace();
         }

@@ -1,5 +1,7 @@
 package org.renci.hearsay.ws;
 
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -18,6 +20,10 @@ public interface TranscriptVariantService {
     @GET
     @Path("/findById/{id}")
     public TranscriptVariant findById(@PathParam("id") Long id);
+
+    @GET
+    @Path("/findByGeneName/{name}")
+    public List<TranscriptVariant> findByGeneName(@PathParam("name") String name);
 
     @POST
     @Path("/")
