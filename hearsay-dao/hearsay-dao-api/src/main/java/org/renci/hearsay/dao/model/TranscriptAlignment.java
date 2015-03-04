@@ -8,15 +8,22 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+
+import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -28,9 +35,16 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "transcript_alignment")
-public class TranscriptAlignment extends BaseEntity {
+public class TranscriptAlignment implements Persistable {
 
     private static final long serialVersionUID = 8025021469243818100L;
+
+    @XmlAttribute(name = "id")
+    @Id()
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transcript_alignment_id_seq")
+    @SequenceGenerator(name = "transcript_alignment_id_seq", sequenceName = "transcript_alignment_id_seq", allocationSize = 1, initialValue = 1)
+    @Column(name = "id")
+    private Long id;
 
     @JsonIgnore
     @ManyToOne
@@ -67,6 +81,14 @@ public class TranscriptAlignment extends BaseEntity {
 
     public TranscriptAlignment() {
         super();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public TranslationRefSeq getTranslationRefSeq() {
@@ -154,9 +176,10 @@ public class TranscriptAlignment extends BaseEntity {
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = super.hashCode();
+        int result = 1;
         result = prime * result + ((genomicStart == null) ? 0 : genomicStart.hashCode());
         result = prime * result + ((genomicStop == null) ? 0 : genomicStop.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((protein == null) ? 0 : protein.hashCode());
         result = prime * result + ((proteinRegionStart == null) ? 0 : proteinRegionStart.hashCode());
         result = prime * result + ((proteinRegionStop == null) ? 0 : proteinRegionStop.hashCode());
@@ -168,7 +191,7 @@ public class TranscriptAlignment extends BaseEntity {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (!super.equals(obj))
+        if (obj == null)
             return false;
         if (getClass() != obj.getClass())
             return false;
@@ -182,6 +205,11 @@ public class TranscriptAlignment extends BaseEntity {
             if (other.genomicStop != null)
                 return false;
         } else if (!genomicStop.equals(other.genomicStop))
+            return false;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
             return false;
         if (protein == null) {
             if (other.protein != null)

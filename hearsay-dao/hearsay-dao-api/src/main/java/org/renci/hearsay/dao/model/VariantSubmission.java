@@ -2,13 +2,20 @@ package org.renci.hearsay.dao.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+
+import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -20,9 +27,16 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "variant_submission")
-public class VariantSubmission extends BaseEntity {
+public class VariantSubmission implements Persistable {
 
     private static final long serialVersionUID = -3534374298371599509L;
+
+    @XmlAttribute(name = "id")
+    @Id()
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "variant_submission_id_seq")
+    @SequenceGenerator(name = "variant_submission_id_seq", sequenceName = "variant_submission_id_seq", allocationSize = 1, initialValue = 1)
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "hgvs")
     private String hgvs;
@@ -54,6 +68,14 @@ public class VariantSubmission extends BaseEntity {
 
     public VariantSubmission() {
         super();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getHgvs() {
@@ -122,16 +144,17 @@ public class VariantSubmission extends BaseEntity {
 
     @Override
     public String toString() {
-        return String.format(
-                "VariantSubmission [hgvs=%s, refseq=%s, start=%s, stop=%s, referenceAllele=%s, variantAllele=%s]",
-                hgvs, refseq, start, stop, referenceAllele, variantAllele);
+        return String
+                .format("VariantSubmission [id=%s, hgvs=%s, refseq=%s, start=%s, stop=%s, referenceAllele=%s, variantAllele=%s]",
+                        id, hgvs, refseq, start, stop, referenceAllele, variantAllele);
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = super.hashCode();
+        int result = 1;
         result = prime * result + ((hgvs == null) ? 0 : hgvs.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((referenceAllele == null) ? 0 : referenceAllele.hashCode());
         result = prime * result + ((refseq == null) ? 0 : refseq.hashCode());
         result = prime * result + ((start == null) ? 0 : start.hashCode());
@@ -144,7 +167,7 @@ public class VariantSubmission extends BaseEntity {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (!super.equals(obj))
+        if (obj == null)
             return false;
         if (getClass() != obj.getClass())
             return false;
@@ -153,6 +176,11 @@ public class VariantSubmission extends BaseEntity {
             if (other.hgvs != null)
                 return false;
         } else if (!hgvs.equals(other.hgvs))
+            return false;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
             return false;
         if (referenceAllele == null) {
             if (other.referenceAllele != null)

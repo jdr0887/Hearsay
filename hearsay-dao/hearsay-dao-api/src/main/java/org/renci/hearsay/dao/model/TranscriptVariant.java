@@ -78,7 +78,7 @@ public class TranscriptVariant extends VariantRepresentation {
     @Override
     public String toString() {
         return String.format(
-                "TranscriptVariant [referenceAllele=%s, variantAllele=%s, variantEffect=%s, transcript=%s]",
+                "TranscriptVariant [id=%s, referenceAllele=%s, variantAllele=%s, variantEffect=%s, transcript=%s]", id,
                 referenceAllele, variantAllele, variantEffect, transcript);
     }
 

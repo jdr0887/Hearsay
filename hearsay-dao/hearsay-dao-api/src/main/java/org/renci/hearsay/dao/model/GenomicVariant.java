@@ -15,6 +15,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.openjpa.persistence.jdbc.Index;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -37,10 +39,11 @@ public class GenomicVariant extends VariantRepresentation {
     @Column(name = "var_allele")
     private String variantAllele;
 
+    @Index
     @Column(name = "chromosome")
     private String chromosome;
 
-    @OneToMany(mappedBy = "genomicVariant", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "genomicVariant", fetch = FetchType.LAZY)
     private Set<VariantAssertion> assertions;
 
     public GenomicVariant() {
@@ -81,8 +84,8 @@ public class GenomicVariant extends VariantRepresentation {
 
     @Override
     public String toString() {
-        return String.format("GenomicVariant [referenceAllele=%s, variantAllele=%s, chromosome=%s]", referenceAllele,
-                variantAllele, chromosome);
+        return String.format("GenomicVariant [id=%s, referenceAllele=%s, variantAllele=%s, chromosome=%s]", id,
+                referenceAllele, variantAllele, chromosome);
     }
 
     @Override

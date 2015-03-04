@@ -69,10 +69,10 @@ public class VariantRepresentation implements Persistable {
     @JoinColumn(name = "canonical_variant_fid")
     private CanonicalVariant canonicalVariant;
 
-    @OneToMany(mappedBy = "variant", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "variant", fetch = FetchType.LAZY)
     private Set<MolecularConsequence> consequences;
 
-    @OneToMany(mappedBy = "variantRepresentation", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "variantRepresentation", fetch = FetchType.LAZY)
     private Set<PopulationFrequency> populationFrequencies;
 
     public VariantRepresentation() {
@@ -145,14 +145,15 @@ public class VariantRepresentation implements Persistable {
 
     @Override
     public String toString() {
-        return String.format("VariantRepresentation [hgvs=%s, start=%s, stop=%s]", hgvs, start, stop);
+        return String.format("VariantRepresentation [id=%s, hgvs=%s, start=%s, stop=%s]", id, hgvs, start, stop);
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = super.hashCode();
+        int result = 1;
         result = prime * result + ((hgvs == null) ? 0 : hgvs.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((start == null) ? 0 : start.hashCode());
         result = prime * result + ((stop == null) ? 0 : stop.hashCode());
         return result;
@@ -162,7 +163,7 @@ public class VariantRepresentation implements Persistable {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (!super.equals(obj))
+        if (obj == null)
             return false;
         if (getClass() != obj.getClass())
             return false;
@@ -171,6 +172,11 @@ public class VariantRepresentation implements Persistable {
             if (other.hgvs != null)
                 return false;
         } else if (!hgvs.equals(other.hgvs))
+            return false;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
             return false;
         if (start == null) {
             if (other.start != null)

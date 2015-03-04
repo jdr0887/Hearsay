@@ -4,13 +4,20 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+
+import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -22,9 +29,16 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "region")
-public class Region extends BaseEntity {
+public class Region implements Persistable {
 
     private static final long serialVersionUID = -1132524849060275751L;
+
+    @XmlAttribute(name = "id")
+    @Id()
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "region_id_seq")
+    @SequenceGenerator(name = "region_id_seq", sequenceName = "region_id_seq", allocationSize = 1, initialValue = 1)
+    @Column(name = "id")
+    private Long id;
 
     @JsonIgnore
     @ManyToOne
@@ -55,6 +69,14 @@ public class Region extends BaseEntity {
 
     public Region() {
         super();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public TranscriptAlignment getTranscriptAlignment() {
@@ -131,9 +153,10 @@ public class Region extends BaseEntity {
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = super.hashCode();
+        int result = 1;
         result = prime * result + ((cdsStart == null) ? 0 : cdsStart.hashCode());
         result = prime * result + ((cdsStop == null) ? 0 : cdsStop.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((regionStart == null) ? 0 : regionStart.hashCode());
         result = prime * result + ((regionStop == null) ? 0 : regionStop.hashCode());
         result = prime * result + ((regionType == null) ? 0 : regionType.hashCode());
@@ -146,7 +169,7 @@ public class Region extends BaseEntity {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (!super.equals(obj))
+        if (obj == null)
             return false;
         if (getClass() != obj.getClass())
             return false;
@@ -160,6 +183,11 @@ public class Region extends BaseEntity {
             if (other.cdsStop != null)
                 return false;
         } else if (!cdsStop.equals(other.cdsStop))
+            return false;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
             return false;
         if (regionStart == null) {
             if (other.regionStart != null)

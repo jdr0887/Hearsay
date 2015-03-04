@@ -2,13 +2,20 @@ package org.renci.hearsay.dao.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+
+import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -20,9 +27,16 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "population_frequency")
-public class PopulationFrequency extends BaseEntity {
+public class PopulationFrequency implements Persistable {
 
     private static final long serialVersionUID = -1159199321634924874L;
+
+    @XmlAttribute(name = "id")
+    @Id()
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "population_frequency_id_seq")
+    @SequenceGenerator(name = "population_frequency_id_seq", sequenceName = "population_frequency_id_seq", allocationSize = 1, initialValue = 1)
+    @Column(name = "id")
+    private Long id;
 
     @JsonIgnore
     @ManyToOne
@@ -43,6 +57,14 @@ public class PopulationFrequency extends BaseEntity {
 
     public PopulationFrequency() {
         super();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public VariantRepresentation getVariantRepresentation() {
@@ -94,8 +116,9 @@ public class PopulationFrequency extends BaseEntity {
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = super.hashCode();
+        int result = 1;
         result = prime * result + ((frequency == null) ? 0 : frequency.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((population == null) ? 0 : population.hashCode());
         result = prime * result + ((source == null) ? 0 : source.hashCode());
         result = prime * result + ((version == null) ? 0 : version.hashCode());
@@ -106,7 +129,7 @@ public class PopulationFrequency extends BaseEntity {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (!super.equals(obj))
+        if (obj == null)
             return false;
         if (getClass() != obj.getClass())
             return false;
@@ -115,6 +138,11 @@ public class PopulationFrequency extends BaseEntity {
             if (other.frequency != null)
                 return false;
         } else if (!frequency.equals(other.frequency))
+            return false;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
             return false;
         if (population == null) {
             if (other.population != null)

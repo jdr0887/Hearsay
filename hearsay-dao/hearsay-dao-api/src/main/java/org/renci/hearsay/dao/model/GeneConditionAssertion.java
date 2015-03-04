@@ -4,13 +4,20 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+
+import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -21,9 +28,16 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "gene_condition_assertion")
-public class GeneConditionAssertion extends BaseEntity {
+public class GeneConditionAssertion implements Persistable {
 
     private static final long serialVersionUID = 2500491400614225551L;
+
+    @XmlAttribute(name = "id")
+    @Id()
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gene_condition_assertion_id_seq")
+    @SequenceGenerator(name = "gene_condition_assertion_id_seq", sequenceName = "gene_condition_assertion_id_seq", allocationSize = 1, initialValue = 1)
+    @Column(name = "id")
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "gene_condition_fid")
@@ -55,6 +69,22 @@ public class GeneConditionAssertion extends BaseEntity {
 
     public GeneConditionAssertion() {
         super();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public GeneCondition getCondition() {
+        return condition;
+    }
+
+    public void setCondition(GeneCondition condition) {
+        this.condition = condition;
     }
 
     public String getClinicalSignificance() {
@@ -132,9 +162,10 @@ public class GeneConditionAssertion extends BaseEntity {
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = super.hashCode();
+        int result = 1;
         result = prime * result + ((assertionMethod == null) ? 0 : assertionMethod.hashCode());
         result = prime * result + ((clinicalSignificance == null) ? 0 : clinicalSignificance.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((identifier == null) ? 0 : identifier.hashCode());
         result = prime * result + ((inheritancePattern == null) ? 0 : inheritancePattern.hashCode());
         result = prime * result + ((lastReviewed == null) ? 0 : lastReviewed.hashCode());
@@ -148,7 +179,7 @@ public class GeneConditionAssertion extends BaseEntity {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (!super.equals(obj))
+        if (obj == null)
             return false;
         if (getClass() != obj.getClass())
             return false;
@@ -162,6 +193,11 @@ public class GeneConditionAssertion extends BaseEntity {
             if (other.clinicalSignificance != null)
                 return false;
         } else if (!clinicalSignificance.equals(other.clinicalSignificance))
+            return false;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
             return false;
         if (identifier == null) {
             if (other.identifier != null)
