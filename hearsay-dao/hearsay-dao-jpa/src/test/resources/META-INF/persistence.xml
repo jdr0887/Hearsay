@@ -5,7 +5,6 @@
 
     <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
 
-    <class>org.renci.hearsay.dao.model.BaseEntity</class>
     <class>org.renci.hearsay.dao.model.CanonicalVariant</class>
     <class>org.renci.hearsay.dao.model.ConditionSubmission</class>
     <class>org.renci.hearsay.dao.model.Feature</class>
