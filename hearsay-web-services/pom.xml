@@ -95,5 +95,6 @@
     <module>hearsay-ws-transcript-variant</module>
     <module>hearsay-ws-translation-refseq</module>
     <module>hearsay-ws-translation-variant</module>
+    <module>hearsay-ws-variant-assertion</module>
   </modules>
 </project>
