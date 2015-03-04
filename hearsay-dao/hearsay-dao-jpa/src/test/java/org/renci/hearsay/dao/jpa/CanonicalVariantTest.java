@@ -1,6 +1,5 @@
 package org.renci.hearsay.dao.jpa;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -14,6 +13,7 @@ import org.junit.Test;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.model.CanonicalVariant;
 import org.renci.hearsay.dao.model.Gene;
+import org.renci.hearsay.dao.model.VariantRepresentation;
 
 public class CanonicalVariantTest {
 
@@ -42,6 +42,29 @@ public class CanonicalVariantTest {
                 List<CanonicalVariant> canonicalVariants = canonicalVariantDAO.findByGeneName(gene.getName());
                 if (canonicalVariants != null && !canonicalVariants.isEmpty()) {
                     System.out.println("asdfasdf");
+                }
+            }
+        }
+
+    }
+
+    @Test
+    public void findByGeneName() throws HearsayDAOException {
+
+        GeneDAOImpl geneDAO = new GeneDAOImpl();
+        geneDAO.setEntityManager(em);
+
+        CanonicalVariantDAOImpl canonicalVariantDAO = new CanonicalVariantDAOImpl();
+        canonicalVariantDAO.setEntityManager(em);
+
+        List<CanonicalVariant> canonicalVariants = canonicalVariantDAO.findByGeneName("BRCA1");
+        if (canonicalVariants != null && !canonicalVariants.isEmpty()) {
+            for (CanonicalVariant canonicalVariant : canonicalVariants) {
+                Set<VariantRepresentation> variants = canonicalVariant.getVariants();
+                if (variants != null && !variants.isEmpty()) {
+                    for (VariantRepresentation variant : variants) {
+                        System.out.println(variant.toString());
+                    }
                 }
             }
         }
