@@ -1,7 +1,6 @@
 package org.renci.hearsay.dao.jpa;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
