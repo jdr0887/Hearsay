@@ -12,8 +12,8 @@
   <packaging>pom</packaging>
   <url>https://jdr0887.github.io/Hearsay</url>
   <properties>
-    <karaf.version>3.0.1</karaf.version>
-    <cxf.version>3.0.2</cxf.version>
+    <karaf.version>3.0.3</karaf.version>
+    <cxf.version>3.0.3</cxf.version>
     <spring.version>3.2.4.RELEASE</spring.version>
     <jackson.version>2.4.1</jackson.version>
   </properties>
@@ -270,7 +270,7 @@
     </plugins>
   </build>
   <modules>
-    <module>hearsay-commands</module>
+    <!-- <module>hearsay-commands</module> -->
     <module>hearsay-datasource</module>
     <module>hearsay-dao</module>
     <module>hearsay-web-service-api</module>
