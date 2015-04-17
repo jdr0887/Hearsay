@@ -84,24 +84,6 @@
     <module>hearsay-ws-complex-nucleotide-canonical-allele</module>
     <module>hearsay-ws-complex-protein-canonical-allele</module>
     <module>hearsay-ws-gene</module>
-<<<<<<< HEAD
-    <module>hearsay-ws-gene-condition</module>
-    <module>hearsay-ws-gene-condition-assertion</module>
-    <module>hearsay-ws-genomic-refseq</module>
-    <module>hearsay-ws-genomic-variant</module>
-    <module>hearsay-ws-individual</module>
-    <module>hearsay-ws-individual-variant</module>
-    <module>hearsay-ws-molecular-consequence</module>
-    <module>hearsay-ws-population-frequency</module>
-    <module>hearsay-ws-region</module>
-    <module>hearsay-ws-resolved-condition</module>
-    <module>hearsay-ws-transcript-alignment</module>
-    <module>hearsay-ws-transcript-refseq</module>
-    <module>hearsay-ws-transcript-variant</module>
-    <module>hearsay-ws-translation-refseq</module>
-    <module>hearsay-ws-translation-variant</module>
-    <module>hearsay-ws-variant-assertion</module>
-=======
     <module>hearsay-ws-gene-reference-sequence</module>
     <module>hearsay-ws-genomic-reference-coordinate</module>
     <module>hearsay-ws-reference-genome</module>
@@ -112,6 +94,5 @@
     <module>hearsay-ws-simple-transcript-allele</module>
     <module>hearsay-ws-transcript-reference-coordinate</module>
     <module>hearsay-ws-transcript-reference-sequence</module>
->>>>>>> latest-schema
   </modules>
 </project>
