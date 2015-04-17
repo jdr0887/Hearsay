@@ -4,13 +4,10 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -37,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @NamedQueries({ @NamedQuery(name = "Gene.findAll", query = "SELECT a FROM Gene a order by a.name") })
 public class Gene implements Persistable {
 
-    private static final long serialVersionUID = -4342595098613821909L;
+    private static final long serialVersionUID = -5997799315221166517L;
 
     @XmlAttribute(name = "id")
     @Id()
@@ -50,23 +47,18 @@ public class Gene implements Persistable {
     @Column(name = "name")
     private String name;
 
-    @Lob
-    @Column(name = "description")
-    private String description;
-
     @Index
-    @Column(name = "hgnc_symbol")
-    private String hgncSymbol;
+    @Column(name = "symbol")
+    private String symbol;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "type")
-    private GeneType type;
-
-    @OneToMany(mappedBy = "gene", fetch = FetchType.LAZY)
-    private Set<GeneCondition> conditions;
+    @Column(name = "alias_symbol")
+    private String aliasSymbol;
 
     @OneToMany(mappedBy = "gene", fetch = FetchType.LAZY)
-    private Set<TranscriptRefSeq> transcriptRefSeqs;
+    private Set<GeneReferenceSequence> geneReferenceSequences;
+
+    @OneToMany(mappedBy = "gene", fetch = FetchType.LAZY)
+    private Set<TranscriptReferenceSequence> transcriptReferenceSequences;
 
     public Gene() {
         super();
@@ -80,14 +72,6 @@ public class Gene implements Persistable {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getName() {
         return name;
     }
@@ -96,52 +80,50 @@ public class Gene implements Persistable {
         this.name = name;
     }
 
-    public String getHgncSymbol() {
-        return hgncSymbol;
+    public String getSymbol() {
+        return symbol;
     }
 
-    public void setHgncSymbol(String hgncSymbol) {
-        this.hgncSymbol = hgncSymbol;
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
     }
 
-    public GeneType getType() {
-        return type;
+    public String getAliasSymbol() {
+        return aliasSymbol;
     }
 
-    public void setType(GeneType type) {
-        this.type = type;
+    public void setAliasSymbol(String aliasSymbol) {
+        this.aliasSymbol = aliasSymbol;
     }
 
-    public Set<GeneCondition> getConditions() {
-        return conditions;
+    public Set<GeneReferenceSequence> getGeneReferenceSequences() {
+        return geneReferenceSequences;
     }
 
-    public void setConditions(Set<GeneCondition> conditions) {
-        this.conditions = conditions;
+    public void setGeneReferenceSequences(Set<GeneReferenceSequence> geneReferenceSequences) {
+        this.geneReferenceSequences = geneReferenceSequences;
     }
 
-    public Set<TranscriptRefSeq> getTranscriptRefSeqs() {
-        return transcriptRefSeqs;
+    public Set<TranscriptReferenceSequence> getTranscriptReferenceSequences() {
+        return transcriptReferenceSequences;
     }
 
-    public void setTranscriptRefSeqs(Set<TranscriptRefSeq> transcriptRefSeqs) {
-        this.transcriptRefSeqs = transcriptRefSeqs;
+    public void setTranscriptReferenceSequences(Set<TranscriptReferenceSequence> transcriptReferenceSequences) {
+        this.transcriptReferenceSequences = transcriptReferenceSequences;
     }
 
     @Override
     public String toString() {
-        return String.format("Gene [id=%s, name=%s, hgncSymbol=%s, type=%s]", id, name, hgncSymbol, type);
+        return String.format("Gene [id=%s, name=%s, symbol=%s, aliasSymbol=%s]", id, name, symbol, aliasSymbol);
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = 1;
-        result = prime * result + ((description == null) ? 0 : description.hashCode());
-        result = prime * result + ((hgncSymbol == null) ? 0 : hgncSymbol.hashCode());
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        int result = super.hashCode();
+        result = prime * result + ((aliasSymbol == null) ? 0 : aliasSymbol.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((type == null) ? 0 : type.hashCode());
+        result = prime * result + ((symbol == null) ? 0 : symbol.hashCode());
         return result;
     }
 
@@ -154,15 +136,10 @@ public class Gene implements Persistable {
         if (getClass() != obj.getClass())
             return false;
         Gene other = (Gene) obj;
-        if (description == null) {
-            if (other.description != null)
+        if (aliasSymbol == null) {
+            if (other.aliasSymbol != null)
                 return false;
-        } else if (!description.equals(other.description))
-            return false;
-        if (hgncSymbol == null) {
-            if (other.hgncSymbol != null)
-                return false;
-        } else if (!hgncSymbol.equals(other.hgncSymbol))
+        } else if (!aliasSymbol.equals(other.aliasSymbol))
             return false;
         if (id == null) {
             if (other.id != null)
@@ -174,7 +151,10 @@ public class Gene implements Persistable {
                 return false;
         } else if (!name.equals(other.name))
             return false;
-        if (type != other.type)
+        if (symbol == null) {
+            if (other.symbol != null)
+                return false;
+        } else if (!symbol.equals(other.symbol))
             return false;
         return true;
     }

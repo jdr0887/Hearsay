@@ -13,6 +13,6 @@
   <modules>
     <module>hearsay-dao-api</module>
     <module>hearsay-dao-jpa</module>
-    <module>hearsay-dao-rs</module>
+    <!-- <module>hearsay-dao-rs</module> -->
   </modules>
 </project>

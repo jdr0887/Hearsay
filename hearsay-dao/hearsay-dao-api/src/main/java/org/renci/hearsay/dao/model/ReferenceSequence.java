@@ -32,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 public class ReferenceSequence implements Persistable {
 
-    private static final long serialVersionUID = -4834591952141068328L;
+    private static final long serialVersionUID = 8416673592958416430L;
 
     @XmlAttribute(name = "id")
     @Id()
@@ -41,8 +41,8 @@ public class ReferenceSequence implements Persistable {
     @Column(name = "id")
     protected Long id;
 
-    @Column(name = "accession")
-    protected String accession;
+    @Column(name = "identifier")
+    protected String identifier;
 
     public ReferenceSequence() {
         super();
@@ -56,20 +56,25 @@ public class ReferenceSequence implements Persistable {
         this.id = id;
     }
 
-    public String getAccession() {
-        return accession;
+    public String getIdentifier() {
+        return identifier;
     }
 
-    public void setAccession(String accession) {
-        this.accession = accession;
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("ReferenceSequence [id=%s, identifier=%s]", id, identifier);
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((accession == null) ? 0 : accession.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((identifier == null) ? 0 : identifier.hashCode());
         return result;
     }
 
@@ -82,15 +87,15 @@ public class ReferenceSequence implements Persistable {
         if (getClass() != obj.getClass())
             return false;
         ReferenceSequence other = (ReferenceSequence) obj;
-        if (accession == null) {
-            if (other.accession != null)
-                return false;
-        } else if (!accession.equals(other.accession))
-            return false;
         if (id == null) {
             if (other.id != null)
                 return false;
         } else if (!id.equals(other.id))
+            return false;
+        if (identifier == null) {
+            if (other.identifier != null)
+                return false;
+        } else if (!identifier.equals(other.identifier))
             return false;
         return true;
     }
