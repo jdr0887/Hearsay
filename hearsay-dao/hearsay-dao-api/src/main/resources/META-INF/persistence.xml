@@ -8,11 +8,6 @@
     <jta-data-source>aries:services/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/hearsayJTA)</jta-data-source>
     <non-jta-data-source>aries:services/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/hearsayNoJTA)</non-jta-data-source>
 
-<<<<<<< HEAD
-    <class>org.renci.hearsay.dao.model.CanonicalVariant</class>
-    <class>org.renci.hearsay.dao.model.ConditionSubmission</class>
-    <class>org.renci.hearsay.dao.model.Feature</class>
-=======
     <class>org.renci.hearsay.dao.model.AlleleName</class>
     <class>org.renci.hearsay.dao.model.AminoAcidReferenceCoordinate</class>
     <class>org.renci.hearsay.dao.model.AminoAcidReferenceSequence</class>
@@ -21,7 +16,6 @@
     <class>org.renci.hearsay.dao.model.ComplexCanonicalAllele</class>
     <class>org.renci.hearsay.dao.model.ComplexNucleotideCanonicalAllele</class>
     <class>org.renci.hearsay.dao.model.ComplexProteinCanonicalAllele</class>
->>>>>>> latest-schema
     <class>org.renci.hearsay.dao.model.Gene</class>
     <class>org.renci.hearsay.dao.model.GeneReferenceSequence</class>
     <class>org.renci.hearsay.dao.model.GenomicReferenceCoordinate</class>
