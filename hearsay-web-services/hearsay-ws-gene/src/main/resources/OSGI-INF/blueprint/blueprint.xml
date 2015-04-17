@@ -11,6 +11,12 @@
 
   <reference id="geneDAO" interface="org.renci.hearsay.dao.GeneDAO" />
 
+  <!-- <bean id="oauthProvider" class="oauth.manager.OAuthManager" /> -->
+
+  <!-- <bean id="oauthFiler" class="org.apache.cxf.rs.security.oauth2.filters.OAuthRequestFilter"> -->
+  <!-- <property name="dataProvider" ref="oauthProvider" /> -->
+  <!-- </bean> -->
+
   <bean id="gene" class="org.renci.hearsay.ws.impl.GeneServiceImpl">
     <property name="geneDAO" ref="geneDAO" />
   </bean>
@@ -21,6 +27,7 @@
     </jaxrs:serviceBeans>
     <jaxrs:providers>
       <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />
+      <!-- <ref bean="oauthFilter" /> -->
     </jaxrs:providers>
   </jaxrs:server>
 
