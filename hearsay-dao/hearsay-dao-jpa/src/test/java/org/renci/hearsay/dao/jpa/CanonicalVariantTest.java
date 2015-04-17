@@ -1,6 +1,7 @@
 package org.renci.hearsay.dao.jpa;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,9 +11,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.renci.hearsay.dao.HearsayDAOException;
-import org.renci.hearsay.dao.model.CanonicalAllele;
 import org.renci.hearsay.dao.model.Gene;
-import org.renci.hearsay.dao.model.VariantRepresentation;
 
 public class CanonicalVariantTest {
 
@@ -53,20 +52,20 @@ public class CanonicalVariantTest {
         GeneDAOImpl geneDAO = new GeneDAOImpl();
         geneDAO.setEntityManager(em);
 
-        CanonicalVariantDAOImpl canonicalVariantDAO = new CanonicalVariantDAOImpl();
-        canonicalVariantDAO.setEntityManager(em);
-
-        List<CanonicalVariant> canonicalVariants = canonicalVariantDAO.findByGeneName("BRCA1");
-        if (canonicalVariants != null && !canonicalVariants.isEmpty()) {
-            for (CanonicalVariant canonicalVariant : canonicalVariants) {
-                Set<VariantRepresentation> variants = canonicalVariant.getVariants();
-                if (variants != null && !variants.isEmpty()) {
-                    for (VariantRepresentation variant : variants) {
-                        System.out.println(variant.toString());
-                    }
-                }
-            }
-        }
+        // CanonicalVariantDAOImpl canonicalVariantDAO = new CanonicalVariantDAOImpl();
+        // canonicalVariantDAO.setEntityManager(em);
+        //
+        // List<CanonicalVariant> canonicalVariants = canonicalVariantDAO.findByGeneName("BRCA1");
+        // if (canonicalVariants != null && !canonicalVariants.isEmpty()) {
+        // for (CanonicalVariant canonicalVariant : canonicalVariants) {
+        // Set<VariantRepresentation> variants = canonicalVariant.getVariants();
+        // if (variants != null && !variants.isEmpty()) {
+        // for (VariantRepresentation variant : variants) {
+        // System.out.println(variant.toString());
+        // }
+        // }
+        // }
+        // }
 
     }
 
