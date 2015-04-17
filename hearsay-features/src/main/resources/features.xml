@@ -3,6 +3,7 @@
   <feature name="hearsay-common" version="${project.version}" resolver="(obr)">
     <bundle>mvn:commons-io/commons-io/${commons.io.version}</bundle>
     <bundle>mvn:commons-cli/commons-cli/${commons.cli.version}</bundle>
+    <bundle>mvn:commons-net/commons-net/${commons.net.version}</bundle>
     <bundle>mvn:commons-pool/commons-pool/${commons.pool.version}</bundle>
     <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.commons-dbcp/${commons.dbcp.version}_3</bundle>
     <bundle>mvn:org.apache.commons/commons-lang3/${commons.lang.version}</bundle>
@@ -47,28 +48,28 @@
 
   <feature name="hearsay-web-services" version="${project.version}" resolver="(obr)">
     <bundle>mvn:org.renci.hearsay/hearsay-web-service-api/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-canonical-variant/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-feature/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-amino-acid-reference-coordinate/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-amino-acid-reference-sequence/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-canonical-allele/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-chromosome-reference-sequence/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-complex-nucleotide-canonical-allele/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-complex-protein-canonical-allele/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-gene/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-gene-condition/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-gene-condition-assertion/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-genomic-refseq/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-genomic-variant/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-individual/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-individual-variant/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-molecular-consequence/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-population-frequency/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-region/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-resolved-condition/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-transcript-alignment/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-transcript-refseq/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-transcript-variant/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-translation-refseq/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-translation-variant/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-gene-reference-sequence/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-genomic-reference-coordinate/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-reference-genome/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-simple-amino-acid-allele/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-simple-amino-acid-canonical-allele/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-simple-genomic-allele/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-simple-nucleotide-canonical-allele/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-simple-transcript-allele/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-transcript-reference-coordinate/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-transcript-reference-sequence/${project.version}</bundle>
   </feature>
 
+
   <feature name="hearsay" version="${project.version}" resolver="(obr)">
-    <bundle>mvn:org.renci.hearsay/hearsay-commands/${project.version}</bundle>
+    <!-- <bundle>mvn:org.renci.hearsay/hearsay-commands/${project.version}</bundle> -->
     <feature version="${project.version}">hearsay-common</feature>
     <feature version="${project.version}">hearsay-dao</feature>
     <feature version="${project.version}">hearsay-web-services</feature>
