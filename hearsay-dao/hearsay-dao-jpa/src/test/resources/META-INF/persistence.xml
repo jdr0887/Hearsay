@@ -5,36 +5,32 @@
 
     <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
 
-    <class>org.renci.hearsay.dao.model.BaseEntity</class>
-    <class>org.renci.hearsay.dao.model.CanonicalVariant</class>
-    <class>org.renci.hearsay.dao.model.ConditionSubmission</class>
-    <class>org.renci.hearsay.dao.model.Feature</class>
+    <class>org.renci.hearsay.dao.model.AlleleName</class>
+    <class>org.renci.hearsay.dao.model.AminoAcidReferenceCoordinate</class>
+    <class>org.renci.hearsay.dao.model.AminoAcidReferenceSequence</class>
+    <class>org.renci.hearsay.dao.model.CanonicalAllele</class>
+    <class>org.renci.hearsay.dao.model.ChromosomeReferenceSequence</class>
+    <class>org.renci.hearsay.dao.model.ComplexCanonicalAllele</class>
+    <class>org.renci.hearsay.dao.model.ComplexNucleotideCanonicalAllele</class>
+    <class>org.renci.hearsay.dao.model.ComplexProteinCanonicalAllele</class>
     <class>org.renci.hearsay.dao.model.Gene</class>
-    <class>org.renci.hearsay.dao.model.GeneCondition</class>
-    <class>org.renci.hearsay.dao.model.GeneConditionAssertion</class>
-    <class>org.renci.hearsay.dao.model.GenomicRefSeq</class>
-    <class>org.renci.hearsay.dao.model.GenomicVariant</class>
-    <class>org.renci.hearsay.dao.model.Individual</class>
-    <class>org.renci.hearsay.dao.model.IndividualVariant</class>
-    <class>org.renci.hearsay.dao.model.MolecularConsequence</class>
-    <class>org.renci.hearsay.dao.model.PhaseGroup</class>
-    <class>org.renci.hearsay.dao.model.PopulationFrequency</class>
+    <class>org.renci.hearsay.dao.model.GeneReferenceSequence</class>
+    <class>org.renci.hearsay.dao.model.GenomicReferenceCoordinate</class>
+    <class>org.renci.hearsay.dao.model.GenomicReferenceSequence</class>
+    <class>org.renci.hearsay.dao.model.IntronicCoordinate</class>
+    <class>org.renci.hearsay.dao.model.ReferenceCoordinate</class>
+    <class>org.renci.hearsay.dao.model.ReferenceGenome</class>
     <class>org.renci.hearsay.dao.model.ReferenceSequence</class>
-    <class>org.renci.hearsay.dao.model.Region</class>
-    <class>org.renci.hearsay.dao.model.ResolvedCondition</class>
-    <class>org.renci.hearsay.dao.model.ResolvedConditionIdentifier</class>
-    <class>org.renci.hearsay.dao.model.Submitter</class>
-    <class>org.renci.hearsay.dao.model.SupportingObservation</class>
-    <class>org.renci.hearsay.dao.model.SuspectedDiagnosis</class>
-    <class>org.renci.hearsay.dao.model.TranscriptAlignment</class>
-    <class>org.renci.hearsay.dao.model.TranscriptRefSeq</class>
-    <class>org.renci.hearsay.dao.model.TranscriptVariant</class>
-    <class>org.renci.hearsay.dao.model.TranslationRefSeq</class>
-    <class>org.renci.hearsay.dao.model.TranslationVariant</class>
-    <class>org.renci.hearsay.dao.model.VariantAssertion</class>
-    <class>org.renci.hearsay.dao.model.VariantConditionSet</class>
-    <class>org.renci.hearsay.dao.model.VariantRepresentation</class>
-    <class>org.renci.hearsay.dao.model.VariantSubmission</class>
+    <class>org.renci.hearsay.dao.model.SimpleAllele</class>
+    <class>org.renci.hearsay.dao.model.SimpleAminoAcidAllele</class>
+    <class>org.renci.hearsay.dao.model.SimpleAminoAcidCanonicalAllele</class>
+    <class>org.renci.hearsay.dao.model.SimpleCanonicalAllele</class>
+    <class>org.renci.hearsay.dao.model.SimpleGenomicAllele</class>
+    <class>org.renci.hearsay.dao.model.SimpleNucleotideAllele</class>
+    <class>org.renci.hearsay.dao.model.SimpleNucleotideCanonicalAllele</class>
+    <class>org.renci.hearsay.dao.model.SimpleTranscriptAllele</class>
+    <class>org.renci.hearsay.dao.model.TranscriptReferenceCoordinate</class>
+    <class>org.renci.hearsay.dao.model.TranscriptReferenceSequence</class>
 
     <properties>
       <property name="openjpa.ConnectionProperties"

@@ -23,28 +23,28 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
-@XmlRootElement(name = "referenceSequence")
-@XmlType(name = "ReferenceSequence")
+@XmlRootElement(name = "canonicalAllele")
+@XmlType(name = "CanonicalAllele")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "reference_sequence")
+@Table(name = "canonical_allele")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
-public class ReferenceSequence implements Persistable {
+public class CanonicalAllele implements Persistable {
 
-    private static final long serialVersionUID = 8416673592958416430L;
+    private static final long serialVersionUID = 179947981554563568L;
 
     @XmlAttribute(name = "id")
     @Id()
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reference_sequence_id_seq")
-    @SequenceGenerator(name = "reference_sequence_id_seq", sequenceName = "reference_sequence_id_seq", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "canonical_allele_id_seq")
+    @SequenceGenerator(name = "canonical_allele_id_seq", sequenceName = "canonical_allele_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     protected Long id;
 
-    @Column(name = "identifier")
-    protected String identifier;
+    @Column(name = "active")
+    protected Boolean active;
 
-    public ReferenceSequence() {
+    public CanonicalAllele() {
         super();
     }
 
@@ -56,25 +56,20 @@ public class ReferenceSequence implements Persistable {
         this.id = id;
     }
 
-    public String getIdentifier() {
-        return identifier;
+    public Boolean getActive() {
+        return active;
     }
 
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("ReferenceSequence [id=%s, identifier=%s]", id, identifier);
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((active == null) ? 0 : active.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((identifier == null) ? 0 : identifier.hashCode());
         return result;
     }
 
@@ -86,16 +81,16 @@ public class ReferenceSequence implements Persistable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        ReferenceSequence other = (ReferenceSequence) obj;
+        CanonicalAllele other = (CanonicalAllele) obj;
+        if (active == null) {
+            if (other.active != null)
+                return false;
+        } else if (!active.equals(other.active))
+            return false;
         if (id == null) {
             if (other.id != null)
                 return false;
         } else if (!id.equals(other.id))
-            return false;
-        if (identifier == null) {
-            if (other.identifier != null)
-                return false;
-        } else if (!identifier.equals(other.identifier))
             return false;
         return true;
     }
