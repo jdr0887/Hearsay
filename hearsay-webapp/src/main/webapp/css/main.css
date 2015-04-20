@@ -1,0 +1,80 @@
+html,body {
+	height: 100%;
+}
+
+body {
+	padding-top: 60px;
+	padding-bottom: 20px;
+}
+
+.dropdown {
+	cursor: pointer;
+}
+
+.panel-heading {
+	font-weight: bold;
+}
+
+.tick {;
+	
+}
+
+.weekWorkflowRunCountPieChart {
+	float: left;
+	width: 300px;
+	height: 300px;
+	margin: 0 auto;
+}
+
+.weekWorkflowRunDurationPieChart {
+	float: left;
+	width: 300px;
+	height: 300px;
+	margin: 0 auto;
+}
+
+.weekWorkflowRunCountBarChart {
+	float: right;
+	width: 800px;
+	height: 300px;
+	margin: 0 auto;
+}
+
+.weekWorkflowRunDurationBarChart {
+	float: right;
+	width: 800px;
+	height: 300px;
+	margin: 0 auto;
+}
+
+.monthWorkflowRunCountPieChart {
+	float: left;
+	width: 300px;
+	height: 300px;
+	margin: 0 auto;
+}
+
+.monthWorkflowRunDurationPieChart {
+	float: left;
+	width: 300px;
+	height: 300px;
+	margin: 0 auto;
+}
+
+.monthWorkflowRunCountBarChart {
+	float: right;
+	width: 800px;
+	height: 300px;
+	margin: 0 auto;
+}
+
+.monthWorkflowRunDurationBarChart {
+	float: right;
+	width: 800px;
+	height: 300px;
+	margin: 0 auto;
+}
+
+.tick {
+	font-size: x-small;
+}
