@@ -10,7 +10,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.renci.hearsay.hearsay-web-services</groupId>
   <artifactId>hearsay-ws-canonical-allele</artifactId>
-  <version>0.0.34-SNAPSHOT</version>
+  <version>0.0.40-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <dependencies>
     <dependency>
