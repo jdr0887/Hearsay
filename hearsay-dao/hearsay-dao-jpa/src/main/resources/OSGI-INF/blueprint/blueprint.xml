@@ -26,17 +26,23 @@
   </bean>
   <service ref="chromosomeReferenceSequenceDAOImpl" interface="org.renci.hearsay.dao.ChromosomeReferenceSequenceDAO" />
 
+  <bean id="complexNucleotideCanonicalAlleleDAOImpl" class="org.renci.hearsay.dao.jpa.ComplexNucleotideCanonicalAlleleDAOImpl">
+    <tx:transaction method="*" value="Required" />
+    <jpa:context property="entityManager" unitname="hearsay" />
+  </bean>
+  <service ref="complexNucleotideCanonicalAlleleDAOImpl" interface="org.renci.hearsay.dao.ComplexNucleotideCanonicalAlleleDAO" />
+
   <bean id="complexProteinCanonicalAlleleDAOImpl" class="org.renci.hearsay.dao.jpa.ComplexProteinCanonicalAlleleDAOImpl">
     <tx:transaction method="*" value="Required" />
     <jpa:context property="entityManager" unitname="hearsay" />
   </bean>
   <service ref="complexProteinCanonicalAlleleDAOImpl" interface="org.renci.hearsay.dao.ComplexProteinCanonicalAlleleDAO" />
 
-  <bean id="complexNucleotideCanonicalAlleleDAOImpl" class="org.renci.hearsay.dao.jpa.ComplexNucleotideCanonicalAlleleDAOImpl">
+  <bean id="geneDAOImpl" class="org.renci.hearsay.dao.jpa.GeneDAOImpl">
     <tx:transaction method="*" value="Required" />
     <jpa:context property="entityManager" unitname="hearsay" />
   </bean>
-  <service ref="complexNucleotideCanonicalAlleleDAOImpl" interface="org.renci.hearsay.dao.ComplexNucleotideCanonicalAlleleDAO" />
+  <service ref="geneDAOImpl" interface="org.renci.hearsay.dao.GeneDAO" />
 
   <bean id="geneReferenceSequenceDAOImpl" class="org.renci.hearsay.dao.jpa.GeneReferenceSequenceDAOImpl">
     <tx:transaction method="*" value="Required" />
@@ -49,12 +55,6 @@
     <jpa:context property="entityManager" unitname="hearsay" />
   </bean>
   <service ref="genomicReferenceCoordinateDAOImpl" interface="org.renci.hearsay.dao.GenomicReferenceCoordinateDAO" />
-
-  <bean id="geneDAOImpl" class="org.renci.hearsay.dao.jpa.GeneDAOImpl">
-    <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="hearsay" />
-  </bean>
-  <service ref="geneDAOImpl" interface="org.renci.hearsay.dao.GeneDAO" />
 
   <bean id="referenceGenomeDAOImpl" class="org.renci.hearsay.dao.jpa.ReferenceGenomeDAOImpl">
     <tx:transaction method="*" value="Required" />
@@ -103,11 +103,5 @@
     <jpa:context property="entityManager" unitname="hearsay" />
   </bean>
   <service ref="transcriptReferenceSequenceDAOImpl" interface="org.renci.hearsay.dao.TranscriptReferenceSequenceDAO" />
-
-  <bean id="variantAssertionDAOImpl" class="org.renci.hearsay.dao.jpa.VariantAssertionDAOImpl">
-    <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="hearsay" />
-  </bean>
-  <service ref="variantAssertionDAOImpl" interface="org.renci.hearsay.dao.VariantAssertionDAO" />
 
 </blueprint>
