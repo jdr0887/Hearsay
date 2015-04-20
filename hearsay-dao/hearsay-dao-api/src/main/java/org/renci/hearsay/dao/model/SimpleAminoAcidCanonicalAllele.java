@@ -34,21 +34,21 @@ public class SimpleAminoAcidCanonicalAllele extends SimpleCanonicalAllele {
 
     @XmlElementWrapper(name = "complexProteinCanonicalAlleles")
     @XmlElement(name = "complexProteinCanonicalAllele")
-    @ManyToMany(targetEntity = ComplexProteinCanonicalAllele.class, cascade = { CascadeType.REMOVE,
+    @ManyToMany(targetEntity = ComplexAminoAcidCanonicalAllele.class, cascade = { CascadeType.REMOVE,
             CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
     @ContainerTable(name = "simple_amino_acid_canonical_allele_complex_protein_canonical_allele", joinIndex = @Index(columnNames = { "simple_amino_acid_canonical_allele_fid" }))
     @JoinTable(name = "simple_amino_acid_canonical_allele_complex_protein_canonical_allele", joinColumns = @JoinColumn(name = "simple_amino_acid_canonical_allele_fid"), inverseJoinColumns = @JoinColumn(name = "complex_protein_canonical_allele_fid"))
-    private Set<ComplexProteinCanonicalAllele> complexProteinCanonicalAlleles;
+    private Set<ComplexAminoAcidCanonicalAllele> complexProteinCanonicalAlleles;
 
     public SimpleAminoAcidCanonicalAllele() {
         super();
     }
 
-    public Set<ComplexProteinCanonicalAllele> getComplexProteinCanonicalAlleles() {
+    public Set<ComplexAminoAcidCanonicalAllele> getComplexProteinCanonicalAlleles() {
         return complexProteinCanonicalAlleles;
     }
 
-    public void setComplexProteinCanonicalAlleles(Set<ComplexProteinCanonicalAllele> complexProteinCanonicalAlleles) {
+    public void setComplexProteinCanonicalAlleles(Set<ComplexAminoAcidCanonicalAllele> complexProteinCanonicalAlleles) {
         this.complexProteinCanonicalAlleles = complexProteinCanonicalAlleles;
     }
 

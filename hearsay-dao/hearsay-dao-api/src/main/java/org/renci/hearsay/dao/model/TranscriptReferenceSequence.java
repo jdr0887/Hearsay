@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @Entity
 @Table(name = "transcript_reference_sequence")
 @NamedQueries({ @NamedQuery(name = "TranscriptReferenceSequence.findAll", query = "SELECT a FROM TranscriptReferenceSequence a order by a.accession") })
-public class TranscriptReferenceSequence extends ReferenceSequence {
+public class TranscriptReferenceSequence extends NucleotideReferenceSequence {
 
     private static final long serialVersionUID = 2602699552144041803L;
 
@@ -100,8 +100,7 @@ public class TranscriptReferenceSequence extends ReferenceSequence {
 
     @Override
     public String toString() {
-        return String.format("TranscriptReferenceSequence [id=%s, identifier=%s, codingRegionOffset=%s]", id,
-                identifier, codingRegionOffset);
+        return String.format("TranscriptReferenceSequence [id=%s, codingRegionOffset=%s]", id, codingRegionOffset);
     }
 
     @Override

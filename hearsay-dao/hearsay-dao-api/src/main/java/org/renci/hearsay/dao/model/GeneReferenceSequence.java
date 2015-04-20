@@ -45,7 +45,7 @@ public class GeneReferenceSequence extends GenomicReferenceSequence {
 
     @Override
     public String toString() {
-        return String.format("GeneReferenceSequence [id=%s, identifier=%s]", id, identifier);
+        return String.format("GeneReferenceSequence [id=%s]", id);
     }
 
 }

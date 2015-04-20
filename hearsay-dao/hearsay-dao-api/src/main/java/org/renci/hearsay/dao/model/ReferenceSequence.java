@@ -41,9 +41,6 @@ public class ReferenceSequence implements Persistable {
     @Column(name = "id")
     protected Long id;
 
-    @Column(name = "identifier")
-    protected String identifier;
-
     public ReferenceSequence() {
         super();
     }
@@ -56,17 +53,9 @@ public class ReferenceSequence implements Persistable {
         this.id = id;
     }
 
-    public String getIdentifier() {
-        return identifier;
-    }
-
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
-    }
-
     @Override
     public String toString() {
-        return String.format("ReferenceSequence [id=%s, identifier=%s]", id, identifier);
+        return String.format("ReferenceSequence [id=%s]", id);
     }
 
     @Override
@@ -74,7 +63,6 @@ public class ReferenceSequence implements Persistable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((identifier == null) ? 0 : identifier.hashCode());
         return result;
     }
 
@@ -91,11 +79,6 @@ public class ReferenceSequence implements Persistable {
             if (other.id != null)
                 return false;
         } else if (!id.equals(other.id))
-            return false;
-        if (identifier == null) {
-            if (other.identifier != null)
-                return false;
-        } else if (!identifier.equals(other.identifier))
             return false;
         return true;
     }

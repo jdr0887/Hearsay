@@ -32,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "transcript_reference_coordinate")
-public class TranscriptReferenceCoordinate extends ReferenceCoordinate {
+public class TranscriptReferenceCoordinate extends NucleotideReferenceCoordinate {
 
     private static final long serialVersionUID = -9216702313390756017L;
 
@@ -55,7 +55,7 @@ public class TranscriptReferenceCoordinate extends ReferenceCoordinate {
 
     @OneToOne
     @JoinColumn(name = "intronic_coordinate_fid")
-    private IntronicCoordinate intronicCoordinate;
+    private IntronOffset intronicCoordinate;
 
     public TranscriptReferenceCoordinate() {
         super();
@@ -85,11 +85,11 @@ public class TranscriptReferenceCoordinate extends ReferenceCoordinate {
         this.simpleTranscriptAlleles = simpleTranscriptAlleles;
     }
 
-    public IntronicCoordinate getIntronicCoordinate() {
+    public IntronOffset getIntronicCoordinate() {
         return intronicCoordinate;
     }
 
-    public void setIntronicCoordinate(IntronicCoordinate intronicCoordinate) {
+    public void setIntronicCoordinate(IntronOffset intronicCoordinate) {
         this.intronicCoordinate = intronicCoordinate;
     }
 
