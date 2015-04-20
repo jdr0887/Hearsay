@@ -15,12 +15,14 @@
     <class>org.renci.hearsay.dao.model.ChromosomeReferenceSequence</class>
     <class>org.renci.hearsay.dao.model.ComplexCanonicalAllele</class>
     <class>org.renci.hearsay.dao.model.ComplexNucleotideCanonicalAllele</class>
-    <class>org.renci.hearsay.dao.model.ComplexProteinCanonicalAllele</class>
+    <class>org.renci.hearsay.dao.model.ComplexAminoAcidCanonicalAllele</class>
     <class>org.renci.hearsay.dao.model.Gene</class>
     <class>org.renci.hearsay.dao.model.GeneReferenceSequence</class>
     <class>org.renci.hearsay.dao.model.GenomicReferenceCoordinate</class>
     <class>org.renci.hearsay.dao.model.GenomicReferenceSequence</class>
     <class>org.renci.hearsay.dao.model.IntronicCoordinate</class>
+    <class>org.renci.hearsay.dao.model.NucleotideReferenceCoordinate</class>
+    <class>org.renci.hearsay.dao.model.NucleotideReferenceSequence</class>
     <class>org.renci.hearsay.dao.model.ReferenceCoordinate</class>
     <class>org.renci.hearsay.dao.model.ReferenceGenome</class>
     <class>org.renci.hearsay.dao.model.ReferenceSequence</class>

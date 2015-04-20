@@ -5,11 +5,6 @@
 
     <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
 
-<<<<<<< HEAD
-    <class>org.renci.hearsay.dao.model.CanonicalVariant</class>
-    <class>org.renci.hearsay.dao.model.ConditionSubmission</class>
-    <class>org.renci.hearsay.dao.model.Feature</class>
-=======
     <class>org.renci.hearsay.dao.model.AlleleName</class>
     <class>org.renci.hearsay.dao.model.AminoAcidReferenceCoordinate</class>
     <class>org.renci.hearsay.dao.model.AminoAcidReferenceSequence</class>
@@ -18,12 +13,13 @@
     <class>org.renci.hearsay.dao.model.ComplexCanonicalAllele</class>
     <class>org.renci.hearsay.dao.model.ComplexNucleotideCanonicalAllele</class>
     <class>org.renci.hearsay.dao.model.ComplexProteinCanonicalAllele</class>
->>>>>>> latest-schema
     <class>org.renci.hearsay.dao.model.Gene</class>
     <class>org.renci.hearsay.dao.model.GeneReferenceSequence</class>
     <class>org.renci.hearsay.dao.model.GenomicReferenceCoordinate</class>
     <class>org.renci.hearsay.dao.model.GenomicReferenceSequence</class>
     <class>org.renci.hearsay.dao.model.IntronicCoordinate</class>
+    <class>org.renci.hearsay.dao.model.NucleotideReferenceCoordinate</class>
+    <class>org.renci.hearsay.dao.model.NucleotideReferenceSequence</class>
     <class>org.renci.hearsay.dao.model.ReferenceCoordinate</class>
     <class>org.renci.hearsay.dao.model.ReferenceGenome</class>
     <class>org.renci.hearsay.dao.model.ReferenceSequence</class>
@@ -40,16 +36,7 @@
 
     <properties>
       <property name="openjpa.ConnectionProperties"
-        value="DriverClassName=org.postgresql.Driver,
-        Url=jdbc:postgresql://localhost:5432/hearsay,
-        MaxActive=100,
-        MaxWait=1000,
-        TestOnBorrow=true,
-        RemoveAbandoned=true,
-        RemoveAbandonedTimeout=60,
-        LogAbandoned=60,
-        Username=hearsay,
-        Password=hearsay" />
+        value="DriverClassName=org.postgresql.Driver,Url=jdbc:postgresql://localhost:5432/hearsay,MaxActive=100,MaxWait=1000,TestOnBorrow=true,RemoveAbandoned=true,RemoveAbandonedTimeout=60,LogAbandoned=60,Username=hearsay,Password=hearsay" />
       <property name="openjpa.ConnectionDriverName" value="org.apache.commons.dbcp.BasicDataSource" />
       <property name="openjpa.ConnectionFactoryProperties" value="printParameters=true" />
       <property name="openjpa.jdbc.SchemaFactory" value="native(ForeignKeys=true)" />
