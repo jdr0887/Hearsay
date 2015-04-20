@@ -117,6 +117,7 @@
 	  <targetServerDirectory>${assembly.directory}</targetServerDirectory>
           <bootFeatures>
             <feature>standard</feature>
+	    <feature>http</feature>
             <feature>ssh</feature>
             <feature>config</feature>
             <feature>management</feature>
@@ -125,6 +126,7 @@
 	    <feature>jdbc</feature>
 	    <feature>jndi</feature>
 	    <feature>openjpa</feature>
+	    <feature>war</feature>
 	    <feature>cxf</feature> 
 	    <feature>opm</feature> 
 	    <feature>hearsay</feature>
