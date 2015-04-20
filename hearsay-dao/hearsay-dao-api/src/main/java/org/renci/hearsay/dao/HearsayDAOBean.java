@@ -10,7 +10,7 @@ public class HearsayDAOBean {
 
     private ChromosomeReferenceSequenceDAO chromosomeReferenceSequenceDAO;
 
-    private ComplexProteinCanonicalAlleleDAO complexAminoAcidCanonicalAlleleDAO;
+    private ComplexAminoAcidCanonicalAlleleDAO complexAminoAcidCanonicalAlleleDAO;
 
     private ComplexNucleotideCanonicalAlleleDAO complexNucleotideCanonicalAlleleDAO;
 
@@ -19,6 +19,8 @@ public class HearsayDAOBean {
     private GeneReferenceSequenceDAO geneReferenceSequenceDAO;
 
     private GenomicReferenceCoordinateDAO genomicReferenceCoordinateDAO;
+
+    private GenomicReferenceSequenceDAO genomicReferenceSequenceDAO;
 
     private ReferenceGenomeDAO referenceGenomeDAO;
 
@@ -72,12 +74,12 @@ public class HearsayDAOBean {
         this.chromosomeReferenceSequenceDAO = chromosomeReferenceSequenceDAO;
     }
 
-    public ComplexProteinCanonicalAlleleDAO getComplexAminoAcidCanonicalAlleleDAO() {
+    public ComplexAminoAcidCanonicalAlleleDAO getComplexAminoAcidCanonicalAlleleDAO() {
         return complexAminoAcidCanonicalAlleleDAO;
     }
 
     public void setComplexAminoAcidCanonicalAlleleDAO(
-            ComplexProteinCanonicalAlleleDAO complexAminoAcidCanonicalAlleleDAO) {
+            ComplexAminoAcidCanonicalAlleleDAO complexAminoAcidCanonicalAlleleDAO) {
         this.complexAminoAcidCanonicalAlleleDAO = complexAminoAcidCanonicalAlleleDAO;
     }
 
@@ -112,6 +114,14 @@ public class HearsayDAOBean {
 
     public void setGenomicReferenceCoordinateDAO(GenomicReferenceCoordinateDAO genomicReferenceCoordinateDAO) {
         this.genomicReferenceCoordinateDAO = genomicReferenceCoordinateDAO;
+    }
+
+    public GenomicReferenceSequenceDAO getGenomicReferenceSequenceDAO() {
+        return genomicReferenceSequenceDAO;
+    }
+
+    public void setGenomicReferenceSequenceDAO(GenomicReferenceSequenceDAO genomicReferenceSequenceDAO) {
+        this.genomicReferenceSequenceDAO = genomicReferenceSequenceDAO;
     }
 
     public ReferenceGenomeDAO getReferenceGenomeDAO() {
