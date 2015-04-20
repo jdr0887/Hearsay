@@ -81,11 +81,12 @@
     <module>hearsay-ws-amino-acid-reference-sequence</module>
     <module>hearsay-ws-canonical-allele</module>
     <module>hearsay-ws-chromosome-reference-sequence</module>
+    <module>hearsay-ws-complex-amino-acid-canonical-allele</module>
     <module>hearsay-ws-complex-nucleotide-canonical-allele</module>
-    <module>hearsay-ws-complex-protein-canonical-allele</module>
     <module>hearsay-ws-gene</module>
     <module>hearsay-ws-gene-reference-sequence</module>
     <module>hearsay-ws-genomic-reference-coordinate</module>
+    <module>hearsay-ws-genomic-reference-sequence</module>
     <module>hearsay-ws-reference-genome</module>
     <module>hearsay-ws-simple-amino-acid-allele</module>
     <module>hearsay-ws-simple-amino-acid-canonical-allele</module>
