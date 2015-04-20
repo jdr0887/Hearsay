@@ -276,6 +276,7 @@
     <module>hearsay-web-service-api</module>
     <module>hearsay-web-services</module>
     <module>hearsay-features</module>
+    <module>hearsay-webapp</module>
     <!-- <module>hearsay-server</module> -->
   </modules>
 </project>
