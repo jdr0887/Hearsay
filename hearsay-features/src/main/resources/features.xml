@@ -73,6 +73,7 @@
     <feature version="${project.version}">hearsay-common</feature>
     <feature version="${project.version}">hearsay-dao</feature>
     <feature version="${project.version}">hearsay-web-services</feature>
+    <bundle>mvn:org.renci.hearsay/hearsay-webapp/${project.version}/war</bundle>
   </feature>
 
 </features>
