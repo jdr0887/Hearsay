@@ -1,11 +1,23 @@
 package org.renci.hearsay.dao.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+
+import org.apache.openjpa.persistence.jdbc.ContainerTable;
+import org.apache.openjpa.persistence.jdbc.Index;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -20,8 +32,24 @@ public class GenomicReferenceSequence extends NucleotideReferenceSequence {
 
     private static final long serialVersionUID = 604152635458911306L;
 
+    @XmlElementWrapper(name = "genomicReferenceCoordinates")
+    @XmlElement(name = "genomicReferenceCoordinate")
+    @ManyToMany(targetEntity = GenomicReferenceCoordinate.class, cascade = { CascadeType.REMOVE, CascadeType.PERSIST,
+            CascadeType.MERGE }, fetch = FetchType.EAGER)
+    @ContainerTable(name = "genomic_reference_sequence_genomic_reference_sequence", joinIndex = @Index(columnNames = { "genomic_reference_sequence_fid" }))
+    @JoinTable(name = "genomic_reference_sequence_genomic_reference_coordinate", joinColumns = @JoinColumn(name = "genomic_reference_sequence_fid"), inverseJoinColumns = @JoinColumn(name = "genomic_reference_coordinate_fid"))
+    private Set<GenomicReferenceCoordinate> genomicReferenceCoordinates;
+
     public GenomicReferenceSequence() {
         super();
+    }
+
+    public Set<GenomicReferenceCoordinate> getGenomicReferenceCoordinates() {
+        return genomicReferenceCoordinates;
+    }
+
+    public void setGenomicReferenceCoordinates(Set<GenomicReferenceCoordinate> genomicReferenceCoordinates) {
+        this.genomicReferenceCoordinates = genomicReferenceCoordinates;
     }
 
     @Override

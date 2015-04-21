@@ -39,8 +39,8 @@ public class GenomicReferenceCoordinate extends NucleotideReferenceCoordinate {
     private Set<GenomicReferenceSequence> genomicReferenceSequences;
 
     @OneToOne
-    @JoinColumn(name = "intronic_coordinate_fid")
-    private IntronOffset intronicCoordinate;
+    @JoinColumn(name = "intron_offset_fid")
+    private IntronOffset intronOffset;
 
     @XmlElementWrapper(name = "simpleGenomicAlleles")
     @XmlElement(name = "simpleGenomicAllele")
@@ -62,12 +62,12 @@ public class GenomicReferenceCoordinate extends NucleotideReferenceCoordinate {
         this.genomicReferenceSequences = genomicReferenceSequences;
     }
 
-    public IntronOffset getIntronicCoordinate() {
-        return intronicCoordinate;
+    public IntronOffset getIntronOffset() {
+        return intronOffset;
     }
 
-    public void setIntronicCoordinate(IntronOffset intronicCoordinate) {
-        this.intronicCoordinate = intronicCoordinate;
+    public void setIntronOffset(IntronOffset intronOffset) {
+        this.intronOffset = intronOffset;
     }
 
     public Set<SimpleGenomicAllele> getSimpleGenomicAlleles() {
