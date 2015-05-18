@@ -54,19 +54,6 @@ public class CanonicalAllele implements Persistable {
     @Enumerated(EnumType.STRING)
     protected CanonicalAlleleComplexityType complexityType;
 
-    
-    
-    
-    <xs:element name="version" type="f:string" minOccurs="0" />
-    <xs:element name="identifier" type="f:Identifier" minOccurs="0" maxOccurs="unbounded" />
-    <xs:element name="relatedIdentifier" type="f:Identifier" minOccurs="0" maxOccurs="unbounded" />
-    <xs:element name="replacement" type="CanonicalAllele.Replacement" minOccurs="0" maxOccurs="unbounded" />
-    <xs:element name="relatedSimpleAllele" type="CanonicalAllele.RelatedSimpleAllele" minOccurs="0" maxOccurs="unbounded" />
-    <xs:element name="nested" type="f:Reference" minOccurs="0" maxOccurs="unbounded" />
-    <xs:element name="composite" type="f:Reference" minOccurs="0" maxOccurs="1" />
-    
-    
-    
     public CanonicalAllele() {
         super();
     }
@@ -85,14 +72,6 @@ public class CanonicalAllele implements Persistable {
 
     public void setActive(Boolean active) {
         this.active = active;
-    }
-
-    public CanonicalAlleleType getCanonicalAlleleType() {
-        return canonicalAlleleType;
-    }
-
-    public void setCanonicalAlleleType(CanonicalAlleleType canonicalAlleleType) {
-        this.canonicalAlleleType = canonicalAlleleType;
     }
 
     @Override
