@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,6 +46,27 @@ public class CanonicalAllele implements Persistable {
     @Column(name = "active")
     protected Boolean active;
 
+    @Column(name = "type")
+    @Enumerated(EnumType.STRING)
+    protected CanonicalAlleleType type;
+
+    @Column(name = "complexity_type")
+    @Enumerated(EnumType.STRING)
+    protected CanonicalAlleleComplexityType complexityType;
+
+    
+    
+    
+    <xs:element name="version" type="f:string" minOccurs="0" />
+    <xs:element name="identifier" type="f:Identifier" minOccurs="0" maxOccurs="unbounded" />
+    <xs:element name="relatedIdentifier" type="f:Identifier" minOccurs="0" maxOccurs="unbounded" />
+    <xs:element name="replacement" type="CanonicalAllele.Replacement" minOccurs="0" maxOccurs="unbounded" />
+    <xs:element name="relatedSimpleAllele" type="CanonicalAllele.RelatedSimpleAllele" minOccurs="0" maxOccurs="unbounded" />
+    <xs:element name="nested" type="f:Reference" minOccurs="0" maxOccurs="unbounded" />
+    <xs:element name="composite" type="f:Reference" minOccurs="0" maxOccurs="1" />
+    
+    
+    
     public CanonicalAllele() {
         super();
     }
@@ -62,6 +85,14 @@ public class CanonicalAllele implements Persistable {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public CanonicalAlleleType getCanonicalAlleleType() {
+        return canonicalAlleleType;
+    }
+
+    public void setCanonicalAlleleType(CanonicalAlleleType canonicalAlleleType) {
+        this.canonicalAlleleType = canonicalAlleleType;
     }
 
     @Override

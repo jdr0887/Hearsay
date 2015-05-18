@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -52,6 +54,10 @@ public class ReferenceCoordinate implements Persistable {
     @Column(name = "end")
     protected Integer end;
 
+    @Column(name = "strand_type")
+    @Enumerated(EnumType.STRING)
+    protected DirectionType strandType;
+
     public ReferenceCoordinate() {
         super();
     }
@@ -62,6 +68,14 @@ public class ReferenceCoordinate implements Persistable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public DirectionType getStrandType() {
+        return strandType;
+    }
+
+    public void setStrandType(DirectionType strandType) {
+        this.strandType = strandType;
     }
 
     public String getRefAllele() {

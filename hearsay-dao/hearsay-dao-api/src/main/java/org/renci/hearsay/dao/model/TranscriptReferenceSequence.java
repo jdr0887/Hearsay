@@ -43,8 +43,11 @@ public class TranscriptReferenceSequence extends NucleotideReferenceSequence {
     @JoinColumn(name = "gene_fid")
     private Gene gene;
 
-    @Column(name = "coding_region_offset")
-    private Integer codingRegionOffset;
+    @Column(name = "cdsStart")
+    private Integer cdsStart;
+
+    @Column(name = "cdsEnd")
+    private Integer cdsEnd;
 
     @XmlElementWrapper(name = "aminoAcidReferenceSequences")
     @XmlElement(name = "aminoAcidReferenceSequence")
@@ -74,12 +77,20 @@ public class TranscriptReferenceSequence extends NucleotideReferenceSequence {
         this.gene = gene;
     }
 
-    public Integer getCodingRegionOffset() {
-        return codingRegionOffset;
+    public Integer getCdsStart() {
+        return cdsStart;
     }
 
-    public void setCodingRegionOffset(Integer codingRegionOffset) {
-        this.codingRegionOffset = codingRegionOffset;
+    public void setCdsStart(Integer cdsStart) {
+        this.cdsStart = cdsStart;
+    }
+
+    public Integer getCdsEnd() {
+        return cdsEnd;
+    }
+
+    public void setCdsEnd(Integer cdsEnd) {
+        this.cdsEnd = cdsEnd;
     }
 
     public Set<AminoAcidReferenceSequence> getAminoAcidReferenceSequences() {
@@ -99,15 +110,11 @@ public class TranscriptReferenceSequence extends NucleotideReferenceSequence {
     }
 
     @Override
-    public String toString() {
-        return String.format("TranscriptReferenceSequence [id=%s, codingRegionOffset=%s]", id, codingRegionOffset);
-    }
-
-    @Override
     public int hashCode() {
         final int prime = 31;
         int result = super.hashCode();
-        result = prime * result + ((codingRegionOffset == null) ? 0 : codingRegionOffset.hashCode());
+        result = prime * result + ((cdsEnd == null) ? 0 : cdsEnd.hashCode());
+        result = prime * result + ((cdsStart == null) ? 0 : cdsStart.hashCode());
         return result;
     }
 
@@ -120,10 +127,15 @@ public class TranscriptReferenceSequence extends NucleotideReferenceSequence {
         if (getClass() != obj.getClass())
             return false;
         TranscriptReferenceSequence other = (TranscriptReferenceSequence) obj;
-        if (codingRegionOffset == null) {
-            if (other.codingRegionOffset != null)
+        if (cdsEnd == null) {
+            if (other.cdsEnd != null)
                 return false;
-        } else if (!codingRegionOffset.equals(other.codingRegionOffset))
+        } else if (!cdsEnd.equals(other.cdsEnd))
+            return false;
+        if (cdsStart == null) {
+            if (other.cdsStart != null)
+                return false;
+        } else if (!cdsStart.equals(other.cdsStart))
             return false;
         return true;
     }

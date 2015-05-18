@@ -1,5 +1,6 @@
 package org.renci.hearsay.dao.model;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -51,8 +53,12 @@ public class Gene implements Persistable {
     @Column(name = "symbol")
     private String symbol;
 
-    @Column(name = "alias_symbol")
-    private String aliasSymbol;
+    @Lob
+    @Column(name = "description")
+    private String description;
+
+    @OneToMany(mappedBy = "gene", fetch = FetchType.EAGER)
+    private List<GeneSymbol> symbolAliases;
 
     @OneToMany(mappedBy = "gene", fetch = FetchType.LAZY)
     private Set<GeneReferenceSequence> geneReferenceSequences;
@@ -72,6 +78,14 @@ public class Gene implements Persistable {
         this.id = id;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getName() {
         return name;
     }
@@ -86,14 +100,6 @@ public class Gene implements Persistable {
 
     public void setSymbol(String symbol) {
         this.symbol = symbol;
-    }
-
-    public String getAliasSymbol() {
-        return aliasSymbol;
-    }
-
-    public void setAliasSymbol(String aliasSymbol) {
-        this.aliasSymbol = aliasSymbol;
     }
 
     public Set<GeneReferenceSequence> getGeneReferenceSequences() {
@@ -114,14 +120,15 @@ public class Gene implements Persistable {
 
     @Override
     public String toString() {
-        return String.format("Gene [id=%s, name=%s, symbol=%s, aliasSymbol=%s]", id, name, symbol, aliasSymbol);
+        return String.format("Gene [id=%s, name=%s, symbol=%s]", id, name, symbol);
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = super.hashCode();
-        result = prime * result + ((aliasSymbol == null) ? 0 : aliasSymbol.hashCode());
+        int result = 1;
+        result = prime * result + ((description == null) ? 0 : description.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((symbol == null) ? 0 : symbol.hashCode());
         return result;
@@ -136,10 +143,10 @@ public class Gene implements Persistable {
         if (getClass() != obj.getClass())
             return false;
         Gene other = (Gene) obj;
-        if (aliasSymbol == null) {
-            if (other.aliasSymbol != null)
+        if (description == null) {
+            if (other.description != null)
                 return false;
-        } else if (!aliasSymbol.equals(other.aliasSymbol))
+        } else if (!description.equals(other.description))
             return false;
         if (id == null) {
             if (other.id != null)

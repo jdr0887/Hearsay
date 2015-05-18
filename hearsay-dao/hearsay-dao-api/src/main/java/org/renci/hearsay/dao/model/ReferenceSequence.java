@@ -17,6 +17,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.openjpa.persistence.jdbc.Index;
 import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -41,6 +42,10 @@ public class ReferenceSequence implements Persistable {
     @Column(name = "id")
     protected Long id;
 
+    @Index
+    @Column(name = "accession")
+    protected String accession;
+
     public ReferenceSequence() {
         super();
     }
@@ -53,15 +58,24 @@ public class ReferenceSequence implements Persistable {
         this.id = id;
     }
 
+    public String getAccession() {
+        return accession;
+    }
+
+    public void setAccession(String accession) {
+        this.accession = accession;
+    }
+
     @Override
     public String toString() {
-        return String.format("ReferenceSequence [id=%s]", id);
+        return String.format("ReferenceSequence [id=%s, accession=%s]", id, accession);
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((accession == null) ? 0 : accession.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
@@ -75,6 +89,11 @@ public class ReferenceSequence implements Persistable {
         if (getClass() != obj.getClass())
             return false;
         ReferenceSequence other = (ReferenceSequence) obj;
+        if (accession == null) {
+            if (other.accession != null)
+                return false;
+        } else if (!accession.equals(other.accession))
+            return false;
         if (id == null) {
             if (other.id != null)
                 return false;
