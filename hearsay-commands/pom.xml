@@ -13,8 +13,18 @@
   <packaging>bundle</packaging>
   <dependencies>
     <dependency>
+      <groupId>org.renci.clinvar</groupId>
+      <artifactId>clinvar-public</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-net</groupId>
+      <artifactId>commons-net</artifactId>
       <scope>provided</scope>
     </dependency>
     <dependency>
