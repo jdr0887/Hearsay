@@ -7,7 +7,6 @@
     <bundle>mvn:commons-pool/commons-pool/${commons.pool.version}</bundle>
     <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.commons-dbcp/${commons.dbcp.version}_3</bundle>
     <bundle>mvn:org.apache.commons/commons-lang3/${commons.lang.version}</bundle>
-    <bundle>mvn:commons-lang/commons-lang/2.4</bundle>
     <bundle>mvn:org.apache.xbean/xbean-asm4-shaded/3.16</bundle>
     <bundle>mvn:commons-collections/commons-collections/3.2.1</bundle>
     <bundle>mvn:org.apache.commons/commons-collections4/${commons.collections.version}</bundle>
@@ -38,6 +37,7 @@
     <bundle>mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/${jackson.version}</bundle>
     <bundle>mvn:com.fasterxml.jackson.module/jackson-module-jaxb-annotations/${jackson.version}</bundle>
     <bundle>mvn:org.renci.osgi.bundles/postgresql-9.3-1102-jdbc41-bundle/0.0.1</bundle>
+    <bundle>mvn:org.renci.clinvar/clinvar-public/0.0.1-SNAPSHOT</bundle>
   </feature>
 
   <feature name="hearsay-dao" version="${project.version}" resolver="(obr)">
@@ -48,28 +48,18 @@
 
   <feature name="hearsay-web-services" version="${project.version}" resolver="(obr)">
     <bundle>mvn:org.renci.hearsay/hearsay-web-service-api/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-amino-acid-reference-coordinate/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-amino-acid-reference-sequence/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-canonical-allele/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-chromosome-reference-sequence/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-complex-nucleotide-canonical-allele/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-complex-protein-canonical-allele/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-gene/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-gene-reference-sequence/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-genomic-reference-coordinate/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-gene-symbol/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-identifier/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-reference-coordinate/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-reference-genome/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-simple-amino-acid-allele/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-simple-amino-acid-canonical-allele/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-simple-genomic-allele/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-simple-nucleotide-canonical-allele/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-simple-transcript-allele/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-transcript-reference-coordinate/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-transcript-reference-sequence/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-reference-sequence/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-simple-allele/${project.version}</bundle>
   </feature>
 
-
   <feature name="hearsay" version="${project.version}" resolver="(obr)">
-    <!-- <bundle>mvn:org.renci.hearsay/hearsay-commands/${project.version}</bundle> -->
+    <bundle>mvn:org.renci.hearsay/hearsay-commands/${project.version}</bundle>
     <feature version="${project.version}">hearsay-common</feature>
     <feature version="${project.version}">hearsay-dao</feature>
     <feature version="${project.version}">hearsay-web-services</feature>
