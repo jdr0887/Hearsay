@@ -9,33 +9,16 @@
     <non-jta-data-source>aries:services/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/hearsayNoJTA)</non-jta-data-source>
 
     <class>org.renci.hearsay.dao.model.AlleleName</class>
-    <class>org.renci.hearsay.dao.model.AminoAcidReferenceCoordinate</class>
-    <class>org.renci.hearsay.dao.model.AminoAcidReferenceSequence</class>
     <class>org.renci.hearsay.dao.model.CanonicalAllele</class>
-    <class>org.renci.hearsay.dao.model.ChromosomeReferenceSequence</class>
-    <class>org.renci.hearsay.dao.model.ComplexCanonicalAllele</class>
-    <class>org.renci.hearsay.dao.model.ComplexNucleotideCanonicalAllele</class>
-    <class>org.renci.hearsay.dao.model.ComplexAminoAcidCanonicalAllele</class>
+    <class>org.renci.hearsay.dao.model.DictionaryEntity</class>
     <class>org.renci.hearsay.dao.model.Gene</class>
-    <class>org.renci.hearsay.dao.model.GeneReferenceSequence</class>
-    <class>org.renci.hearsay.dao.model.GenomicReferenceCoordinate</class>
-    <class>org.renci.hearsay.dao.model.GenomicReferenceSequence</class>
-    <class>org.renci.hearsay.dao.model.IntronicCoordinate</class>
-    <class>org.renci.hearsay.dao.model.NucleotideReferenceCoordinate</class>
-    <class>org.renci.hearsay.dao.model.NucleotideReferenceSequence</class>
+    <class>org.renci.hearsay.dao.model.GeneSymbol</class>
+    <class>org.renci.hearsay.dao.model.Identifier</class>
+    <class>org.renci.hearsay.dao.model.IntronOffset</class>
     <class>org.renci.hearsay.dao.model.ReferenceCoordinate</class>
     <class>org.renci.hearsay.dao.model.ReferenceGenome</class>
     <class>org.renci.hearsay.dao.model.ReferenceSequence</class>
     <class>org.renci.hearsay.dao.model.SimpleAllele</class>
-    <class>org.renci.hearsay.dao.model.SimpleAminoAcidAllele</class>
-    <class>org.renci.hearsay.dao.model.SimpleAminoAcidCanonicalAllele</class>
-    <class>org.renci.hearsay.dao.model.SimpleCanonicalAllele</class>
-    <class>org.renci.hearsay.dao.model.SimpleGenomicAllele</class>
-    <class>org.renci.hearsay.dao.model.SimpleNucleotideAllele</class>
-    <class>org.renci.hearsay.dao.model.SimpleNucleotideCanonicalAllele</class>
-    <class>org.renci.hearsay.dao.model.SimpleTranscriptAllele</class>
-    <class>org.renci.hearsay.dao.model.TranscriptReferenceCoordinate</class>
-    <class>org.renci.hearsay.dao.model.TranscriptReferenceSequence</class>
 
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
