@@ -3,56 +3,37 @@
 
   <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.1.0">
     <command>
-      <action class="org.renci.hearsay.commands.ListTranscriptRefSeqsAction">
+      <action class="org.renci.hearsay.commands.ListGenesAction">
         <property name="hearsayDAOBean" ref="hearsayDAOBean" />
       </action>
     </command>
     <command>
-      <action class="org.renci.hearsay.commands.ListTranscriptAlignmentsAction">
-        <property name="hearsayDAOBean" ref="hearsayDAOBean" />
-      </action>
-    </command>
-    <command>
-      <action class="org.renci.hearsay.commands.ListTranscriptAlignmentRegionsAction">
+      <action class="org.renci.hearsay.commands.PullNCBIGeneInfoAction">
         <property name="hearsayDAOBean" ref="hearsayDAOBean" />
       </action>
     </command>
   </command-bundle>
 
-  <reference id="canonicalVariantDAO" interface="org.renci.hearsay.dao.CanonicalVariantDAO" />
-  <reference id="featureDAO" interface="org.renci.hearsay.dao.FeatureDAO" />
-  <reference id="geneConditionAssertionDAO" interface="org.renci.hearsay.dao.GeneConditionAssertionDAO" />
-  <reference id="geneConditionDAO" interface="org.renci.hearsay.dao.GeneConditionDAO" />
+  <reference id="canonicalAlleleDAO" interface="org.renci.hearsay.dao.CanonicalAlleleDAO" />
   <reference id="geneDAO" interface="org.renci.hearsay.dao.GeneDAO" />
-  <reference id="genomicRefSeqDAO" interface="org.renci.hearsay.dao.GenomicRefSeqDAO" />
-  <reference id="genomicVariantDAO" interface="org.renci.hearsay.dao.GenomicVariantDAO" />
-  <reference id="individualDAO" interface="org.renci.hearsay.dao.IndividualDAO" />
-  <reference id="individualVariantDAO" interface="org.renci.hearsay.dao.IndividualVariantDAO" />
-  <reference id="molecularConsequenceDAO" interface="org.renci.hearsay.dao.MolecularConsequenceDAO" />
-  <reference id="resolvedConditionDAO" interface="org.renci.hearsay.dao.ResolvedConditionDAO" />
-  <reference id="transcriptAlignmentDAO" interface="org.renci.hearsay.dao.TranscriptAlignmentDAO" />
-  <reference id="transcriptRefSeqDAO" interface="org.renci.hearsay.dao.TranscriptRefSeqDAO" />
-  <reference id="transcriptVariantDAO" interface="org.renci.hearsay.dao.TranscriptVariantDAO" />
-  <reference id="translationRefSeqDAO" interface="org.renci.hearsay.dao.TranslationRefSeqDAO" />
-  <reference id="translationVariantDAO" interface="org.renci.hearsay.dao.TranslationVariantDAO" />
+  <reference id="geneSymbolDAO" interface="org.renci.hearsay.dao.GeneSymbolDAO" />
+  <reference id="identifierDAO" interface="org.renci.hearsay.dao.IdentifierDAO" />
+  <reference id="intronOffsetDAO" interface="org.renci.hearsay.dao.IntronOffsetDAO" />
+  <reference id="referenceCoordinateDAO" interface="org.renci.hearsay.dao.ReferenceCoordinateDAO" />
+  <reference id="referenceGenomeDAO" interface="org.renci.hearsay.dao.ReferenceGenomeDAO" />
+  <reference id="referenceSequenceDAO" interface="org.renci.hearsay.dao.ReferenceSequenceDAO" />
+  <reference id="simpleAlleleDAO" interface="org.renci.hearsay.dao.SimpleAlleleDAO" />
 
   <bean id="hearsayDAOBean" class="org.renci.hearsay.dao.HearsayDAOBean">
-    <property name="canonicalVariantDAO" ref="canonicalVariantDAO" />
-    <property name="featureDAO" ref="featureDAO" />
-    <property name="geneConditionAssertionDAO" ref="geneConditionAssertionDAO" />
-    <property name="geneConditionDAO" ref="geneConditionDAO" />
+    <property name="canonicalAlleleDAO" ref="canonicalAlleleDAO" />
     <property name="geneDAO" ref="geneDAO" />
-    <property name="genomicRefSeqDAO" ref="genomicRefSeqDAO" />
-    <property name="genomicVariantDAO" ref="genomicVariantDAO" />
-    <property name="individualDAO" ref="individualDAO" />
-    <property name="individualVariantDAO" ref="individualVariantDAO" />
-    <property name="molecularConsequenceDAO" ref="molecularConsequenceDAO" />
-    <property name="resolvedConditionDAO" ref="resolvedConditionDAO" />
-    <property name="transcriptAlignmentDAO" ref="transcriptAlignmentDAO" />
-    <property name="transcriptRefSeqDAO" ref="transcriptRefSeqDAO" />
-    <property name="transcriptVariantDAO" ref="transcriptVariantDAO" />
-    <property name="translationRefSeqDAO" ref="translationRefSeqDAO" />
-    <property name="translationVariantDAO" ref="translationVariantDAO" />
+    <property name="geneSymbolDAO" ref="geneSymbolDAO" />
+    <property name="identifierDAO" ref="identifierDAO" />
+    <property name="intronOffsetDAO" ref="intronOffsetDAO" />
+    <property name="referenceCoordinateDAO" ref="referenceCoordinateDAO" />
+    <property name="referenceGenomeDAO" ref="referenceGenomeDAO" />
+    <property name="referenceSequenceDAO" ref="referenceSequenceDAO" />
+    <property name="simpleAlleleDAO" ref="simpleAlleleDAO" />
   </bean>
 
 </blueprint>
