@@ -77,23 +77,14 @@
     </dependency>
   </dependencies>
   <modules>
-    <module>hearsay-ws-amino-acid-reference-coordinate</module>
-    <module>hearsay-ws-amino-acid-reference-sequence</module>
     <module>hearsay-ws-canonical-allele</module>
-    <module>hearsay-ws-chromosome-reference-sequence</module>
-    <module>hearsay-ws-complex-amino-acid-canonical-allele</module>
-    <module>hearsay-ws-complex-nucleotide-canonical-allele</module>
     <module>hearsay-ws-gene</module>
-    <module>hearsay-ws-gene-reference-sequence</module>
-    <module>hearsay-ws-genomic-reference-coordinate</module>
-    <module>hearsay-ws-genomic-reference-sequence</module>
-    <module>hearsay-ws-reference-genome</module>
-    <module>hearsay-ws-simple-amino-acid-allele</module>
-    <module>hearsay-ws-simple-amino-acid-canonical-allele</module>
-    <module>hearsay-ws-simple-genomic-allele</module>
-    <module>hearsay-ws-simple-nucleotide-canonical-allele</module>
-    <module>hearsay-ws-simple-transcript-allele</module>
-    <module>hearsay-ws-transcript-reference-coordinate</module>
-    <module>hearsay-ws-transcript-reference-sequence</module>
+    <module>hearsay-ws-gene-symbol</module>
+    <module>hearsay-ws-identifier</module>
+    <module>hearsay-ws-intron-offset</module>
+    <module>hearsay-ws-reference-coordinate</module>
+    <module>hearsay-ws-reference-genome</module>    
+    <module>hearsay-ws-reference-sequence</module>
+    <module>hearsay-ws-simple-allele</module>
   </modules>
 </project>
