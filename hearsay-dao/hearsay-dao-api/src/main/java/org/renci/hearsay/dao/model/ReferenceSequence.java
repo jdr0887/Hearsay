@@ -1,14 +1,18 @@
 package org.renci.hearsay.dao.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -17,7 +21,6 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.apache.openjpa.persistence.jdbc.Index;
 import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -29,26 +32,49 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "reference_sequence")
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 public class ReferenceSequence implements Persistable {
 
-    private static final long serialVersionUID = 8416673592958416430L;
+    private static final long serialVersionUID = -488057011816731553L;
 
     @XmlAttribute(name = "id")
     @Id()
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reference_sequence_id_seq")
     @SequenceGenerator(name = "reference_sequence_id_seq", sequenceName = "reference_sequence_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
-    protected Long id;
+    private Long id;
 
-    @Index
-    @Column(name = "accession")
-    protected String accession;
+    @Column(name = "type")
+    @Enumerated(EnumType.STRING)
+    private ReferenceSequenceType type;
 
-    public ReferenceSequence() {
-        super();
-    }
+    @Column(name = "chromosome_type")
+    @Enumerated(EnumType.STRING)
+    private ReferenceSequenceChromosomeType chromosomeType;
+
+    @Column(name = "cds_start")
+    private Integer cdsStart;
+
+    @Column(name = "cds_end")
+    private Integer cdsEnd;
+
+    @ManyToOne
+    @JoinColumn(name = "gene_fid")
+    private Gene gene;
+
+    @ManyToOne
+    @JoinColumn(name = "gene_fid")
+    private ReferenceGenome referenceGenome;
+
+    @Column(name = "relationship_type")
+    @Enumerated(EnumType.STRING)
+    private ReferenceSequenceRelationshipType relationshipType;
+
+    @ManyToOne
+    @JoinColumn(name = "parent_fid")
+    private ReferenceSequence parent;
+
+    @OneToMany(mappedBy = "parent", fetch = FetchType.EAGER)
+    private List<ReferenceSequence> relatedChildren;
 
     public Long getId() {
         return id;
@@ -58,25 +84,95 @@ public class ReferenceSequence implements Persistable {
         this.id = id;
     }
 
-    public String getAccession() {
-        return accession;
+    public ReferenceSequenceType getType() {
+        return type;
     }
 
-    public void setAccession(String accession) {
-        this.accession = accession;
+    public void setType(ReferenceSequenceType type) {
+        this.type = type;
+    }
+
+    public ReferenceSequenceChromosomeType getChromosomeType() {
+        return chromosomeType;
+    }
+
+    public void setChromosomeType(ReferenceSequenceChromosomeType chromosomeType) {
+        this.chromosomeType = chromosomeType;
+    }
+
+    public Integer getCdsStart() {
+        return cdsStart;
+    }
+
+    public void setCdsStart(Integer cdsStart) {
+        this.cdsStart = cdsStart;
+    }
+
+    public Integer getCdsEnd() {
+        return cdsEnd;
+    }
+
+    public void setCdsEnd(Integer cdsEnd) {
+        this.cdsEnd = cdsEnd;
+    }
+
+    public Gene getGene() {
+        return gene;
+    }
+
+    public void setGene(Gene gene) {
+        this.gene = gene;
+    }
+
+    public ReferenceGenome getReferenceGenome() {
+        return referenceGenome;
+    }
+
+    public void setReferenceGenome(ReferenceGenome referenceGenome) {
+        this.referenceGenome = referenceGenome;
+    }
+
+    public ReferenceSequenceRelationshipType getRelationshipType() {
+        return relationshipType;
+    }
+
+    public void setRelationshipType(ReferenceSequenceRelationshipType relationshipType) {
+        this.relationshipType = relationshipType;
+    }
+
+    public ReferenceSequence getParent() {
+        return parent;
+    }
+
+    public void setParent(ReferenceSequence parent) {
+        this.parent = parent;
+    }
+
+    public List<ReferenceSequence> getRelatedChildren() {
+        return relatedChildren;
+    }
+
+    public void setRelatedChildren(List<ReferenceSequence> relatedChildren) {
+        this.relatedChildren = relatedChildren;
     }
 
     @Override
     public String toString() {
-        return String.format("ReferenceSequence [id=%s, accession=%s]", id, accession);
+        return String.format(
+                "ReferenceSequence [id=%s, type=%s, chromosomeType=%s, cdsStart=%s, cdsEnd=%s, relationshipType=%s]",
+                id, type, chromosomeType, cdsStart, cdsEnd, relationshipType);
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((accession == null) ? 0 : accession.hashCode());
+        result = prime * result + ((cdsEnd == null) ? 0 : cdsEnd.hashCode());
+        result = prime * result + ((cdsStart == null) ? 0 : cdsStart.hashCode());
+        result = prime * result + ((chromosomeType == null) ? 0 : chromosomeType.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((relationshipType == null) ? 0 : relationshipType.hashCode());
+        result = prime * result + ((type == null) ? 0 : type.hashCode());
         return result;
     }
 
@@ -89,15 +185,26 @@ public class ReferenceSequence implements Persistable {
         if (getClass() != obj.getClass())
             return false;
         ReferenceSequence other = (ReferenceSequence) obj;
-        if (accession == null) {
-            if (other.accession != null)
+        if (cdsEnd == null) {
+            if (other.cdsEnd != null)
                 return false;
-        } else if (!accession.equals(other.accession))
+        } else if (!cdsEnd.equals(other.cdsEnd))
+            return false;
+        if (cdsStart == null) {
+            if (other.cdsStart != null)
+                return false;
+        } else if (!cdsStart.equals(other.cdsStart))
+            return false;
+        if (chromosomeType != other.chromosomeType)
             return false;
         if (id == null) {
             if (other.id != null)
                 return false;
         } else if (!id.equals(other.id))
+            return false;
+        if (relationshipType != other.relationshipType)
+            return false;
+        if (type != other.type)
             return false;
         return true;
     }

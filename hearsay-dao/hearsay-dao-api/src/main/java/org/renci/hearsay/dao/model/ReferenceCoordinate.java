@@ -1,22 +1,27 @@
 package org.renci.hearsay.dao.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Lob;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -26,13 +31,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
-@XmlRootElement(name = "referenceAlleleCoordinate")
-@XmlType(name = "ReferenceAlleleCoordinate")
+@XmlRootElement(name = "referenceCoordinate")
+@XmlType(name = "ReferenceCoordinate")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "reference_allele_coordinate")
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
+@Table(name = "reference_coordinate")
 public class ReferenceCoordinate implements Persistable {
 
     private static final long serialVersionUID = 608874481580966242L;
@@ -42,21 +45,42 @@ public class ReferenceCoordinate implements Persistable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reference_coordinate_id_seq")
     @SequenceGenerator(name = "reference_coordinate_id_seq", sequenceName = "reference_coordinate_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
-    protected Long id;
+    private Long id;
 
-    @Lob
+    @XmlElementWrapper(name = "identifiers")
+    @XmlElement(name = "identifier")
+    @ManyToMany(targetEntity = CanonicalAllele.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @JoinTable(name = "reference_coordinate_identifier", joinColumns = @JoinColumn(name = "reference_coordinate_fid"), inverseJoinColumns = @JoinColumn(name = "identifier_fid"))
+    private List<Identifier> identifiers;
+
     @Column(name = "ref_allele")
-    protected String refAllele;
+    private String refAllele;
 
     @Column(name = "start")
-    protected Integer start;
+    private Integer start;
 
     @Column(name = "end")
-    protected Integer end;
+    private Integer end;
 
     @Column(name = "strand_type")
     @Enumerated(EnumType.STRING)
-    protected DirectionType strandType;
+    private DirectionType strandType;
+
+    @ManyToOne
+    @JoinColumn(name = "intron_offset_fid")
+    private IntronOffset intronOffset;
+
+    @ManyToOne
+    @JoinColumn(name = "reference_sequence_fid")
+    private ReferenceSequence referenceSequence;
+
+    @Column(name = "primary_transcript_region_type")
+    @Enumerated(EnumType.STRING)
+    private RegionType primaryTranscriptRegionType;
+
+    @Column(name = "ancillary_transcript_region_type")
+    @Enumerated(EnumType.STRING)
+    private RegionType ancillaryTranscriptRegionType;
 
     public ReferenceCoordinate() {
         super();

@@ -2,60 +2,26 @@ package org.renci.hearsay.dao;
 
 public class HearsayDAOBean {
 
-    private AminoAcidReferenceCoordinateDAO aminoAcidReferenceCoordinateDAO;
-
-    private AminoAcidReferenceSequenceDAO aminoAcidReferenceSequenceDAO;
-
     private CanonicalAlleleDAO canonicalAlleleDAO;
-
-    private ChromosomeReferenceSequenceDAO chromosomeReferenceSequenceDAO;
-
-    private ComplexAminoAcidCanonicalAlleleDAO complexAminoAcidCanonicalAlleleDAO;
-
-    private ComplexNucleotideCanonicalAlleleDAO complexNucleotideCanonicalAlleleDAO;
 
     private GeneDAO geneDAO;
 
-    private GeneReferenceSequenceDAO geneReferenceSequenceDAO;
+    private GeneSymbolDAO geneSymbolDAO;
 
-    private GenomicReferenceCoordinateDAO genomicReferenceCoordinateDAO;
+    private IdentifierDAO identifierDAO;
 
-    private GenomicReferenceSequenceDAO genomicReferenceSequenceDAO;
+    private IntronOffsetDAO intronOffsetDAO;
+
+    private ReferenceCoordinateDAO referenceCoordinateDAO;
 
     private ReferenceGenomeDAO referenceGenomeDAO;
 
-    private SimpleAminoAcidAlleleDAO simpleAminoAcidAlleleDAO;
+    private ReferenceSequenceDAO referenceSequenceDAO;
 
-    private SimpleAminoAcidCanonicalAlleleDAO simpleAminoAcidCanonicalAlleleDAO;
-
-    private SimpleGenomicAlleleDAO simpleGenomicAlleleDAO;
-
-    private SimpleNucleotideCanonicalAlleleDAO simpleNucleotideCanonicalAlleleDAO;
-
-    private SimpleTranscriptAlleleDAO simpleTranscriptAlleleDAO;
-
-    private TranscriptReferenceCoordinateDAO transcriptReferenceCoordinateDAO;
-
-    private TranscriptReferenceSequenceDAO transcriptReferenceSequenceDAO;
+    private SimpleAlleleDAO simpleAlleleDAO;
 
     public HearsayDAOBean() {
         super();
-    }
-
-    public AminoAcidReferenceCoordinateDAO getAminoAcidReferenceCoordinateDAO() {
-        return aminoAcidReferenceCoordinateDAO;
-    }
-
-    public void setAminoAcidReferenceCoordinateDAO(AminoAcidReferenceCoordinateDAO aminoAcidReferenceCoordinateDAO) {
-        this.aminoAcidReferenceCoordinateDAO = aminoAcidReferenceCoordinateDAO;
-    }
-
-    public AminoAcidReferenceSequenceDAO getAminoAcidReferenceSequenceDAO() {
-        return aminoAcidReferenceSequenceDAO;
-    }
-
-    public void setAminoAcidReferenceSequenceDAO(AminoAcidReferenceSequenceDAO aminoAcidReferenceSequenceDAO) {
-        this.aminoAcidReferenceSequenceDAO = aminoAcidReferenceSequenceDAO;
     }
 
     public CanonicalAlleleDAO getCanonicalAlleleDAO() {
@@ -66,32 +32,6 @@ public class HearsayDAOBean {
         this.canonicalAlleleDAO = canonicalAlleleDAO;
     }
 
-    public ChromosomeReferenceSequenceDAO getChromosomeReferenceSequenceDAO() {
-        return chromosomeReferenceSequenceDAO;
-    }
-
-    public void setChromosomeReferenceSequenceDAO(ChromosomeReferenceSequenceDAO chromosomeReferenceSequenceDAO) {
-        this.chromosomeReferenceSequenceDAO = chromosomeReferenceSequenceDAO;
-    }
-
-    public ComplexAminoAcidCanonicalAlleleDAO getComplexAminoAcidCanonicalAlleleDAO() {
-        return complexAminoAcidCanonicalAlleleDAO;
-    }
-
-    public void setComplexAminoAcidCanonicalAlleleDAO(
-            ComplexAminoAcidCanonicalAlleleDAO complexAminoAcidCanonicalAlleleDAO) {
-        this.complexAminoAcidCanonicalAlleleDAO = complexAminoAcidCanonicalAlleleDAO;
-    }
-
-    public ComplexNucleotideCanonicalAlleleDAO getComplexNucleotideCanonicalAlleleDAO() {
-        return complexNucleotideCanonicalAlleleDAO;
-    }
-
-    public void setComplexNucleotideCanonicalAlleleDAO(
-            ComplexNucleotideCanonicalAlleleDAO complexNucleotideCanonicalAlleleDAO) {
-        this.complexNucleotideCanonicalAlleleDAO = complexNucleotideCanonicalAlleleDAO;
-    }
-
     public GeneDAO getGeneDAO() {
         return geneDAO;
     }
@@ -100,28 +40,36 @@ public class HearsayDAOBean {
         this.geneDAO = geneDAO;
     }
 
-    public GeneReferenceSequenceDAO getGeneReferenceSequenceDAO() {
-        return geneReferenceSequenceDAO;
+    public GeneSymbolDAO getGeneSymbolDAO() {
+        return geneSymbolDAO;
     }
 
-    public void setGeneReferenceSequenceDAO(GeneReferenceSequenceDAO geneReferenceSequenceDAO) {
-        this.geneReferenceSequenceDAO = geneReferenceSequenceDAO;
+    public void setGeneSymbolDAO(GeneSymbolDAO geneSymbolDAO) {
+        this.geneSymbolDAO = geneSymbolDAO;
     }
 
-    public GenomicReferenceCoordinateDAO getGenomicReferenceCoordinateDAO() {
-        return genomicReferenceCoordinateDAO;
+    public IdentifierDAO getIdentifierDAO() {
+        return identifierDAO;
     }
 
-    public void setGenomicReferenceCoordinateDAO(GenomicReferenceCoordinateDAO genomicReferenceCoordinateDAO) {
-        this.genomicReferenceCoordinateDAO = genomicReferenceCoordinateDAO;
+    public void setIdentifierDAO(IdentifierDAO identifierDAO) {
+        this.identifierDAO = identifierDAO;
     }
 
-    public GenomicReferenceSequenceDAO getGenomicReferenceSequenceDAO() {
-        return genomicReferenceSequenceDAO;
+    public IntronOffsetDAO getIntronOffsetDAO() {
+        return intronOffsetDAO;
     }
 
-    public void setGenomicReferenceSequenceDAO(GenomicReferenceSequenceDAO genomicReferenceSequenceDAO) {
-        this.genomicReferenceSequenceDAO = genomicReferenceSequenceDAO;
+    public void setIntronOffsetDAO(IntronOffsetDAO intronOffsetDAO) {
+        this.intronOffsetDAO = intronOffsetDAO;
+    }
+
+    public ReferenceCoordinateDAO getReferenceCoordinateDAO() {
+        return referenceCoordinateDAO;
+    }
+
+    public void setReferenceCoordinateDAO(ReferenceCoordinateDAO referenceCoordinateDAO) {
+        this.referenceCoordinateDAO = referenceCoordinateDAO;
     }
 
     public ReferenceGenomeDAO getReferenceGenomeDAO() {
@@ -132,61 +80,20 @@ public class HearsayDAOBean {
         this.referenceGenomeDAO = referenceGenomeDAO;
     }
 
-    public SimpleAminoAcidAlleleDAO getSimpleAminoAcidAlleleDAO() {
-        return simpleAminoAcidAlleleDAO;
+    public ReferenceSequenceDAO getReferenceSequenceDAO() {
+        return referenceSequenceDAO;
     }
 
-    public void setSimpleAminoAcidAlleleDAO(SimpleAminoAcidAlleleDAO simpleAminoAcidAlleleDAO) {
-        this.simpleAminoAcidAlleleDAO = simpleAminoAcidAlleleDAO;
+    public void setReferenceSequenceDAO(ReferenceSequenceDAO referenceSequenceDAO) {
+        this.referenceSequenceDAO = referenceSequenceDAO;
     }
 
-    public SimpleAminoAcidCanonicalAlleleDAO getSimpleAminoAcidCanonicalAlleleDAO() {
-        return simpleAminoAcidCanonicalAlleleDAO;
+    public SimpleAlleleDAO getSimpleAlleleDAO() {
+        return simpleAlleleDAO;
     }
 
-    public void setSimpleAminoAcidCanonicalAlleleDAO(SimpleAminoAcidCanonicalAlleleDAO simpleAminoAcidCanonicalAlleleDAO) {
-        this.simpleAminoAcidCanonicalAlleleDAO = simpleAminoAcidCanonicalAlleleDAO;
-    }
-
-    public SimpleGenomicAlleleDAO getSimpleGenomicAlleleDAO() {
-        return simpleGenomicAlleleDAO;
-    }
-
-    public void setSimpleGenomicAlleleDAO(SimpleGenomicAlleleDAO simpleGenomicAlleleDAO) {
-        this.simpleGenomicAlleleDAO = simpleGenomicAlleleDAO;
-    }
-
-    public SimpleNucleotideCanonicalAlleleDAO getSimpleNucleotideCanonicalAlleleDAO() {
-        return simpleNucleotideCanonicalAlleleDAO;
-    }
-
-    public void setSimpleNucleotideCanonicalAlleleDAO(
-            SimpleNucleotideCanonicalAlleleDAO simpleNucleotideCanonicalAlleleDAO) {
-        this.simpleNucleotideCanonicalAlleleDAO = simpleNucleotideCanonicalAlleleDAO;
-    }
-
-    public SimpleTranscriptAlleleDAO getSimpleTranscriptAlleleDAO() {
-        return simpleTranscriptAlleleDAO;
-    }
-
-    public void setSimpleTranscriptAlleleDAO(SimpleTranscriptAlleleDAO simpleTranscriptAlleleDAO) {
-        this.simpleTranscriptAlleleDAO = simpleTranscriptAlleleDAO;
-    }
-
-    public TranscriptReferenceCoordinateDAO getTranscriptReferenceCoordinateDAO() {
-        return transcriptReferenceCoordinateDAO;
-    }
-
-    public void setTranscriptReferenceCoordinateDAO(TranscriptReferenceCoordinateDAO transcriptReferenceCoordinateDAO) {
-        this.transcriptReferenceCoordinateDAO = transcriptReferenceCoordinateDAO;
-    }
-
-    public TranscriptReferenceSequenceDAO getTranscriptReferenceSequenceDAO() {
-        return transcriptReferenceSequenceDAO;
-    }
-
-    public void setTranscriptReferenceSequenceDAO(TranscriptReferenceSequenceDAO transcriptReferenceSequenceDAO) {
-        this.transcriptReferenceSequenceDAO = transcriptReferenceSequenceDAO;
+    public void setSimpleAlleleDAO(SimpleAlleleDAO simpleAlleleDAO) {
+        this.simpleAlleleDAO = simpleAlleleDAO;
     }
 
 }

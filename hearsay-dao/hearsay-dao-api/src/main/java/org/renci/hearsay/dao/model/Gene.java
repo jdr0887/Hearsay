@@ -1,15 +1,18 @@
 package org.renci.hearsay.dao.model;
 
 import java.util.List;
-import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -18,6 +21,8 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -45,6 +50,12 @@ public class Gene implements Persistable {
     @Column(name = "id")
     private Long id;
 
+    @XmlElementWrapper(name = "identifiers")
+    @XmlElement(name = "identifier")
+    @ManyToMany(targetEntity = Gene.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @JoinTable(name = "gene_identifier", joinColumns = @JoinColumn(name = "gene_fid"), inverseJoinColumns = @JoinColumn(name = "identifier_fid"))
+    private List<Identifier> identifiers;
+
     @Index
     @Column(name = "name")
     private String name;
@@ -60,11 +71,8 @@ public class Gene implements Persistable {
     @OneToMany(mappedBy = "gene", fetch = FetchType.EAGER)
     private List<GeneSymbol> symbolAliases;
 
-    @OneToMany(mappedBy = "gene", fetch = FetchType.LAZY)
-    private Set<GeneReferenceSequence> geneReferenceSequences;
-
-    @OneToMany(mappedBy = "gene", fetch = FetchType.LAZY)
-    private Set<TranscriptReferenceSequence> transcriptReferenceSequences;
+    @OneToMany(mappedBy = "gene", fetch = FetchType.EAGER)
+    private List<ReferenceSequence> referenceSequences;
 
     public Gene() {
         super();
@@ -76,6 +84,14 @@ public class Gene implements Persistable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<Identifier> getIdentifiers() {
+        return identifiers;
+    }
+
+    public void setIdentifiers(List<Identifier> identifiers) {
+        this.identifiers = identifiers;
     }
 
     public String getDescription() {
@@ -102,20 +118,20 @@ public class Gene implements Persistable {
         this.symbol = symbol;
     }
 
-    public Set<GeneReferenceSequence> getGeneReferenceSequences() {
-        return geneReferenceSequences;
+    public List<GeneSymbol> getSymbolAliases() {
+        return symbolAliases;
     }
 
-    public void setGeneReferenceSequences(Set<GeneReferenceSequence> geneReferenceSequences) {
-        this.geneReferenceSequences = geneReferenceSequences;
+    public void setSymbolAliases(List<GeneSymbol> symbolAliases) {
+        this.symbolAliases = symbolAliases;
     }
 
-    public Set<TranscriptReferenceSequence> getTranscriptReferenceSequences() {
-        return transcriptReferenceSequences;
+    public List<ReferenceSequence> getReferenceSequences() {
+        return referenceSequences;
     }
 
-    public void setTranscriptReferenceSequences(Set<TranscriptReferenceSequence> transcriptReferenceSequences) {
-        this.transcriptReferenceSequences = transcriptReferenceSequences;
+    public void setReferenceSequences(List<ReferenceSequence> referenceSequences) {
+        this.referenceSequences = referenceSequences;
     }
 
     @Override

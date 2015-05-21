@@ -21,19 +21,19 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
-@XmlRootElement(name = "intronicCoordinate")
-@XmlType(name = "IntronicCoordinate")
+@XmlRootElement(name = "intronicOffset")
+@XmlType(name = "IntronicOffset")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "intronic_coordinate")
+@Table(name = "intronic_offset")
 public class IntronOffset implements Persistable {
 
     private static final long serialVersionUID = -4320424521732996608L;
 
     @XmlAttribute(name = "id")
     @Id()
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "intronic_coordinate_id_seq")
-    @SequenceGenerator(name = "intronic_coordinate_id_seq", sequenceName = "intronic_coordinate_id_seq", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "intronic_offset_id_seq")
+    @SequenceGenerator(name = "intronic_offset_id_seq", sequenceName = "intronic_offset_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
 
@@ -77,7 +77,7 @@ public class IntronOffset implements Persistable {
 
     @Override
     public String toString() {
-        return String.format("IntronicCoordinate [id=%s, start=%s, end=%s]", id, start, end);
+        return String.format("IntronOffset [id=%s, start=%s, end=%s]", id, start, end);
     }
 
     @Override

@@ -1,20 +1,15 @@
 package org.renci.hearsay.dao.model;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -45,11 +40,6 @@ public class ReferenceGenome implements Persistable {
     @Column(name = "name")
     private String name;
 
-    @XmlElementWrapper(name = "chromosomeReferenceSequences")
-    @XmlElement(name = "chromosomeReferenceSequence")
-    @ManyToMany(mappedBy = "referenceGenomes")
-    private Set<ChromosomeReferenceSequence> chromosomeReferenceSequences;
-
     public ReferenceGenome() {
         super();
     }
@@ -68,14 +58,6 @@ public class ReferenceGenome implements Persistable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Set<ChromosomeReferenceSequence> getChromosomeReferenceSequences() {
-        return chromosomeReferenceSequences;
-    }
-
-    public void setChromosomeReferenceSequences(Set<ChromosomeReferenceSequence> chromosomeReferenceSequences) {
-        this.chromosomeReferenceSequences = chromosomeReferenceSequences;
     }
 
     @Override
