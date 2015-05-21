@@ -37,6 +37,11 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
+	<groupId>org.renci.clinvar</groupId>
+	<artifactId>clinvar-public</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
 	<groupId>javax.ws.rs</groupId>
 	<artifactId>javax.ws.rs-api</artifactId>
 	<version>2.0.1</version>
@@ -270,7 +275,7 @@
     </plugins>
   </build>
   <modules>
-    <!-- <module>hearsay-commands</module> -->
+    <module>hearsay-commands</module>
     <module>hearsay-datasource</module>
     <module>hearsay-dao</module>
     <module>hearsay-web-service-api</module>
