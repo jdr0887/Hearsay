@@ -9,6 +9,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.apache.commons.lang.StringUtils;
 import org.renci.hearsay.dao.GeneDAO;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.model.Gene;
@@ -45,6 +46,28 @@ public class GeneDAOImpl extends BaseEntityDAOImpl<Gene, Long> implements GeneDA
         Root<Gene> fromGene = crit.from(Gene.class);
         List<Predicate> predicates = new ArrayList<Predicate>();
         predicates.add(critBuilder.like(fromGene.get(Gene_.name), name));
+        crit.where(predicates.toArray(new Predicate[predicates.size()]));
+        TypedQuery<Gene> query = getEntityManager().createQuery(crit);
+        List<Gene> ret = query.getResultList();
+        return ret;
+    }
+
+    @Override
+    public List<Gene> findByExample(Gene gene) throws HearsayDAOException {
+        logger.debug("ENTERING findByExample(Gene)");
+        CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<Gene> crit = critBuilder.createQuery(getPersistentClass());
+        Root<Gene> fromGene = crit.from(Gene.class);
+        List<Predicate> predicates = new ArrayList<Predicate>();
+        if (StringUtils.isNotEmpty(gene.getName())) {
+            predicates.add(critBuilder.like(fromGene.get(Gene_.name), gene.getName()));
+        }
+        if (StringUtils.isNotEmpty(gene.getSymbol())) {
+            predicates.add(critBuilder.like(fromGene.get(Gene_.symbol), gene.getSymbol()));
+        }
+        if (StringUtils.isNotEmpty(gene.getDescription())) {
+            predicates.add(critBuilder.like(fromGene.get(Gene_.description), gene.getDescription()));
+        }
         crit.where(predicates.toArray(new Predicate[predicates.size()]));
         TypedQuery<Gene> query = getEntityManager().createQuery(crit);
         List<Gene> ret = query.getResultList();
