@@ -26,8 +26,8 @@ public interface GeneService {
     public Gene findById(@PathParam("id") Long id);
 
     @GET
-    @Path("/findByName/{name}")
-    public List<Gene> findByName(@PathParam("name") String name);
+    @Path("/findBySymbol/{symbol}")
+    public List<Gene> findBySymbol(@PathParam("symbol") String symbol);
 
     @POST
     @Path("/")

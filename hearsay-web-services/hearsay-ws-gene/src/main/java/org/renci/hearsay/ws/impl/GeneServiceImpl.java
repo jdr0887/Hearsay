@@ -57,11 +57,11 @@ public class GeneServiceImpl implements GeneService {
     }
 
     @Override
-    public List<Gene> findByName(String name) {
+    public List<Gene> findBySymbol(String symbol) {
         logger.debug("ENTERING findAll()");
         List<Gene> ret = new ArrayList<Gene>();
         try {
-            ret.addAll(geneDAO.findByName(name));
+            ret.addAll(geneDAO.findBySymbol(symbol));
         } catch (HearsayDAOException e) {
             e.printStackTrace();
         }

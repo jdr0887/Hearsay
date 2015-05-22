@@ -39,13 +39,13 @@ public class GeneDAOImpl extends BaseEntityDAOImpl<Gene, Long> implements GeneDA
     }
 
     @Override
-    public List<Gene> findByName(String name) throws HearsayDAOException {
-        logger.debug("ENTERING findByName(Gene)");
+    public List<Gene> findBySymbol(String symbol) throws HearsayDAOException {
+        logger.debug("ENTERING findBySymbol(Gene)");
         CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Gene> crit = critBuilder.createQuery(getPersistentClass());
         Root<Gene> fromGene = crit.from(Gene.class);
         List<Predicate> predicates = new ArrayList<Predicate>();
-        predicates.add(critBuilder.like(fromGene.get(Gene_.name), name));
+        predicates.add(critBuilder.like(fromGene.get(Gene_.symbol), symbol));
         crit.where(predicates.toArray(new Predicate[predicates.size()]));
         TypedQuery<Gene> query = getEntityManager().createQuery(crit);
         List<Gene> ret = query.getResultList();
@@ -59,9 +59,6 @@ public class GeneDAOImpl extends BaseEntityDAOImpl<Gene, Long> implements GeneDA
         CriteriaQuery<Gene> crit = critBuilder.createQuery(getPersistentClass());
         Root<Gene> fromGene = crit.from(Gene.class);
         List<Predicate> predicates = new ArrayList<Predicate>();
-        if (StringUtils.isNotEmpty(gene.getName())) {
-            predicates.add(critBuilder.like(fromGene.get(Gene_.name), gene.getName()));
-        }
         if (StringUtils.isNotEmpty(gene.getSymbol())) {
             predicates.add(critBuilder.like(fromGene.get(Gene_.symbol), gene.getSymbol()));
         }

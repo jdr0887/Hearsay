@@ -1,5 +1,6 @@
 package org.renci.hearsay.dao.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -38,7 +39,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "gene")
-@NamedQueries({ @NamedQuery(name = "Gene.findAll", query = "SELECT a FROM Gene a order by a.name") })
+@NamedQueries({ @NamedQuery(name = "Gene.findAll", query = "SELECT a FROM Gene a order by a.symbol") })
 public class Gene implements Persistable {
 
     private static final long serialVersionUID = -5997799315221166517L;
@@ -52,13 +53,9 @@ public class Gene implements Persistable {
 
     @XmlElementWrapper(name = "identifiers")
     @XmlElement(name = "identifier")
-    @ManyToMany(targetEntity = Gene.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = Identifier.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
     @JoinTable(name = "gene_identifier", joinColumns = @JoinColumn(name = "gene_fid"), inverseJoinColumns = @JoinColumn(name = "identifier_fid"))
     private List<Identifier> identifiers;
-
-    @Index
-    @Column(name = "name")
-    private String name;
 
     @Index
     @Column(name = "symbol")
@@ -87,6 +84,9 @@ public class Gene implements Persistable {
     }
 
     public List<Identifier> getIdentifiers() {
+        if (identifiers == null) {
+            identifiers = new ArrayList<Identifier>();
+        }
         return identifiers;
     }
 
@@ -102,14 +102,6 @@ public class Gene implements Persistable {
         this.description = description;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getSymbol() {
         return symbol;
     }
@@ -119,6 +111,9 @@ public class Gene implements Persistable {
     }
 
     public List<GeneSymbol> getSymbolAliases() {
+        if (symbolAliases == null) {
+            symbolAliases = new ArrayList<GeneSymbol>();
+        }
         return symbolAliases;
     }
 
@@ -136,7 +131,7 @@ public class Gene implements Persistable {
 
     @Override
     public String toString() {
-        return String.format("Gene [id=%s, name=%s, symbol=%s]", id, name, symbol);
+        return String.format("Gene [id=%s, symbol=%s]", id, symbol);
     }
 
     @Override
@@ -145,7 +140,6 @@ public class Gene implements Persistable {
         int result = 1;
         result = prime * result + ((description == null) ? 0 : description.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((symbol == null) ? 0 : symbol.hashCode());
         return result;
     }
@@ -168,11 +162,6 @@ public class Gene implements Persistable {
             if (other.id != null)
                 return false;
         } else if (!id.equals(other.id))
-            return false;
-        if (name == null) {
-            if (other.name != null)
-                return false;
-        } else if (!name.equals(other.name))
             return false;
         if (symbol == null) {
             if (other.symbol != null)
