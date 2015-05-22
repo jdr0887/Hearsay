@@ -25,13 +25,13 @@ public class ImportClinVarAction implements Runnable {
         try {
             JAXBContext jc = JAXBContext.newInstance(ReleaseType.class);
             Unmarshaller u = jc.createUnmarshaller();
-            ReleaseType releaseType = (ReleaseType) u.unmarshal(new GZIPInputStream(new FileInputStream(clinvarDownload)));
-            
+            ReleaseType releaseType = (ReleaseType) u.unmarshal(new GZIPInputStream(
+                    new FileInputStream(clinvarDownload)));
+
             List<PublicSetType> publicSetType = releaseType.getClinVarSet();
             for (PublicSetType pst : publicSetType) {
             }
-            
-            
+
         } catch (JAXBException | IOException e) {
             e.printStackTrace();
         }

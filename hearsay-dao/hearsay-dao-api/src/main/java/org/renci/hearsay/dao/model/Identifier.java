@@ -1,16 +1,27 @@
 package org.renci.hearsay.dao.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import org.renci.hearsay.dao.Persistable;
@@ -40,6 +51,11 @@ public class Identifier implements Persistable {
 
     @Column(name = "value")
     private String value;
+
+    @XmlTransient
+    @ManyToMany(targetEntity = Gene.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @JoinTable(name = "gene_identifier", joinColumns = @JoinColumn(name = "identifier_fid"), inverseJoinColumns = @JoinColumn(name = "gene_fid"))
+    private List<Gene> genes;
 
     public Long getId() {
         return id;

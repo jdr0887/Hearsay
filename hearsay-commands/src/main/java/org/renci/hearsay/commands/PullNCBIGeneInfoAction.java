@@ -46,7 +46,7 @@ public class PullNCBIGeneInfoAction extends AbstractAction {
             ftpClient.connect("ftp.ncbi.nlm.nih.gov");
 
             ftpClient.login("anonymous", "anonymous");
-            ftpClient.setFileType(FTP.ASCII_FILE_TYPE);
+            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
             ftpClient.enterLocalPassiveMode();
 
             int reply = ftpClient.getReplyCode();
@@ -86,16 +86,15 @@ public class PullNCBIGeneInfoAction extends AbstractAction {
                 String chromosome = st.nextToken();
                 String mapLocation = st.nextToken();
                 String description = st.nextToken();
-                String typeOfGene = st.nextToken();
-                String symbolFromNomenclatureAuthority = st.nextToken();
-                String nameFromNomenclatureAuthority = st.nextToken();
-                String nomenclatureStatus = st.nextToken();
-                String otherDesignations = st.nextToken();
-                String modificationDate = st.nextToken();
+                // String typeOfGene = st.nextToken();
+                // String symbolFromNomenclatureAuthority = st.nextToken();
+                // String nameFromNomenclatureAuthority = st.nextToken();
+                // String nomenclatureStatus = st.nextToken();
+                // String otherDesignations = st.nextToken();
+                // String modificationDate = st.nextToken();
 
                 Gene exampleGene = new Gene();
                 exampleGene.setDescription(description);
-                exampleGene.setName(geneId);
                 exampleGene.setSymbol(symbol);
 
                 List<Gene> potentiallyFoundGeneList = hearsayDAOBean.getGeneDAO().findByExample(exampleGene);
@@ -105,21 +104,33 @@ public class PullNCBIGeneInfoAction extends AbstractAction {
                 }
 
                 exampleGene.setId(hearsayDAOBean.getGeneDAO().save(exampleGene));
+                logger.info(exampleGene.toString());
 
-                for (String geneSymbol : synonyms.split("|")) {
-                    GeneSymbol gs = new GeneSymbol();
-                    gs.setSymbol(geneSymbol);
-                    gs.setGene(exampleGene);
-                    gs.setId(hearsayDAOBean.getGeneDAO().save(exampleGene));
-                    exampleGene.getSymbolAliases().add(gs);
+                if (!synonyms.trim().equals("-")) {
+                    StringTokenizer geneSymbolStringTokenizer = new StringTokenizer(synonyms, "|");
+                    
+                    logger.info(synonyms);
+                    while (geneSymbolStringTokenizer.hasMoreTokens()) {
+                        String geneSymbol = geneSymbolStringTokenizer.nextToken();
+                        GeneSymbol gs = new GeneSymbol();
+                        gs.setSymbol(geneSymbol);
+                        gs.setGene(exampleGene);
+                        gs.setId(hearsayDAOBean.getGeneSymbolDAO().save(gs));
+                        logger.info(geneSymbol.toString());
+                        exampleGene.getSymbolAliases().add(gs);
+                    }
                 }
 
                 Identifier identifier = new Identifier();
                 identifier
                         .setSystem("ftp://ftp.ncbi.nlm.nih.gov/gene/DATA/GENE_INFO/Mammalia/Homo_sapiens.gene_info.gz");
-                identifier.setValue(taxId);
+                identifier.setValue(geneId);
                 identifier.setId(hearsayDAOBean.getIdentifierDAO().save(identifier));
+                logger.info(identifier.toString());
+
                 exampleGene.getIdentifiers().add(identifier);
+
+                hearsayDAOBean.getGeneDAO().save(exampleGene);
 
             }
 

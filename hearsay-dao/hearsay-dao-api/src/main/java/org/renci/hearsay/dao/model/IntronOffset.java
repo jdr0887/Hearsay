@@ -21,19 +21,19 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
-@XmlRootElement(name = "intronicOffset")
-@XmlType(name = "IntronicOffset")
+@XmlRootElement(name = "intronOffset")
+@XmlType(name = "IntronOffset")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "intronic_offset")
+@Table(name = "intron_offset")
 public class IntronOffset implements Persistable {
 
     private static final long serialVersionUID = -4320424521732996608L;
 
     @XmlAttribute(name = "id")
     @Id()
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "intronic_offset_id_seq")
-    @SequenceGenerator(name = "intronic_offset_id_seq", sequenceName = "intronic_offset_id_seq", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "intron_offset_id_seq")
+    @SequenceGenerator(name = "intron_offset_id_seq", sequenceName = "intron_offset_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
 

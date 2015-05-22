@@ -28,10 +28,10 @@ public class ListGenesAction extends AbstractAction {
     public Object doExecute() {
         logger.debug("ENTERING doExecute()");
 
-        String format = "%1$-10s %2$-24s %3$s%n";
+        String format = "%1$-10s %2$-10s %3$s%n";
         StringBuilder sb = new StringBuilder();
         Formatter formatter = new Formatter(sb, Locale.US);
-        formatter.format(format, "ID", "Name", "Symbol", "Description");
+        formatter.format(format, "ID", "Symbol", "Description");
 
         List<Gene> geneList = new ArrayList<>();
         try {
@@ -41,7 +41,7 @@ public class ListGenesAction extends AbstractAction {
         }
 
         for (Gene gene : geneList) {
-            formatter.format(format, gene.getId(), gene.getName(), gene.getSymbol(), gene.getDescription());
+            formatter.format(format, gene.getId(), gene.getSymbol(), gene.getDescription());
             formatter.flush();
         }
         System.out.println(formatter.toString());

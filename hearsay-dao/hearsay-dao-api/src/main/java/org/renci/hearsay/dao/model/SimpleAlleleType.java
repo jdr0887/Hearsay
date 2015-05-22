@@ -7,5 +7,5 @@ public enum SimpleAlleleType {
     TRANSCRIPT,
 
     AMINO_ACID;
-    
+
 }
