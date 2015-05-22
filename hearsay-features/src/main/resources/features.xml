@@ -37,7 +37,7 @@
     <bundle>mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/${jackson.version}</bundle>
     <bundle>mvn:com.fasterxml.jackson.module/jackson-module-jaxb-annotations/${jackson.version}</bundle>
     <bundle>mvn:org.renci.osgi.bundles/postgresql-9.3-1102-jdbc41-bundle/0.0.1</bundle>
-    <bundle>mvn:org.renci.clinvar/clinvar-public/0.0.1-SNAPSHOT</bundle>
+    <bundle>mvn:org.renci.clinvar/clinvar-public/0.0.1</bundle>
   </feature>
 
   <feature name="hearsay-dao" version="${project.version}" resolver="(obr)">
@@ -67,8 +67,3 @@
   </feature>
 
 </features>
-
-
-
-
-
