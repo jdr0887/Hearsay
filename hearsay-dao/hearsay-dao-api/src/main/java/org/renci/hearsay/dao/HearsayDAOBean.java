@@ -14,7 +14,7 @@ public class HearsayDAOBean {
 
     private ReferenceCoordinateDAO referenceCoordinateDAO;
 
-    private ReferenceGenomeDAO referenceGenomeDAO;
+    private GenomeReferenceDAO genomeReferenceDAO;
 
     private ReferenceSequenceDAO referenceSequenceDAO;
 
@@ -72,12 +72,12 @@ public class HearsayDAOBean {
         this.referenceCoordinateDAO = referenceCoordinateDAO;
     }
 
-    public ReferenceGenomeDAO getReferenceGenomeDAO() {
-        return referenceGenomeDAO;
+    public GenomeReferenceDAO getGenomeReferenceDAO() {
+        return genomeReferenceDAO;
     }
 
-    public void setReferenceGenomeDAO(ReferenceGenomeDAO referenceGenomeDAO) {
-        this.referenceGenomeDAO = referenceGenomeDAO;
+    public void setGenomeReferenceDAO(GenomeReferenceDAO genomeReferenceDAO) {
+        this.genomeReferenceDAO = genomeReferenceDAO;
     }
 
     public ReferenceSequenceDAO getReferenceSequenceDAO() {
