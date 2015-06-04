@@ -1,7 +1,15 @@
 package org.renci.hearsay.dao;
 
-import org.renci.hearsay.dao.model.ReferenceGenome;
+import java.util.List;
 
-public interface ReferenceGenomeDAO extends BaseEntityDAO<ReferenceGenome, Long> {
+import org.renci.hearsay.dao.model.GenomeReference;
+
+public interface GenomeReferenceDAO extends BaseEntityDAO<GenomeReference, Long> {
+
+    public List<GenomeReference> findAll() throws HearsayDAOException;
+
+    public List<GenomeReference> findByExample(GenomeReference genomeReference) throws HearsayDAOException;
+
+    public List<GenomeReference> findByIdentifierValue(String value) throws HearsayDAOException;
 
 }
