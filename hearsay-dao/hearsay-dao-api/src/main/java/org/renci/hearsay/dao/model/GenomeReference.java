@@ -1,38 +1,54 @@
 package org.renci.hearsay.dao.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import org.apache.openjpa.persistence.jdbc.Index;
 import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
-@XmlRootElement(name = "referenceGenome")
-@XmlType(name = "ReferenceGenome")
+@XmlRootElement(name = "genomeReference")
+@XmlType(name = "GenomeReference")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "reference_genome")
-public class ReferenceGenome implements Persistable {
+@Table(name = "genome_reference")
+@NamedQueries({ @NamedQuery(name = "GenomeReference.findAll", query = "SELECT a FROM GenomeReference a order by a.name") })
+public class GenomeReference implements Persistable {
 
     private static final long serialVersionUID = -225305295285554428L;
 
     @XmlAttribute(name = "id")
     @Id()
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reference_genome_id_seq")
-    @SequenceGenerator(name = "reference_genome_id_seq", sequenceName = "reference_genome_id_seq", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "genome_reference_id_seq")
+    @SequenceGenerator(name = "genome_reference_id_seq", sequenceName = "genome_reference_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
 
@@ -40,7 +56,18 @@ public class ReferenceGenome implements Persistable {
     @Column(name = "name")
     private String name;
 
-    public ReferenceGenome() {
+    @JsonProperty("identifiers")
+    @XmlElementWrapper(name = "identifiers")
+    @XmlElement(name = "identifier")
+    @ManyToMany(targetEntity = Identifier.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @JoinTable(name = "genome_reference_identifier", joinColumns = @JoinColumn(name = "genome_reference_fid"), inverseJoinColumns = @JoinColumn(name = "identifier_fid"))
+    private List<Identifier> identifiers;
+
+    @XmlTransient
+    @OneToMany(mappedBy = "genomeReference")
+    private List<ReferenceSequence> referenceSequences;
+
+    public GenomeReference() {
         super();
     }
 
@@ -52,6 +79,17 @@ public class ReferenceGenome implements Persistable {
         this.id = id;
     }
 
+    public List<Identifier> getIdentifiers() {
+        if (identifiers == null) {
+            identifiers = new ArrayList<Identifier>();
+        }
+        return identifiers;
+    }
+
+    public void setIdentifiers(List<Identifier> identifiers) {
+        this.identifiers = identifiers;
+    }
+
     public String getName() {
         return name;
     }
@@ -60,9 +98,17 @@ public class ReferenceGenome implements Persistable {
         this.name = name;
     }
 
+    public List<ReferenceSequence> getReferenceSequences() {
+        return referenceSequences;
+    }
+
+    public void setReferenceSequences(List<ReferenceSequence> referenceSequences) {
+        this.referenceSequences = referenceSequences;
+    }
+
     @Override
     public String toString() {
-        return String.format("ReferenceGenome [id=%s, name=%s]", id, name);
+        return String.format("GenomeReference [id=%s, name=%s]", id, name);
     }
 
     @Override
@@ -81,7 +127,7 @@ public class ReferenceGenome implements Persistable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        ReferenceGenome other = (ReferenceGenome) obj;
+        GenomeReference other = (GenomeReference) obj;
         if (name == null) {
             if (other.name != null)
                 return false;
