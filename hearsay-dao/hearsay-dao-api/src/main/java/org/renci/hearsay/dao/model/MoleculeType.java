@@ -1,15 +1,30 @@
 package org.renci.hearsay.dao.model;
 
-public enum CanonicalAlleleType {
+import java.util.Arrays;
+import java.util.List;
 
-    NUCLEOTIDE("nucleotide"),
+/**
+ * http://www.ncbi.nlm.nih.gov/books/NBK21091/table/ch18.T.refseq_accession_numbers_and_mole/?report=objectonly
+ * 
+ * @author jdr0887
+ */
+public enum MoleculeType {
 
-    AMINO_ACID("amino-acid");
+    GENOMIC("nucleotide", Arrays.asList("AC_", "NC_", "NG_", "NT_", "NW_", "NS_", "NZ_b")),
+
+    PROTEIN("amino-acid", Arrays.asList("AP_", "NP_", "YP_c", "XP_c", "ZP_c")),
+
+    RNA("RNA", Arrays.asList("NR_", "XR_c")),
+
+    mRNA("mRNA", Arrays.asList("NM_", "XM_c"));
 
     private String name;
 
-    private CanonicalAlleleType(String name) {
+    private List<String> prefixes;
+
+    private MoleculeType(String name, List<String> prefixes) {
         this.name = name;
+        this.prefixes = prefixes;
     }
 
     public String getName() {
@@ -18,6 +33,14 @@ public enum CanonicalAlleleType {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<String> getPrefixes() {
+        return prefixes;
+    }
+
+    public void setPrefixes(List<String> prefixes) {
+        this.prefixes = prefixes;
     }
 
 }
