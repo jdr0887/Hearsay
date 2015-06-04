@@ -4,7 +4,7 @@ public enum ReferenceSequenceChromosomeType {
 
     ONE("1"),
 
-    TWO("3"),
+    TWO("2"),
 
     THREE("3"),
 
