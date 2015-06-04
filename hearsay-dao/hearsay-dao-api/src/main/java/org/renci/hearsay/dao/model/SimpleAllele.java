@@ -45,8 +45,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "simple_allele")
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 public class SimpleAllele implements Persistable {
 
     private static final long serialVersionUID = 608874481580966242L;
