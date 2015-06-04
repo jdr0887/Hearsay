@@ -39,9 +39,9 @@ public class PullNCBIGeneInfoAction extends AbstractAction {
     @Override
     public Object doExecute() {
         FTPClient ftpClient = new FTPClient();
-        GZIPInputStream gzipIS = null;
-        BufferedReader br = null;
-        try {
+        File tmpFile = new File(System.getProperty("java.io.tmpdir", "/tmp"), "Homo_sapiens.gene_info.gz");
+        try (GZIPInputStream gzipIS = new GZIPInputStream(new FileInputStream(tmpFile));
+                BufferedReader br = new BufferedReader(new InputStreamReader(gzipIS))) {
             // download
             ftpClient.connect("ftp.ncbi.nlm.nih.gov");
 
@@ -56,15 +56,11 @@ public class PullNCBIGeneInfoAction extends AbstractAction {
                 return null;
             }
 
-            File tmpFile = new File(System.getProperty("java.io.tmpdir", "/tmp"), "Homo_sapiens.gene_info.gz");
             OutputStream fos = new BufferedOutputStream(new FileOutputStream(tmpFile));
             ftpClient.retrieveFile("/gene/DATA/GENE_INFO/Mammalia/Homo_sapiens.gene_info.gz", fos);
             fos.flush();
             fos.close();
 
-            // parse
-            gzipIS = new GZIPInputStream(new FileInputStream(tmpFile));
-            br = new BufferedReader(new InputStreamReader(gzipIS));
             // #Format: tax_id GeneID Symbol LocusTag Synonyms dbXrefs chromosome map_location description type_of_gene
             // Symbol_from_nomenclature_authority Full_name_from_nomenclature_authority Nomenclature_status
             // Other_designations Modification_date (tab is used as a separator, pound sign - start of a comment)
@@ -108,7 +104,7 @@ public class PullNCBIGeneInfoAction extends AbstractAction {
 
                 if (!synonyms.trim().equals("-")) {
                     StringTokenizer geneSymbolStringTokenizer = new StringTokenizer(synonyms, "|");
-                    
+
                     logger.info(synonyms);
                     while (geneSymbolStringTokenizer.hasMoreTokens()) {
                         String geneSymbol = geneSymbolStringTokenizer.nextToken();
@@ -117,7 +113,7 @@ public class PullNCBIGeneInfoAction extends AbstractAction {
                         gs.setGene(exampleGene);
                         gs.setId(hearsayDAOBean.getGeneSymbolDAO().save(gs));
                         logger.info(geneSymbol.toString());
-                        exampleGene.getSymbolAliases().add(gs);
+                        exampleGene.getAliases().add(gs);
                     }
                 }
 
@@ -138,12 +134,6 @@ public class PullNCBIGeneInfoAction extends AbstractAction {
             e.printStackTrace();
         } finally {
             try {
-                if (br != null) {
-                    br.close();
-                }
-                if (gzipIS != null) {
-                    gzipIS.close();
-                }
                 if (ftpClient.isConnected()) {
                     ftpClient.disconnect();
                 }
