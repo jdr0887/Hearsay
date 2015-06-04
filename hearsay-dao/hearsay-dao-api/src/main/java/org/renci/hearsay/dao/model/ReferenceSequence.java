@@ -62,8 +62,8 @@ public class ReferenceSequence implements Persistable {
     private Gene gene;
 
     @ManyToOne
-    @JoinColumn(name = "gene_fid")
-    private ReferenceGenome referenceGenome;
+    @JoinColumn(name = "genome_reference_fid")
+    private GenomeReference genomeReference;
 
     @Column(name = "relationship_type")
     @Enumerated(EnumType.STRING)
@@ -73,7 +73,7 @@ public class ReferenceSequence implements Persistable {
     @JoinColumn(name = "parent_fid")
     private ReferenceSequence parent;
 
-    @OneToMany(mappedBy = "parent", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "parent")
     private List<ReferenceSequence> relatedChildren;
 
     public Long getId() {
@@ -124,12 +124,12 @@ public class ReferenceSequence implements Persistable {
         this.gene = gene;
     }
 
-    public ReferenceGenome getReferenceGenome() {
-        return referenceGenome;
+    public GenomeReference getGenomeReference() {
+        return genomeReference;
     }
 
-    public void setReferenceGenome(ReferenceGenome referenceGenome) {
-        this.referenceGenome = referenceGenome;
+    public void setGenomeReference(GenomeReference genomeReference) {
+        this.genomeReference = genomeReference;
     }
 
     public ReferenceSequenceRelationshipType getRelationshipType() {
