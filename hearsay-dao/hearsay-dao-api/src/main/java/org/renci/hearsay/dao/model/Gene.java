@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import org.apache.openjpa.persistence.jdbc.Index;
@@ -32,6 +33,7 @@ import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(Include.NON_EMPTY)
 @XmlRootElement(name = "gene")
@@ -51,6 +53,7 @@ public class Gene implements Persistable {
     @Column(name = "id")
     private Long id;
 
+    @JsonProperty("identifiers")
     @XmlElementWrapper(name = "identifiers")
     @XmlElement(name = "identifier")
     @ManyToMany(targetEntity = Identifier.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
@@ -65,9 +68,13 @@ public class Gene implements Persistable {
     @Column(name = "description")
     private String description;
 
+    @JsonProperty("aliases")
+    @XmlElementWrapper(name = "aliases")
+    @XmlElement(name = "alias")
     @OneToMany(mappedBy = "gene", fetch = FetchType.EAGER)
-    private List<GeneSymbol> symbolAliases;
+    private List<GeneSymbol> aliases;
 
+    @XmlTransient
     @OneToMany(mappedBy = "gene", fetch = FetchType.EAGER)
     private List<ReferenceSequence> referenceSequences;
 
@@ -110,15 +117,15 @@ public class Gene implements Persistable {
         this.symbol = symbol;
     }
 
-    public List<GeneSymbol> getSymbolAliases() {
-        if (symbolAliases == null) {
-            symbolAliases = new ArrayList<GeneSymbol>();
+    public List<GeneSymbol> getAliases() {
+        if (aliases == null) {
+            aliases = new ArrayList<GeneSymbol>();
         }
-        return symbolAliases;
+        return aliases;
     }
 
-    public void setSymbolAliases(List<GeneSymbol> symbolAliases) {
-        this.symbolAliases = symbolAliases;
+    public void setAliases(List<GeneSymbol> aliases) {
+        this.aliases = aliases;
     }
 
     public List<ReferenceSequence> getReferenceSequences() {
@@ -131,7 +138,7 @@ public class Gene implements Persistable {
 
     @Override
     public String toString() {
-        return String.format("Gene [id=%s, symbol=%s]", id, symbol);
+        return String.format("Gene [id=%s, symbol=%s, description=%s]", id, symbol, description);
     }
 
     @Override
