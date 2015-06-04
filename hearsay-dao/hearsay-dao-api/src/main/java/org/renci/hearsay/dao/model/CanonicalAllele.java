@@ -1,6 +1,6 @@
 package org.renci.hearsay.dao.model;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -49,17 +49,8 @@ public class CanonicalAllele implements Persistable {
     @Column(name = "id")
     private Long id;
 
-    @XmlElementWrapper(name = "identifiers")
-    @XmlElement(name = "identifier")
-    @ManyToMany(targetEntity = CanonicalAllele.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    @JoinTable(name = "canonical_allele_identifier", joinColumns = @JoinColumn(name = "canonical_allele_fid"), inverseJoinColumns = @JoinColumn(name = "identifier_fid"))
-    private List<Identifier> identifiers;
-
-    @XmlElementWrapper(name = "relatedIdentifiers")
-    @XmlElement(name = "relatedIdentifier")
-    @ManyToMany(targetEntity = CanonicalAllele.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    @JoinTable(name = "canonical_allele_related_identifier", joinColumns = @JoinColumn(name = "canonical_allele_fid"), inverseJoinColumns = @JoinColumn(name = "related_identifier_fid"))
-    private List<Identifier> relatedIdentifiers;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "active")
     private Boolean active;
@@ -67,9 +58,9 @@ public class CanonicalAllele implements Persistable {
     @Column(name = "version")
     private String version;
 
-    @Column(name = "type")
+    @Column(name = "molecule_type")
     @Enumerated(EnumType.STRING)
-    private CanonicalAlleleType type;
+    private MoleculeType moleculeType;
 
     @Column(name = "complexity_type")
     @Enumerated(EnumType.STRING)
@@ -90,7 +81,19 @@ public class CanonicalAllele implements Persistable {
     private List<CanonicalAllele> children;
 
     @OneToMany(mappedBy = "canonicalAllele", fetch = FetchType.EAGER)
-    private List<SimpleAllele> relatedSimpleAllele;
+    private List<SimpleAllele> relatedSimpleAlleles;
+
+    @XmlElementWrapper(name = "identifiers")
+    @XmlElement(name = "identifier")
+    @ManyToMany(targetEntity = CanonicalAllele.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @JoinTable(name = "canonical_allele_identifier", joinColumns = @JoinColumn(name = "canonical_allele_fid"), inverseJoinColumns = @JoinColumn(name = "identifier_fid"))
+    private List<Identifier> identifiers;
+
+    @XmlElementWrapper(name = "relatedIdentifiers")
+    @XmlElement(name = "relatedIdentifier")
+    @ManyToMany(targetEntity = CanonicalAllele.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @JoinTable(name = "canonical_allele_related_identifier", joinColumns = @JoinColumn(name = "canonical_allele_fid"), inverseJoinColumns = @JoinColumn(name = "related_identifier_fid"))
+    private List<Identifier> relatedIdentifiers;
 
     public CanonicalAllele() {
         super();
@@ -105,6 +108,9 @@ public class CanonicalAllele implements Persistable {
     }
 
     public List<Identifier> getIdentifiers() {
+        if (identifiers == null) {
+            identifiers = new ArrayList<Identifier>();
+        }
         return identifiers;
     }
 
@@ -113,6 +119,9 @@ public class CanonicalAllele implements Persistable {
     }
 
     public List<Identifier> getRelatedIdentifiers() {
+        if (relatedIdentifiers == null) {
+            relatedIdentifiers = new ArrayList<Identifier>();
+        }
         return relatedIdentifiers;
     }
 
@@ -136,12 +145,20 @@ public class CanonicalAllele implements Persistable {
         this.version = version;
     }
 
-    public CanonicalAlleleType getType() {
-        return type;
+    public String getName() {
+        return name;
     }
 
-    public void setType(CanonicalAlleleType type) {
-        this.type = type;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public MoleculeType getMoleculeType() {
+        return moleculeType;
+    }
+
+    public void setMoleculeType(MoleculeType moleculeType) {
+        this.moleculeType = moleculeType;
     }
 
     public ComplexityType getComplexityType() {
@@ -176,7 +193,10 @@ public class CanonicalAllele implements Persistable {
         this.parent = parent;
     }
 
-    public Collection<CanonicalAllele> getChildren() {
+    public List<CanonicalAllele> getChildren() {
+        if (children == null) {
+            children = new ArrayList<CanonicalAllele>();
+        }
         return children;
     }
 
@@ -184,19 +204,22 @@ public class CanonicalAllele implements Persistable {
         this.children = children;
     }
 
-    public List<SimpleAllele> getRelatedSimpleAllele() {
-        return relatedSimpleAllele;
+    public List<SimpleAllele> getRelatedSimpleAlleles() {
+        if (relatedSimpleAlleles == null) {
+            relatedSimpleAlleles = new ArrayList<SimpleAllele>();
+        }
+        return relatedSimpleAlleles;
     }
 
-    public void setRelatedSimpleAllele(List<SimpleAllele> relatedSimpleAllele) {
-        this.relatedSimpleAllele = relatedSimpleAllele;
+    public void setRelatedSimpleAlleles(List<SimpleAllele> relatedSimpleAlleles) {
+        this.relatedSimpleAlleles = relatedSimpleAlleles;
     }
 
     @Override
     public String toString() {
         return String
-                .format("CanonicalAllele [id=%s, active=%s, version=%s, type=%s, complexityType=%s, replacementType=%s, split=%s]",
-                        id, active, version, type, complexityType, replacementType, split);
+                .format("CanonicalAllele [id=%s, name=%s, active=%s, version=%s, moleculeType=%s, complexityType=%s, replacementType=%s, split=%s]",
+                        id, name, active, version, moleculeType, complexityType, replacementType, split);
     }
 
     @Override
@@ -209,7 +232,7 @@ public class CanonicalAllele implements Persistable {
         result = prime * result + ((parent == null) ? 0 : parent.hashCode());
         result = prime * result + ((replacementType == null) ? 0 : replacementType.hashCode());
         result = prime * result + ((split == null) ? 0 : split.hashCode());
-        result = prime * result + ((type == null) ? 0 : type.hashCode());
+        result = prime * result + ((moleculeType == null) ? 0 : moleculeType.hashCode());
         result = prime * result + ((version == null) ? 0 : version.hashCode());
         return result;
     }
@@ -247,7 +270,7 @@ public class CanonicalAllele implements Persistable {
                 return false;
         } else if (!split.equals(other.split))
             return false;
-        if (type != other.type)
+        if (moleculeType != other.moleculeType)
             return false;
         if (version == null) {
             if (other.version != null)
