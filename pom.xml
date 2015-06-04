@@ -37,9 +37,19 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
+	<groupId>org.renci.genbank</groupId>
+	<artifactId>gbff-parser</artifactId>
+	<version>0.0.8</version>
+      </dependency>
+      <dependency>
 	<groupId>org.renci.clinvar</groupId>
 	<artifactId>clinvar-public</artifactId>
 	<version>0.0.1</version>
+      </dependency>
+      <dependency>
+	<groupId>org.renci.lrg</groupId>
+	<artifactId>lrg-public</artifactId>
+	<version>1.9</version>
       </dependency>
       <dependency>
 	<groupId>javax.ws.rs</groupId>
