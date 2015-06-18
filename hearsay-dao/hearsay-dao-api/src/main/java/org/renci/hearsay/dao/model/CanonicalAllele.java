@@ -9,25 +9,18 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-
-import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -38,16 +31,9 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "canonical_allele")
-public class CanonicalAllele implements Persistable {
+public class CanonicalAllele extends IdentifiableEntity {
 
     private static final long serialVersionUID = 179947981554563568L;
-
-    @XmlAttribute(name = "id")
-    @Id()
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "canonical_allele_id_seq")
-    @SequenceGenerator(name = "canonical_allele_id_seq", sequenceName = "canonical_allele_id_seq", allocationSize = 1, initialValue = 1)
-    @Column(name = "id")
-    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -80,42 +66,19 @@ public class CanonicalAllele implements Persistable {
     @OneToMany(mappedBy = "parent", fetch = FetchType.EAGER)
     private List<CanonicalAllele> children;
 
-    @OneToMany(mappedBy = "canonicalAllele", fetch = FetchType.EAGER)
+    @XmlElementWrapper(name = "relatedSimpleAlleles")
+    @XmlElement(name = "simpleAllele")
+    @OneToMany(mappedBy = "canonicalAllele", fetch = FetchType.LAZY)
     private List<SimpleAllele> relatedSimpleAlleles;
 
-    @XmlElementWrapper(name = "identifiers")
-    @XmlElement(name = "identifier")
-    @ManyToMany(targetEntity = CanonicalAllele.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    @JoinTable(name = "canonical_allele_identifier", joinColumns = @JoinColumn(name = "canonical_allele_fid"), inverseJoinColumns = @JoinColumn(name = "identifier_fid"))
-    private List<Identifier> identifiers;
-
     @XmlElementWrapper(name = "relatedIdentifiers")
-    @XmlElement(name = "relatedIdentifier")
+    @XmlElement(name = "identifier")
     @ManyToMany(targetEntity = CanonicalAllele.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
     @JoinTable(name = "canonical_allele_related_identifier", joinColumns = @JoinColumn(name = "canonical_allele_fid"), inverseJoinColumns = @JoinColumn(name = "related_identifier_fid"))
     private List<Identifier> relatedIdentifiers;
 
     public CanonicalAllele() {
         super();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public List<Identifier> getIdentifiers() {
-        if (identifiers == null) {
-            identifiers = new ArrayList<Identifier>();
-        }
-        return identifiers;
-    }
-
-    public void setIdentifiers(List<Identifier> identifiers) {
-        this.identifiers = identifiers;
     }
 
     public List<Identifier> getRelatedIdentifiers() {
