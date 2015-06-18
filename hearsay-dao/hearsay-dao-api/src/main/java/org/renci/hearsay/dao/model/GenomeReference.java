@@ -1,37 +1,23 @@
 package org.renci.hearsay.dao.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import org.apache.openjpa.persistence.jdbc.Index;
-import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
@@ -41,53 +27,20 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @Entity
 @Table(name = "genome_reference")
 @NamedQueries({ @NamedQuery(name = "GenomeReference.findAll", query = "SELECT a FROM GenomeReference a order by a.name") })
-public class GenomeReference implements Persistable {
+public class GenomeReference extends IdentifiableEntity {
 
     private static final long serialVersionUID = -225305295285554428L;
-
-    @XmlAttribute(name = "id")
-    @Id()
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "genome_reference_id_seq")
-    @SequenceGenerator(name = "genome_reference_id_seq", sequenceName = "genome_reference_id_seq", allocationSize = 1, initialValue = 1)
-    @Column(name = "id")
-    private Long id;
 
     @Index
     @Column(name = "name")
     private String name;
 
-    @JsonProperty("identifiers")
-    @XmlElementWrapper(name = "identifiers")
-    @XmlElement(name = "identifier")
-    @ManyToMany(targetEntity = Identifier.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    @JoinTable(name = "genome_reference_identifier", joinColumns = @JoinColumn(name = "genome_reference_fid"), inverseJoinColumns = @JoinColumn(name = "identifier_fid"))
-    private List<Identifier> identifiers;
-
     @XmlTransient
-    @OneToMany(mappedBy = "genomeReference")
+    @OneToMany(mappedBy = "genomeReference", fetch = FetchType.LAZY)
     private List<ReferenceSequence> referenceSequences;
 
     public GenomeReference() {
         super();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public List<Identifier> getIdentifiers() {
-        if (identifiers == null) {
-            identifiers = new ArrayList<Identifier>();
-        }
-        return identifiers;
-    }
-
-    public void setIdentifiers(List<Identifier> identifiers) {
-        this.identifiers = identifiers;
     }
 
     public String getName() {

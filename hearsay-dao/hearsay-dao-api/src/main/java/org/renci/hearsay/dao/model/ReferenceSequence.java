@@ -6,23 +6,18 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.renci.hearsay.dao.Persistable;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -32,16 +27,10 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "reference_sequence")
-public class ReferenceSequence implements Persistable {
+@NamedQueries({ @NamedQuery(name = "ReferenceSequence.findAll", query = "SELECT a FROM ReferenceSequence a") })
+public class ReferenceSequence extends IdentifiableEntity {
 
     private static final long serialVersionUID = -488057011816731553L;
-
-    @XmlAttribute(name = "id")
-    @Id()
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reference_sequence_id_seq")
-    @SequenceGenerator(name = "reference_sequence_id_seq", sequenceName = "reference_sequence_id_seq", allocationSize = 1, initialValue = 1)
-    @Column(name = "id")
-    private Long id;
 
     @Column(name = "type")
     @Enumerated(EnumType.STRING)
@@ -57,6 +46,7 @@ public class ReferenceSequence implements Persistable {
     @Column(name = "cds_end")
     private Integer cdsEnd;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "gene_fid")
     private Gene gene;
@@ -75,14 +65,6 @@ public class ReferenceSequence implements Persistable {
 
     @OneToMany(mappedBy = "parent")
     private List<ReferenceSequence> relatedChildren;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public ReferenceSequenceType getType() {
         return type;
