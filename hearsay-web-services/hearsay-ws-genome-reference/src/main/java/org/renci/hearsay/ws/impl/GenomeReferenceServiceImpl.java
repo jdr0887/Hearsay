@@ -1,7 +1,10 @@
 package org.renci.hearsay.ws.impl;
 
-import org.renci.hearsay.dao.HearsayDAOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.renci.hearsay.dao.GenomeReferenceDAO;
+import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.model.GenomeReference;
 import org.renci.hearsay.ws.GenomeReferenceService;
 import org.slf4j.Logger;
@@ -23,6 +26,18 @@ public class GenomeReferenceServiceImpl implements GenomeReferenceService {
         GenomeReference ret = null;
         try {
             ret = genomeReferenceDAO.findById(id);
+        } catch (HearsayDAOException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    @Override
+    public List<GenomeReference> findAll() {
+        logger.debug("ENTERING findAll()");
+        List<GenomeReference> ret = new ArrayList<GenomeReference>();
+        try {
+            ret.addAll(genomeReferenceDAO.findAll());
         } catch (HearsayDAOException e) {
             e.printStackTrace();
         }
