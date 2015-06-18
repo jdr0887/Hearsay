@@ -3,25 +3,16 @@ package org.renci.hearsay.dao.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -29,7 +20,6 @@ import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import org.apache.openjpa.persistence.jdbc.Index;
-import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -42,23 +32,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 @Table(name = "gene")
 @NamedQueries({ @NamedQuery(name = "Gene.findAll", query = "SELECT a FROM Gene a order by a.symbol") })
-public class Gene implements Persistable {
+public class Gene extends IdentifiableEntity {
 
     private static final long serialVersionUID = -5997799315221166517L;
-
-    @XmlAttribute(name = "id")
-    @Id()
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gene_id_seq")
-    @SequenceGenerator(name = "gene_id_seq", sequenceName = "gene_id_seq", allocationSize = 1, initialValue = 1)
-    @Column(name = "id")
-    private Long id;
-
-    @JsonProperty("identifiers")
-    @XmlElementWrapper(name = "identifiers")
-    @XmlElement(name = "identifier")
-    @ManyToMany(targetEntity = Identifier.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    @JoinTable(name = "gene_identifier", joinColumns = @JoinColumn(name = "gene_fid"), inverseJoinColumns = @JoinColumn(name = "identifier_fid"))
-    private List<Identifier> identifiers;
 
     @Index
     @Column(name = "symbol")
@@ -68,6 +44,7 @@ public class Gene implements Persistable {
     @Column(name = "description")
     private String description;
 
+    @JsonInclude(Include.NON_EMPTY)
     @JsonProperty("aliases")
     @XmlElementWrapper(name = "aliases")
     @XmlElement(name = "alias")
@@ -75,30 +52,11 @@ public class Gene implements Persistable {
     private List<GeneSymbol> aliases;
 
     @XmlTransient
-    @OneToMany(mappedBy = "gene", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "gene", fetch = FetchType.LAZY)
     private List<ReferenceSequence> referenceSequences;
 
     public Gene() {
         super();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public List<Identifier> getIdentifiers() {
-        if (identifiers == null) {
-            identifiers = new ArrayList<Identifier>();
-        }
-        return identifiers;
-    }
-
-    public void setIdentifiers(List<Identifier> identifiers) {
-        this.identifiers = identifiers;
     }
 
     public String getDescription() {
@@ -146,7 +104,6 @@ public class Gene implements Persistable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((description == null) ? 0 : description.hashCode());
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((symbol == null) ? 0 : symbol.hashCode());
         return result;
     }
@@ -164,11 +121,6 @@ public class Gene implements Persistable {
             if (other.description != null)
                 return false;
         } else if (!description.equals(other.description))
-            return false;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
             return false;
         if (symbol == null) {
             if (other.symbol != null)
