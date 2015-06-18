@@ -2,7 +2,7 @@
   <parent>
     <groupId>org.renci.hearsay</groupId>
     <artifactId>parent</artifactId>
-    <version>0.0.5</version>
+    <version>0.0.6</version>
   </parent>
   <name>Hearsay</name>
   <modelVersion>4.0.0</modelVersion>
@@ -16,6 +16,8 @@
     <cxf.version>3.0.3</cxf.version>
     <spring.version>3.2.4.RELEASE</spring.version>
     <jackson.version>2.4.1</jackson.version>
+    <gbff.parser.version>0.0.20</gbff.parser.version>
+    <gff3.parser.version>0.0.3</gff3.parser.version>
   </properties>
   <issueManagement>
     <system>GitHub Issues</system>
@@ -39,12 +41,17 @@
       <dependency>
 	<groupId>org.renci.genbank</groupId>
 	<artifactId>gbff-parser</artifactId>
-	<version>0.0.8</version>
+	<version>${gbff.parser.version}</version>
       </dependency>
+      <dependency>
+	<groupId>org.renci.gff</groupId>
+	<artifactId>gff3-parser</artifactId>
+	<version>${gff3.parser.version}</version>	
+      </dependency>      
       <dependency>
 	<groupId>org.renci.clinvar</groupId>
 	<artifactId>clinvar-public</artifactId>
-	<version>0.0.1</version>
+	<version>1.18</version>
       </dependency>
       <dependency>
 	<groupId>org.renci.lrg</groupId>
