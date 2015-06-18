@@ -5,15 +5,15 @@
 
     <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
 
-    <class>org.renci.hearsay.dao.model.AlleleName</class>
     <class>org.renci.hearsay.dao.model.CanonicalAllele</class>
     <class>org.renci.hearsay.dao.model.DictionaryEntity</class>
     <class>org.renci.hearsay.dao.model.Gene</class>
     <class>org.renci.hearsay.dao.model.GeneSymbol</class>
+    <class>org.renci.hearsay.dao.model.GenomeReference</class>
+    <class>org.renci.hearsay.dao.model.IdentifiableEntity</class>
     <class>org.renci.hearsay.dao.model.Identifier</class>
     <class>org.renci.hearsay.dao.model.IntronOffset</class>
     <class>org.renci.hearsay.dao.model.ReferenceCoordinate</class>
-    <class>org.renci.hearsay.dao.model.GenomeReference</class>
     <class>org.renci.hearsay.dao.model.ReferenceSequence</class>
     <class>org.renci.hearsay.dao.model.SimpleAllele</class>
 
