@@ -1,5 +1,8 @@
 package org.renci.hearsay.ws.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.ReferenceSequenceDAO;
 import org.renci.hearsay.dao.model.ReferenceSequence;
@@ -23,6 +26,18 @@ public class ReferenceSequenceServiceImpl implements ReferenceSequenceService {
         ReferenceSequence ret = null;
         try {
             ret = referenceSequenceDAO.findById(id);
+        } catch (HearsayDAOException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    @Override
+    public List<ReferenceSequence> findByGeneId(Long geneId) {
+        logger.debug("ENTERING findByName(String)");
+        List<ReferenceSequence> ret = new ArrayList<ReferenceSequence>();
+        try {
+            ret.addAll(referenceSequenceDAO.findByGeneId(geneId));
         } catch (HearsayDAOException e) {
             e.printStackTrace();
         }
