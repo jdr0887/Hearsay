@@ -10,13 +10,13 @@ import java.util.List;
  */
 public enum MoleculeType {
 
-    GENOMIC("nucleotide", Arrays.asList("AC_", "NC_", "NG_", "NT_", "NW_", "NS_", "NZ_b")),
+    GENOMIC("nucleotide", Arrays.asList("AC_", "NC_", "NG_", "NT_", "NW_", "NS_", "NZ_")),
 
-    PROTEIN("amino-acid", Arrays.asList("AP_", "NP_", "YP_c", "XP_c", "ZP_c")),
+    PROTEIN("amino-acid", Arrays.asList("AP_", "NP_", "YP_", "XP_", "ZP_")),
 
-    RNA("RNA", Arrays.asList("NR_", "XR_c")),
+    RNA("RNA", Arrays.asList("NR_", "XR_")),
 
-    mRNA("mRNA", Arrays.asList("NM_", "XM_c"));
+    mRNA("mRNA", Arrays.asList("NM_", "XM_"));
 
     private String name;
 
