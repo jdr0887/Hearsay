@@ -1,25 +1,19 @@
 package org.renci.hearsay.dao.model;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.openjpa.persistence.jdbc.Index;
 import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -41,22 +35,14 @@ public class Identifier implements Persistable {
     @SequenceGenerator(name = "identifier_id_seq", sequenceName = "identifier_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
-
+    
+    @Index
     @Column(name = "system")
     private String system;
 
+    @Index
     @Column(name = "value")
     private String value;
-
-    @XmlTransient
-    @ManyToMany(targetEntity = Gene.class, cascade = { CascadeType.ALL })
-    @JoinTable(name = "gene_identifier", joinColumns = @JoinColumn(name = "identifier_fid"), inverseJoinColumns = @JoinColumn(name = "gene_fid"))
-    private List<Gene> genes;
-
-    @XmlTransient
-    @ManyToMany(targetEntity = GenomeReference.class, cascade = { CascadeType.ALL })
-    @JoinTable(name = "genome_identifier", joinColumns = @JoinColumn(name = "identifier_fid"), inverseJoinColumns = @JoinColumn(name = "genome_reference_fid"))
-    private List<GenomeReference> genomicReferences;
 
     public Identifier() {
         super();
@@ -90,22 +76,6 @@ public class Identifier implements Persistable {
 
     public void setValue(String value) {
         this.value = value;
-    }
-
-    public List<Gene> getGenes() {
-        return genes;
-    }
-
-    public void setGenes(List<Gene> genes) {
-        this.genes = genes;
-    }
-
-    public List<GenomeReference> getGenomicReferences() {
-        return genomicReferences;
-    }
-
-    public void setGenomicReferences(List<GenomeReference> genomicReferences) {
-        this.genomicReferences = genomicReferences;
     }
 
     @Override
