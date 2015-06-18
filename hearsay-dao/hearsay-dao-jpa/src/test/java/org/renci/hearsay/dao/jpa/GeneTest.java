@@ -41,10 +41,6 @@ public class GeneTest {
         geneSymbolDAO.setEntityManager(em);
         hearsayDAOBean.setGeneSymbolDAO(geneSymbolDAO);
 
-        IdentifierDAOImpl identifierDAO = new IdentifierDAOImpl();
-        identifierDAO.setEntityManager(em);
-        hearsayDAOBean.setIdentifierDAO(identifierDAO);
-
     }
 
     @Test
