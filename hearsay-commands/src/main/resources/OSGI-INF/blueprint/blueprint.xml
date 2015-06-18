@@ -13,7 +13,22 @@
       </action>
     </command>
     <command>
-      <action class="org.renci.hearsay.commands.PullNCBIGeneInfoAction">
+      <action class="org.renci.hearsay.commands.ListReferenceSequencesAction">
+        <property name="hearsayDAOBean" ref="hearsayDAOBean" />
+      </action>
+    </command>
+    <command>
+      <action class="org.renci.hearsay.commands.PullNCBIGenesAction">
+        <property name="hearsayDAOBean" ref="hearsayDAOBean" />
+      </action>
+    </command>
+    <command>
+      <action class="org.renci.hearsay.commands.PullGenomeReferencesAction">
+        <property name="hearsayDAOBean" ref="hearsayDAOBean" />
+      </action>
+    </command>
+    <command>
+      <action class="org.renci.hearsay.commands.PullReferenceSequencesAction">
         <property name="hearsayDAOBean" ref="hearsayDAOBean" />
       </action>
     </command>
@@ -22,10 +37,10 @@
   <reference id="canonicalAlleleDAO" interface="org.renci.hearsay.dao.CanonicalAlleleDAO" />
   <reference id="geneDAO" interface="org.renci.hearsay.dao.GeneDAO" />
   <reference id="geneSymbolDAO" interface="org.renci.hearsay.dao.GeneSymbolDAO" />
+  <reference id="genomeReferenceDAO" interface="org.renci.hearsay.dao.GenomeReferenceDAO" />
   <reference id="identifierDAO" interface="org.renci.hearsay.dao.IdentifierDAO" />
   <reference id="intronOffsetDAO" interface="org.renci.hearsay.dao.IntronOffsetDAO" />
   <reference id="referenceCoordinateDAO" interface="org.renci.hearsay.dao.ReferenceCoordinateDAO" />
-  <reference id="referenceGenomeDAO" interface="org.renci.hearsay.dao.ReferenceGenomeDAO" />
   <reference id="referenceSequenceDAO" interface="org.renci.hearsay.dao.ReferenceSequenceDAO" />
   <reference id="simpleAlleleDAO" interface="org.renci.hearsay.dao.SimpleAlleleDAO" />
 
@@ -33,10 +48,10 @@
     <property name="canonicalAlleleDAO" ref="canonicalAlleleDAO" />
     <property name="geneDAO" ref="geneDAO" />
     <property name="geneSymbolDAO" ref="geneSymbolDAO" />
+    <property name="genomeReferenceDAO" ref="genomeReferenceDAO" />
     <property name="identifierDAO" ref="identifierDAO" />
     <property name="intronOffsetDAO" ref="intronOffsetDAO" />
     <property name="referenceCoordinateDAO" ref="referenceCoordinateDAO" />
-    <property name="referenceGenomeDAO" ref="referenceGenomeDAO" />
     <property name="referenceSequenceDAO" ref="referenceSequenceDAO" />
     <property name="simpleAlleleDAO" ref="simpleAlleleDAO" />
   </bean>
