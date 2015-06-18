@@ -37,7 +37,10 @@
     <bundle>mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/${jackson.version}</bundle>
     <bundle>mvn:com.fasterxml.jackson.module/jackson-module-jaxb-annotations/${jackson.version}</bundle>
     <bundle>mvn:org.renci.osgi.bundles/postgresql-9.3-1102-jdbc41-bundle/0.0.1</bundle>
-    <bundle>mvn:org.renci.clinvar/clinvar-public/0.0.1</bundle>
+    <bundle>mvn:org.renci.clinvar/clinvar-public/1.18</bundle>
+    <bundle>mvn:org.renci.lrg/lrg-public/1.9</bundle>    
+    <bundle>mvn:org.renci.gff/gff3-parser/${gff3.parser.version}</bundle>
+    <bundle>mvn:org.renci.genbank/gbff-parser/${gbff.parser.version}</bundle>
   </feature>
 
   <feature name="hearsay-dao" version="${project.version}" resolver="(obr)">
@@ -51,9 +54,9 @@
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-canonical-allele/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-gene/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-gene-symbol/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-genome-reference/${project.version}</bundle>    
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-identifier/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-reference-coordinate/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-reference-genome/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-reference-sequence/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-simple-allele/${project.version}</bundle>
   </feature>
