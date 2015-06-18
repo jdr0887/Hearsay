@@ -12,8 +12,6 @@ import javax.persistence.criteria.Root;
 import org.apache.commons.lang.StringUtils;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.IdentifierDAO;
-import org.renci.hearsay.dao.model.Gene;
-import org.renci.hearsay.dao.model.Gene_;
 import org.renci.hearsay.dao.model.Identifier;
 import org.renci.hearsay.dao.model.Identifier_;
 import org.slf4j.Logger;
