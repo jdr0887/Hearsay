@@ -1,4 +1,4 @@
-package org.renci.hearsay.dao.jpa;
+package org.renci.hearsay.commands;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -13,95 +13,36 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.zip.GZIPInputStream;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.renci.hearsay.dao.HearsayDAOBean;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.model.Gene;
 import org.renci.hearsay.dao.model.GeneSymbol;
 import org.renci.hearsay.dao.model.Identifier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class PullNCBIGeneInfoTest {
+public class PullNCBIGenesRunnable implements Runnable {
 
-    private static EntityManagerFactory emf;
+    private final Logger logger = LoggerFactory.getLogger(PullNCBIGenesRunnable.class);
 
-    private static EntityManager em;
+    private HearsayDAOBean hearsayDAOBean;
 
-    private final static HearsayDAOBean hearsayDAOBean = new HearsayDAOBean();
-
-    public PullNCBIGeneInfoTest() {
+    public PullNCBIGenesRunnable() {
         super();
     }
 
-    @BeforeClass
-    public static void setup() {
-        emf = Persistence.createEntityManagerFactory("test-hearsay", null);
-        em = emf.createEntityManager();
+    @Override
+    public void run() {
+        logger.debug("ENTERING run()");
 
-        GeneDAOImpl geneDAO = new GeneDAOImpl();
-        geneDAO.setEntityManager(em);
-        hearsayDAOBean.setGeneDAO(geneDAO);
-
-        GeneSymbolDAOImpl geneSymbolDAO = new GeneSymbolDAOImpl();
-        geneSymbolDAO.setEntityManager(em);
-        hearsayDAOBean.setGeneSymbolDAO(geneSymbolDAO);
-
-        IdentifierDAOImpl identifierDAO = new IdentifierDAOImpl();
-        identifierDAO.setEntityManager(em);
-        hearsayDAOBean.setIdentifierDAO(identifierDAO);
-
-    }
-
-    @Test
-    public void pull() {
-        File tmpFile = new File(System.getProperty("java.io.tmpdir", "/tmp"), "Homo_sapiens.gene_info.gz");
-
-        FTPClient ftpClient = new FTPClient();
-        // download
-        try {
-
-            ftpClient.connect("ftp.ncbi.nlm.nih.gov");
-
-            ftpClient.login("anonymous", "anonymous");
-            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
-            ftpClient.enterLocalPassiveMode();
-
-            int reply = ftpClient.getReplyCode();
-            if (!FTPReply.isPositiveCompletion(reply)) {
-                ftpClient.disconnect();
-                System.err.println("FTP server refused connection.");
-                return;
-            }
-
-            try (OutputStream fos = new BufferedOutputStream(new FileOutputStream(tmpFile))) {
-                ftpClient.retrieveFile("/gene/DATA/GENE_INFO/Mammalia/Homo_sapiens.gene_info.gz", fos);
-                fos.flush();
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (ftpClient.isConnected()) {
-                    ftpClient.disconnect();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
+        File genesFile = download();
 
         // parse
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new GZIPInputStream(new FileInputStream(
-                tmpFile))))) {
+                genesFile))))) {
 
             // #Format: tax_id GeneID Symbol LocusTag Synonyms dbXrefs chromosome map_location description type_of_gene
             // Symbol_from_nomenclature_authority Full_name_from_nomenclature_authority Nomenclature_status
@@ -136,14 +77,12 @@ public class PullNCBIGeneInfoTest {
                     exampleGene.setSymbol(symbol);
 
                     List<Gene> potentiallyFoundGeneList = hearsayDAOBean.getGeneDAO().findByExample(exampleGene);
-                    System.out.println(exampleGene.toString());
+                    logger.info(exampleGene.toString());
                     if (potentiallyFoundGeneList != null && !potentiallyFoundGeneList.isEmpty()) {
-                        System.out.println("Gene is already persisted");
+                        logger.warn("Gene is already persisted");
                         continue;
                     }
-                    em.getTransaction().begin();
                     exampleGene.setId(hearsayDAOBean.getGeneDAO().save(exampleGene));
-                    em.getTransaction().commit();
 
                     if (!synonyms.trim().equals("-")) {
                         StringTokenizer geneSymbolStringTokenizer = new StringTokenizer(synonyms, "|");
@@ -153,25 +92,17 @@ public class PullNCBIGeneInfoTest {
                             GeneSymbol gs = new GeneSymbol();
                             gs.setSymbol(geneSymbol);
                             gs.setGene(exampleGene);
-                            em.getTransaction().begin();
                             gs.setId(hearsayDAOBean.getGeneSymbolDAO().save(gs));
-                            em.getTransaction().commit();
                             // System.out.println(geneSymbol.toString());
                             exampleGene.getAliases().add(gs);
                         }
                     }
 
                     Identifier identifier = new Identifier("www.ncbi.nlm.nih.gov/gene", geneId);
-                    em.getTransaction().begin();
                     identifier.setId(hearsayDAOBean.getIdentifierDAO().save(identifier));
-                    em.getTransaction().commit();
-                    System.out.println(identifier.toString());
-
+                    logger.info(identifier.toString());
                     exampleGene.getIdentifiers().add(identifier);
-
-                    em.getTransaction().begin();
                     hearsayDAOBean.getGeneDAO().save(exampleGene);
-                    em.getTransaction().commit();
 
                 }
 
@@ -180,12 +111,55 @@ public class PullNCBIGeneInfoTest {
         } catch (IOException | HearsayDAOException e) {
             e.printStackTrace();
         }
+        logger.debug("FINISHED run()");
     }
 
-    @AfterClass
-    public static void tearDown() {
-        em.close();
-        emf.close();
+    private File download() {
+        File ret = new File(System.getProperty("java.io.tmpdir", "/tmp"), "Homo_sapiens.gene_info.gz");
+
+        FTPClient ftpClient = new FTPClient();
+        // download
+        try {
+
+            ftpClient.connect("ftp.ncbi.nlm.nih.gov");
+
+            ftpClient.login("anonymous", "anonymous");
+            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+            ftpClient.enterLocalPassiveMode();
+
+            int reply = ftpClient.getReplyCode();
+            if (!FTPReply.isPositiveCompletion(reply)) {
+                ftpClient.disconnect();
+                System.err.println("FTP server refused connection.");
+                return null;
+            }
+
+            try (OutputStream fos = new BufferedOutputStream(new FileOutputStream(ret))) {
+                ftpClient.retrieveFile("/gene/DATA/GENE_INFO/Mammalia/Homo_sapiens.gene_info.gz", fos);
+                fos.flush();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (ftpClient.isConnected()) {
+                    ftpClient.disconnect();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return ret;
+    }
+
+    public HearsayDAOBean getHearsayDAOBean() {
+        return hearsayDAOBean;
+    }
+
+    public void setHearsayDAOBean(HearsayDAOBean hearsayDAOBean) {
+        this.hearsayDAOBean = hearsayDAOBean;
     }
 
 }
