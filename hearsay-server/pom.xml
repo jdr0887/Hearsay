@@ -45,14 +45,14 @@
       <classifier>features</classifier>
       <scope>runtime</scope>
     </dependency>
-    <dependency>
-      <groupId>org.renci.opm</groupId>
-      <artifactId>opm-features</artifactId>
-      <classifier>features</classifier>
-      <version>0.0.6</version>
-      <type>xml</type>
-      <scope>runtime</scope>
-    </dependency>
+    <!-- <dependency> -->
+    <!--   <groupId>org.renci.opm</groupId> -->
+    <!--   <artifactId>opm-features</artifactId> -->
+    <!--   <classifier>features</classifier> -->
+    <!--   <version>0.0.6</version> -->
+    <!--   <type>xml</type> -->
+    <!--   <scope>runtime</scope> -->
+    <!-- </dependency> -->
     <dependency>
       <groupId>org.renci.hearsay</groupId>
       <artifactId>hearsay-features</artifactId>
@@ -128,7 +128,7 @@
 	    <feature>openjpa</feature>
 	    <feature>war</feature>
 	    <feature>cxf</feature> 
-	    <feature>opm</feature> 
+	    <!-- <feature>opm</feature>  -->
 	    <feature>hearsay</feature>
           </bootFeatures>
         </configuration>
