@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
@@ -31,6 +32,7 @@ public class GenomeReference extends IdentifiableEntity {
 
     private static final long serialVersionUID = -225305295285554428L;
 
+    @XmlAttribute
     @Index
     @Column(name = "name")
     private String name;

@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -27,7 +28,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(Include.NON_EMPTY)
 @XmlRootElement(name = "gene")
-@XmlType(name = "Gene")
+@XmlType(name = "Gene", propOrder = { "symbol", "description", "aliases" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "gene")
@@ -36,6 +37,7 @@ public class Gene extends IdentifiableEntity {
 
     private static final long serialVersionUID = -5997799315221166517L;
 
+    @XmlAttribute
     @Index
     @Column(name = "symbol")
     private String symbol;
@@ -57,6 +59,7 @@ public class Gene extends IdentifiableEntity {
 
     public Gene() {
         super();
+        this.aliases = new ArrayList<GeneSymbol>();
     }
 
     public String getDescription() {
@@ -76,9 +79,6 @@ public class Gene extends IdentifiableEntity {
     }
 
     public List<GeneSymbol> getAliases() {
-        if (aliases == null) {
-            aliases = new ArrayList<GeneSymbol>();
-        }
         return aliases;
     }
 

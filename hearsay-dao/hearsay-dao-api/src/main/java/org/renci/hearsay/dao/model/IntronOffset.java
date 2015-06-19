@@ -51,6 +51,13 @@ public class IntronOffset implements Persistable {
         super();
     }
 
+    public IntronOffset(Integer start, Integer end, DirectionType direction) {
+        super();
+        this.start = start;
+        this.end = end;
+        this.direction = direction;
+    }
+
     public Long getId() {
         return id;
     }
@@ -75,16 +82,26 @@ public class IntronOffset implements Persistable {
         this.end = end;
     }
 
+    public DirectionType getDirection() {
+        return direction;
+    }
+
+    public void setDirection(DirectionType direction) {
+        this.direction = direction;
+    }
+
     @Override
     public String toString() {
-        return String.format("IntronOffset [id=%s, start=%s, end=%s]", id, start, end);
+        return String.format("IntronOffset [id=%s, start=%s, end=%s, direction=%s]", id, start, end, direction);
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = super.hashCode();
+        int result = 1;
+        result = prime * result + ((direction == null) ? 0 : direction.hashCode());
         result = prime * result + ((end == null) ? 0 : end.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((start == null) ? 0 : start.hashCode());
         return result;
     }
@@ -93,15 +110,22 @@ public class IntronOffset implements Persistable {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (!super.equals(obj))
+        if (obj == null)
             return false;
         if (getClass() != obj.getClass())
             return false;
         IntronOffset other = (IntronOffset) obj;
+        if (direction != other.direction)
+            return false;
         if (end == null) {
             if (other.end != null)
                 return false;
         } else if (!end.equals(other.end))
+            return false;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
             return false;
         if (start == null) {
             if (other.start != null)

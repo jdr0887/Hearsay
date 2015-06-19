@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -38,9 +39,11 @@ public class CanonicalAllele extends IdentifiableEntity {
     @Column(name = "name")
     private String name;
 
+    @XmlAttribute
     @Column(name = "active")
     private Boolean active;
 
+    @XmlAttribute
     @Column(name = "version")
     private String version;
 
@@ -56,6 +59,7 @@ public class CanonicalAllele extends IdentifiableEntity {
     @Enumerated(EnumType.STRING)
     private ReplacementType replacementType;
 
+    @XmlAttribute
     @Column(name = "split")
     private Boolean split;
 

@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -32,10 +33,12 @@ public class ReferenceSequence extends IdentifiableEntity {
 
     private static final long serialVersionUID = -488057011816731553L;
 
+    @XmlAttribute
     @Column(name = "type")
     @Enumerated(EnumType.STRING)
     private ReferenceSequenceType type;
 
+    @XmlAttribute
     @Column(name = "chromosome_type")
     @Enumerated(EnumType.STRING)
     private ReferenceSequenceChromosomeType chromosomeType;

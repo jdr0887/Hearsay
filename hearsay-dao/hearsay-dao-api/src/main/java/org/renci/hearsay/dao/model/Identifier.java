@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
-@XmlType(name = "Identifier")
+@XmlType(name = "Identifier", propOrder = { "id", "system", "value" })
 @XmlRootElement(name = "identifier")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
@@ -29,17 +29,19 @@ public class Identifier implements Persistable {
 
     private static final long serialVersionUID = 6208779597138958791L;
 
-    @XmlAttribute(name = "id")
+    @XmlAttribute
     @Id()
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "identifier_id_seq")
     @SequenceGenerator(name = "identifier_id_seq", sequenceName = "identifier_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
-    
+
+    @XmlAttribute
     @Index
     @Column(name = "system")
     private String system;
 
+    @XmlAttribute
     @Index
     @Column(name = "value")
     private String value;

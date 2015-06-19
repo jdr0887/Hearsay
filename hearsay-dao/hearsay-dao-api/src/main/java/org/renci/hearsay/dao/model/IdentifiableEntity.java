@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(Include.NON_EMPTY)
-@XmlType(name = "IdentifiableEntity")
+@XmlType(name = "IdentifiableEntity", propOrder = { "id", "identifiers" })
 @XmlRootElement(name = "identifiableEntity")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
@@ -52,6 +52,7 @@ public class IdentifiableEntity implements Persistable {
     @Column(name = "id")
     protected Long id;
 
+    @JsonInclude(Include.NON_EMPTY)
     @JsonProperty("identifiers")
     @XmlElementWrapper(name = "identifiers")
     @XmlElement(name = "identifier")
@@ -61,6 +62,7 @@ public class IdentifiableEntity implements Persistable {
 
     public IdentifiableEntity() {
         super();
+        this.identifiers = new ArrayList<Identifier>();
     }
 
     public Long getId() {
@@ -72,9 +74,6 @@ public class IdentifiableEntity implements Persistable {
     }
 
     public List<Identifier> getIdentifiers() {
-        if (identifiers == null) {
-            identifiers = new ArrayList<Identifier>();
-        }
         return identifiers;
     }
 
