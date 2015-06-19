@@ -2,13 +2,13 @@
   <parent>
     <groupId>org.renci.hearsay</groupId>
     <artifactId>hearsay-dao</artifactId>
-    <version>0.0.40</version>
+    <version>0.0.41-SNAPSHOT</version>
   </parent>
   <name>Hearsay :: DAO :: JPA</name>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.renci.hearsay.hearsay-dao</groupId>
   <artifactId>hearsay-dao-jpa</artifactId>
-  <version>0.0.40</version>
+  <version>0.0.41-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <dependencies>
     <dependency>
