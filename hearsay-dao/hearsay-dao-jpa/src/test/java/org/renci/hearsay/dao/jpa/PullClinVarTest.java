@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
 
 import javax.persistence.EntityManager;
@@ -18,6 +20,8 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
+import org.apache.commons.math3.util.ArithmeticUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -34,20 +38,28 @@ import org.renci.hearsay.dao.HearsayDAOBean;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.model.CanonicalAllele;
 import org.renci.hearsay.dao.model.ComplexityType;
+import org.renci.hearsay.dao.model.DirectionType;
 import org.renci.hearsay.dao.model.Identifier;
+import org.renci.hearsay.dao.model.IntronOffset;
 import org.renci.hearsay.dao.model.MoleculeType;
 import org.renci.hearsay.dao.model.ReferenceCoordinate;
 import org.renci.hearsay.dao.model.ReferenceSequence;
 import org.renci.hearsay.dao.model.SimpleAllele;
 import org.renci.hearsay.dao.model.SimpleAlleleType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PullClinVarTest extends AbstractPullTest {
+
+    private final Logger logger = LoggerFactory.getLogger(PullClinVarTest.class);
 
     private static EntityManagerFactory emf;
 
     private static EntityManager em;
 
-    private final static HearsayDAOBean hearsayDAOBean = new HearsayDAOBean();
+    private static final HearsayDAOBean hearsayDAOBean = new HearsayDAOBean();
+
+    private static final Pattern locationPattern = Pattern.compile("[A-Za-z]");
 
     public PullClinVarTest() {
         super();
@@ -78,7 +90,6 @@ public class PullClinVarTest extends AbstractPullTest {
             Unmarshaller u = jc.createUnmarshaller();
             ReleaseType releaseType = (ReleaseType) u.unmarshal(new GZIPInputStream(
                     new FileInputStream(clinvarDownload)));
-            int count = 0;
             List<PublicSetType> publicSetType = releaseType.getClinVarSet();
             for (PublicSetType pst : publicSetType) {
                 ReferenceAssertionType rat = pst.getReferenceClinVarAssertion();
@@ -129,16 +140,22 @@ public class PullClinVarTest extends AbstractPullTest {
                 for (Measure measure : mst.getMeasure()) {
 
                     List<AttributeSet> attributeSetList = measure.getAttributeSet();
+                    String dbSNPId = null;
+                    for (XrefType xref : measure.getXRef()) {
+                        if ("dbSNP".equals(xref.getDB())) {
+                            dbSNPId = xref.getID();
+                        }
+                    }
 
                     Set<SimpleAllele> simpleAlleleSet = new HashSet<SimpleAllele>();
-
                     for (AttributeSet attributeSet : attributeSetList) {
                         Attribute attribute = attributeSet.getAttribute();
                         for (SimpleAlleleType saType : SimpleAlleleType.values()) {
                             if (saType.getType().equals(attribute.getType())) {
                                 SimpleAllele simpleAllele = new SimpleAllele();
                                 simpleAllele.setName(attribute.getValue());
-                                if (saType.equals(SimpleAlleleType.TRANSCRIPT)) {
+                                if (saType.equals(SimpleAlleleType.TRANSCRIPT)
+                                        || saType.equals(SimpleAlleleType.GENOMIC)) {
                                     simpleAllele.setAllele(attribute.getValue().substring(
                                             attribute.getValue().length() - 1, attribute.getValue().length()));
                                 }
@@ -188,6 +205,72 @@ public class PullClinVarTest extends AbstractPullTest {
 
                         ReferenceCoordinate referenceCoordinate = new ReferenceCoordinate();
                         referenceCoordinate.setReferenceSequence(referenceSequence);
+
+                        String hgvsDescription = sa.getName().substring(sa.getName().indexOf(":") + 1,
+                                sa.getName().length());
+                        String type = hgvsDescription.substring(0, 1);
+                        if (type.equals("c") || type.equals("g")) {
+                            String s = hgvsDescription.substring(2);
+                            Matcher locationMatcher = locationPattern.matcher(s);
+                            locationMatcher.find();
+                            String location = s.substring(0, locationMatcher.start());
+                            s = s.substring(locationMatcher.start());
+                            if (s.contains(">")) {
+                                referenceCoordinate.setRefAllele(s.substring(0, s.indexOf(">")));
+                                if (NumberUtils.isNumber(location)) {
+                                    // a change in the coding
+                                    referenceCoordinate.setStart(Integer.valueOf(location) - 1);
+                                    referenceCoordinate.setEnd(Integer.valueOf(location));
+                                } else {
+                                    if (location.contains("-") && !location.startsWith("-")) {
+                                        // a change in the 3' end of an intron
+                                        Integer start = Integer.valueOf(location.substring(0, location.indexOf("-")));
+                                        Integer end = Integer.valueOf(location.substring(location.indexOf("-") + 1,
+                                                location.length()));
+                                        IntronOffset intron = new IntronOffset(start, end, DirectionType.MINUS);
+                                        referenceCoordinate.setIntronOffset(intron);
+                                    }
+
+                                    if (location.startsWith("-")) {
+                                        // a change 5' of the ATG (in the 5'UTR)
+                                    }
+
+                                    if (location.startsWith("*")) {
+                                        // a change 3' of the stop codon (in the 3'UTR)
+                                    }
+
+                                    if (location.contains("+")) {
+                                        // a change in the 5' end of an intron
+                                        Integer end = Integer.valueOf(location.substring(location.indexOf("+") + 1,
+                                                location.length()));
+                                        Integer start = end - 1;
+                                        IntronOffset intron = new IntronOffset(start, end, DirectionType.PLUS);
+                                        referenceCoordinate.setIntronOffset(intron);
+                                    }
+
+                                }
+                            }
+                        }
+
+                        if (StringUtils.isNotEmpty(dbSNPId)) {
+                            Identifier identifier = new Identifier("www.ncbi.nlm.nih.gov/snp", dbSNPId);
+                            try {
+                                List<Identifier> possibleIdentifiers = hearsayDAOBean.getIdentifierDAO().findByExample(
+                                        identifier);
+                                if (possibleIdentifiers != null && !possibleIdentifiers.isEmpty()) {
+                                    identifier = possibleIdentifiers.get(0);
+                                } else {
+                                    em.getTransaction().begin();
+                                    identifier.setId(hearsayDAOBean.getIdentifierDAO().save(identifier));
+                                    em.getTransaction().commit();
+                                }
+                            } catch (HearsayDAOException e) {
+                                e.printStackTrace();
+                            }
+                            logger.info(identifier.toString());
+                            referenceCoordinate.getIdentifiers().add(identifier);
+                        }
+
                         sa.setReferenceCoordinate(referenceCoordinate);
                     }
 
@@ -198,13 +281,10 @@ public class PullClinVarTest extends AbstractPullTest {
                 JAXBContext canonicalAlleleJAXBContext = JAXBContext.newInstance(CanonicalAllele.class);
                 Marshaller canonicalAlleleMarshaller = canonicalAlleleJAXBContext.createMarshaller();
                 canonicalAlleleMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-                FileWriter fw = new FileWriter(new File("/tmp", String.format("%s.xml", clinVarAccession.getAcc())));
+                File dir = new File("/tmp", "clingen");
+                dir.mkdirs();
+                FileWriter fw = new FileWriter(new File(dir, String.format("%s.xml", clinVarAccession.getAcc())));
                 canonicalAlleleMarshaller.marshal(canonicalAllele, fw);
-
-                if (count == 50) {
-                    break;
-                }
-                count++;
 
                 // break;
 
