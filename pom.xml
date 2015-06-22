@@ -2,7 +2,7 @@
   <parent>
     <groupId>org.renci.hearsay</groupId>
     <artifactId>parent</artifactId>
-    <version>0.0.10</version>
+    <version>0.0.13</version>
   </parent>
   <name>Hearsay</name>
   <modelVersion>4.0.0</modelVersion>
@@ -162,10 +162,6 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-  <build>
-    <plugins>
-    </plugins>
-  </build>
   <modules>
     <module>hearsay-commands</module>
     <module>hearsay-datasource</module>
