@@ -28,10 +28,10 @@ public class ListReferenceSequencesAction extends AbstractAction {
     public Object doExecute() {
         logger.debug("ENTERING doExecute()");
 
-        String format = "%1$-10s %2$-20s %3$-8s %4$-8s %5$-16s %6$s%n";
+        String format = "%1$-10s %2$-20s %3$s%n";
         StringBuilder sb = new StringBuilder();
         Formatter formatter = new Formatter(sb, Locale.US);
-        formatter.format(format, "ID", "Accession", "Type", "CDS Start", "CDS End");
+        formatter.format(format, "ID", "Accession", "Type");
 
         List<ReferenceSequence> referenceSequenceList = new ArrayList<ReferenceSequence>();
         try {
@@ -47,8 +47,7 @@ public class ListReferenceSequencesAction extends AbstractAction {
                 accession = refSeq.getIdentifiers().get(0).getValue();
             }
 
-            formatter.format(format, refSeq.getId().toString(), accession, refSeq.getType().toString(),
-                    refSeq.getCdsStart(), refSeq.getCdsEnd());
+            formatter.format(format, refSeq.getId().toString(), accession, refSeq.getType().toString());
             formatter.flush();
         }
         System.out.println(formatter.toString());
