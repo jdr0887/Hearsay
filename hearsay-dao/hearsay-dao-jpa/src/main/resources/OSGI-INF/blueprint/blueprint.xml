@@ -2,11 +2,23 @@
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://aries.apache.org/xmlns/transactions/v1.0.0"
   xmlns:jpa="http://aries.apache.org/xmlns/jpa/v1.0.0" default-activation="eager">
 
+  <bean id="alignmentDAOImpl" class="org.renci.hearsay.dao.jpa.AlignmentDAOImpl">
+    <tx:transaction method="*" value="Required" />
+    <jpa:context property="entityManager" unitname="hearsay" />
+  </bean>
+  <service ref="alignmentDAOImpl" interface="org.renci.hearsay.dao.AlignmentDAO" />
+
   <bean id="canonicalAlleleDAOImpl" class="org.renci.hearsay.dao.jpa.CanonicalAlleleDAOImpl">
     <tx:transaction method="*" value="Required" />
     <jpa:context property="entityManager" unitname="hearsay" />
   </bean>
   <service ref="canonicalAlleleDAOImpl" interface="org.renci.hearsay.dao.CanonicalAlleleDAO" />
+
+  <bean id="featureDAOImpl" class="org.renci.hearsay.dao.jpa.FeatureDAOImpl">
+    <tx:transaction method="*" value="Required" />
+    <jpa:context property="entityManager" unitname="hearsay" />
+  </bean>
+  <service ref="featureDAOImpl" interface="org.renci.hearsay.dao.FeatureDAO" />
 
   <bean id="geneDAOImpl" class="org.renci.hearsay.dao.jpa.GeneDAOImpl">
     <tx:transaction method="*" value="Required" />
@@ -38,18 +50,41 @@
   </bean>
   <service ref="intronOffsetDAOImpl" interface="org.renci.hearsay.dao.IntronOffsetDAO" />
 
+  <bean id="locationDAOImpl" class="org.renci.hearsay.dao.jpa.LocationDAOImpl">
+    <tx:transaction method="*" value="Required" />
+    <jpa:context property="entityManager" unitname="hearsay" />
+  </bean>
+  <service ref="locationDAOImpl" interface="org.renci.hearsay.dao.LocationDAO" />
+
+  <bean id="molecularConsequenceDAOImpl" class="org.renci.hearsay.dao.jpa.MolecularConsequenceDAOImpl">
+    <tx:transaction method="*" value="Required" />
+    <jpa:context property="entityManager" unitname="hearsay" />
+  </bean>
+  <service ref="molecularConsequenceDAOImpl" interface="org.renci.hearsay.dao.MolecularConsequenceDAO" />
+
+  <bean id="populationFrequencyDAOImpl" class="org.renci.hearsay.dao.jpa.PopulationFrequencyDAOImpl">
+    <tx:transaction method="*" value="Required" />
+    <jpa:context property="entityManager" unitname="hearsay" />
+  </bean>
+  <service ref="populationFrequencyDAOImpl" interface="org.renci.hearsay.dao.PopulationFrequencyDAO" />
+
   <bean id="referenceCoordinateDAOImpl" class="org.renci.hearsay.dao.jpa.ReferenceCoordinateDAOImpl">
     <tx:transaction method="*" value="Required" />
     <jpa:context property="entityManager" unitname="hearsay" />
   </bean>
   <service ref="referenceCoordinateDAOImpl" interface="org.renci.hearsay.dao.ReferenceCoordinateDAO" />
 
-
   <bean id="referenceSequenceDAOImpl" class="org.renci.hearsay.dao.jpa.ReferenceSequenceDAOImpl">
     <tx:transaction method="*" value="Required" />
     <jpa:context property="entityManager" unitname="hearsay" />
   </bean>
   <service ref="referenceSequenceDAOImpl" interface="org.renci.hearsay.dao.ReferenceSequenceDAO" />
+
+  <bean id="regionDAOImpl" class="org.renci.hearsay.dao.jpa.RegionDAOImpl">
+    <tx:transaction method="*" value="Required" />
+    <jpa:context property="entityManager" unitname="hearsay" />
+  </bean>
+  <service ref="regionDAOImpl" interface="org.renci.hearsay.dao.RegionDAO" />
 
   <bean id="simpleAlleleDAOImpl" class="org.renci.hearsay.dao.jpa.SimpleAlleleDAOImpl">
     <tx:transaction method="*" value="Required" />
