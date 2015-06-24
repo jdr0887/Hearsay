@@ -11,10 +11,6 @@
   <version>0.0.41-SNAPSHOT</version>
   <packaging>pom</packaging>
   <url>https://jdr0887.github.io/Hearsay</url>
-  <properties>
-    <gbff.parser.version>0.0.20</gbff.parser.version>
-    <gff3.parser.version>0.0.3</gff3.parser.version>
-  </properties>
   <issueManagement>
     <system>GitHub Issues</system>
     <url>https://github.com/jdr0887/Hearsay/issues</url>
@@ -34,26 +30,6 @@
   </scm>
   <dependencyManagement>
     <dependencies>
-      <dependency>
-	<groupId>org.renci.genbank</groupId>
-	<artifactId>gbff-parser</artifactId>
-	<version>${gbff.parser.version}</version>
-      </dependency>
-      <dependency>
-	<groupId>org.renci.gff</groupId>
-	<artifactId>gff3-parser</artifactId>
-	<version>${gff3.parser.version}</version>	
-      </dependency>      
-      <dependency>
-	<groupId>org.renci.clinvar</groupId>
-	<artifactId>clinvar-public</artifactId>
-	<version>1.18</version>
-      </dependency>
-      <dependency>
-	<groupId>org.renci.lrg</groupId>
-	<artifactId>lrg-public</artifactId>
-	<version>1.9</version>
-      </dependency>
       <dependency>
 	<groupId>javax.ws.rs</groupId>
 	<artifactId>javax.ws.rs-api</artifactId>
