@@ -36,7 +36,7 @@ public class ReferenceCoordinate extends IdentifiableEntity {
 
     @Column(name = "strand_type")
     @Enumerated(EnumType.STRING)
-    private DirectionType strandType;
+    private StrandType strandType;
 
     @ManyToOne
     @JoinColumn(name = "intron_offset_fid")
@@ -58,11 +58,11 @@ public class ReferenceCoordinate extends IdentifiableEntity {
         super();
     }
 
-    public DirectionType getStrandType() {
+    public StrandType getStrandType() {
         return strandType;
     }
 
-    public void setStrandType(DirectionType strandType) {
+    public void setStrandType(StrandType strandType) {
         this.strandType = strandType;
     }
 
