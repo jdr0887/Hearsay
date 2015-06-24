@@ -3,13 +3,13 @@
   <parent>
     <groupId>org.renci.hearsay</groupId>
     <artifactId>hearsay-web-services</artifactId>
-    <version>0.0.41-SNAPSHOT</version>
+    <version>0.0.41</version>
   </parent>
   <name>Hearsay :: Web Service :: Molecular Consequence</name>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.renci.hearsay.hearsay-web-services</groupId>
   <artifactId>hearsay-ws-molecular-consequence</artifactId>
-  <version>0.0.41-SNAPSHOT</version>
+  <version>0.0.41</version>
   <packaging>bundle</packaging>
   <dependencies>
     <dependency>
