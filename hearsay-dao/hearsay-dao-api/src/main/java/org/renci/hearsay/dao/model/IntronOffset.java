@@ -43,19 +43,19 @@ public class IntronOffset implements Persistable {
     @Column(name = "end")
     private Integer end;
 
-    @Column(name = "direction_type")
+    @Column(name = "strand_type")
     @Enumerated(EnumType.STRING)
-    private DirectionType direction;
+    private StrandType strandType;
 
     public IntronOffset() {
         super();
     }
 
-    public IntronOffset(Integer start, Integer end, DirectionType direction) {
+    public IntronOffset(Integer start, Integer end, StrandType strandType) {
         super();
         this.start = start;
         this.end = end;
-        this.direction = direction;
+        this.strandType = strandType;
     }
 
     public Long getId() {
@@ -82,24 +82,24 @@ public class IntronOffset implements Persistable {
         this.end = end;
     }
 
-    public DirectionType getDirection() {
-        return direction;
+    public StrandType getStrandType() {
+        return strandType;
     }
 
-    public void setDirection(DirectionType direction) {
-        this.direction = direction;
+    public void setStrandType(StrandType strandType) {
+        this.strandType = strandType;
     }
 
     @Override
     public String toString() {
-        return String.format("IntronOffset [id=%s, start=%s, end=%s, direction=%s]", id, start, end, direction);
+        return String.format("IntronOffset [id=%s, start=%s, end=%s, strandType=%s]", id, start, end, strandType);
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((direction == null) ? 0 : direction.hashCode());
+        result = prime * result + ((strandType == null) ? 0 : strandType.hashCode());
         result = prime * result + ((end == null) ? 0 : end.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((start == null) ? 0 : start.hashCode());
@@ -115,7 +115,7 @@ public class IntronOffset implements Persistable {
         if (getClass() != obj.getClass())
             return false;
         IntronOffset other = (IntronOffset) obj;
-        if (direction != other.direction)
+        if (strandType != other.strandType)
             return false;
         if (end == null) {
             if (other.end != null)
