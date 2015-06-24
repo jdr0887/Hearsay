@@ -1,11 +1,13 @@
 package org.renci.hearsay.dao.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -43,12 +45,6 @@ public class ReferenceSequence extends IdentifiableEntity {
     @Enumerated(EnumType.STRING)
     private ReferenceSequenceChromosomeType chromosomeType;
 
-    @Column(name = "cds_start")
-    private Integer cdsStart;
-
-    @Column(name = "cds_end")
-    private Integer cdsEnd;
-
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "gene_fid")
@@ -62,12 +58,17 @@ public class ReferenceSequence extends IdentifiableEntity {
     @Enumerated(EnumType.STRING)
     private ReferenceSequenceRelationshipType relationshipType;
 
-    @ManyToOne
-    @JoinColumn(name = "parent_fid")
-    private ReferenceSequence parent;
+    @OneToMany(mappedBy = "referenceSequence", fetch = FetchType.EAGER)
+    private List<Alignment> alignments;
 
-    @OneToMany(mappedBy = "parent")
-    private List<ReferenceSequence> relatedChildren;
+    @OneToMany(mappedBy = "referenceSequence", fetch = FetchType.EAGER)
+    private List<Feature> features;
+
+    public ReferenceSequence() {
+        super();
+        this.features = new ArrayList<Feature>();
+        this.alignments = new ArrayList<Alignment>();
+    }
 
     public ReferenceSequenceType getType() {
         return type;
@@ -83,22 +84,6 @@ public class ReferenceSequence extends IdentifiableEntity {
 
     public void setChromosomeType(ReferenceSequenceChromosomeType chromosomeType) {
         this.chromosomeType = chromosomeType;
-    }
-
-    public Integer getCdsStart() {
-        return cdsStart;
-    }
-
-    public void setCdsStart(Integer cdsStart) {
-        this.cdsStart = cdsStart;
-    }
-
-    public Integer getCdsEnd() {
-        return cdsEnd;
-    }
-
-    public void setCdsEnd(Integer cdsEnd) {
-        this.cdsEnd = cdsEnd;
     }
 
     public Gene getGene() {
@@ -125,37 +110,33 @@ public class ReferenceSequence extends IdentifiableEntity {
         this.relationshipType = relationshipType;
     }
 
-    public ReferenceSequence getParent() {
-        return parent;
+    public List<Alignment> getAlignments() {
+        return alignments;
     }
 
-    public void setParent(ReferenceSequence parent) {
-        this.parent = parent;
+    public void setAlignments(List<Alignment> alignments) {
+        this.alignments = alignments;
     }
 
-    public List<ReferenceSequence> getRelatedChildren() {
-        return relatedChildren;
+    public List<Feature> getFeatures() {
+        return features;
     }
 
-    public void setRelatedChildren(List<ReferenceSequence> relatedChildren) {
-        this.relatedChildren = relatedChildren;
+    public void setFeatures(List<Feature> features) {
+        this.features = features;
     }
 
     @Override
     public String toString() {
-        return String.format(
-                "ReferenceSequence [id=%s, type=%s, chromosomeType=%s, cdsStart=%s, cdsEnd=%s, relationshipType=%s]",
-                id, type, chromosomeType, cdsStart, cdsEnd, relationshipType);
+        return String.format("ReferenceSequence [id=%s, type=%s, chromosomeType=%s, relationshipType=%s]", id, type,
+                chromosomeType, relationshipType);
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = 1;
-        result = prime * result + ((cdsEnd == null) ? 0 : cdsEnd.hashCode());
-        result = prime * result + ((cdsStart == null) ? 0 : cdsStart.hashCode());
+        int result = super.hashCode();
         result = prime * result + ((chromosomeType == null) ? 0 : chromosomeType.hashCode());
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((relationshipType == null) ? 0 : relationshipType.hashCode());
         result = prime * result + ((type == null) ? 0 : type.hashCode());
         return result;
@@ -165,27 +146,12 @@ public class ReferenceSequence extends IdentifiableEntity {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null)
+        if (!super.equals(obj))
             return false;
         if (getClass() != obj.getClass())
             return false;
         ReferenceSequence other = (ReferenceSequence) obj;
-        if (cdsEnd == null) {
-            if (other.cdsEnd != null)
-                return false;
-        } else if (!cdsEnd.equals(other.cdsEnd))
-            return false;
-        if (cdsStart == null) {
-            if (other.cdsStart != null)
-                return false;
-        } else if (!cdsStart.equals(other.cdsStart))
-            return false;
         if (chromosomeType != other.chromosomeType)
-            return false;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
             return false;
         if (relationshipType != other.relationshipType)
             return false;
