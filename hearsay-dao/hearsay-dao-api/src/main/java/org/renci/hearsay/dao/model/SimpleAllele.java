@@ -1,11 +1,13 @@
 package org.renci.hearsay.dao.model;
 
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -46,25 +48,19 @@ public class SimpleAllele extends IdentifiableEntity {
     @XmlAttribute
     private SimpleAlleleType type;
 
-    @Column(name = "primary_change_so_id")
-    private Integer primaryChangeSOId;
-
-    @Column(name = "ancillary_change_so_id")
-    private Integer ancillaryChangeSOId;
-
     @ManyToOne
     @JoinColumn(name = "reference_coordinate_fid")
     private ReferenceCoordinate referenceCoordinate;
 
-    @ManyToOne
-    @JoinColumn(name = "parent_fid")
-    private SimpleAllele parent;
+    @OneToMany(mappedBy = "simpleAllele", fetch = FetchType.EAGER)
+    private Set<MolecularConsequence> molecularConsequences;
 
-    @OneToMany(mappedBy = "parent")
-    private Collection<SimpleAllele> related;
+    @OneToMany(mappedBy = "simpleAllele", fetch = FetchType.EAGER)
+    private Set<PopulationFrequency> populationFrequencies;
 
     public SimpleAllele() {
         super();
+        this.molecularConsequences = new HashSet<MolecularConsequence>();
     }
 
     public CanonicalAllele getCanonicalAllele() {
@@ -99,22 +95,6 @@ public class SimpleAllele extends IdentifiableEntity {
         this.type = type;
     }
 
-    public Integer getPrimaryChangeSOId() {
-        return primaryChangeSOId;
-    }
-
-    public void setPrimaryChangeSOId(Integer primaryChangeSOId) {
-        this.primaryChangeSOId = primaryChangeSOId;
-    }
-
-    public Integer getAncillaryChangeSOId() {
-        return ancillaryChangeSOId;
-    }
-
-    public void setAncillaryChangeSOId(Integer ancillaryChangeSOId) {
-        this.ancillaryChangeSOId = ancillaryChangeSOId;
-    }
-
     public ReferenceCoordinate getReferenceCoordinate() {
         return referenceCoordinate;
     }
@@ -123,27 +103,25 @@ public class SimpleAllele extends IdentifiableEntity {
         this.referenceCoordinate = referenceCoordinate;
     }
 
-    public SimpleAllele getParent() {
-        return parent;
+    public Set<MolecularConsequence> getMolecularConsequences() {
+        return molecularConsequences;
     }
 
-    public void setParent(SimpleAllele parent) {
-        this.parent = parent;
+    public void setMolecularConsequences(Set<MolecularConsequence> molecularConsequences) {
+        this.molecularConsequences = molecularConsequences;
     }
 
-    public Collection<SimpleAllele> getRelated() {
-        return related;
+    public Set<PopulationFrequency> getPopulationFrequencies() {
+        return populationFrequencies;
     }
 
-    public void setRelated(Collection<SimpleAllele> related) {
-        this.related = related;
+    public void setPopulationFrequencies(Set<PopulationFrequency> populationFrequencies) {
+        this.populationFrequencies = populationFrequencies;
     }
 
     @Override
     public String toString() {
-        return String.format(
-                "SimpleAllele [id=%s, allele=%s, name=%s, type=%s, primaryChangeSOId=%s, ancillaryChangeSOId=%s]", id,
-                allele, name, type, primaryChangeSOId, ancillaryChangeSOId);
+        return String.format("SimpleAllele [id=%s, allele=%s, name=%s, type=%s]", id, allele, name, type);
     }
 
     @Override
@@ -151,9 +129,8 @@ public class SimpleAllele extends IdentifiableEntity {
         final int prime = 31;
         int result = super.hashCode();
         result = prime * result + ((allele == null) ? 0 : allele.hashCode());
-        result = prime * result + ((ancillaryChangeSOId == null) ? 0 : ancillaryChangeSOId.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((primaryChangeSOId == null) ? 0 : primaryChangeSOId.hashCode());
+        result = prime * result + ((referenceCoordinate == null) ? 0 : referenceCoordinate.hashCode());
         result = prime * result + ((type == null) ? 0 : type.hashCode());
         return result;
     }
@@ -172,20 +149,15 @@ public class SimpleAllele extends IdentifiableEntity {
                 return false;
         } else if (!allele.equals(other.allele))
             return false;
-        if (ancillaryChangeSOId == null) {
-            if (other.ancillaryChangeSOId != null)
-                return false;
-        } else if (!ancillaryChangeSOId.equals(other.ancillaryChangeSOId))
-            return false;
         if (name == null) {
             if (other.name != null)
                 return false;
         } else if (!name.equals(other.name))
             return false;
-        if (primaryChangeSOId == null) {
-            if (other.primaryChangeSOId != null)
+        if (referenceCoordinate == null) {
+            if (other.referenceCoordinate != null)
                 return false;
-        } else if (!primaryChangeSOId.equals(other.primaryChangeSOId))
+        } else if (!referenceCoordinate.equals(other.referenceCoordinate))
             return false;
         if (type != other.type)
             return false;
