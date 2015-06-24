@@ -12,26 +12,6 @@
   <packaging>bundle</packaging>
   <dependencies>
     <dependency>
-      <groupId>org.renci.gff</groupId>
-      <artifactId>gff3-parser</artifactId>
-      <scope>test</scope>
-    </dependency>      
-    <dependency>
-      <groupId>org.renci.clinvar</groupId>
-      <artifactId>clinvar-public</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.renci.lrg</groupId>
-      <artifactId>lrg-public</artifactId>
-      <scope>test</scope>      
-    </dependency>
-    <dependency>
-      <groupId>org.renci.genbank</groupId>
-      <artifactId>gbff-parser</artifactId>
-      <scope>test</scope>      
-    </dependency>
-    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
       <scope>test</scope>      
