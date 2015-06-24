@@ -3,13 +3,13 @@
   <parent>
     <groupId>org.renci</groupId>
     <artifactId>hearsay</artifactId>
-    <version>0.0.40-SNAPSHOT</version>
+    <version>0.0.41-SNAPSHOT</version>
   </parent>
   <name>Hearsay :: Server</name>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.renci.hearsay</groupId>
   <artifactId>hearsay-server</artifactId>
-  <version>0.0.40-SNAPSHOT</version>
+  <version>0.0.41-SNAPSHOT</version>
   <packaging>karaf-assembly</packaging>
   <properties>
     <assembly.directory>${project.build.directory}/assembly</assembly.directory>
@@ -57,7 +57,7 @@
       <groupId>org.renci.hearsay</groupId>
       <artifactId>hearsay-features</artifactId>
       <classifier>features</classifier>
-      <version>0.0.40-SNAPSHOT</version>
+      <version>0.0.41-SNAPSHOT</version>
       <type>xml</type>
       <scope>runtime</scope>
     </dependency>
@@ -76,6 +76,7 @@
       <plugin>
 	<groupId>org.apache.maven.plugins</groupId>
 	<artifactId>maven-eclipse-plugin</artifactId>
+	<version>${maven.eclipse.plugin.version}</version>
 	<configuration>
 	  <skip>true</skip>
 	</configuration>
@@ -83,6 +84,7 @@
       <plugin>
 	<groupId>org.apache.maven.plugins</groupId>
 	<artifactId>maven-resources-plugin</artifactId>
+	<version>${maven.resources.plugin.version}</version>	
 	<executions>
 	  <execution>
 	    <id>copy-resources</id>
