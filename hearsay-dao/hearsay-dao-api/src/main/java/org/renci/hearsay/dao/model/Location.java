@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang.math.IntRange;
 import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -75,6 +76,22 @@ public class Location implements Persistable {
 
     public void setStop(Integer stop) {
         this.stop = stop;
+    }
+
+    public Integer diff() {
+        if (this.start > this.stop) {
+            return this.start - this.stop;
+        } else {
+            return this.stop - this.start;
+        }
+    }
+
+    public IntRange toRange() {
+        if (this.start > this.stop) {
+            return new IntRange(this.start, this.stop);
+        } else {
+            return new IntRange(this.stop, this.start);
+        }
     }
 
     @Override
