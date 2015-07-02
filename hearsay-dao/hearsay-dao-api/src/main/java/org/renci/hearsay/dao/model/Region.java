@@ -33,7 +33,7 @@ public class Region implements Persistable {
 
     private static final long serialVersionUID = -4018421194871513651L;
 
-    @XmlAttribute(name = "id")
+    @XmlAttribute
     @Id()
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "region_id_seq")
     @SequenceGenerator(name = "region_id_seq", sequenceName = "region_id_seq", allocationSize = 1, initialValue = 1)
@@ -49,26 +49,25 @@ public class Region implements Persistable {
     @Enumerated(EnumType.STRING)
     private RegionType regionType;
 
-    @Column(name = "region_start")
-    private Integer regionStart;
+    @ManyToOne
+    @JoinColumn(name = "region_location_fid")
+    private Location regionLocation;
 
-    @Column(name = "region_stop")
-    private Integer regionStop;
+    @ManyToOne
+    @JoinColumn(name = "cds_location_fid")
+    private Location cdsLocation;
 
-    @Column(name = "cds_start")
-    private Integer cdsStart;
-
-    @Column(name = "cds_stop")
-    private Integer cdsStop;
-
-    @Column(name = "transcript_start")
-    private Integer transcriptStart;
-
-    @Column(name = "transcript_stop")
-    private Integer transcriptStop;
+    @ManyToOne
+    @JoinColumn(name = "transcript_location_fid")
+    private Location transcriptLocation;
 
     public Region() {
         super();
+    }
+
+    public Region(RegionType regionType) {
+        super();
+        this.regionType = regionType;
     }
 
     public Long getId() {
@@ -95,73 +94,41 @@ public class Region implements Persistable {
         this.regionType = regionType;
     }
 
-    public Integer getRegionStart() {
-        return regionStart;
+    public Location getRegionLocation() {
+        return regionLocation;
     }
 
-    public void setRegionStart(Integer regionStart) {
-        this.regionStart = regionStart;
+    public void setRegionLocation(Location regionLocation) {
+        this.regionLocation = regionLocation;
     }
 
-    public Integer getRegionStop() {
-        return regionStop;
+    public Location getCdsLocation() {
+        return cdsLocation;
     }
 
-    public void setRegionStop(Integer regionStop) {
-        this.regionStop = regionStop;
+    public void setCdsLocation(Location cdsLocation) {
+        this.cdsLocation = cdsLocation;
     }
 
-    public Integer getCdsStart() {
-        return cdsStart;
+    public Location getTranscriptLocation() {
+        return transcriptLocation;
     }
 
-    public void setCdsStart(Integer cdsStart) {
-        this.cdsStart = cdsStart;
-    }
-
-    public Integer getCdsStop() {
-        return cdsStop;
-    }
-
-    public void setCdsStop(Integer cdsStop) {
-        this.cdsStop = cdsStop;
-    }
-
-    public Integer getTranscriptStart() {
-        return transcriptStart;
-    }
-
-    public void setTranscriptStart(Integer transcriptStart) {
-        this.transcriptStart = transcriptStart;
-    }
-
-    public Integer getTranscriptStop() {
-        return transcriptStop;
-    }
-
-    public void setTranscriptStop(Integer transcriptStop) {
-        this.transcriptStop = transcriptStop;
+    public void setTranscriptLocation(Location transcriptLocation) {
+        this.transcriptLocation = transcriptLocation;
     }
 
     @Override
     public String toString() {
-        return String
-                .format("Region [id=%s, regionType=%s, regionStart=%s, regionStop=%s, cdsStart=%s, cdsStop=%s, transcriptStart=%s, transcriptStop=%s]",
-                        id, regionType, regionStart, regionStop, cdsStart, cdsStop, transcriptStart, transcriptStop);
+        return String.format("Region [id=%s, regionType=%s]", id, regionType);
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((cdsStart == null) ? 0 : cdsStart.hashCode());
-        result = prime * result + ((cdsStop == null) ? 0 : cdsStop.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((regionStart == null) ? 0 : regionStart.hashCode());
-        result = prime * result + ((regionStop == null) ? 0 : regionStop.hashCode());
         result = prime * result + ((regionType == null) ? 0 : regionType.hashCode());
-        result = prime * result + ((transcriptStart == null) ? 0 : transcriptStart.hashCode());
-        result = prime * result + ((transcriptStop == null) ? 0 : transcriptStop.hashCode());
         return result;
     }
 
@@ -174,42 +141,12 @@ public class Region implements Persistable {
         if (getClass() != obj.getClass())
             return false;
         Region other = (Region) obj;
-        if (cdsStart == null) {
-            if (other.cdsStart != null)
-                return false;
-        } else if (!cdsStart.equals(other.cdsStart))
-            return false;
-        if (cdsStop == null) {
-            if (other.cdsStop != null)
-                return false;
-        } else if (!cdsStop.equals(other.cdsStop))
-            return false;
         if (id == null) {
             if (other.id != null)
                 return false;
         } else if (!id.equals(other.id))
             return false;
-        if (regionStart == null) {
-            if (other.regionStart != null)
-                return false;
-        } else if (!regionStart.equals(other.regionStart))
-            return false;
-        if (regionStop == null) {
-            if (other.regionStop != null)
-                return false;
-        } else if (!regionStop.equals(other.regionStop))
-            return false;
         if (regionType != other.regionType)
-            return false;
-        if (transcriptStart == null) {
-            if (other.transcriptStart != null)
-                return false;
-        } else if (!transcriptStart.equals(other.transcriptStart))
-            return false;
-        if (transcriptStop == null) {
-            if (other.transcriptStop != null)
-                return false;
-        } else if (!transcriptStop.equals(other.transcriptStop))
             return false;
         return true;
     }
