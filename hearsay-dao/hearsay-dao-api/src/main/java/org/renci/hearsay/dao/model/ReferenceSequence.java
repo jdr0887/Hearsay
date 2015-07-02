@@ -45,6 +45,10 @@ public class ReferenceSequence extends IdentifiableEntity {
     @Enumerated(EnumType.STRING)
     private ReferenceSequenceChromosomeType chromosomeType;
 
+    @ManyToOne
+    @JoinColumn(name = "cds_location_fid")
+    private Location CDSLocation;
+
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "gene_fid")
@@ -68,6 +72,14 @@ public class ReferenceSequence extends IdentifiableEntity {
         super();
         this.features = new ArrayList<Feature>();
         this.alignments = new ArrayList<Alignment>();
+    }
+
+    public Location getCDSLocation() {
+        return CDSLocation;
+    }
+
+    public void setCDSLocation(Location cDSLocation) {
+        CDSLocation = cDSLocation;
     }
 
     public ReferenceSequenceType getType() {
