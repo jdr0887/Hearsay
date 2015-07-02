@@ -28,11 +28,9 @@ public class ReferenceCoordinate extends IdentifiableEntity {
     @Column(name = "ref_allele")
     private String refAllele;
 
-    @Column(name = "start")
-    private Integer start;
-
-    @Column(name = "end")
-    private Integer end;
+    @ManyToOne
+    @JoinColumn(name = "location_fid")
+    private Location location;
 
     @Column(name = "strand_type")
     @Enumerated(EnumType.STRING)
@@ -58,14 +56,6 @@ public class ReferenceCoordinate extends IdentifiableEntity {
         super();
     }
 
-    public StrandType getStrandType() {
-        return strandType;
-    }
-
-    public void setStrandType(StrandType strandType) {
-        this.strandType = strandType;
-    }
-
     public String getRefAllele() {
         return refAllele;
     }
@@ -74,20 +64,20 @@ public class ReferenceCoordinate extends IdentifiableEntity {
         this.refAllele = refAllele;
     }
 
-    public Integer getStart() {
-        return start;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setStart(Integer start) {
-        this.start = start;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
-    public Integer getEnd() {
-        return end;
+    public StrandType getStrandType() {
+        return strandType;
     }
 
-    public void setEnd(Integer end) {
-        this.end = end;
+    public void setStrandType(StrandType strandType) {
+        this.strandType = strandType;
     }
 
     public IntronOffset getIntronOffset() {
@@ -124,17 +114,20 @@ public class ReferenceCoordinate extends IdentifiableEntity {
 
     @Override
     public String toString() {
-        return String.format("ReferenceCoordinate [id=%s, refAllele=%s, start=%s, end=%s]", id, refAllele, start, end);
+        return String
+                .format("ReferenceCoordinate [id=%s, refAllele=%s, strandType=%s, primaryTranscriptRegionType=%s, ancillaryTranscriptRegionType=%s]",
+                        id, refAllele, strandType, primaryTranscriptRegionType, ancillaryTranscriptRegionType);
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = 1;
-        result = prime * result + ((end == null) ? 0 : end.hashCode());
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        int result = super.hashCode();
+        result = prime * result
+                + ((ancillaryTranscriptRegionType == null) ? 0 : ancillaryTranscriptRegionType.hashCode());
+        result = prime * result + ((primaryTranscriptRegionType == null) ? 0 : primaryTranscriptRegionType.hashCode());
         result = prime * result + ((refAllele == null) ? 0 : refAllele.hashCode());
-        result = prime * result + ((start == null) ? 0 : start.hashCode());
+        result = prime * result + ((strandType == null) ? 0 : strandType.hashCode());
         return result;
     }
 
@@ -142,30 +135,21 @@ public class ReferenceCoordinate extends IdentifiableEntity {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null)
+        if (!super.equals(obj))
             return false;
         if (getClass() != obj.getClass())
             return false;
         ReferenceCoordinate other = (ReferenceCoordinate) obj;
-        if (end == null) {
-            if (other.end != null)
-                return false;
-        } else if (!end.equals(other.end))
+        if (ancillaryTranscriptRegionType != other.ancillaryTranscriptRegionType)
             return false;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
+        if (primaryTranscriptRegionType != other.primaryTranscriptRegionType)
             return false;
         if (refAllele == null) {
             if (other.refAllele != null)
                 return false;
         } else if (!refAllele.equals(other.refAllele))
             return false;
-        if (start == null) {
-            if (other.start != null)
-                return false;
-        } else if (!start.equals(other.start))
+        if (strandType != other.strandType)
             return false;
         return true;
     }
