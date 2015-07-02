@@ -1,5 +1,6 @@
 package org.renci.hearsay.dao.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -50,31 +51,27 @@ public class Alignment implements Persistable {
     @JoinColumn(name = "reference_sequence_fid")
     private ReferenceSequence referenceSequence;
 
-    @Column(name = "genomic_start")
-    private Integer genomicStart;
-
-    @Column(name = "genomic_stop")
-    private Integer genomicStop;
+    @ManyToOne
+    @JoinColumn(name = "genomic_location_fid")
+    private Location genomicLocation;
 
     @Column(name = "strand_type")
     @Enumerated(EnumType.STRING)
     private StrandType strandType;
 
     @OneToMany(mappedBy = "alignment", fetch = FetchType.EAGER)
-    @OrderBy("regionStart ASC")
     private List<Region> regions;
 
     @Column(name = "protein")
     private String protein;
 
-    @Column(name = "protein_region_start")
-    private Integer proteinRegionStart;
-
-    @Column(name = "protein_region_stop")
-    private Integer proteinRegionStop;
+    @ManyToOne
+    @JoinColumn(name = "protein_location_fid")
+    private Location proteinLocation;
 
     public Alignment() {
         super();
+        this.regions = new ArrayList<Region>();
     }
 
     public Long getId() {
@@ -93,20 +90,20 @@ public class Alignment implements Persistable {
         this.referenceSequence = referenceSequence;
     }
 
-    public Integer getGenomicStart() {
-        return genomicStart;
+    public Location getGenomicLocation() {
+        return genomicLocation;
     }
 
-    public void setGenomicStart(Integer genomicStart) {
-        this.genomicStart = genomicStart;
+    public void setGenomicLocation(Location genomicLocation) {
+        this.genomicLocation = genomicLocation;
     }
 
-    public Integer getGenomicStop() {
-        return genomicStop;
+    public Location getProteinLocation() {
+        return proteinLocation;
     }
 
-    public void setGenomicStop(Integer genomicStop) {
-        this.genomicStop = genomicStop;
+    public void setProteinLocation(Location proteinLocation) {
+        this.proteinLocation = proteinLocation;
     }
 
     public StrandType getStrandType() {
@@ -133,39 +130,17 @@ public class Alignment implements Persistable {
         this.protein = protein;
     }
 
-    public Integer getProteinRegionStart() {
-        return proteinRegionStart;
-    }
-
-    public void setProteinRegionStart(Integer proteinRegionStart) {
-        this.proteinRegionStart = proteinRegionStart;
-    }
-
-    public Integer getProteinRegionStop() {
-        return proteinRegionStop;
-    }
-
-    public void setProteinRegionStop(Integer proteinRegionStop) {
-        this.proteinRegionStop = proteinRegionStop;
-    }
-
     @Override
     public String toString() {
-        return String
-                .format("Alignment [id=%s, genomicStart=%s, genomicStop=%s, strandType=%s, protein=%s, proteinRegionStart=%s, proteinRegionStop=%s]",
-                        id, genomicStart, genomicStop, strandType, protein, proteinRegionStart, proteinRegionStop);
+        return String.format("Alignment [id=%s, strandType=%s, protein=%s]", id, strandType, protein);
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((genomicStart == null) ? 0 : genomicStart.hashCode());
-        result = prime * result + ((genomicStop == null) ? 0 : genomicStop.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((protein == null) ? 0 : protein.hashCode());
-        result = prime * result + ((proteinRegionStart == null) ? 0 : proteinRegionStart.hashCode());
-        result = prime * result + ((proteinRegionStop == null) ? 0 : proteinRegionStop.hashCode());
         result = prime * result + ((strandType == null) ? 0 : strandType.hashCode());
         return result;
     }
@@ -179,16 +154,6 @@ public class Alignment implements Persistable {
         if (getClass() != obj.getClass())
             return false;
         Alignment other = (Alignment) obj;
-        if (genomicStart == null) {
-            if (other.genomicStart != null)
-                return false;
-        } else if (!genomicStart.equals(other.genomicStart))
-            return false;
-        if (genomicStop == null) {
-            if (other.genomicStop != null)
-                return false;
-        } else if (!genomicStop.equals(other.genomicStop))
-            return false;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -198,16 +163,6 @@ public class Alignment implements Persistable {
             if (other.protein != null)
                 return false;
         } else if (!protein.equals(other.protein))
-            return false;
-        if (proteinRegionStart == null) {
-            if (other.proteinRegionStart != null)
-                return false;
-        } else if (!proteinRegionStart.equals(other.proteinRegionStart))
-            return false;
-        if (proteinRegionStop == null) {
-            if (other.proteinRegionStop != null)
-                return false;
-        } else if (!proteinRegionStop.equals(other.proteinRegionStop))
             return false;
         if (strandType != other.strandType)
             return false;
