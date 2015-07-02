@@ -61,6 +61,7 @@ public class SimpleAllele extends IdentifiableEntity {
     public SimpleAllele() {
         super();
         this.molecularConsequences = new HashSet<MolecularConsequence>();
+        this.populationFrequencies = new HashSet<PopulationFrequency>();
     }
 
     public CanonicalAllele getCanonicalAllele() {
