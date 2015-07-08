@@ -14,9 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -25,21 +22,20 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import org.renci.hearsay.dao.Persistable;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
-@XmlType(name = "Feature", propOrder = { "id" })
+@XmlType(propOrder = { "id", "note", "type", "locations" })
 @XmlRootElement(name = "feature")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "feature")
-@NamedQueries({ @NamedQuery(name = "Feature.findByReferenceSequenceId", query = "SELECT a FROM Feature a where a.referenceSequence.id = :referenceSequenceId order by a.regionStart") })
 public class Feature implements Persistable {
 
     private static final long serialVersionUID = 1234926307644461359L;
@@ -66,10 +62,10 @@ public class Feature implements Persistable {
     @Column(name = "note")
     private String note;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "reference_sequence_fid")
-    private ReferenceSequence referenceSequence;
+    @XmlTransient
+    @ManyToMany(targetEntity = ReferenceSequence.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @JoinTable(name = "reference_sequence_feature", joinColumns = @JoinColumn(name = "feature_fid"), inverseJoinColumns = @JoinColumn(name = "reference_sequence_fid"))
+    private List<ReferenceSequence> referenceSequences;
 
     public Feature() {
         super();
@@ -108,12 +104,12 @@ public class Feature implements Persistable {
         this.note = note;
     }
 
-    public ReferenceSequence getReferenceSequence() {
-        return referenceSequence;
+    public List<ReferenceSequence> getReferenceSequences() {
+        return referenceSequences;
     }
 
-    public void setReferenceSequence(ReferenceSequence referenceSequence) {
-        this.referenceSequence = referenceSequence;
+    public void setReferenceSequences(List<ReferenceSequence> referenceSequences) {
+        this.referenceSequences = referenceSequences;
     }
 
     @Override

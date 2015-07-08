@@ -3,35 +3,36 @@ package org.renci.hearsay.dao.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import org.renci.hearsay.dao.Persistable;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
 @XmlRootElement(name = "alignment")
-@XmlType(name = "Alignment")
+@XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "alignment")
@@ -46,28 +47,22 @@ public class Alignment implements Persistable {
     @Column(name = "id")
     private Long id;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "reference_sequence_fid")
-    private ReferenceSequence referenceSequence;
-
-    @ManyToOne
-    @JoinColumn(name = "genomic_location_fid")
-    private Location genomicLocation;
-
-    @Column(name = "strand_type")
-    @Enumerated(EnumType.STRING)
-    private StrandType strandType;
+    @XmlElementWrapper(name = "referenceSequences")
+    @XmlElement(name = "referenceSequence")
+    @ManyToMany(targetEntity = ReferenceSequence.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @JoinTable(name = "reference_sequence_alignment", joinColumns = @JoinColumn(name = "alignment_fid"), inverseJoinColumns = @JoinColumn(name = "reference_sequence_fid"))
+    private List<ReferenceSequence> referenceSequences;
 
     @OneToMany(mappedBy = "alignment", fetch = FetchType.EAGER)
     private List<Region> regions;
 
-    @Column(name = "protein")
-    private String protein;
-
     @ManyToOne
     @JoinColumn(name = "protein_location_fid")
     private Location proteinLocation;
+
+    @ManyToOne
+    @JoinColumn(name = "cds_location_fid")
+    private Location CDSLocation;
 
     public Alignment() {
         super();
@@ -82,20 +77,20 @@ public class Alignment implements Persistable {
         this.id = id;
     }
 
-    public ReferenceSequence getReferenceSequence() {
-        return referenceSequence;
+    public List<ReferenceSequence> getReferenceSequences() {
+        return referenceSequences;
     }
 
-    public void setReferenceSequence(ReferenceSequence referenceSequence) {
-        this.referenceSequence = referenceSequence;
+    public void setReferenceSequences(List<ReferenceSequence> referenceSequences) {
+        this.referenceSequences = referenceSequences;
     }
 
-    public Location getGenomicLocation() {
-        return genomicLocation;
+    public Location getCDSLocation() {
+        return CDSLocation;
     }
 
-    public void setGenomicLocation(Location genomicLocation) {
-        this.genomicLocation = genomicLocation;
+    public void setCDSLocation(Location cDSLocation) {
+        CDSLocation = cDSLocation;
     }
 
     public Location getProteinLocation() {
@@ -106,14 +101,6 @@ public class Alignment implements Persistable {
         this.proteinLocation = proteinLocation;
     }
 
-    public StrandType getStrandType() {
-        return strandType;
-    }
-
-    public void setStrandType(StrandType strandType) {
-        this.strandType = strandType;
-    }
-
     public List<Region> getRegions() {
         return regions;
     }
@@ -122,17 +109,9 @@ public class Alignment implements Persistable {
         this.regions = regions;
     }
 
-    public String getProtein() {
-        return protein;
-    }
-
-    public void setProtein(String protein) {
-        this.protein = protein;
-    }
-
     @Override
     public String toString() {
-        return String.format("Alignment [id=%s, strandType=%s, protein=%s]", id, strandType, protein);
+        return String.format("Alignment [id=%s]", id);
     }
 
     @Override
@@ -140,8 +119,6 @@ public class Alignment implements Persistable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((protein == null) ? 0 : protein.hashCode());
-        result = prime * result + ((strandType == null) ? 0 : strandType.hashCode());
         return result;
     }
 
@@ -158,13 +135,6 @@ public class Alignment implements Persistable {
             if (other.id != null)
                 return false;
         } else if (!id.equals(other.id))
-            return false;
-        if (protein == null) {
-            if (other.protein != null)
-                return false;
-        } else if (!protein.equals(other.protein))
-            return false;
-        if (strandType != other.strandType)
             return false;
         return true;
     }
