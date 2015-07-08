@@ -8,7 +8,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.renci</groupId>
   <artifactId>hearsay</artifactId>
-  <version>0.0.44-SNAPSHOT</version>
+  <version>0.0.43-SNAPSHOT</version>
   <packaging>pom</packaging>
   <url>https://jdr0887.github.io/Hearsay</url>
   <issueManagement>
@@ -104,17 +104,17 @@
       <dependency>
       	<groupId>org.renci.hearsay</groupId>
       	<artifactId>hearsay-web-service-api</artifactId>
-      	<version>0.0.44-SNAPSHOT</version>
+      	<version>0.0.43-SNAPSHOT</version>
       </dependency>
       <dependency>
       	<groupId>org.renci.hearsay.hearsay-dao</groupId>
       	<artifactId>hearsay-dao-api</artifactId>
-      	<version>0.0.44-SNAPSHOT</version>
+      	<version>0.0.43-SNAPSHOT</version>
       </dependency>
       <dependency>
       	<groupId>org.renci.hearsay.hearsay-dao</groupId>
       	<artifactId>hearsay-dao-jpa</artifactId>
-      	<version>0.0.44-SNAPSHOT</version>
+      	<version>0.0.43-SNAPSHOT</version>
       </dependency>
       <dependency>
       	<groupId>org.apache.aries.transaction</groupId>
