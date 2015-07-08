@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
-@XmlType(name = "Identifier", propOrder = { "id", "system", "value" })
+@XmlType(propOrder = { "id", "system", "value" })
 @XmlRootElement(name = "identifier")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
