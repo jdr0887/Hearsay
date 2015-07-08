@@ -3,13 +3,13 @@
   <parent>
     <groupId>org.renci.hearsay</groupId>
     <artifactId>hearsay-web-services</artifactId>
-    <version>0.0.42-SNAPSHOT</version>
+    <version>0.0.42</version>
   </parent>
   <name>Hearsay :: Web Service :: Alignment</name>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.renci.hearsay.hearsay-web-services</groupId>
   <artifactId>hearsay-ws-alignment</artifactId>
-  <version>0.0.42-SNAPSHOT</version>
+  <version>0.0.42</version>
   <packaging>bundle</packaging>
   <dependencies>
     <dependency>
