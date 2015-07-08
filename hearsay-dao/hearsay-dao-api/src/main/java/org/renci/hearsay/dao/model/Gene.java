@@ -5,13 +5,17 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessOrder;
 import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorOrder;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
@@ -28,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(Include.NON_EMPTY)
 @XmlRootElement(name = "gene")
-@XmlType(name = "Gene", propOrder = { "symbol", "description", "aliases" })
+@XmlType(propOrder = { "symbol", "chromosome", "description", "aliases" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "gene")
@@ -41,6 +45,11 @@ public class Gene extends IdentifiableEntity {
     @Index
     @Column(name = "symbol")
     private String symbol;
+
+    @XmlAttribute
+    @Column(name = "chromosome_type")
+    @Enumerated(EnumType.STRING)
+    private ChromosomeType chromosome;
 
     @Lob
     @Column(name = "description")
@@ -68,6 +77,14 @@ public class Gene extends IdentifiableEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public ChromosomeType getChromosome() {
+        return chromosome;
+    }
+
+    public void setChromosome(ChromosomeType chromosome) {
+        this.chromosome = chromosome;
     }
 
     public String getSymbol() {

@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
 @XmlRootElement(name = "molecularConsequence")
-@XmlType(name = "MolecularConsequence")
+@XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "molecular_consequence")

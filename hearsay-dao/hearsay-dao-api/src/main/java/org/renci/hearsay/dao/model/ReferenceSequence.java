@@ -3,30 +3,33 @@ package org.renci.hearsay.dao.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
 @XmlRootElement(name = "referenceSequence")
-@XmlType(name = "ReferenceSequence")
+@XmlType(propOrder = {"type", "genomicLocation", "strandType", "gene", "genomeReference", "relationshipType", "alignments", "features"})
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "reference_sequence")
@@ -40,16 +43,14 @@ public class ReferenceSequence extends IdentifiableEntity {
     @Enumerated(EnumType.STRING)
     private ReferenceSequenceType type;
 
-    @XmlAttribute
-    @Column(name = "chromosome_type")
-    @Enumerated(EnumType.STRING)
-    private ReferenceSequenceChromosomeType chromosomeType;
-
     @ManyToOne
-    @JoinColumn(name = "cds_location_fid")
-    private Location CDSLocation;
+    @JoinColumn(name = "genomic_location_fid")
+    private Location genomicLocation;
 
-    @JsonIgnore
+    @Column(name = "strand_type")
+    @Enumerated(EnumType.STRING)
+    private StrandType strandType;
+
     @ManyToOne
     @JoinColumn(name = "gene_fid")
     private Gene gene;
@@ -62,24 +63,22 @@ public class ReferenceSequence extends IdentifiableEntity {
     @Enumerated(EnumType.STRING)
     private ReferenceSequenceRelationshipType relationshipType;
 
-    @OneToMany(mappedBy = "referenceSequence", fetch = FetchType.EAGER)
+    @XmlElementWrapper(name = "alignments")
+    @XmlElement(name = "alignment")
+    @ManyToMany(targetEntity = Alignment.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @JoinTable(name = "reference_sequence_alignment", joinColumns = @JoinColumn(name = "reference_sequence_fid"), inverseJoinColumns = @JoinColumn(name = "alignment_fid"))
     private List<Alignment> alignments;
 
-    @OneToMany(mappedBy = "referenceSequence", fetch = FetchType.EAGER)
+    @XmlElementWrapper(name = "features")
+    @XmlElement(name = "feature")
+    @ManyToMany(targetEntity = Feature.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @JoinTable(name = "reference_sequence_feature", joinColumns = @JoinColumn(name = "reference_sequence_fid"), inverseJoinColumns = @JoinColumn(name = "feature_fid"))
     private List<Feature> features;
 
     public ReferenceSequence() {
         super();
         this.features = new ArrayList<Feature>();
         this.alignments = new ArrayList<Alignment>();
-    }
-
-    public Location getCDSLocation() {
-        return CDSLocation;
-    }
-
-    public void setCDSLocation(Location cDSLocation) {
-        CDSLocation = cDSLocation;
     }
 
     public ReferenceSequenceType getType() {
@@ -90,12 +89,20 @@ public class ReferenceSequence extends IdentifiableEntity {
         this.type = type;
     }
 
-    public ReferenceSequenceChromosomeType getChromosomeType() {
-        return chromosomeType;
+    public Location getGenomicLocation() {
+        return genomicLocation;
     }
 
-    public void setChromosomeType(ReferenceSequenceChromosomeType chromosomeType) {
-        this.chromosomeType = chromosomeType;
+    public void setGenomicLocation(Location genomicLocation) {
+        this.genomicLocation = genomicLocation;
+    }
+
+    public StrandType getStrandType() {
+        return strandType;
+    }
+
+    public void setStrandType(StrandType strandType) {
+        this.strandType = strandType;
     }
 
     public Gene getGene() {
@@ -140,16 +147,13 @@ public class ReferenceSequence extends IdentifiableEntity {
 
     @Override
     public String toString() {
-        return String.format("ReferenceSequence [id=%s, type=%s, chromosomeType=%s, relationshipType=%s]", id, type,
-                chromosomeType, relationshipType);
+        return String.format("ReferenceSequence [id=%s, type=%s]", id, type);
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = super.hashCode();
-        result = prime * result + ((chromosomeType == null) ? 0 : chromosomeType.hashCode());
-        result = prime * result + ((relationshipType == null) ? 0 : relationshipType.hashCode());
         result = prime * result + ((type == null) ? 0 : type.hashCode());
         return result;
     }
@@ -163,10 +167,6 @@ public class ReferenceSequence extends IdentifiableEntity {
         if (getClass() != obj.getClass())
             return false;
         ReferenceSequence other = (ReferenceSequence) obj;
-        if (chromosomeType != other.chromosomeType)
-            return false;
-        if (relationshipType != other.relationshipType)
-            return false;
         if (type != other.type)
             return false;
         return true;

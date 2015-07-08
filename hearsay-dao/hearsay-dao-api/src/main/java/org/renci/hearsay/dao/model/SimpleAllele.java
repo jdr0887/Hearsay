@@ -23,7 +23,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
 @XmlRootElement(name = "simpleAllele")
-@XmlType(name = "SimpleAllele")
+@XmlType(propOrder = { "allele", "name", "type", "referenceCoordinate", "molecularConsequences",
+        "populationFrequencies" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "simple_allele")

@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
 @XmlRootElement(name = "referenceCoordinate")
-@XmlType(name = "ReferenceCoordinate")
+@XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "reference_coordinate")

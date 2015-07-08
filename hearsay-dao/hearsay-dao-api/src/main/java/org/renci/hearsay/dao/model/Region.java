@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
 @XmlRootElement(name = "region")
-@XmlType(name = "Region")
+@XmlType(propOrder = { "id", "alignment", "regionType", "regionLocation", "cdsLocation", "transcriptLocation" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "region")

@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
 @XmlRootElement(name = "gene_symbol")
-@XmlType(name = "GeneSymbol")
+@XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "gene_symbol")

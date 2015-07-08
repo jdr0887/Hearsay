@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
 @XmlRootElement(name = "intronOffset")
-@XmlType(name = "IntronOffset")
+@XmlType(propOrder = { "id", "start", "end", "strandType" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "intron_offset")

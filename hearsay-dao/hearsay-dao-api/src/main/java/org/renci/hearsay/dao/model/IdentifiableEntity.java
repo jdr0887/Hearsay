@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(Include.NON_EMPTY)
-@XmlType(name = "IdentifiableEntity", propOrder = { "id", "identifiers" })
+@XmlType
 @XmlRootElement(name = "identifiableEntity")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
