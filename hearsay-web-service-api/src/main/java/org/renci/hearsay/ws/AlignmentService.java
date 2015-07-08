@@ -1,7 +1,5 @@
 package org.renci.hearsay.ws;
 
-import java.util.List;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -15,10 +13,6 @@ import org.renci.hearsay.dao.model.Alignment;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public interface AlignmentService {
-
-    @GET
-    @Path("/findByReferenceSequenceId/{id}")
-    public List<Alignment> findByReferenceSequenceId(@PathParam("id") Long id);
 
     @GET
     @Path("/findById/{id}")

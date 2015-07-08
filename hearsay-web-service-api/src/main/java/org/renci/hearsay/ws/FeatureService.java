@@ -1,7 +1,5 @@
 package org.renci.hearsay.ws;
 
-import java.util.List;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -19,9 +17,5 @@ public interface FeatureService {
     @GET
     @Path("/findById/{id}")
     public Feature findById(@PathParam("id") Long id);
-
-    @GET
-    @Path("/findByReferenceSequenceId/{referenceSequenceId}")
-    public List<Feature> findByReferenceSequenceId(@PathParam("referenceSequenceId") Long referenceSequenceId);
 
 }
