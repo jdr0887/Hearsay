@@ -32,18 +32,6 @@ public class FeatureServiceImpl implements FeatureService {
         return ret;
     }
 
-    @Override
-    public List<Feature> findByReferenceSequenceId(Long referenceSequenceId) {
-        logger.debug("ENTERING findById(Long)");
-        List<Feature> ret = new ArrayList<Feature>();
-        try {
-            ret.addAll(featureDAO.findByReferenceSequenceId(referenceSequenceId));
-        } catch (HearsayDAOException e) {
-            e.printStackTrace();
-        }
-        return ret;
-    }
-
     public FeatureDAO getFeatureDAO() {
         return featureDAO;
     }
