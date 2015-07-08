@@ -1,27 +1,46 @@
 package org.renci.hearsay.dao.model;
 
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * http://www.ncbi.nlm.nih.gov/books/NBK21091/table/ch18.T.refseq_accession_numbers_and_mole/?report=objectonly
+ * 
+ * @author jdr0887
+ */
 public enum ReferenceSequenceType {
 
-    CHROMOSOME("chromosome"),
+    GENOMIC("nucleotide", Arrays.asList("AC_", "NC_", "NG_", "NT_", "NW_", "NS_", "NZ_")),
 
-    GENE("gene"),
+    PROTEIN("protein", Arrays.asList("AP_", "NP_", "YP_", "XP_", "ZP_")),
 
-    TRANSCRIPT("transcript"),
+    RNA("RNA", Arrays.asList("NR_", "XR_")),
 
-    AMINO_ACID("amino-acid");
+    TRANSCRIPT("mRNA", Arrays.asList("NM_", "XM_"));
 
-    private String value;
+    private String name;
 
-    private ReferenceSequenceType(String value) {
-        this.value = value;
+    private List<String> prefixes;
+
+    private ReferenceSequenceType(String name, List<String> prefixes) {
+        this.name = name;
+        this.prefixes = prefixes;
     }
 
-    public String getValue() {
-        return value;
+    public String getName() {
+        return name;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<String> getPrefixes() {
+        return prefixes;
+    }
+
+    public void setPrefixes(List<String> prefixes) {
+        this.prefixes = prefixes;
     }
 
 }
