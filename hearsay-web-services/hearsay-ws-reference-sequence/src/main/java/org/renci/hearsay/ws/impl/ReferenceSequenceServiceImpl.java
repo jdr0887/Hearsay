@@ -34,10 +34,22 @@ public class ReferenceSequenceServiceImpl implements ReferenceSequenceService {
 
     @Override
     public List<ReferenceSequence> findByGeneId(Long geneId) {
-        logger.debug("ENTERING findByName(String)");
+        logger.debug("ENTERING findByGeneId(Long)");
         List<ReferenceSequence> ret = new ArrayList<ReferenceSequence>();
         try {
             ret.addAll(referenceSequenceDAO.findByGeneId(geneId));
+        } catch (HearsayDAOException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    @Override
+    public List<ReferenceSequence> findByIdentifierValue(String value) {
+        logger.debug("ENTERING findByGeneId(Long)");
+        List<ReferenceSequence> ret = new ArrayList<ReferenceSequence>();
+        try {
+            ret.addAll(referenceSequenceDAO.findByIdentifierValue(value));
         } catch (HearsayDAOException e) {
             e.printStackTrace();
         }

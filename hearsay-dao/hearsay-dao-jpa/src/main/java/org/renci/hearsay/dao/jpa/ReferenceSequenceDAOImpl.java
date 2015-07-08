@@ -68,8 +68,32 @@ public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequenc
         List<Predicate> predicates = new ArrayList<Predicate>();
         Join<ReferenceSequence, Identifier> referenceSequenceIdentifierJoin = fromReferenceSequence
                 .join(ReferenceSequence_.identifiers);
+        if (!value.endsWith("%")) {
+            value += "%";
+        }
         predicates.add(critBuilder.like(referenceSequenceIdentifierJoin.get(Identifier_.value), value));
         crit.where(predicates.toArray(new Predicate[predicates.size()]));
+        TypedQuery<ReferenceSequence> query = getEntityManager().createQuery(crit);
+        List<ReferenceSequence> ret = query.getResultList();
+        return ret;
+    }
+
+    @Override
+    public List<ReferenceSequence> findByIdentifiers(Identifier... identifiers) throws HearsayDAOException {
+        logger.debug("ENTERING findByIdentifiers(Identifier)");
+        CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<ReferenceSequence> crit = critBuilder.createQuery(getPersistentClass());
+        Root<ReferenceSequence> fromReferenceSequence = crit.from(ReferenceSequence.class);
+        List<Predicate> predicates = new ArrayList<Predicate>();
+        Join<ReferenceSequence, Identifier> referenceSequenceIdentifierJoin = fromReferenceSequence
+                .join(ReferenceSequence_.identifiers);
+        List<Long> idList = new ArrayList<Long>();
+        for (Identifier id : identifiers) {
+            idList.add(id.getId());
+        }
+        predicates.add(referenceSequenceIdentifierJoin.get(Identifier_.id).in(idList));
+        crit.where(predicates.toArray(new Predicate[predicates.size()]));
+        crit.distinct(true);
         TypedQuery<ReferenceSequence> query = getEntityManager().createQuery(crit);
         List<ReferenceSequence> ret = query.getResultList();
         return ret;

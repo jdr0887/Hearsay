@@ -24,4 +24,8 @@ public interface ReferenceSequenceService {
     @Path("/findByGeneId/{geneId}")
     public List<ReferenceSequence> findByGeneId(@PathParam("geneId") Long geneId);
 
+    @GET
+    @Path("/findByIdentifierValue/{value}")
+    public List<ReferenceSequence> findByIdentifierValue(@PathParam("value") String value);
+
 }
