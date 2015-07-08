@@ -84,6 +84,9 @@ public class GeneDAOImpl extends BaseEntityDAOImpl<Gene, Long> implements GeneDA
         if (StringUtils.isNotEmpty(gene.getDescription())) {
             predicates.add(critBuilder.like(fromGene.get(Gene_.description), gene.getDescription()));
         }
+        if (gene.getChromosome() != null) {
+            predicates.add(critBuilder.equal(fromGene.get(Gene_.chromosome), gene.getChromosome()));
+        }
         crit.where(predicates.toArray(new Predicate[predicates.size()]));
         TypedQuery<Gene> query = getEntityManager().createQuery(crit);
         List<Gene> ret = query.getResultList();
