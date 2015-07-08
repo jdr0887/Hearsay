@@ -28,7 +28,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
 @XmlRootElement(name = "canonicalAllele")
-@XmlType(name = "CanonicalAllele")
+@XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "canonical_allele")
@@ -49,7 +49,7 @@ public class CanonicalAllele extends IdentifiableEntity {
 
     @Column(name = "molecule_type")
     @Enumerated(EnumType.STRING)
-    private MoleculeType moleculeType;
+    private ReferenceSequenceType moleculeType;
 
     @Column(name = "complexity_type")
     @Enumerated(EnumType.STRING)
@@ -83,12 +83,10 @@ public class CanonicalAllele extends IdentifiableEntity {
 
     public CanonicalAllele() {
         super();
+        this.relatedIdentifiers = new ArrayList<Identifier>();
     }
 
     public List<Identifier> getRelatedIdentifiers() {
-        if (relatedIdentifiers == null) {
-            relatedIdentifiers = new ArrayList<Identifier>();
-        }
         return relatedIdentifiers;
     }
 
@@ -120,11 +118,11 @@ public class CanonicalAllele extends IdentifiableEntity {
         this.name = name;
     }
 
-    public MoleculeType getMoleculeType() {
+    public ReferenceSequenceType getMoleculeType() {
         return moleculeType;
     }
 
-    public void setMoleculeType(MoleculeType moleculeType) {
+    public void setMoleculeType(ReferenceSequenceType moleculeType) {
         this.moleculeType = moleculeType;
     }
 
