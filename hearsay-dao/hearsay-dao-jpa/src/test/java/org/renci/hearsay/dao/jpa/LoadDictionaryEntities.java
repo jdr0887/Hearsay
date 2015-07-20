@@ -29,12 +29,14 @@ public class LoadDictionaryEntities {
         chromosomeDAO.setEntityManager(em);
 
         try {
+            em.getTransaction().begin();
             for (int i = 1; i < 22; i++) {
                 chromosomeDAO.save(new Chromosome(i + ""));
             }
             chromosomeDAO.save(new Chromosome("X"));
             chromosomeDAO.save(new Chromosome("Y"));
             chromosomeDAO.save(new Chromosome("MT"));
+            em.getTransaction().commit();
         } catch (HearsayDAOException e) {
             e.printStackTrace();
         }
