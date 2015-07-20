@@ -3,17 +3,18 @@ package org.renci.hearsay.dao.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -31,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(Include.NON_EMPTY)
 @XmlRootElement(name = "gene")
-@XmlType(propOrder = { "symbol", "chromosome", "description", "aliases" })
+@XmlType(propOrder = { "symbol", "chromosomes", "description", "aliases" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "gene")
@@ -45,9 +46,11 @@ public class Gene extends IdentifiableEntity {
     @Column(name = "symbol")
     private String symbol;
 
-    @ManyToOne
-    @JoinColumn(name = "chromosome_fid")
-    private Chromosome chromosome;
+    @XmlElementWrapper(name = "chromosomes")
+    @XmlElement(name = "chromosome")
+    @ManyToMany(targetEntity = Chromosome.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @JoinTable(name = "gene_chromosome", joinColumns = @JoinColumn(name = "gene_fid"), inverseJoinColumns = @JoinColumn(name = "chromosome_fid"))
+    private List<Chromosome> chromosomes;
 
     @Lob
     @Column(name = "description")
@@ -67,6 +70,8 @@ public class Gene extends IdentifiableEntity {
     public Gene() {
         super();
         this.aliases = new ArrayList<GeneSymbol>();
+        this.chromosomes = new ArrayList<Chromosome>();
+        this.referenceSequences = new ArrayList<ReferenceSequence>();
     }
 
     public String getDescription() {
@@ -77,12 +82,12 @@ public class Gene extends IdentifiableEntity {
         this.description = description;
     }
 
-    public Chromosome getChromosome() {
-        return chromosome;
+    public List<Chromosome> getChromosomes() {
+        return chromosomes;
     }
 
-    public void setChromosome(Chromosome chromosome) {
-        this.chromosome = chromosome;
+    public void setChromosomes(List<Chromosome> chromosomes) {
+        this.chromosomes = chromosomes;
     }
 
     public String getSymbol() {
