@@ -9,6 +9,7 @@
     <non-jta-data-source>aries:services/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/hearsayNoJTA)</non-jta-data-source>
 
     <class>org.renci.hearsay.dao.model.Alignment</class>
+    <class>org.renci.hearsay.dao.model.Chromosome</class>
     <class>org.renci.hearsay.dao.model.CanonicalAllele</class>
     <class>org.renci.hearsay.dao.model.DictionaryEntity</class>
     <class>org.renci.hearsay.dao.model.Feature</class>

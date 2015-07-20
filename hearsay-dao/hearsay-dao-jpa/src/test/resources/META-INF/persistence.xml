@@ -6,6 +6,7 @@
     <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
 
     <class>org.renci.hearsay.dao.model.Alignment</class>
+    <class>org.renci.hearsay.dao.model.Chromosome</class>
     <class>org.renci.hearsay.dao.model.CanonicalAllele</class>
     <class>org.renci.hearsay.dao.model.DictionaryEntity</class>
     <class>org.renci.hearsay.dao.model.Feature</class>

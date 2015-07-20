@@ -5,14 +5,15 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -44,10 +45,9 @@ public class Gene extends IdentifiableEntity {
     @Column(name = "symbol")
     private String symbol;
 
-    @XmlAttribute
-    @Column(name = "chromosome_type")
-    @Enumerated(EnumType.STRING)
-    private ChromosomeType chromosome;
+    @ManyToOne
+    @JoinColumn(name = "chromosome_fid")
+    private Chromosome chromosome;
 
     @Lob
     @Column(name = "description")
@@ -77,11 +77,11 @@ public class Gene extends IdentifiableEntity {
         this.description = description;
     }
 
-    public ChromosomeType getChromosome() {
+    public Chromosome getChromosome() {
         return chromosome;
     }
 
-    public void setChromosome(ChromosomeType chromosome) {
+    public void setChromosome(Chromosome chromosome) {
         this.chromosome = chromosome;
     }
 

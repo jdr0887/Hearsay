@@ -4,6 +4,8 @@ public class HearsayDAOBean {
 
     private AlignmentDAO alignmentDAO;
 
+    private ChromosomeDAO chromosomeDAO;
+
     private CanonicalAlleleDAO canonicalAlleleDAO;
 
     private FeatureDAO featureDAO;
@@ -42,6 +44,14 @@ public class HearsayDAOBean {
 
     public void setAlignmentDAO(AlignmentDAO alignmentDAO) {
         this.alignmentDAO = alignmentDAO;
+    }
+
+    public ChromosomeDAO getChromosomeDAO() {
+        return chromosomeDAO;
+    }
+
+    public void setChromosomeDAO(ChromosomeDAO chromosomeDAO) {
+        this.chromosomeDAO = chromosomeDAO;
     }
 
     public CanonicalAlleleDAO getCanonicalAlleleDAO() {

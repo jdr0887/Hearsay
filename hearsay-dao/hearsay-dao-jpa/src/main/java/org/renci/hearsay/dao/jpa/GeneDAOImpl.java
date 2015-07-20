@@ -13,6 +13,8 @@ import javax.persistence.criteria.Root;
 import org.apache.commons.lang.StringUtils;
 import org.renci.hearsay.dao.GeneDAO;
 import org.renci.hearsay.dao.HearsayDAOException;
+import org.renci.hearsay.dao.model.Chromosome;
+import org.renci.hearsay.dao.model.Chromosome_;
 import org.renci.hearsay.dao.model.Gene;
 import org.renci.hearsay.dao.model.Gene_;
 import org.renci.hearsay.dao.model.Identifier;
@@ -85,7 +87,8 @@ public class GeneDAOImpl extends BaseEntityDAOImpl<Gene, Long> implements GeneDA
             predicates.add(critBuilder.like(fromGene.get(Gene_.description), gene.getDescription()));
         }
         if (gene.getChromosome() != null) {
-            predicates.add(critBuilder.equal(fromGene.get(Gene_.chromosome), gene.getChromosome()));
+            Join<Gene, Chromosome> geneChromosomeJoin = fromGene.join(Gene_.chromosome);
+            predicates.add(critBuilder.equal(geneChromosomeJoin.get(Chromosome_.name), gene.getChromosome().getName()));
         }
         crit.where(predicates.toArray(new Predicate[predicates.size()]));
         TypedQuery<Gene> query = getEntityManager().createQuery(crit);

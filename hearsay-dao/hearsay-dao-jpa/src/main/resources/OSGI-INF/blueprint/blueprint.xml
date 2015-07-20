@@ -14,6 +14,12 @@
   </bean>
   <service ref="canonicalAlleleDAOImpl" interface="org.renci.hearsay.dao.CanonicalAlleleDAO" />
 
+  <bean id="chromosomeDAOImpl" class="org.renci.hearsay.dao.jpa.ChromosomeDAOImpl">
+    <tx:transaction method="*" value="Required" />
+    <jpa:context property="entityManager" unitname="hearsay" />
+  </bean>
+  <service ref="chromosomeDAOImpl" interface="org.renci.hearsay.dao.ChromosomeDAO" />
+
   <bean id="featureDAOImpl" class="org.renci.hearsay.dao.jpa.FeatureDAOImpl">
     <tx:transaction method="*" value="Required" />
     <jpa:context property="entityManager" unitname="hearsay" />
