@@ -13,7 +13,7 @@ import org.renci.hearsay.dao.model.PopulationFrequency;
 
 @Path("/PopulationFrequencyService/")
 @Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
+@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 public interface PopulationFrequencyService {
 
     @GET

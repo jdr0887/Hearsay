@@ -14,7 +14,7 @@ import org.renci.hearsay.dao.model.Gene;
 
 @Path("/GeneService/")
 @Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
+@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 public interface GeneService {
 
     @GET

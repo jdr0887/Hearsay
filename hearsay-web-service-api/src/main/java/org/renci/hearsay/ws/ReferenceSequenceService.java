@@ -13,7 +13,7 @@ import org.renci.hearsay.dao.model.ReferenceSequence;
 
 @Path("/ReferenceSequenceService/")
 @Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
+@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 public interface ReferenceSequenceService {
 
     @GET

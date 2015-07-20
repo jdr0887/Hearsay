@@ -11,7 +11,7 @@ import org.renci.hearsay.dao.model.GeneSymbol;
 
 @Path("/GeneSymbolService/")
 @Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
+@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 public interface GeneSymbolService {
 
     @GET

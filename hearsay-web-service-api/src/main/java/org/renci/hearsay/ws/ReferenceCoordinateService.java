@@ -11,7 +11,7 @@ import org.renci.hearsay.dao.model.ReferenceCoordinate;
 
 @Path("/ReferenceCoordinateService/")
 @Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
+@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 public interface ReferenceCoordinateService {
 
     @GET
