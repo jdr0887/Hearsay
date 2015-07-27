@@ -14,8 +14,8 @@
     <subsection name="Running">
       <p>To start the Hearsay Server, explode the
       hearsay-server-&lt;version&gt;.tar.gz file into a directory.
-      Then run 'hearsay-server-&lt;version&gt;/bin/start'.</p> 
-      
+      Then run 'hearsay-server-&lt;version&gt;/bin/start'.</p>
+
       <p>To stop the Hearsay Server, run
       'hearsay-server-&lt;version&gt;/bin/stop'.</p>
     </subsection>    

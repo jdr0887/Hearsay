@@ -14,19 +14,17 @@
     <name>${project.name}</name>
   </bannerLeft>
   <body>
-    <menu name="Overview">
-      <item name="About" href="index.html"/>
-      <item name="FAQ" href="faq.html"/>
-      <item name="Download" href="download.html"/>
-    </menu>
     <menu name="Documentation">
-      <item name="Manual" href="manual/index.html">
-	<item name="Building" href="manual/building.html"/>
-	<item name="Server" href="manual/server.html"/>
-	<item name="Client" href="manual/client.html"/>
-	<item name="Plugins" href="manual/plugins.html"/>
-      </item>    
+      <item name="About" href="index.html"/>
+      <item name="Download" href="manual/download.html"/>
+      <item name="Building" href="manual/building.html"/>
+      <item name="Server" href="manual/server.html"/>
+      <item name="Commands" href="manual/commands.html"/>      
     </menu>
+    <menu name="Plugins">
+      <item name="NCBI" href="http://jdr0887.github.io/Hearsay-NCBI-Plugin/"/>
+      <item name="CANVAS" href="http://jdr0887.github.io/Hearsay-CANVAS-Plugin/"/>      
+    </menu>    
     <menu ref="reports"/>
   </body>
 </project>
