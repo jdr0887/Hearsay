@@ -23,10 +23,12 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import org.renci.hearsay.dao.Persistable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -47,12 +49,13 @@ public class Alignment implements Persistable {
     @Column(name = "id")
     private Long id;
 
-    @XmlElementWrapper(name = "referenceSequences")
-    @XmlElement(name = "referenceSequence")
+    @XmlTransient
     @ManyToMany(targetEntity = ReferenceSequence.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
     @JoinTable(name = "reference_sequence_alignment", joinColumns = @JoinColumn(name = "alignment_fid"), inverseJoinColumns = @JoinColumn(name = "reference_sequence_fid"))
     private List<ReferenceSequence> referenceSequences;
 
+    @XmlElementWrapper(name = "regions")
+    @XmlElement(name = "region")
     @OneToMany(mappedBy = "alignment", fetch = FetchType.EAGER)
     private List<Region> regions;
 
