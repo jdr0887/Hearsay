@@ -61,17 +61,34 @@ public class ReferenceSequenceTest {
             List<Identifier> proteinAccessionIdentifierList = hearsayDAOBean.getIdentifierDAO().findByExample(
                     new Identifier("www.ncbi.nlm.nih.gov/protein", "NP_570603.2"));
 
-            List<Identifier> identifierList = new ArrayList<Identifier>();
-            identifierList.addAll(rnaNucleotideAccessionIdentifierList);
-            identifierList.addAll(proteinAccessionIdentifierList);
+            List<Long> identifierIdList = new ArrayList<Long>();
+            for (Identifier identifier : rnaNucleotideAccessionIdentifierList) {
+                identifierIdList.add(identifier.getId());
+            }
+            for (Identifier identifier : proteinAccessionIdentifierList) {
+                identifierIdList.add(identifier.getId());
+            }
 
             List<ReferenceSequence> potentialRefSeqs = hearsayDAOBean.getReferenceSequenceDAO().findByIdentifiers(
-                    identifierList.toArray(new Identifier[identifierList.size()]));
+                    identifierIdList);
 
             assertTrue(potentialRefSeqs != null && !potentialRefSeqs.isEmpty());
             assertTrue(potentialRefSeqs.size() == 1);
             serialize(potentialRefSeqs.get(0));
 
+        } catch (HearsayDAOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
+    public void findAll() {
+
+        try {
+            List<ReferenceSequence> potentialRefSeqs = hearsayDAOBean.getReferenceSequenceDAO().findAll();
+            assertTrue(potentialRefSeqs != null && !potentialRefSeqs.isEmpty());
+            assertTrue(potentialRefSeqs.size() == 1);
         } catch (HearsayDAOException e) {
             e.printStackTrace();
         }
