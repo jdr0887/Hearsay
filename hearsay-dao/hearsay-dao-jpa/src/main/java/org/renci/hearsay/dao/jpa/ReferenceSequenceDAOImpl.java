@@ -14,6 +14,8 @@ import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.ReferenceSequenceDAO;
 import org.renci.hearsay.dao.model.Gene;
 import org.renci.hearsay.dao.model.Gene_;
+import org.renci.hearsay.dao.model.GenomeReference;
+import org.renci.hearsay.dao.model.GenomeReference_;
 import org.renci.hearsay.dao.model.Identifier;
 import org.renci.hearsay.dao.model.Identifier_;
 import org.renci.hearsay.dao.model.ReferenceSequence;
@@ -60,6 +62,52 @@ public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequenc
     }
 
     @Override
+    public List<ReferenceSequence> findByExample(ReferenceSequence referenceSequence) throws HearsayDAOException {
+        logger.debug("ENTERING findByExample(ReferenceSequence)");
+        CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<ReferenceSequence> crit = critBuilder.createQuery(getPersistentClass());
+        Root<ReferenceSequence> fromReferenceSequence = crit.from(ReferenceSequence.class);
+        List<Predicate> predicates = new ArrayList<Predicate>();
+        if (referenceSequence.getGene() != null) {
+            Join<ReferenceSequence, Gene> referenceSequenceGeneJoin = fromReferenceSequence
+                    .join(ReferenceSequence_.gene);
+            predicates.add(critBuilder.equal(referenceSequenceGeneJoin.get(Gene_.id), referenceSequence.getGene()
+                    .getId()));
+        }
+
+        if (referenceSequence.getType() != null) {
+            predicates.add(critBuilder.equal(fromReferenceSequence.get(ReferenceSequence_.type),
+                    referenceSequence.getType()));
+        }
+
+        if (referenceSequence.getStrandType() != null) {
+            predicates.add(critBuilder.equal(fromReferenceSequence.get(ReferenceSequence_.strandType),
+                    referenceSequence.getStrandType()));
+        }
+
+        if (referenceSequence.getGenomeReference() != null) {
+            Join<ReferenceSequence, GenomeReference> referenceSequenceGenomeReferenceJoin = fromReferenceSequence
+                    .join(ReferenceSequence_.genomeReference);
+            predicates.add(critBuilder.equal(referenceSequenceGenomeReferenceJoin.get(GenomeReference_.id),
+                    referenceSequence.getGenomeReference().getId()));
+        }
+
+        if (referenceSequence.getIdentifiers() != null && !referenceSequence.getIdentifiers().isEmpty()) {
+            Join<ReferenceSequence, Identifier> referenceSequenceIdentifierJoin = fromReferenceSequence
+                    .join(ReferenceSequence_.identifiers);
+            for (Identifier identifier : referenceSequence.getIdentifiers()) {
+                predicates.add(critBuilder.equal(referenceSequenceIdentifierJoin.get(Identifier_.id),
+                        identifier.getId()));
+            }
+        }
+
+        crit.where(predicates.toArray(new Predicate[predicates.size()]));
+        TypedQuery<ReferenceSequence> query = getEntityManager().createQuery(crit);
+        List<ReferenceSequence> ret = query.getResultList();
+        return ret;
+    }
+
+    @Override
     public List<ReferenceSequence> findByIdentifierValue(String value) throws HearsayDAOException {
         logger.debug("ENTERING findByIdentifierValue(String)");
         CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
@@ -79,7 +127,7 @@ public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequenc
     }
 
     @Override
-    public List<ReferenceSequence> findByIdentifiers(Identifier... identifiers) throws HearsayDAOException {
+    public List<ReferenceSequence> findByIdentifiers(List<Long> idList) throws HearsayDAOException {
         logger.debug("ENTERING findByIdentifiers(Identifier)");
         CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<ReferenceSequence> crit = critBuilder.createQuery(getPersistentClass());
@@ -87,10 +135,6 @@ public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequenc
         List<Predicate> predicates = new ArrayList<Predicate>();
         Join<ReferenceSequence, Identifier> referenceSequenceIdentifierJoin = fromReferenceSequence
                 .join(ReferenceSequence_.identifiers);
-        List<Long> idList = new ArrayList<Long>();
-        for (Identifier id : identifiers) {
-            idList.add(id.getId());
-        }
         predicates.add(referenceSequenceIdentifierJoin.get(Identifier_.id).in(idList));
         crit.where(predicates.toArray(new Predicate[predicates.size()]));
         crit.distinct(true);
