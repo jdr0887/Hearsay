@@ -15,17 +15,17 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import org.renci.hearsay.dao.Persistable;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
 @XmlRootElement(name = "region")
-@XmlType(propOrder = { "id", "alignment", "regionType", "regionLocation", "cdsLocation", "transcriptLocation" })
+@XmlType(propOrder = { "id", "regionType", "regionLocation", "cdsLocation", "transcriptLocation" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "region")
@@ -40,11 +40,12 @@ public class Region implements Persistable {
     @Column(name = "id")
     private Long id;
 
-    @JsonIgnore
+    @XmlTransient
     @ManyToOne
     @JoinColumn(name = "alignment_fid")
     private Alignment alignment;
 
+    @XmlAttribute
     @Column(name = "region_type")
     @Enumerated(EnumType.STRING)
     private RegionType regionType;
