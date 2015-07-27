@@ -1,6 +1,5 @@
 package org.renci.hearsay.dao.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,9 +18,8 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -29,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
 @XmlRootElement(name = "referenceSequence")
-@XmlType(propOrder = {"type", "genomicLocation", "strandType", "gene", "genomeReference", "relationshipType", "alignments", "features"})
+@XmlType(propOrder = { "type", "genomicLocation", "strandType", "gene", "genomeReference", "relationshipType" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "reference_sequence")
@@ -63,22 +61,18 @@ public class ReferenceSequence extends IdentifiableEntity {
     @Enumerated(EnumType.STRING)
     private ReferenceSequenceRelationshipType relationshipType;
 
-    @XmlElementWrapper(name = "alignments")
-    @XmlElement(name = "alignment")
-    @ManyToMany(targetEntity = Alignment.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @XmlTransient
+    @ManyToMany(targetEntity = Alignment.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
     @JoinTable(name = "reference_sequence_alignment", joinColumns = @JoinColumn(name = "reference_sequence_fid"), inverseJoinColumns = @JoinColumn(name = "alignment_fid"))
     private List<Alignment> alignments;
 
-    @XmlElementWrapper(name = "features")
-    @XmlElement(name = "feature")
-    @ManyToMany(targetEntity = Feature.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @XmlTransient
+    @ManyToMany(targetEntity = Feature.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
     @JoinTable(name = "reference_sequence_feature", joinColumns = @JoinColumn(name = "reference_sequence_fid"), inverseJoinColumns = @JoinColumn(name = "feature_fid"))
     private List<Feature> features;
 
     public ReferenceSequence() {
         super();
-        this.features = new ArrayList<Feature>();
-        this.alignments = new ArrayList<Alignment>();
     }
 
     public ReferenceSequenceType getType() {
