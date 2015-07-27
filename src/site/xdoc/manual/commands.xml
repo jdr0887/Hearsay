@@ -1,0 +1,44 @@
+<document>
+  <properties>
+  </properties>
+  <body>
+    <section name="Commands">
+      <subsection name="List Genome References">
+	<source>
+karaf@hearsay()> list-genome-references 
+ID         Name
+1          GRCh37
+88         GRCh37.p10
+132        GRCh37.p11
+202        GRCh37.p12
+246        GRCh37.p13
+2          GRCh37.p2
+13         GRCh37.p5
+62         GRCh37.p9
+279        GRCh38
+311        GRCh38.p1
+347        GRCh38.p2
+376        GRCh38.p3
+423        GRCh38.p4
+	</source>
+      </subsection>
+      <subsection name="List Genes">
+	<source>
+karaf@hearsay()> list-genes | grep BRCA1
+11249      BABAM1           BRISC and BRCA1 A complex member 1
+6531       BAP1             BRCA1 associated protein-1 (ubiquitin carboxy-terminal hydrolase)
+488        BARD1            BRCA1 associated RING domain 1
+6532       BRAP             BRCA1 associated protein
+20240      BRAT1            BRCA1-associated ATM activator 1
+566        BRCA1            breast cancer 1, early onset
+24046      BRCA1P1          BRCA1 pseudogene 1
+14713      BRCC3            BRCA1/BRCA2-containing complex, subunit 3
+36103      BRCC3P1          BRCA1/BRCA2-containing complex, subunit 3 pseudogene 1
+15891      BRIP1            BRCA1 interacting protein C-terminal helicase 1
+3322       NBR1             neighbor of BRCA1 gene 1
+8096       NBR2             neighbor of BRCA1 gene 2 (non-protein coding)
+	</source>	
+      </subsection>                
+    </section>
+  </body>
+</document>
