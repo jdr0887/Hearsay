@@ -11,7 +11,6 @@
     <class>org.renci.hearsay.dao.model.Alignment</class>
     <class>org.renci.hearsay.dao.model.Chromosome</class>
     <class>org.renci.hearsay.dao.model.CanonicalAllele</class>
-    <class>org.renci.hearsay.dao.model.DictionaryEntity</class>
     <class>org.renci.hearsay.dao.model.Feature</class>
     <class>org.renci.hearsay.dao.model.Gene</class>
     <class>org.renci.hearsay.dao.model.GeneSymbol</class>
