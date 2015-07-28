@@ -27,7 +27,19 @@ public class FeatureServiceImpl implements FeatureService {
         try {
             ret = featureDAO.findById(id);
         } catch (HearsayDAOException e) {
-            e.printStackTrace();
+            logger.error("Error", e);
+        }
+        return ret;
+    }
+
+    @Override
+    public List<Feature> findByReferenceSequenceId(Long referenceSequenceId) throws HearsayDAOException {
+        logger.debug("ENTERING findByReferenceSequenceId(Long)");
+        List<Feature> ret = new ArrayList<Feature>();
+        try {
+            ret.addAll(featureDAO.findByReferenceSequenceId(referenceSequenceId));
+        } catch (HearsayDAOException e) {
+            logger.error("Error", e);
         }
         return ret;
     }

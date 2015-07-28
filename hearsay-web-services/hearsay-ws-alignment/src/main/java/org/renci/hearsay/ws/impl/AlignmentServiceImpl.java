@@ -1,5 +1,8 @@
 package org.renci.hearsay.ws.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.renci.hearsay.dao.AlignmentDAO;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.model.Alignment;
@@ -24,7 +27,19 @@ public class AlignmentServiceImpl implements AlignmentService {
         try {
             ret = alignmentDAO.findById(id);
         } catch (HearsayDAOException e) {
-            e.printStackTrace();
+            logger.error("Error", e);
+        }
+        return ret;
+    }
+
+    @Override
+    public List<Alignment> findByReferenceSequenceId(Long referenceSequenceId) throws HearsayDAOException {
+        logger.debug("ENTERING findByReferenceSequenceId(Long)");
+        List<Alignment> ret = new ArrayList<Alignment>();
+        try {
+            ret.addAll(alignmentDAO.findByReferenceSequenceId(referenceSequenceId));
+        } catch (HearsayDAOException e) {
+            logger.error("Error", e);
         }
         return ret;
     }
