@@ -10,6 +10,7 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.ReferenceSequenceDAO;
 import org.renci.hearsay.dao.model.Gene;
@@ -92,7 +93,7 @@ public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequenc
                     referenceSequence.getGenomeReference().getId()));
         }
 
-        if (referenceSequence.getIdentifiers() != null && !referenceSequence.getIdentifiers().isEmpty()) {
+        if (CollectionUtils.isNotEmpty(referenceSequence.getIdentifiers())) {
             Join<ReferenceSequence, Identifier> referenceSequenceIdentifierJoin = fromReferenceSequence
                     .join(ReferenceSequence_.identifiers);
             for (Identifier identifier : referenceSequence.getIdentifiers()) {

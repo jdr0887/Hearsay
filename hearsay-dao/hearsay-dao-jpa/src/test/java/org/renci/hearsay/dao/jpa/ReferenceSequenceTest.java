@@ -16,6 +16,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.PropertyException;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -72,7 +73,7 @@ public class ReferenceSequenceTest {
             List<ReferenceSequence> potentialRefSeqs = hearsayDAOBean.getReferenceSequenceDAO().findByIdentifiers(
                     identifierIdList);
 
-            assertTrue(potentialRefSeqs != null && !potentialRefSeqs.isEmpty());
+            assertTrue(CollectionUtils.isNotEmpty(potentialRefSeqs));
             assertTrue(potentialRefSeqs.size() == 1);
             serialize(potentialRefSeqs.get(0));
 
@@ -87,7 +88,7 @@ public class ReferenceSequenceTest {
 
         try {
             List<ReferenceSequence> potentialRefSeqs = hearsayDAOBean.getReferenceSequenceDAO().findAll();
-            assertTrue(potentialRefSeqs != null && !potentialRefSeqs.isEmpty());
+            assertTrue(CollectionUtils.isNotEmpty(potentialRefSeqs));
             assertTrue(potentialRefSeqs.size() == 1);
         } catch (HearsayDAOException e) {
             e.printStackTrace();

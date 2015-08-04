@@ -10,6 +10,7 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.renci.hearsay.dao.GeneDAO;
 import org.renci.hearsay.dao.HearsayDAOException;
@@ -86,7 +87,8 @@ public class GeneDAOImpl extends BaseEntityDAOImpl<Gene, Long> implements GeneDA
         if (StringUtils.isNotEmpty(gene.getDescription())) {
             predicates.add(critBuilder.like(fromGene.get(Gene_.description), gene.getDescription()));
         }
-        if (gene.getChromosomes() != null && !gene.getChromosomes().isEmpty()) {
+
+        if (CollectionUtils.isNotEmpty(gene.getChromosomes())) {
             Join<Gene, Chromosome> geneChromosomesJoin = fromGene.join(Gene_.chromosomes);
             for (Chromosome c : gene.getChromosomes()) {
                 predicates.add(critBuilder.equal(geneChromosomesJoin.get(Chromosome_.name), c.getName()));

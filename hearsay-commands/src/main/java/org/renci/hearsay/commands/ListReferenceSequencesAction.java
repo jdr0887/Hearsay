@@ -5,6 +5,7 @@ import java.util.Formatter;
 import java.util.List;
 import java.util.Locale;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.karaf.shell.commands.Command;
 import org.apache.karaf.shell.console.AbstractAction;
 import org.renci.hearsay.dao.HearsayDAOBean;
@@ -41,38 +42,32 @@ public class ListReferenceSequencesAction extends AbstractAction {
             e.printStackTrace();
         }
 
-        for (ReferenceSequence refSeq : referenceSequenceList) {
+        if (CollectionUtils.isNotEmpty(referenceSequenceList)) {
 
-            String rnaAccession = "";
-            if (refSeq.getIdentifiers() != null && !refSeq.getIdentifiers().isEmpty()) {
-                for (Identifier identifier : refSeq.getIdentifiers()) {
-                    if (identifier.getSystem().endsWith("nuccore")) {
-                        rnaAccession = identifier.getValue();
+            for (ReferenceSequence refSeq : referenceSequenceList) {
+
+                if (CollectionUtils.isNotEmpty(refSeq.getIdentifiers())) {
+                    String rnaAccession = "";
+                    String proteinAccession = "";
+                    String genomicAccession = "";
+                    for (Identifier identifier : refSeq.getIdentifiers()) {
+                        if (identifier.getSystem().endsWith("nuccore")) {
+                            rnaAccession = identifier.getValue();
+                        }
+                        if (identifier.getSystem().endsWith("protein")) {
+                            proteinAccession = identifier.getValue();
+                        }
+                        if (identifier.getSystem().endsWith("genome")) {
+                            genomicAccession = identifier.getValue();
+                        }
                     }
+                    formatter.format(format, refSeq.getId().toString(), rnaAccession, proteinAccession,
+                            genomicAccession, refSeq.getStrandType().toString(), refSeq.getType().toString());
                 }
+
+                formatter.flush();
             }
 
-            String proteinAccession = "";
-            if (refSeq.getIdentifiers() != null && !refSeq.getIdentifiers().isEmpty()) {
-                for (Identifier identifier : refSeq.getIdentifiers()) {
-                    if (identifier.getSystem().endsWith("protein")) {
-                        proteinAccession = identifier.getValue();
-                    }
-                }
-            }
-
-            String genomicAccession = "";
-            if (refSeq.getIdentifiers() != null && !refSeq.getIdentifiers().isEmpty()) {
-                for (Identifier identifier : refSeq.getIdentifiers()) {
-                    if (identifier.getSystem().endsWith("genome")) {
-                        genomicAccession = identifier.getValue();
-                    }
-                }
-            }
-
-            formatter.format(format, refSeq.getId().toString(), rnaAccession, proteinAccession, genomicAccession,
-                    refSeq.getStrandType().toString(), refSeq.getType().toString());
-            formatter.flush();
         }
         System.out.println(formatter.toString());
         formatter.close();

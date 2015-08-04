@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -34,7 +35,7 @@ public class CanonicalVariantTest {
         canonicalVariantDAO.setEntityManager(em);
 
         List<Gene> genes = geneDAO.findAll();
-        if (genes != null && !genes.isEmpty()) {
+        if (CollectionUtils.isNotEmpty(genes)) {
             for (Gene gene : genes) {
                 // List<CanonicalAllele> canonicalVariants = canonicalVariantDAO.findByGeneName(gene.getName());
                 // if (canonicalVariants != null && !canonicalVariants.isEmpty()) {

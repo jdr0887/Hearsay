@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -42,7 +43,7 @@ public class GeneTest {
     public void findAll() {
         try {
             List<Gene> potentialGenes = hearsayDAOBean.getGeneDAO().findAll();
-            assertTrue(potentialGenes != null && !potentialGenes.isEmpty());
+            assertTrue(CollectionUtils.isNotEmpty(potentialGenes));
         } catch (HearsayDAOException e) {
             e.printStackTrace();
         }
