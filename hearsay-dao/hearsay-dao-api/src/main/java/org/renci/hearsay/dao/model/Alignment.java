@@ -28,7 +28,6 @@ import javax.xml.bind.annotation.XmlType;
 
 import org.renci.hearsay.dao.Persistable;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
