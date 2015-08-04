@@ -23,6 +23,7 @@ public interface AlignmentService {
 
     @GET
     @Path("/findByReferenceSequenceId/{referenceSequenceId}")
-    public List<Alignment> findByReferenceSequenceId(Long referenceSequenceId) throws HearsayDAOException;
+    public List<Alignment> findByReferenceSequenceId(@PathParam("referenceSequenceId") Long referenceSequenceId)
+            throws HearsayDAOException;
 
 }
