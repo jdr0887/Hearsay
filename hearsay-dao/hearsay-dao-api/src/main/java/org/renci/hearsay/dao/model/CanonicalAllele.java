@@ -28,7 +28,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
 @XmlRootElement(name = "canonicalAllele")
-@XmlType
+@XmlType(propOrder = { "name", "version", "moleculeType", "complexityType", "replacementType", "parent", "children",
+        "relatedSimpleAlleles", "relatedIdentifiers" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "canonical_allele")
@@ -77,7 +78,7 @@ public class CanonicalAllele extends IdentifiableEntity {
 
     @XmlElementWrapper(name = "relatedIdentifiers")
     @XmlElement(name = "identifier")
-    @ManyToMany(targetEntity = CanonicalAllele.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = Identifier.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
     @JoinTable(name = "canonical_allele_related_identifier", joinColumns = @JoinColumn(name = "canonical_allele_fid"), inverseJoinColumns = @JoinColumn(name = "related_identifier_fid"))
     private List<Identifier> relatedIdentifiers;
 
