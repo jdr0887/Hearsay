@@ -17,9 +17,10 @@
     <menu name="Documentation">
       <item name="About" href="index.html"/>
       <item name="Download" href="manual/download.html"/>
+      <item name="FAQ" href="manual/faq.html" />
       <item name="Building" href="manual/building.html"/>
       <item name="Server" href="manual/server.html"/>
-      <item name="Commands" href="manual/commands.html"/>      
+      <item name="Commands" href="manual/commands.html"/> 
     </menu>
     <menu name="Plugins">
       <item name="NCBI" href="http://jdr0887.github.io/Hearsay-NCBI-Plugin/"/>
