@@ -1,5 +1,7 @@
 package org.renci.hearsay.ws;
 
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -17,5 +19,9 @@ public interface SimpleAlleleService {
     @GET
     @Path("/findById/{id}")
     public SimpleAllele findById(@PathParam("id") Long id);
+
+    @GET
+    @Path("/findByName/{name}")
+    public List<SimpleAllele> findByName(@PathParam("name") String name);
 
 }
