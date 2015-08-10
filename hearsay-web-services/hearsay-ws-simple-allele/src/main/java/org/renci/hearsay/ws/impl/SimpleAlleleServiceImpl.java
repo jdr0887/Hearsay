@@ -1,5 +1,8 @@
 package org.renci.hearsay.ws.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.SimpleAlleleDAO;
 import org.renci.hearsay.dao.model.SimpleAllele;
@@ -23,6 +26,18 @@ public class SimpleAlleleServiceImpl implements SimpleAlleleService {
         SimpleAllele ret = null;
         try {
             ret = simpleAlleleDAO.findById(id);
+        } catch (HearsayDAOException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    @Override
+    public List<SimpleAllele> findByName(String name) {
+        logger.debug("ENTERING findByName(String)");
+        List<SimpleAllele> ret = new ArrayList<SimpleAllele>();
+        try {
+            ret.addAll(simpleAlleleDAO.findByName(name));
         } catch (HearsayDAOException e) {
             e.printStackTrace();
         }
