@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20150811" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>Hearsay :: DAO &#x2013; Project Dependencies</title>
+    <title>Hearsay :: DAO :: API &#x2013; Project Dependencies</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.3.1.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -81,7 +81,35 @@
                                   
             <a name="Project_Dependencies"></a>
 <div class="section">
-<h2><a name="Project_Dependencies"></a>Project Dependencies</h2><a name="Project_Dependencies_test"></a>
+<h2><a name="Project_Dependencies"></a>Project Dependencies</h2><a name="Project_Dependencies_compile"></a>
+<div class="section">
+<h3><a name="compile"></a>compile</h3>
+<p>The following is a list of compile dependencies for this project. These dependencies are required to compile and run the application:</p>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>GroupId</th>
+<th>ArtifactId</th>
+<th>Version</th>
+<th>Type</th>
+<th>License</th></tr>
+<tr class="b">
+<td>com.fasterxml.jackson.core</td>
+<td><a class="externalLink" href="http://wiki.fasterxml.com/JacksonHome">jackson-core</a></td>
+<td>2.4.1</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>com.fasterxml.jackson.jaxrs</td>
+<td><a class="externalLink" href="http://wiki.fasterxml.com/JacksonHome/jackson-jaxrs-json-provider">jackson-jaxrs-json-provider</a></td>
+<td>2.4.1</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.apache.openjpa</td>
+<td><a class="externalLink" href="http://openjpa.apache.org/openjpa">openjpa</a></td>
+<td>2.3.0</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache Software License 2.0</a></td></tr></table></div><a name="Project_Dependencies_test"></a>
 <div class="section">
 <h3><a name="test"></a>test</h3>
 <p>The following is a list of test dependencies for this project. These dependencies are only required to compile and run unit tests for the application:</p>
@@ -109,6 +137,12 @@
 <th>Type</th>
 <th>License</th></tr>
 <tr class="b">
+<td>org.apache.geronimo.specs</td>
+<td><a class="externalLink" href="http://geronimo.apache.org/maven/specs/geronimo-jpa_2.0_spec/1.1">geronimo-jpa_2.0_spec</a></td>
+<td>1.1</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="a">
 <td>org.slf4j</td>
 <td><a class="externalLink" href="http://www.slf4j.org">slf4j-api</a></td>
 <td>1.7.12</td>
@@ -116,7 +150,89 @@
 <td><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></td></tr></table></div></div><a name="Project_Transitive_Dependencies"></a>
 <div class="section">
 <h2><a name="Project_Transitive_Dependencies"></a>Project Transitive Dependencies</h2>
-<p>The following is a list of transitive dependencies for this project. Transitive dependencies are the dependencies of the project dependencies.</p><a name="Project_Transitive_Dependencies_test"></a>
+<p>The following is a list of transitive dependencies for this project. Transitive dependencies are the dependencies of the project dependencies.</p><a name="Project_Transitive_Dependencies_compile"></a>
+<div class="section">
+<h3><a name="compile"></a>compile</h3>
+<p>The following is a list of compile dependencies for this project. These dependencies are required to compile and run the application:</p>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>GroupId</th>
+<th>ArtifactId</th>
+<th>Version</th>
+<th>Type</th>
+<th>License</th></tr>
+<tr class="b">
+<td>com.fasterxml.jackson.core</td>
+<td><a class="externalLink" href="http://wiki.fasterxml.com/JacksonHome">jackson-annotations</a></td>
+<td>2.4.1</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>com.fasterxml.jackson.core</td>
+<td><a class="externalLink" href="http://wiki.fasterxml.com/JacksonHome">jackson-databind</a></td>
+<td>2.4.1</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>com.fasterxml.jackson.jaxrs</td>
+<td><a class="externalLink" href="http://wiki.fasterxml.com/JacksonHome/jackson-jaxrs-base">jackson-jaxrs-base</a></td>
+<td>2.4.1</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>com.fasterxml.jackson.module</td>
+<td><a class="externalLink" href="http://wiki.fasterxml.com/JacksonJAXBAnnotations">jackson-module-jaxb-annotations</a></td>
+<td>2.4.1</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>commons-collections</td>
+<td><a class="externalLink" href="http://commons.apache.org/collections/">commons-collections</a></td>
+<td>3.2.1</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>commons-lang</td>
+<td><a class="externalLink" href="http://commons.apache.org/lang/">commons-lang</a></td>
+<td>2.4</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>commons-pool</td>
+<td><a class="externalLink" href="http://commons.apache.org/pool/">commons-pool</a></td>
+<td>1.5.4</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>javax.xml.stream</td>
+<td>stax-api</td>
+<td>1.0-2</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.gnu.org/licenses/gpl.txt">GNU General Public Library</a>-<a class="externalLink" href="http://www.sun.com/cddl/cddl.html">COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0</a></td></tr>
+<tr class="b">
+<td>net.sourceforge.serp</td>
+<td><a class="externalLink" href="http://serp.sourceforge.net">serp</a></td>
+<td>1.14.1</td>
+<td>jar</td>
+<td>LICENSE.txt</td></tr>
+<tr class="a">
+<td>org.apache.geronimo.specs</td>
+<td><a class="externalLink" href="http://geronimo.apache.org/specs/geronimo-jms_1.1_spec">geronimo-jms_1.1_spec</a></td>
+<td>1.1.1</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.apache.geronimo.specs</td>
+<td><a class="externalLink" href="http://geronimo.apache.org/specs/geronimo-jta_1.1_spec">geronimo-jta_1.1_spec</a></td>
+<td>1.1.1</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>org.apache.xbean</td>
+<td><a class="externalLink" href="http://geronimo.apache.org/maven/xbean/3.14/xbean-asm4-shaded">xbean-asm4-shaded</a></td>
+<td>3.14</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://asm.ow2.org/license.html">null</a>-<a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">null</a></td></tr></table></div><a name="Project_Transitive_Dependencies_test"></a>
 <div class="section">
 <h3><a name="test"></a>test</h3>
 <p>The following is a list of test dependencies for this project. These dependencies are only required to compile and run unit tests for the application:</p>
@@ -155,17 +271,166 @@
 <div class="section">
 <h3><a name="Dependency_Tree"></a>Dependency Tree</h3>
 <ul>
-<li>org.renci.hearsay:hearsay-dao:pom:0.0.46-SNAPSHOT <img id="_img1" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep0', '_img1' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep0" style="display:none">
+<li>org.renci.hearsay.hearsay-dao:hearsay-dao-api:bundle:0.0.46-SNAPSHOT <img id="_img1" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep0', '_img1' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep0" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
-<th>Hearsay :: DAO</th></tr>
+<th>Hearsay :: DAO :: API</th></tr>
 <tr class="b">
 <td>
 <p><b>Description: </b>There is currently no description associated with this project.</p>
-<p><b>URL: </b><a class="externalLink" href="https://jdr0887.github.io/Hearsay/hearsay-dao">https://jdr0887.github.io/Hearsay/hearsay-dao</a></p>
+<p><b>URL: </b><a class="externalLink" href="https://jdr0887.github.io/Hearsay/hearsay-dao/hearsay-dao-api">https://jdr0887.github.io/Hearsay/hearsay-dao/hearsay-dao-api</a></p>
 <p><b>Project License: </b><a href="LICENSE">RENCI Open Source Software License</a></p></td></tr></table></div>
 <ul>
-<li>org.slf4j:slf4j-api:jar:1.7.12 (provided) <img id="_img3" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep2', '_img3' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep2" style="display:none">
+<li>org.apache.openjpa:openjpa:jar:2.3.0 (compile) <img id="_img3" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep2', '_img3' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep2" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>OpenJPA Aggregate Jar</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache OpenJPA implementation of JSR-317 JPA 2.0</p>
+<p><b>URL: </b><a class="externalLink" href="http://openjpa.apache.org/openjpa">http://openjpa.apache.org/openjpa</a></p>
+<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache Software License 2.0</a></p></td></tr></table></div>
+<ul>
+<li>commons-lang:commons-lang:jar:2.4 (compile) <img id="_img5" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep4', '_img5' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep4" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Commons Lang</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Commons Lang, a package of Java utility classes for the
+        classes that are in java.lang's hierarchy, or are considered to be so
+        standard as to justify existence in java.lang.</p>
+<p><b>URL: </b><a class="externalLink" href="http://commons.apache.org/lang/">http://commons.apache.org/lang/</a></p>
+<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>commons-collections:commons-collections:jar:3.2.1 (compile) <img id="_img7" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep6', '_img7' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep6" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Commons Collections</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Types that extend and augment the Java Collections Framework.</p>
+<p><b>URL: </b><a class="externalLink" href="http://commons.apache.org/collections/">http://commons.apache.org/collections/</a></p>
+<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>net.sourceforge.serp:serp:jar:1.14.1 (compile) <img id="_img9" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep8', '_img9' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep8" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Serp</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Serp is an open source framework for manipulating Java bytecode.</p>
+<p><b>URL: </b><a class="externalLink" href="http://serp.sourceforge.net">http://serp.sourceforge.net</a></p>
+<p><b>Project License: </b><a href="LICENSE.txt">BSD</a></p></td></tr></table></div></li>
+<li>org.apache.geronimo.specs:geronimo-jms_1.1_spec:jar:1.1.1 (compile) <img id="_img11" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep10', '_img11' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep10" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>JMS 1.1</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Provides open-source implementations of Sun specifications.</p>
+<p><b>URL: </b><a class="externalLink" href="http://geronimo.apache.org/specs/geronimo-jms_1.1_spec">http://geronimo.apache.org/specs/geronimo-jms_1.1_spec</a></p>
+<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.apache.geronimo.specs:geronimo-jta_1.1_spec:jar:1.1.1 (compile) <img id="_img13" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep12', '_img13' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep12" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>JTA 1.1</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Provides open-source implementations of Sun specifications.</p>
+<p><b>URL: </b><a class="externalLink" href="http://geronimo.apache.org/specs/geronimo-jta_1.1_spec">http://geronimo.apache.org/specs/geronimo-jta_1.1_spec</a></p>
+<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>commons-pool:commons-pool:jar:1.5.4 (compile) <img id="_img15" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep14', '_img15' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep14" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Commons Pool</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Commons Object Pooling Library</p>
+<p><b>URL: </b><a class="externalLink" href="http://commons.apache.org/pool/">http://commons.apache.org/pool/</a></p>
+<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.apache.xbean:xbean-asm4-shaded:jar:3.14 (compile) <img id="_img17" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep16', '_img17' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep16" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Apache XBean :: ASM 4 shaded (repackaged)</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Repackaged and shaded asm 4.x jars</p>
+<p><b>URL: </b><a class="externalLink" href="http://geronimo.apache.org/maven/xbean/3.14/xbean-asm4-shaded">http://geronimo.apache.org/maven/xbean/3.14/xbean-asm4-shaded</a></p>
+<p><b>Project License: </b><a class="externalLink" href="http://asm.ow2.org/license.html">Unnamed</a>, <a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Unnamed</a></p></td></tr></table></div></li>
+<li>javax.xml.stream:stax-api:jar:1.0-2 (compile) <img id="_img19" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep18', '_img19' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep18" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Streaming API for XML</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>StAX is a standard XML processing API that allows you to stream XML data from and to your application.</p>
+<p><b>Project License: </b><a class="externalLink" href="http://www.gnu.org/licenses/gpl.txt">GNU General Public Library</a>, <a class="externalLink" href="http://www.sun.com/cddl/cddl.html">COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0</a></p></td></tr></table></div></li></ul></li>
+<li>org.apache.geronimo.specs:geronimo-jpa_2.0_spec:jar:1.1 (provided) <img id="_img21" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep20', '_img21' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep20" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Apache Geronimo JSR-317 JPA 2.0 Spec API</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Implementation of Sun JSR-317 JPA 2.0 Spec API</p>
+<p><b>URL: </b><a class="externalLink" href="http://geronimo.apache.org/maven/specs/geronimo-jpa_2.0_spec/1.1">http://geronimo.apache.org/maven/specs/geronimo-jpa_2.0_spec/1.1</a></p>
+<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.4.1 (compile) <img id="_img23" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep22', '_img23' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep22" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Jackson-JAXRS-JSON</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Functionality to handle JSON input/output for JAX-RS implementations (like Jersey and RESTeasy) using standard Jackson data binding.</p>
+<p><b>URL: </b><a class="externalLink" href="http://wiki.fasterxml.com/JacksonHome/jackson-jaxrs-json-provider">http://wiki.fasterxml.com/JacksonHome/jackson-jaxrs-json-provider</a></p>
+<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div>
+<ul>
+<li>com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.4.1 (compile) <img id="_img25" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep24', '_img25' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep24" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Jackson-JAXRS-base</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Pile of code that is shared by all Jackson-based JAX-RS
+providers.</p>
+<p><b>URL: </b><a class="externalLink" href="http://wiki.fasterxml.com/JacksonHome/jackson-jaxrs-base">http://wiki.fasterxml.com/JacksonHome/jackson-jaxrs-base</a></p>
+<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>com.fasterxml.jackson.core:jackson-databind:jar:2.4.1 (compile) <img id="_img27" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep26', '_img27' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep26" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>jackson-databind</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>General data-binding functionality for Jackson: works on core streaming API</p>
+<p><b>URL: </b><a class="externalLink" href="http://wiki.fasterxml.com/JacksonHome">http://wiki.fasterxml.com/JacksonHome</a></p>
+<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div>
+<ul>
+<li>com.fasterxml.jackson.core:jackson-annotations:jar:2.4.1 (compile) <img id="_img29" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep28', '_img29' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep28" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Jackson-annotations</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Core annotations used for value types, used by Jackson data binding package.</p>
+<p><b>URL: </b><a class="externalLink" href="http://wiki.fasterxml.com/JacksonHome">http://wiki.fasterxml.com/JacksonHome</a></p>
+<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
+<li>com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.4.1 (compile) <img id="_img31" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep30', '_img31' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep30" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Jackson-module-JAXB-annotations</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Support for using JAXB annotations as an alternative to &quot;native&quot; Jackson annotations, for configuring data binding.</p>
+<p><b>URL: </b><a class="externalLink" href="http://wiki.fasterxml.com/JacksonJAXBAnnotations">http://wiki.fasterxml.com/JacksonJAXBAnnotations</a></p>
+<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
+<li>com.fasterxml.jackson.core:jackson-core:jar:2.4.1 (compile) <img id="_img33" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep32', '_img33' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep32" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Jackson-core</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Core Jackson abstractions, basic JSON streaming API implementation</p>
+<p><b>URL: </b><a class="externalLink" href="http://wiki.fasterxml.com/JacksonHome">http://wiki.fasterxml.com/JacksonHome</a></p>
+<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.slf4j:slf4j-api:jar:1.7.12 (provided) <img id="_img35" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep34', '_img35' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep34" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>SLF4J API Module</th></tr>
@@ -174,7 +439,7 @@
 <p><b>Description: </b>The slf4j API</p>
 <p><b>URL: </b><a class="externalLink" href="http://www.slf4j.org">http://www.slf4j.org</a></p>
 <p><b>Project License: </b><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></p></td></tr></table></div></li>
-<li>junit:junit:jar:4.12 (test) <img id="_img5" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep4', '_img5' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep4" style="display:none">
+<li>junit:junit:jar:4.12 (test) <img id="_img37" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep36', '_img37' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep36" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>JUnit</th></tr>
@@ -184,7 +449,7 @@
 <p><b>URL: </b><a class="externalLink" href="http://junit.org">http://junit.org</a></p>
 <p><b>Project License: </b><a class="externalLink" href="http://www.eclipse.org/legal/epl-v10.html">Eclipse Public License 1.0</a></p></td></tr></table></div>
 <ul>
-<li>org.hamcrest:hamcrest-core:jar:1.3 (test) <img id="_img7" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep6', '_img7' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep6" style="display:none">
+<li>org.hamcrest:hamcrest-core:jar:1.3 (test) <img id="_img39" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep38', '_img39' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep38" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Hamcrest Core</th></tr>
@@ -195,10 +460,16 @@
 <p><b>Project License: </b><a class="externalLink" href="http://www.opensource.org/licenses/bsd-license.php">New BSD License</a></p></td></tr></table></div></li></ul></li></ul></li></ul></div></div><a name="Licenses"></a>
 <div class="section">
 <h2><a name="Licenses"></a>Licenses</h2>
+<p><b>Apache Software License 2.0: </b>OpenJPA Aggregate Jar</p>
 <p><b>New BSD License: </b>Hamcrest Core</p>
+<p><b>BSD: </b>Serp</p>
 <p><b>Eclipse Public License 1.0: </b>JUnit</p>
-<p><b>RENCI Open Source Software License: </b>Hearsay :: DAO</p>
-<p><b>MIT License: </b>SLF4J API Module</p></div><a name="Dependency_File_Details"></a>
+<p><b>GNU General Public Library: </b>Streaming API for XML</p>
+<p><b>RENCI Open Source Software License: </b>Hearsay :: DAO :: API</p>
+<p><b>COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0: </b>Streaming API for XML</p>
+<p><b>MIT License: </b>SLF4J API Module</p>
+<p><b>Unnamed: </b>Apache XBean :: ASM 4 shaded (repackaged)</p>
+<p><b>The Apache Software License, Version 2.0: </b>Apache Geronimo JSR-317 JPA 2.0 Spec API, Commons Collections, Commons Lang, Commons Pool, JMS 1.1, JTA 1.1, Jackson-JAXRS-JSON, Jackson-JAXRS-base, Jackson-annotations, Jackson-core, Jackson-module-JAXB-annotations, jackson-databind</p></div><a name="Dependency_File_Details"></a>
 <div class="section">
 <h2><a name="Dependency_File_Details"></a>Dependency File Details</h2>
 <table border="0" class="table table-striped">
@@ -211,11 +482,139 @@
 <th>Java Version</th>
 <th title="Indicates whether these dependencies have been compiled with debug information.">Debug Information</th></tr>
 <tr class="b">
+<td>jackson-annotations-2.4.1.jar</td>
+<td>38.60 kB</td>
+<td>63</td>
+<td>51</td>
+<td>1</td>
+<td>1.6</td>
+<td>Yes</td></tr>
+<tr class="a">
+<td>jackson-core-2.4.1.jar</td>
+<td>225.31 kB</td>
+<td>106</td>
+<td>84</td>
+<td>8</td>
+<td>1.6</td>
+<td>Yes</td></tr>
+<tr class="b">
+<td>jackson-databind-2.4.1.jar</td>
+<td>1.07 MB</td>
+<td>588</td>
+<td>554</td>
+<td>20</td>
+<td>1.6</td>
+<td>Yes</td></tr>
+<tr class="a">
+<td>jackson-jaxrs-base-2.4.1.jar</td>
+<td>28.56 kB</td>
+<td>31</td>
+<td>16</td>
+<td>4</td>
+<td>1.6</td>
+<td>Yes</td></tr>
+<tr class="b">
+<td>jackson-jaxrs-json-provider-2.4.1.jar</td>
+<td>16.63 kB</td>
+<td>29</td>
+<td>11</td>
+<td>2</td>
+<td>1.6</td>
+<td>Yes</td></tr>
+<tr class="a">
+<td>jackson-module-jaxb-annotations-2.4.1.jar</td>
+<td>31.80 kB</td>
+<td>30</td>
+<td>12</td>
+<td>3</td>
+<td>1.6</td>
+<td>Yes</td></tr>
+<tr class="b">
+<td>commons-collections-3.2.1.jar</td>
+<td>575.39 kB</td>
+<td>482</td>
+<td>458</td>
+<td>12</td>
+<td>1.2</td>
+<td>Yes</td></tr>
+<tr class="a">
+<td>commons-lang-2.4.jar</td>
+<td>261.81 kB</td>
+<td>148</td>
+<td>127</td>
+<td>9</td>
+<td>1.2</td>
+<td>Yes</td></tr>
+<tr class="b">
+<td>commons-pool-1.5.4.jar</td>
+<td>96.22 kB</td>
+<td>66</td>
+<td>52</td>
+<td>2</td>
+<td>1.3</td>
+<td>Yes</td></tr>
+<tr class="a">
+<td>stax-api-1.0-2.jar</td>
+<td>23.35 kB</td>
+<td>44</td>
+<td>37</td>
+<td>3</td>
+<td>1.5</td>
+<td>Yes</td></tr>
+<tr class="b">
 <td>junit-4.12.jar</td>
 <td>314.93 kB</td>
 <td>323</td>
 <td>286</td>
 <td>30</td>
+<td>1.5</td>
+<td>Yes</td></tr>
+<tr class="a">
+<td>serp-1.14.1.jar</td>
+<td>206.64 kB</td>
+<td>118</td>
+<td>106</td>
+<td>4</td>
+<td>1.3</td>
+<td>Yes</td></tr>
+<tr class="b">
+<td>geronimo-jms_1.1_spec-1.1.1.jar</td>
+<td>32.36 kB</td>
+<td>69</td>
+<td>58</td>
+<td>1</td>
+<td>1.5</td>
+<td>Yes</td></tr>
+<tr class="a">
+<td>geronimo-jpa_2.0_spec-1.1.jar</td>
+<td>120.19 kB</td>
+<td>204</td>
+<td>182</td>
+<td>6</td>
+<td>1.5</td>
+<td>Yes</td></tr>
+<tr class="b">
+<td>geronimo-jta_1.1_spec-1.1.1.jar</td>
+<td>16.03 kB</td>
+<td>30</td>
+<td>18</td>
+<td>2</td>
+<td>1.5</td>
+<td>Yes</td></tr>
+<tr class="a">
+<td>openjpa-2.3.0.jar</td>
+<td>4.70 MB</td>
+<td>2221</td>
+<td>2051</td>
+<td>52</td>
+<td>1.6</td>
+<td>Yes</td></tr>
+<tr class="b">
+<td>xbean-asm4-shaded-3.14.jar</td>
+<td>128.37 kB</td>
+<td>98</td>
+<td>76</td>
+<td>5</td>
 <td>1.5</td>
 <td>Yes</td></tr>
 <tr class="a">
@@ -243,14 +642,22 @@
 <th>Java Version</th>
 <th>Debug Information</th></tr>
 <tr class="b">
-<td>3</td>
-<td>392.08 kB</td>
-<td>414</td>
-<td>359</td>
-<td>36</td>
-<td>1.5</td>
-<td>3</td></tr>
+<td>19</td>
+<td>7.96 MB</td>
+<td>4741</td>
+<td>4252</td>
+<td>170</td>
+<td>1.6</td>
+<td>19</td></tr>
 <tr class="a">
+<td>compile: 15</td>
+<td>compile: 7.45 MB</td>
+<td>compile: 4123</td>
+<td>compile: 3711</td>
+<td>compile: 128</td>
+<td>-</td>
+<td>compile: 15</td></tr>
+<tr class="b">
 <td>test: 2</td>
 <td>test: 359.96 kB</td>
 <td>test: 375</td>
@@ -258,14 +665,14 @@
 <td>test: 33</td>
 <td>-</td>
 <td>test: 2</td></tr>
-<tr class="b">
-<td>provided: 1</td>
-<td>provided: 32.13 kB</td>
-<td>provided: 39</td>
-<td>provided: 28</td>
-<td>provided: 3</td>
+<tr class="a">
+<td>provided: 2</td>
+<td>provided: 152.32 kB</td>
+<td>provided: 243</td>
+<td>provided: 210</td>
+<td>provided: 9</td>
 <td>-</td>
-<td>provided: 1</td></tr></table></div><a name="Dependency_Repository_Locations"></a>
+<td>provided: 2</td></tr></table></div><a name="Dependency_Repository_Locations"></a>
 <div class="section">
 <h2><a name="Dependency_Repository_Locations"></a>Dependency Repository Locations</h2>
 <table border="0" class="table table-striped">
@@ -273,54 +680,268 @@
 <th>Repo ID</th>
 <th>URL</th>
 <th>Release</th>
-<th>Snapshot</th></tr>
+<th>Snapshot</th>
+<th>Blacklisted</th></tr>
+<tr class="b">
+<td>codehaus.snapshots</td>
+<td><a class="externalLink" href="http://snapshots.repository.codehaus.org">http://snapshots.repository.codehaus.org</a></td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td></tr>
+<tr class="a">
+<td>apache.snapshots</td>
+<td><a class="externalLink" href="http://repository.apache.org/snapshots">http://repository.apache.org/snapshots</a></td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td></tr>
+<tr class="b">
+<td>apache-incubator</td>
+<td><a class="externalLink" href="http://people.apache.org/repo/m2-incubating-repository/">http://people.apache.org/repo/m2-incubating-repository/</a></td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td></tr>
+<tr class="a">
+<td>sonatype-nexus-snapshots</td>
+<td><a class="externalLink" href="https://oss.sonatype.org/content/repositories/snapshots">https://oss.sonatype.org/content/repositories/snapshots</a></td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td></tr>
+<tr class="b">
+<td>codehaus-snapshots</td>
+<td><a class="externalLink" href="http://snapshots.repository.codehaus.org">http://snapshots.repository.codehaus.org</a></td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td></tr>
+<tr class="a">
+<td>apache-snapshots</td>
+<td><a class="externalLink" href="http://people.apache.org/repo/m2-snapshot-repository">http://people.apache.org/repo/m2-snapshot-repository</a></td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td></tr>
 <tr class="b">
 <td>renci.snapshot.repository</td>
 <td><a class="externalLink" href="http://archiva.renci.org:8080/repository/snapshots">http://archiva.renci.org:8080/repository/snapshots</a></td>
 <td>No</td>
-<td>Yes</td></tr>
+<td>Yes</td>
+<td>No</td></tr>
 <tr class="a">
+<td>serp</td>
+<td><a class="externalLink" href="http://serp.sourceforge.net/m2repo">http://serp.sourceforge.net/m2repo</a></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td></tr>
+<tr class="b">
 <td>central</td>
 <td><a class="externalLink" href="http://repo.maven.apache.org/maven2">http://repo.maven.apache.org/maven2</a></td>
 <td>Yes</td>
+<td>No</td>
 <td>No</td></tr>
-<tr class="b">
+<tr class="a">
 <td>renci.repository</td>
 <td><a class="externalLink" href="http://archiva.renci.org:8080/repository/internal">http://archiva.renci.org:8080/repository/internal</a></td>
 <td>Yes</td>
+<td>No</td>
 <td>No</td></tr></table>
 <p>Repository locations for each of the Dependencies.</p>
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Artifact</th>
+<th>codehaus.snapshots</th>
+<th>apache.snapshots</th>
+<th>sonatype-nexus-snapshots</th>
+<th>codehaus-snapshots</th>
 <th>renci.snapshot.repository</th>
 <th>central</th>
 <th>renci.repository</th></tr>
 <tr class="b">
+<td>com.fasterxml.jackson.core:jackson-annotations:jar:2.4.1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td><a class="externalLink" href="http://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.4.1/jackson-annotations-2.4.1.jar"><img alt="Found at http://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
+<td><a class="externalLink" href="http://archiva.renci.org:8080/repository/internal/com/fasterxml/jackson/core/jackson-annotations/2.4.1/jackson-annotations-2.4.1.jar"><img alt="Found at http://archiva.renci.org:8080/repository/internal" src="images/icon_success_sml.gif" /></a></td></tr>
+<tr class="a">
+<td>com.fasterxml.jackson.core:jackson-core:jar:2.4.1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td><a class="externalLink" href="http://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.4.1/jackson-core-2.4.1.jar"><img alt="Found at http://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
+<td><a class="externalLink" href="http://archiva.renci.org:8080/repository/internal/com/fasterxml/jackson/core/jackson-core/2.4.1/jackson-core-2.4.1.jar"><img alt="Found at http://archiva.renci.org:8080/repository/internal" src="images/icon_success_sml.gif" /></a></td></tr>
+<tr class="b">
+<td>com.fasterxml.jackson.core:jackson-databind:jar:2.4.1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td><a class="externalLink" href="http://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.4.1/jackson-databind-2.4.1.jar"><img alt="Found at http://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
+<td><a class="externalLink" href="http://archiva.renci.org:8080/repository/internal/com/fasterxml/jackson/core/jackson-databind/2.4.1/jackson-databind-2.4.1.jar"><img alt="Found at http://archiva.renci.org:8080/repository/internal" src="images/icon_success_sml.gif" /></a></td></tr>
+<tr class="a">
+<td>com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.4.1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td><a class="externalLink" href="http://repo.maven.apache.org/maven2/com/fasterxml/jackson/jaxrs/jackson-jaxrs-base/2.4.1/jackson-jaxrs-base-2.4.1.jar"><img alt="Found at http://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
+<td><a class="externalLink" href="http://archiva.renci.org:8080/repository/internal/com/fasterxml/jackson/jaxrs/jackson-jaxrs-base/2.4.1/jackson-jaxrs-base-2.4.1.jar"><img alt="Found at http://archiva.renci.org:8080/repository/internal" src="images/icon_success_sml.gif" /></a></td></tr>
+<tr class="b">
+<td>com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.4.1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td><a class="externalLink" href="http://repo.maven.apache.org/maven2/com/fasterxml/jackson/jaxrs/jackson-jaxrs-json-provider/2.4.1/jackson-jaxrs-json-provider-2.4.1.jar"><img alt="Found at http://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
+<td><a class="externalLink" href="http://archiva.renci.org:8080/repository/internal/com/fasterxml/jackson/jaxrs/jackson-jaxrs-json-provider/2.4.1/jackson-jaxrs-json-provider-2.4.1.jar"><img alt="Found at http://archiva.renci.org:8080/repository/internal" src="images/icon_success_sml.gif" /></a></td></tr>
+<tr class="a">
+<td>com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.4.1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td><a class="externalLink" href="http://repo.maven.apache.org/maven2/com/fasterxml/jackson/module/jackson-module-jaxb-annotations/2.4.1/jackson-module-jaxb-annotations-2.4.1.jar"><img alt="Found at http://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
+<td><a class="externalLink" href="http://archiva.renci.org:8080/repository/internal/com/fasterxml/jackson/module/jackson-module-jaxb-annotations/2.4.1/jackson-module-jaxb-annotations-2.4.1.jar"><img alt="Found at http://archiva.renci.org:8080/repository/internal" src="images/icon_success_sml.gif" /></a></td></tr>
+<tr class="b">
+<td>commons-collections:commons-collections:jar:3.2.1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td><a class="externalLink" href="http://repo.maven.apache.org/maven2/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar"><img alt="Found at http://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
+<td><a class="externalLink" href="http://archiva.renci.org:8080/repository/internal/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar"><img alt="Found at http://archiva.renci.org:8080/repository/internal" src="images/icon_success_sml.gif" /></a></td></tr>
+<tr class="a">
+<td>commons-lang:commons-lang:jar:2.4</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td><a class="externalLink" href="http://repo.maven.apache.org/maven2/commons-lang/commons-lang/2.4/commons-lang-2.4.jar"><img alt="Found at http://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
+<td><a class="externalLink" href="http://archiva.renci.org:8080/repository/internal/commons-lang/commons-lang/2.4/commons-lang-2.4.jar"><img alt="Found at http://archiva.renci.org:8080/repository/internal" src="images/icon_success_sml.gif" /></a></td></tr>
+<tr class="b">
+<td>commons-pool:commons-pool:jar:1.5.4</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td><a class="externalLink" href="http://repo.maven.apache.org/maven2/commons-pool/commons-pool/1.5.4/commons-pool-1.5.4.jar"><img alt="Found at http://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
+<td><a class="externalLink" href="http://archiva.renci.org:8080/repository/internal/commons-pool/commons-pool/1.5.4/commons-pool-1.5.4.jar"><img alt="Found at http://archiva.renci.org:8080/repository/internal" src="images/icon_success_sml.gif" /></a></td></tr>
+<tr class="a">
+<td>javax.xml.stream:stax-api:jar:1.0-2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td><a class="externalLink" href="http://repo.maven.apache.org/maven2/javax/xml/stream/stax-api/1.0-2/stax-api-1.0-2.jar"><img alt="Found at http://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
+<td><a class="externalLink" href="http://archiva.renci.org:8080/repository/internal/javax/xml/stream/stax-api/1.0-2/stax-api-1.0-2.jar"><img alt="Found at http://archiva.renci.org:8080/repository/internal" src="images/icon_success_sml.gif" /></a></td></tr>
+<tr class="b">
 <td>junit:junit:jar:4.12</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
 <td>-</td>
 <td><a class="externalLink" href="http://repo.maven.apache.org/maven2/junit/junit/4.12/junit-4.12.jar"><img alt="Found at http://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td><a class="externalLink" href="http://archiva.renci.org:8080/repository/internal/junit/junit/4.12/junit-4.12.jar"><img alt="Found at http://archiva.renci.org:8080/repository/internal" src="images/icon_success_sml.gif" /></a></td></tr>
 <tr class="a">
+<td>net.sourceforge.serp:serp:jar:1.14.1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td><a class="externalLink" href="http://repo.maven.apache.org/maven2/net/sourceforge/serp/serp/1.14.1/serp-1.14.1.jar"><img alt="Found at http://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
+<td><a class="externalLink" href="http://archiva.renci.org:8080/repository/internal/net/sourceforge/serp/serp/1.14.1/serp-1.14.1.jar"><img alt="Found at http://archiva.renci.org:8080/repository/internal" src="images/icon_success_sml.gif" /></a></td></tr>
+<tr class="b">
+<td>org.apache.geronimo.specs:geronimo-jms_1.1_spec:jar:1.1.1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td><a class="externalLink" href="http://repo.maven.apache.org/maven2/org/apache/geronimo/specs/geronimo-jms_1.1_spec/1.1.1/geronimo-jms_1.1_spec-1.1.1.jar"><img alt="Found at http://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
+<td><a class="externalLink" href="http://archiva.renci.org:8080/repository/internal/org/apache/geronimo/specs/geronimo-jms_1.1_spec/1.1.1/geronimo-jms_1.1_spec-1.1.1.jar"><img alt="Found at http://archiva.renci.org:8080/repository/internal" src="images/icon_success_sml.gif" /></a></td></tr>
+<tr class="a">
+<td>org.apache.geronimo.specs:geronimo-jpa_2.0_spec:jar:1.1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td><a class="externalLink" href="http://repo.maven.apache.org/maven2/org/apache/geronimo/specs/geronimo-jpa_2.0_spec/1.1/geronimo-jpa_2.0_spec-1.1.jar"><img alt="Found at http://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
+<td><a class="externalLink" href="http://archiva.renci.org:8080/repository/internal/org/apache/geronimo/specs/geronimo-jpa_2.0_spec/1.1/geronimo-jpa_2.0_spec-1.1.jar"><img alt="Found at http://archiva.renci.org:8080/repository/internal" src="images/icon_success_sml.gif" /></a></td></tr>
+<tr class="b">
+<td>org.apache.geronimo.specs:geronimo-jta_1.1_spec:jar:1.1.1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td><a class="externalLink" href="http://repo.maven.apache.org/maven2/org/apache/geronimo/specs/geronimo-jta_1.1_spec/1.1.1/geronimo-jta_1.1_spec-1.1.1.jar"><img alt="Found at http://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
+<td><a class="externalLink" href="http://archiva.renci.org:8080/repository/internal/org/apache/geronimo/specs/geronimo-jta_1.1_spec/1.1.1/geronimo-jta_1.1_spec-1.1.1.jar"><img alt="Found at http://archiva.renci.org:8080/repository/internal" src="images/icon_success_sml.gif" /></a></td></tr>
+<tr class="a">
+<td>org.apache.openjpa:openjpa:jar:2.3.0</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td><a class="externalLink" href="http://repo.maven.apache.org/maven2/org/apache/openjpa/openjpa/2.3.0/openjpa-2.3.0.jar"><img alt="Found at http://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
+<td><a class="externalLink" href="http://archiva.renci.org:8080/repository/internal/org/apache/openjpa/openjpa/2.3.0/openjpa-2.3.0.jar"><img alt="Found at http://archiva.renci.org:8080/repository/internal" src="images/icon_success_sml.gif" /></a></td></tr>
+<tr class="b">
+<td>org.apache.xbean:xbean-asm4-shaded:jar:3.14</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td><a class="externalLink" href="http://repo.maven.apache.org/maven2/org/apache/xbean/xbean-asm4-shaded/3.14/xbean-asm4-shaded-3.14.jar"><img alt="Found at http://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
+<td><a class="externalLink" href="http://archiva.renci.org:8080/repository/internal/org/apache/xbean/xbean-asm4-shaded/3.14/xbean-asm4-shaded-3.14.jar"><img alt="Found at http://archiva.renci.org:8080/repository/internal" src="images/icon_success_sml.gif" /></a></td></tr>
+<tr class="a">
 <td>org.hamcrest:hamcrest-core:jar:1.3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
 <td>-</td>
 <td><a class="externalLink" href="http://repo.maven.apache.org/maven2/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"><img alt="Found at http://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td><a class="externalLink" href="http://archiva.renci.org:8080/repository/internal/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"><img alt="Found at http://archiva.renci.org:8080/repository/internal" src="images/icon_success_sml.gif" /></a></td></tr>
 <tr class="b">
 <td>org.slf4j:slf4j-api:jar:1.7.12</td>
 <td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
 <td><a class="externalLink" href="http://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.12/slf4j-api-1.7.12.jar"><img alt="Found at http://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td><a class="externalLink" href="http://archiva.renci.org:8080/repository/internal/org/slf4j/slf4j-api/1.7.12/slf4j-api-1.7.12.jar"><img alt="Found at http://archiva.renci.org:8080/repository/internal" src="images/icon_success_sml.gif" /></a></td></tr>
 <tr class="a">
 <th>Total</th>
+<th>codehaus.snapshots</th>
+<th>apache.snapshots</th>
+<th>sonatype-nexus-snapshots</th>
+<th>codehaus-snapshots</th>
 <th>renci.snapshot.repository</th>
 <th>central</th>
 <th>renci.repository</th></tr>
 <tr class="b">
-<td>3 (test: 2, provided: 1)</td>
+<td>19 (compile: 15, test: 2, provided: 2)</td>
 <td>0</td>
-<td>3</td>
-<td>3</td></tr></table></div>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>19</td>
+<td>19</td></tr></table></div>
                   </div>
             </div>
           </div>
