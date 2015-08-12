@@ -11,7 +11,6 @@ import javax.persistence.Persistence;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.PropertyException;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.junit.AfterClass;
