@@ -1,18 +1,12 @@
 package org.renci.hearsay.dao.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -64,35 +58,13 @@ public class CanonicalAllele extends IdentifiableEntity {
     @Column(name = "split")
     private Boolean split;
 
-    @ManyToOne
-    @JoinColumn(name = "parent_fid")
-    private CanonicalAllele parent;
-
-    @OneToMany(mappedBy = "parent", fetch = FetchType.EAGER)
-    private List<CanonicalAllele> children;
-
-    @XmlElementWrapper(name = "relatedSimpleAlleles")
+    @XmlElementWrapper(name = "simpleAlleles")
     @XmlElement(name = "simpleAllele")
     @OneToMany(mappedBy = "canonicalAllele", fetch = FetchType.LAZY)
-    private List<SimpleAllele> relatedSimpleAlleles;
-
-    @XmlElementWrapper(name = "relatedIdentifiers")
-    @XmlElement(name = "identifier")
-    @ManyToMany(targetEntity = Identifier.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    @JoinTable(name = "canonical_allele_related_identifier", joinColumns = @JoinColumn(name = "canonical_allele_fid"), inverseJoinColumns = @JoinColumn(name = "related_identifier_fid"))
-    private List<Identifier> relatedIdentifiers;
+    private List<SimpleAllele> simpleAlleles;
 
     public CanonicalAllele() {
         super();
-        this.relatedIdentifiers = new ArrayList<Identifier>();
-    }
-
-    public List<Identifier> getRelatedIdentifiers() {
-        return relatedIdentifiers;
-    }
-
-    public void setRelatedIdentifiers(List<Identifier> relatedIdentifiers) {
-        this.relatedIdentifiers = relatedIdentifiers;
     }
 
     public Boolean getActive() {
@@ -151,36 +123,6 @@ public class CanonicalAllele extends IdentifiableEntity {
         this.split = split;
     }
 
-    public CanonicalAllele getParent() {
-        return parent;
-    }
-
-    public void setParent(CanonicalAllele parent) {
-        this.parent = parent;
-    }
-
-    public List<CanonicalAllele> getChildren() {
-        if (children == null) {
-            children = new ArrayList<CanonicalAllele>();
-        }
-        return children;
-    }
-
-    public void setChildren(List<CanonicalAllele> children) {
-        this.children = children;
-    }
-
-    public List<SimpleAllele> getRelatedSimpleAlleles() {
-        if (relatedSimpleAlleles == null) {
-            relatedSimpleAlleles = new ArrayList<SimpleAllele>();
-        }
-        return relatedSimpleAlleles;
-    }
-
-    public void setRelatedSimpleAlleles(List<SimpleAllele> relatedSimpleAlleles) {
-        this.relatedSimpleAlleles = relatedSimpleAlleles;
-    }
-
     @Override
     public String toString() {
         return String
@@ -195,7 +137,6 @@ public class CanonicalAllele extends IdentifiableEntity {
         result = prime * result + ((active == null) ? 0 : active.hashCode());
         result = prime * result + ((complexityType == null) ? 0 : complexityType.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((parent == null) ? 0 : parent.hashCode());
         result = prime * result + ((replacementType == null) ? 0 : replacementType.hashCode());
         result = prime * result + ((split == null) ? 0 : split.hashCode());
         result = prime * result + ((moleculeType == null) ? 0 : moleculeType.hashCode());
@@ -223,11 +164,6 @@ public class CanonicalAllele extends IdentifiableEntity {
             if (other.id != null)
                 return false;
         } else if (!id.equals(other.id))
-            return false;
-        if (parent == null) {
-            if (other.parent != null)
-                return false;
-        } else if (!parent.equals(other.parent))
             return false;
         if (replacementType != other.replacementType)
             return false;
