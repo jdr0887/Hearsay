@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -23,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
 @XmlRootElement(name = "simpleAllele")
-@XmlType(propOrder = { "canonicalAllele", "allele", "name", "type", "referenceCoordinate", "molecularConsequences",
+@XmlType(propOrder = { "allele", "name", "type", "referenceCoordinate", "molecularConsequences",
         "populationFrequencies" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
@@ -32,6 +33,7 @@ public class SimpleAllele extends IdentifiableEntity {
 
     private static final long serialVersionUID = 608874481580966242L;
 
+    @XmlTransient
     @ManyToOne
     @JoinColumn(name = "canonical_allele_fid")
     private CanonicalAllele canonicalAllele;
