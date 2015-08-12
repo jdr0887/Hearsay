@@ -2,7 +2,7 @@
   <parent>
     <groupId>org.renci.hearsay</groupId>
     <artifactId>parent</artifactId>
-    <version>0.0.17</version>
+    <version>0.0.18</version>
   </parent>
   <name>Hearsay</name>
   <modelVersion>4.0.0</modelVersion>
@@ -138,6 +138,62 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>${maven.site.plugin.version}</version>
+        <configuration>
+	  <reportPlugins>
+	    <plugin>
+	      <groupId>org.apache.maven.plugins</groupId>
+	      <artifactId>maven-project-info-reports-plugin</artifactId>
+	      <version>${maven.project.info.reports.plugin.version}</version>
+	      <configuration>
+		<dependencyDetailsEnabled>true</dependencyDetailsEnabled>
+		<dependencyLocationsEnabled>true</dependencyLocationsEnabled>
+	      </configuration>
+	      <reports>
+	      </reports>
+	    </plugin>
+	    <plugin>
+	      <groupId>org.apache.maven.plugins</groupId>
+	      <artifactId>maven-javadoc-plugin</artifactId>
+	      <version>${maven.javadoc.plugin.version}</version>
+	    </plugin>
+	    <plugin>
+	      <groupId>org.apache.maven.plugins</groupId>
+	      <artifactId>maven-surefire-report-plugin</artifactId>
+	      <version>${maven.surefire.report.plugin.version}</version>
+	    </plugin>
+	    <plugin>
+	      <groupId>org.apache.maven.plugins</groupId>
+	      <artifactId>maven-changelog-plugin</artifactId>
+	      <version>${maven.changelog.plugin.version}</version>
+	    </plugin>	    
+	  </reportPlugins>
+        </configuration>
+      </plugin>      
+      <!-- <plugin> -->
+      <!-- 	<groupId>com.github.github</groupId> -->
+      <!-- 	<artifactId>site-maven-plugin</artifactId> -->
+      <!-- 	<version>0.12</version> -->
+      <!-- 	<configuration> -->
+      <!-- 	  <message>Building site for ${project.version}</message> -->
+      <!-- 	  <server>github</server> -->
+      <!-- 	</configuration> -->
+      <!-- 	<executions> -->
+      <!-- 	  <execution> -->
+      <!-- 	    <goals> -->
+      <!-- 	      <goal>site</goal> -->
+      <!-- 	    </goals> -->
+      <!-- 	    <phase>site</phase> -->
+      <!-- 	  </execution> -->
+      <!-- 	</executions> -->
+      <!-- </plugin> -->
+    </plugins>
+  </build>
   <modules>
     <module>hearsay-commands</module>
     <module>hearsay-datasource</module>
