@@ -1,5 +1,6 @@
 package org.renci.hearsay.dao.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -65,6 +66,15 @@ public class CanonicalAllele extends IdentifiableEntity {
 
     public CanonicalAllele() {
         super();
+        this.simpleAlleles = new ArrayList<SimpleAllele>();
+    }
+
+    public List<SimpleAllele> getSimpleAlleles() {
+        return simpleAlleles;
+    }
+
+    public void setSimpleAlleles(List<SimpleAllele> simpleAlleles) {
+        this.simpleAlleles = simpleAlleles;
     }
 
     public Boolean getActive() {
