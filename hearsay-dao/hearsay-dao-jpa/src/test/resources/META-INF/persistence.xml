@@ -36,7 +36,7 @@
       <property name="openjpa.jdbc.DBDictionary" value="postgres(SearchStringEscape=\, SupportsXMLColumn=false)" />
       <property name="openjpa.RemoteCommitProvider" value="sjvm" />
       <property name="openjpa.DataCache" value="false" />
-      <property name="openjpa.QueryCache" value="true" />
+      <property name="openjpa.QueryCache" value="false" />
     </properties>
 
   </persistence-unit>
