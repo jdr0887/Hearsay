@@ -33,6 +33,14 @@ public class AlignmentDAOImpl extends BaseEntityDAOImpl<Alignment, Long> impleme
     }
 
     @Override
+    public List<Alignment> findAll() throws HearsayDAOException {
+        logger.debug("ENTERING findAll()");
+        TypedQuery<Alignment> query = getEntityManager().createNamedQuery("Alignment.findAll", Alignment.class);
+        List<Alignment> ret = query.getResultList();
+        return ret;
+    }
+
+    @Override
     public List<Alignment> findByReferenceSequenceId(Long referenceSequenceId) throws HearsayDAOException {
         logger.debug("ENTERING findByReferenceSequenceId(Long)");
         CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();

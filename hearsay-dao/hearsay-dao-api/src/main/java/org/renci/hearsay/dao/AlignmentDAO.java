@@ -8,4 +8,6 @@ public interface AlignmentDAO extends BaseEntityDAO<Alignment, Long> {
 
     public List<Alignment> findByReferenceSequenceId(Long referenceSequenceId) throws HearsayDAOException;
 
+    public List<Alignment> findAll() throws HearsayDAOException;
+
 }

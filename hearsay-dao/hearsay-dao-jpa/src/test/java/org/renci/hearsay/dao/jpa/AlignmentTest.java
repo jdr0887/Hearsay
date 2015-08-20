@@ -88,6 +88,21 @@ public class AlignmentTest {
     }
 
     @Test
+    public void findAll() {
+
+        AlignmentDAOImpl alignmentDAO = new AlignmentDAOImpl();
+        alignmentDAO.setEntityManager(em);
+
+        try {
+            List<Alignment> alignmentList = alignmentDAO.findAll();
+            assertTrue(alignmentList.size() > 0);
+        } catch (HearsayDAOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
     public void findNonContigousRegions() {
 
         GeneDAOImpl geneDAO = new GeneDAOImpl();
