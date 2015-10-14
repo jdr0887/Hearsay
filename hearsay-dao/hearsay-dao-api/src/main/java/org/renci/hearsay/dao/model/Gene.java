@@ -5,8 +5,10 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
@@ -14,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -24,8 +27,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-import org.apache.openjpa.persistence.jdbc.Index;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -35,21 +36,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @XmlType(propOrder = { "symbol", "chromosomes", "description", "aliases" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "gene")
-@NamedQueries({ @NamedQuery(name = "Gene.findAll", query = "SELECT a FROM Gene a order by a.symbol") })
+//@PrimaryKeyJoinColumn(name = "id")
+//@DiscriminatorValue("Gene")
+@Table(name = "gene", indexes = { @Index(columnList = "symbol") })
+@NamedQueries({ @NamedQuery(name = "Gene.findAll", query = "FROM Gene a order by a.symbol") })
 public class Gene extends IdentifiableEntity {
 
     private static final long serialVersionUID = -5997799315221166517L;
 
     @XmlAttribute
-    @Index
     @Column(name = "symbol")
     private String symbol;
 
     @XmlElementWrapper(name = "chromosomes")
     @XmlElement(name = "chromosome")
     @ManyToMany(targetEntity = Chromosome.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    @JoinTable(name = "gene_chromosome", joinColumns = @JoinColumn(name = "gene_fid"), inverseJoinColumns = @JoinColumn(name = "chromosome_fid"))
+    @JoinTable(name = "gene_chromosome", joinColumns = @JoinColumn(name = "gene_fid") , inverseJoinColumns = @JoinColumn(name = "chromosome_fid") )
     private List<Chromosome> chromosomes;
 
     @Lob

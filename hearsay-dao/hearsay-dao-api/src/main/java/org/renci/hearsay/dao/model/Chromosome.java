@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
@@ -16,7 +17,6 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.apache.openjpa.persistence.jdbc.Index;
 import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -27,8 +27,10 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType(propOrder = { "name" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "chromosome", uniqueConstraints = { @UniqueConstraint(columnNames = { "name" }) })
-@NamedQueries({ @NamedQuery(name = "Chromosome.findByName", query = "SELECT a FROM Chromosome a where a.name = :name") })
+@Table(name = "chromosome", uniqueConstraints = { @UniqueConstraint(columnNames = { "name" }) }, indexes = {
+        @Index(columnList = "name") })
+@NamedQueries({ @NamedQuery(name = "Chromosome.findAll", query = "FROM Chromosome a"),
+        @NamedQuery(name = "Chromosome.findByName", query = "FROM Chromosome a where a.name = :name") })
 public class Chromosome implements Persistable {
 
     private static final long serialVersionUID = 2931123376533316569L;
@@ -41,7 +43,6 @@ public class Chromosome implements Persistable {
     private Long id;
 
     @XmlAttribute
-    @Index
     @Column(name = "name")
     private String name;
 

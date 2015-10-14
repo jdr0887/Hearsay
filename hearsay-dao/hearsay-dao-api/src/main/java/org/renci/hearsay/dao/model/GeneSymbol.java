@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
@@ -16,7 +17,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-import org.apache.openjpa.persistence.jdbc.Index;
 import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -27,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "gene_symbol")
+@Table(name = "gene_symbol", indexes = { @Index(columnList = "symbol") })
 public class GeneSymbol implements Persistable {
 
     private static final long serialVersionUID = -5997799315221166517L;
@@ -40,7 +40,6 @@ public class GeneSymbol implements Persistable {
     private Long id;
 
     @XmlAttribute
-    @Index
     @Column(name = "symbol")
     private String symbol;
 

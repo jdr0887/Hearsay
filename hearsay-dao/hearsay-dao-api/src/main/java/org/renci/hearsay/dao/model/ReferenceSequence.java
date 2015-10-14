@@ -14,6 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -30,8 +31,9 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType(propOrder = { "type", "genomicLocation", "strandType", "gene", "genomeReference", "relationshipType" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
+@PrimaryKeyJoinColumn(name = "id")
 @Table(name = "reference_sequence")
-@NamedQueries({ @NamedQuery(name = "ReferenceSequence.findAll", query = "SELECT a FROM ReferenceSequence a") })
+@NamedQueries({ @NamedQuery(name = "ReferenceSequence.findAll", query = "FROM ReferenceSequence a") })
 public class ReferenceSequence extends IdentifiableEntity {
 
     private static final long serialVersionUID = -488057011816731553L;

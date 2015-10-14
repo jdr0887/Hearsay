@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -28,6 +29,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
         "populationFrequencies" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
+@PrimaryKeyJoinColumn(name = "id")
 @Table(name = "simple_allele")
 public class SimpleAllele extends IdentifiableEntity {
 

@@ -39,7 +39,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "alignment")
-@NamedQueries({ @NamedQuery(name = "Alignment.findAll", query = "SELECT a FROM Alignment a") })
+@NamedQueries({ @NamedQuery(name = "Alignment.findAll", query = "FROM Alignment a") })
 public class Alignment implements Persistable {
 
     private static final long serialVersionUID = 240726999951481482L;

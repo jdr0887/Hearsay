@@ -41,7 +41,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Table(name = "identifiable_entity")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
-public class IdentifiableEntity implements Persistable {
+public abstract class IdentifiableEntity implements Persistable {
 
     private static final long serialVersionUID = -6618445110433958733L;
 
@@ -57,7 +57,7 @@ public class IdentifiableEntity implements Persistable {
     @XmlElementWrapper(name = "identifiers")
     @XmlElement(name = "identifier")
     @ManyToMany(targetEntity = Identifier.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    @JoinTable(name = "entity_identifier", joinColumns = @JoinColumn(name = "entity_fid"), inverseJoinColumns = @JoinColumn(name = "identifier_fid"))
+    @JoinTable(name = "entity_identifier", joinColumns = @JoinColumn(name = "entity_fid") , inverseJoinColumns = @JoinColumn(name = "identifier_fid") )
     protected List<Identifier> identifiers;
 
     public IdentifiableEntity() {
