@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -44,6 +44,21 @@ public class GeneTest {
         try {
             List<Gene> potentialGenes = hearsayDAOBean.getGeneDAO().findAll();
             assertTrue(CollectionUtils.isNotEmpty(potentialGenes));
+        } catch (HearsayDAOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void create() {
+        try {
+            Gene gene = new Gene();
+            gene.setDescription("asdf");
+            gene.setSymbol("asdf");
+            em.getTransaction().begin();
+            gene.setId(hearsayDAOBean.getGeneDAO().save(gene));
+            em.getTransaction().commit();
+            System.out.println(gene.toString());
         } catch (HearsayDAOException e) {
             e.printStackTrace();
         }
