@@ -3,14 +3,17 @@ package org.renci.hearsay.dao.jpa;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Singleton;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
+import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.ReferenceSequenceDAO;
 import org.renci.hearsay.dao.model.Gene;
@@ -24,6 +27,9 @@ import org.renci.hearsay.dao.model.ReferenceSequence_;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@OsgiServiceProvider(classes = { ReferenceSequenceDAO.class })
+@Singleton
+@Transactional
 public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequence, Long> implements
         ReferenceSequenceDAO {
 
