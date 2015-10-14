@@ -5,27 +5,31 @@ import java.util.Formatter;
 import java.util.List;
 import java.util.Locale;
 
-import org.apache.karaf.shell.commands.Command;
-import org.apache.karaf.shell.console.AbstractAction;
-import org.renci.hearsay.dao.HearsayDAOBean;
+import org.apache.karaf.shell.api.action.Action;
+import org.apache.karaf.shell.api.action.Command;
+import org.apache.karaf.shell.api.action.lifecycle.Reference;
+import org.apache.karaf.shell.api.action.lifecycle.Service;
+import org.renci.hearsay.dao.GenomeReferenceDAO;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.model.GenomeReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Command(scope = "hearsay", name = "list-genome-references", description = "List Genome References")
-public class ListGenomeReferencesAction extends AbstractAction {
+@Service
+public class ListGenomeReferencesAction implements Action {
 
     private final Logger logger = LoggerFactory.getLogger(ListGenomeReferencesAction.class);
 
-    private HearsayDAOBean hearsayDAOBean;
+    @Reference
+    private GenomeReferenceDAO genomeReferenceDAO;
 
     public ListGenomeReferencesAction() {
         super();
     }
 
     @Override
-    public Object doExecute() {
+    public Object execute() {
         logger.debug("ENTERING doExecute()");
 
         String format = "%1$-10s %2$s%n";
@@ -35,7 +39,7 @@ public class ListGenomeReferencesAction extends AbstractAction {
 
         List<GenomeReference> genomeReferenceList = new ArrayList<GenomeReference>();
         try {
-            genomeReferenceList.addAll(hearsayDAOBean.getGenomeReferenceDAO().findAll());
+            genomeReferenceList.addAll(genomeReferenceDAO.findAll());
         } catch (HearsayDAOException e) {
             e.printStackTrace();
         }
@@ -48,14 +52,6 @@ public class ListGenomeReferencesAction extends AbstractAction {
         formatter.close();
 
         return null;
-    }
-
-    public HearsayDAOBean getHearsayDAOBean() {
-        return hearsayDAOBean;
-    }
-
-    public void setHearsayDAOBean(HearsayDAOBean hearsayDAOBean) {
-        this.hearsayDAOBean = hearsayDAOBean;
     }
 
 }

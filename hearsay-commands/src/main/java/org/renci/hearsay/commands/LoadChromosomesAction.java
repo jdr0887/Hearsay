@@ -1,46 +1,58 @@
 package org.renci.hearsay.commands;
 
-import org.apache.karaf.shell.commands.Command;
-import org.apache.karaf.shell.console.AbstractAction;
-import org.renci.hearsay.dao.HearsayDAOBean;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.karaf.shell.api.action.Action;
+import org.apache.karaf.shell.api.action.Command;
+import org.apache.karaf.shell.api.action.lifecycle.Reference;
+import org.apache.karaf.shell.api.action.lifecycle.Service;
+import org.renci.hearsay.dao.ChromosomeDAO;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.model.Chromosome;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Command(scope = "hearsay", name = "load-chromosomes", description = "Load Chromosomes")
-public class LoadChromosomesAction extends AbstractAction {
+@Service
+public class LoadChromosomesAction implements Action {
 
     private final Logger logger = LoggerFactory.getLogger(LoadChromosomesAction.class);
 
-    private HearsayDAOBean hearsayDAOBean;
+    @Reference
+    private ChromosomeDAO chromosomeDAO;
 
     public LoadChromosomesAction() {
         super();
     }
 
     @Override
-    public Object doExecute() {
+    public Object execute() {
         logger.debug("ENTERING doExecute()");
+
+        List<Chromosome> allChromosomes = new ArrayList<Chromosome>();
+
+        try {
+            allChromosomes.addAll(chromosomeDAO.findAll());
+            if (CollectionUtils.isNotEmpty(allChromosomes)) {
+                chromosomeDAO.delete(allChromosomes);
+            }
+        } catch (HearsayDAOException e1) {
+            e1.printStackTrace();
+        }
+
         try {
             for (int i = 1; i < 23; i++) {
-                hearsayDAOBean.getChromosomeDAO().save(new Chromosome(i + ""));
+                chromosomeDAO.save(new Chromosome(i + ""));
             }
-            hearsayDAOBean.getChromosomeDAO().save(new Chromosome("X"));
-            hearsayDAOBean.getChromosomeDAO().save(new Chromosome("Y"));
-            hearsayDAOBean.getChromosomeDAO().save(new Chromosome("MT"));
+            chromosomeDAO.save(new Chromosome("X"));
+            chromosomeDAO.save(new Chromosome("Y"));
+            chromosomeDAO.save(new Chromosome("MT"));
         } catch (HearsayDAOException e) {
             e.printStackTrace();
         }
         return null;
-    }
-
-    public HearsayDAOBean getHearsayDAOBean() {
-        return hearsayDAOBean;
-    }
-
-    public void setHearsayDAOBean(HearsayDAOBean hearsayDAOBean) {
-        this.hearsayDAOBean = hearsayDAOBean;
     }
 
 }

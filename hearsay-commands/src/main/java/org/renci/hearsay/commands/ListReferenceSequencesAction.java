@@ -5,29 +5,33 @@ import java.util.Formatter;
 import java.util.List;
 import java.util.Locale;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.karaf.shell.commands.Command;
-import org.apache.karaf.shell.console.AbstractAction;
-import org.renci.hearsay.dao.HearsayDAOBean;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.karaf.shell.api.action.Action;
+import org.apache.karaf.shell.api.action.Command;
+import org.apache.karaf.shell.api.action.lifecycle.Reference;
+import org.apache.karaf.shell.api.action.lifecycle.Service;
 import org.renci.hearsay.dao.HearsayDAOException;
+import org.renci.hearsay.dao.ReferenceSequenceDAO;
 import org.renci.hearsay.dao.model.Identifier;
 import org.renci.hearsay.dao.model.ReferenceSequence;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Command(scope = "hearsay", name = "list-reference-sequences", description = "List Reference Sequences")
-public class ListReferenceSequencesAction extends AbstractAction {
+@Service
+public class ListReferenceSequencesAction implements Action {
 
     private final Logger logger = LoggerFactory.getLogger(ListReferenceSequencesAction.class);
 
-    private HearsayDAOBean hearsayDAOBean;
+    @Reference
+    private ReferenceSequenceDAO referenceSequenceDAO;
 
     public ListReferenceSequencesAction() {
         super();
     }
 
     @Override
-    public Object doExecute() {
+    public Object execute() {
         logger.debug("ENTERING doExecute()");
 
         String format = "%1$-10s %2$-20s %3$-20s %4$-20s %5$-12s %6$s%n";
@@ -37,7 +41,7 @@ public class ListReferenceSequencesAction extends AbstractAction {
 
         List<ReferenceSequence> referenceSequenceList = new ArrayList<ReferenceSequence>();
         try {
-            referenceSequenceList.addAll(hearsayDAOBean.getReferenceSequenceDAO().findAll());
+            referenceSequenceList.addAll(referenceSequenceDAO.findAll());
         } catch (HearsayDAOException e) {
             e.printStackTrace();
         }
@@ -73,14 +77,6 @@ public class ListReferenceSequencesAction extends AbstractAction {
         formatter.close();
 
         return null;
-    }
-
-    public HearsayDAOBean getHearsayDAOBean() {
-        return hearsayDAOBean;
-    }
-
-    public void setHearsayDAOBean(HearsayDAOBean hearsayDAOBean) {
-        this.hearsayDAOBean = hearsayDAOBean;
     }
 
 }
