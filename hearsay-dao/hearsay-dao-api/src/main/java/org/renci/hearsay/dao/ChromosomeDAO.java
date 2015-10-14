@@ -8,4 +8,6 @@ public interface ChromosomeDAO extends BaseEntityDAO<Chromosome, Long> {
 
     public List<Chromosome> findByName(String name) throws HearsayDAOException;
 
+    public List<Chromosome> findAll() throws HearsayDAOException;
+
 }
