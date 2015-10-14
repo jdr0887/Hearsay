@@ -12,6 +12,70 @@
   <packaging>bundle</packaging>
   <dependencies>
     <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+    </dependency>    
+    <dependency>
+      <groupId>org.renci.hearsay.hearsay-dao</groupId>
+      <artifactId>hearsay-dao-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-collections4</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.cdi</groupId>
+      <artifactId>pax-cdi-api</artifactId>
+      <optional>true</optional>      
+    </dependency>          
+    <dependency>
+      <groupId>javax.inject</groupId>
+      <artifactId>javax.inject</artifactId>
+      <optional>true</optional>
+    </dependency>        
+    <dependency>
+      <groupId>javax.transaction</groupId>
+      <artifactId>javax.transaction-api</artifactId>
+      <version>1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate.javax.persistence</groupId>
+      <artifactId>hibernate-jpa-2.1-api</artifactId>
+      <version>1.0.0.Final</version>
+    </dependency>        
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <version>${hibernate.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- <dependency> -->
+    <!--   <groupId>org.apache.openjpa</groupId> -->
+    <!--   <artifactId>openjpa</artifactId> -->
+    <!-- </dependency>     -->
+    <!-- <dependency> -->
+    <!--   <groupId>org.apache.geronimo.specs</groupId> -->
+    <!--   <artifactId>geronimo-jpa_2.0_spec</artifactId> -->
+    <!-- </dependency> -->
+    <!-- <dependency> -->
+    <!--   <groupId>org.apache.geronimo.specs</groupId> -->
+    <!--   <artifactId>geronimo-jta_1.1_spec</artifactId> -->
+    <!-- </dependency> -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-dbcp</groupId>
+      <artifactId>commons-dbcp</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
       <scope>test</scope>      
@@ -25,48 +89,29 @@
       <groupId>commons-net</groupId>
       <artifactId>commons-net</artifactId>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.postgresql</groupId>
-      <artifactId>postgresql</artifactId>
     </dependency>    
-    <dependency>
-      <groupId>org.renci.hearsay.hearsay-dao</groupId>
-      <artifactId>hearsay-dao-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-jpa_2.0_spec</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-jta_1.1_spec</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.openjpa</groupId>
-      <artifactId>openjpa</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>commons-dbcp</groupId>
-      <artifactId>commons-dbcp</artifactId>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
   <build>
     <plugins>
+      <!-- <plugin> -->
+      <!--   <groupId>org.apache.aries.blueprint</groupId> -->
+      <!--   <artifactId>blueprint-maven-plugin</artifactId> -->
+      <!-- 	<version>1.2.0</version> -->
+      <!--   <configuration> -->
+      <!--     <scanPaths> -->
+      <!--       <scanPath>org.renci.hearsay.dao.jpa</scanPath> -->
+      <!--     </scanPaths> -->
+      <!--   </configuration> -->
+      <!-- </plugin>       -->
       <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
+	<extensions>true</extensions>
         <configuration>
           <instructions>
             <Private-Package>org.renci.hearsay.dao.jpa.*</Private-Package>
             <Export-Package>org.renci.hearsay.dao.jpa.*</Export-Package>
-            <Import-Package>*</Import-Package>
+            <!-- <Import-Package>*</Import-Package> -->
           </instructions>
         </configuration>
       </plugin>
