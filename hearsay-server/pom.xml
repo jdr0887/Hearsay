@@ -45,6 +45,22 @@
       <classifier>features</classifier>
       <scope>runtime</scope>
     </dependency>
+    <dependency>
+      <groupId>org.apache.karaf.features</groupId>
+      <artifactId>spring</artifactId>
+      <version>${karaf.version}</version>
+      <classifier>features</classifier>
+      <type>xml</type>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.jdbc</groupId>
+      <artifactId>pax-jdbc-features</artifactId>
+      <version>0.7.0</version>
+      <classifier>features</classifier>
+      <type>xml</type>
+      <scope>runtime</scope>
+    </dependency>    
     <!-- <dependency> -->
     <!--   <groupId>org.renci.opm</groupId> -->
     <!--   <artifactId>opm-features</artifactId> -->
@@ -57,7 +73,7 @@
       <groupId>org.renci.hearsay</groupId>
       <artifactId>hearsay-features</artifactId>
       <classifier>features</classifier>
-      <version>0.0.45-SNAPSHOT</version>
+      <version>0.0.46-SNAPSHOT</version>
       <type>xml</type>
       <scope>runtime</scope>
     </dependency>
@@ -65,13 +81,20 @@
   <build>
     <resources>
       <resource>
+        <directory>src/main/resources</directory>
+        <filtering>false</filtering>
+        <includes>
+          <include>**/*</include>
+        </includes>
+      </resource>
+      <resource>
         <directory>src/main/filtered-resources</directory>
         <filtering>true</filtering>
         <includes>
           <include>**/*</include>
         </includes>
       </resource>
-    </resources>
+    </resources>    
     <plugins>
       <plugin>
 	<groupId>org.apache.maven.plugins</groupId>
@@ -82,32 +105,17 @@
 	</configuration>
       </plugin>
       <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-resources-plugin</artifactId>
-	<version>${maven.resources.plugin.version}</version>	
-	<executions>
-	  <execution>
-	    <id>copy-resources</id>
-	    <phase>prepare-package</phase>
-	    <goals>
-	      <goal>copy-resources</goal>
-	    </goals>
-	    <configuration>
-	      <outputDirectory>${project.basedir}/target/assembly</outputDirectory>
-	      <overwrite>true</overwrite>
-	      <resources>
-		<resource>
-		  <directory>${project.basedir}/src/main/assembly</directory>
-		  <filtering>false</filtering>
-		</resource>
-		<resource>
-		  <directory>${project.basedir}/src/main/filtered-assembly</directory>
-		  <filtering>true</filtering>
-		</resource>
-	      </resources>
-	    </configuration>
-	  </execution>
-	</executions>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+	<version>${maven.resources.plugin.version}</version>		
+        <executions>
+          <execution>
+            <id>process-resources</id>
+            <goals>
+              <goal>resources</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.karaf.tooling</groupId>
@@ -118,19 +126,39 @@
 	  <ignoreDependencyFlag>true</ignoreDependencyFlag>
 	  <targetServerDirectory>${assembly.directory}</targetServerDirectory>
           <bootFeatures>
-            <feature>standard</feature>
-	    <feature>http</feature>
-            <feature>ssh</feature>
+            <feature>feature</feature>
+            <feature>shell</feature>
+            <feature>shell-compat</feature>
+            <feature>deployer</feature>
+            <feature>bundle</feature>
             <feature>config</feature>
+            <feature>diagnostic</feature>
+            <feature>instance</feature>
+            <feature>jaas</feature>
+            <feature>log</feature>
+            <feature>package</feature>
+            <feature>service</feature>
+            <feature>system</feature>
+            <feature>kar</feature>
+            <feature>ssh</feature>
             <feature>management</feature>
-            <feature>eventadmin</feature>
-	    <feature>transaction</feature>
-	    <feature>jdbc</feature>
-	    <feature>jndi</feature>
-	    <feature>openjpa</feature>
-	    <feature>war</feature>
-	    <feature>cxf</feature> 
-	    <!-- <feature>opm</feature>  -->
+            <feature>wrap</feature>
+	    <feature>obr</feature>
+            <feature>war</feature>
+            <feature>webconsole</feature>
+            <feature>jndi</feature>
+            <feature>jpa</feature>
+            <feature>jdbc</feature>
+            <feature>jms</feature>
+            <feature>transaction</feature>
+            <feature>spring</feature>
+	    <feature version="4.3.6.Final">hibernate</feature>
+	    <feature>pax-cdi</feature>
+	    <feature>pax-cdi-web</feature>
+	    <feature>pax-jdbc-postgresql</feature>
+	    <feature>pax-jdbc-config</feature>	    
+	    <feature>pax-jdbc-pool-dbcp2</feature>	    
+	    <feature>cxf</feature>
 	    <feature>hearsay</feature>
           </bootFeatures>
         </configuration>
