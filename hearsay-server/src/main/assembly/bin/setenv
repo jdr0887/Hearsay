@@ -1,7 +1,0 @@
-
-. ~/.bashrc
-
-if [ -e ~/.hearsayrc ]
-then
-  . ~/.hearsayrc
-fi
