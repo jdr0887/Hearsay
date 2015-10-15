@@ -1,9 +1,14 @@
 package org.renci.hearsay.dao.jpa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.transaction.Transactional;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -18,7 +23,7 @@ public class LoadDictionaryEntities {
 
     @BeforeClass
     public static void setup() {
-        emf = Persistence.createEntityManagerFactory("test-hearsay", null);
+        emf = Persistence.createEntityManagerFactory("test-hearsay");
         em = emf.createEntityManager();
     }
 
@@ -27,6 +32,19 @@ public class LoadDictionaryEntities {
 
         ChromosomeDAOImpl chromosomeDAO = new ChromosomeDAOImpl();
         chromosomeDAO.setEntityManager(em);
+
+        List<Chromosome> allChromosomes = new ArrayList<Chromosome>();
+
+        try {
+            allChromosomes.addAll(chromosomeDAO.findAll());
+            if (CollectionUtils.isNotEmpty(allChromosomes)) {
+                em.getTransaction().begin();
+                chromosomeDAO.delete(allChromosomes);
+                em.getTransaction().commit();
+            }
+        } catch (HearsayDAOException e1) {
+            e1.printStackTrace();
+        }
 
         try {
             em.getTransaction().begin();
