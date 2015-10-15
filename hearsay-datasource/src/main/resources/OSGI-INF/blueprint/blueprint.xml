@@ -13,7 +13,7 @@
       <cm:property name="password" value="hearsay" />
       <cm:property name="validationQuery" value="SELECT 1" />
       <cm:property name="defaultReadOnly" value="false" />
-      <cm:property name="defaultAutoCommit" value="false" />
+      <cm:property name="defaultAutoCommit" value="true" />
       <cm:property name="maxActive" value="24" />
       <cm:property name="whenExhaustedAction" value="2" />
       <cm:property name="maxWait" value="-1" />
