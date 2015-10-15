@@ -31,8 +31,11 @@
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/hearsay" />
       <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect" />
       <property name="hibernate.hbm2ddl.auto" value="update" />
+      <property name="hibernate.discriminator.ignore_explicit_for_joined" value="false" />
       <property name="hibernate.show_sql" value="true" />
       <property name="hibernate.format_sql" value="true" />
+      <property name="hibernate.connection.autocommit" value="true" />
+      <!-- <property name="hibernate.ejb.use_class_enhancer" value="true"/> -->
 
       <!-- <property name="openjpa.ConnectionProperties" -->
       <!-- value="DriverClassName=org.postgresql.Driver,Url=jdbc:postgresql://localhost:5432/hearsay,MaxActive=100,MaxWait=1000,TestOnBorrow=true,RemoveAbandoned=true,RemoveAbandonedTimeout=60,LogAbandoned=60,Username=hearsay,Password=hearsay" 
