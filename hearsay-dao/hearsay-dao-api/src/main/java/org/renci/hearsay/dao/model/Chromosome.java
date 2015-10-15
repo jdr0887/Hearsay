@@ -29,7 +29,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @Entity
 @Table(name = "chromosome", uniqueConstraints = { @UniqueConstraint(columnNames = { "name" }) }, indexes = {
         @Index(columnList = "name") })
-@NamedQueries({ @NamedQuery(name = "Chromosome.findAll", query = "FROM Chromosome a"),
+@NamedQueries({ @NamedQuery(name = "Chromosome.findAll", query = "FROM Chromosome"),
         @NamedQuery(name = "Chromosome.findByName", query = "FROM Chromosome a where a.name = :name") })
 public class Chromosome implements Persistable {
 
