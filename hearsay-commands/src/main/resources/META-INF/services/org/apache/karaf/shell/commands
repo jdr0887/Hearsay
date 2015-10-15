@@ -1,4 +1,5 @@
 org.renci.hearsay.commands.ListGeneAction
 org.renci.hearsay.commands.ListGenomeReferenceAction
 org.renci.hearsay.commands.ListReferenceSequenceAction
+org.renci.hearsay.commands.ListChromosomesAction
 org.renci.hearsay.commands.LoadChromosomesAction
