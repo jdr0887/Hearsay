@@ -32,14 +32,15 @@
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
     <properties>
+      <property name="hibernate.discriminator.ignore_explicit_for_joined" value="false" />
+      <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect" />
+      <property name="hibernate.hbm2ddl.auto" value="update" />
+      <!-- <property name="hibernate.ejb.use_class_enhancer" value="true" /> -->
       <!-- <property name="openjpa.Log" value="DefaultLevel=TRACE, Runtime=TRACE, Tool=TRACE, SQL=TRACE" /> -->
       <!-- <property name="openjpa.jdbc.MappingDefaults" value="ForeignKeyDeleteAction=restrict, JoinForeignKeyDeleteAction=restrict" /> -->
       <!-- <property name="openjpa.jdbc.SchemaFactory" value="native(ForeignKeys=true)" /> -->
       <!-- <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction=add,ForeignKeys=true)" /> -->
       <!-- <property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=WARN" /> -->
-      <property name="hibernate.discriminator.ignore_explicit_for_joined" value="true" />
-      <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>
-      <property name="hibernate.hbm2ddl.auto" value="update"/>
       <!-- <property name="openjpa.Log" value="slf4j" /> -->
       <!-- <property name="openjpa.Multithreaded" value="true" /> -->
       <!-- <property name="openjpa.jdbc.DBDictionary" value="postgres(SearchStringEscape=\, SupportsXMLColumn=false)" /> -->
