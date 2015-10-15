@@ -30,7 +30,7 @@ public class ListGenomeReferencesAction implements Action {
 
     @Override
     public Object execute() {
-        logger.debug("ENTERING doExecute()");
+        logger.debug("ENTERING execute()");
 
         String format = "%1$-10s %2$s%n";
         StringBuilder sb = new StringBuilder();

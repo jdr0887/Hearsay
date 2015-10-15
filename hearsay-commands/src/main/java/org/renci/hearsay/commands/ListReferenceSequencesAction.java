@@ -32,7 +32,7 @@ public class ListReferenceSequencesAction implements Action {
 
     @Override
     public Object execute() {
-        logger.debug("ENTERING doExecute()");
+        logger.debug("ENTERING execute()");
 
         String format = "%1$-10s %2$-20s %3$-20s %4$-20s %5$-12s %6$s%n";
         StringBuilder sb = new StringBuilder();

@@ -29,7 +29,7 @@ public class LoadChromosomesAction implements Action {
 
     @Override
     public Object execute() {
-        logger.debug("ENTERING doExecute()");
+        logger.debug("ENTERING execute()");
 
         List<Chromosome> allChromosomes = new ArrayList<Chromosome>();
 
@@ -38,11 +38,7 @@ public class LoadChromosomesAction implements Action {
             if (CollectionUtils.isNotEmpty(allChromosomes)) {
                 chromosomeDAO.delete(allChromosomes);
             }
-        } catch (HearsayDAOException e1) {
-            e1.printStackTrace();
-        }
 
-        try {
             for (int i = 1; i < 23; i++) {
                 chromosomeDAO.save(new Chromosome(i + ""));
             }
