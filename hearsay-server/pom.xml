@@ -54,13 +54,29 @@
       <scope>runtime</scope>
     </dependency>
     <dependency>
+      <groupId>org.ops4j.pax.web</groupId>
+      <artifactId>pax-web-features</artifactId>
+      <version>4.2.2</version>
+      <classifier>features</classifier>
+      <type>xml</type>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.cdi</groupId>
+      <artifactId>pax-cdi-features</artifactId>
+      <version>0.12.0</version>
+      <classifier>features</classifier>
+      <type>xml</type>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
       <groupId>org.ops4j.pax.jdbc</groupId>
       <artifactId>pax-jdbc-features</artifactId>
       <version>0.7.0</version>
       <classifier>features</classifier>
       <type>xml</type>
       <scope>runtime</scope>
-    </dependency>    
+    </dependency>            
     <!-- <dependency> -->
     <!--   <groupId>org.renci.opm</groupId> -->
     <!--   <artifactId>opm-features</artifactId> -->
@@ -129,7 +145,6 @@
             <feature>feature</feature>
             <feature>shell</feature>
             <feature>shell-compat</feature>
-            <feature>deployer</feature>
             <feature>bundle</feature>
             <feature>config</feature>
             <feature>diagnostic</feature>
@@ -139,25 +154,31 @@
             <feature>package</feature>
             <feature>service</feature>
             <feature>system</feature>
+            <feature>scr</feature>	    
             <feature>kar</feature>
             <feature>ssh</feature>
             <feature>management</feature>
+            <feature>deployer</feature>	    
             <feature>wrap</feature>
 	    <feature>obr</feature>
-            <feature>war</feature>
-            <feature>webconsole</feature>
+            <feature>http</feature>
+	    <feature>war</feature>
             <feature>jndi</feature>
-            <feature>jpa</feature>
             <feature>jdbc</feature>
+            <feature>transaction</feature>	    
+            <feature>jpa</feature>
             <feature>jms</feature>
-            <feature>transaction</feature>
-            <feature>spring</feature>
-	    <feature version="4.3.6.Final">hibernate</feature>
+            <feature>spring-dm</feature>
+            <feature>spring-dm-web</feature>
+	    <feature>spring/${spring.version}_1</feature>
+	    <feature>spring-orm/${spring.version}_1</feature>	    
+	    <feature>spring-web/${spring.version}_1</feature>
+	    <feature>spring-security</feature>
+	    <feature>hibernate/${hibernate.version}</feature>
 	    <feature>pax-cdi</feature>
-	    <feature>pax-cdi-web</feature>
 	    <feature>pax-jdbc-postgresql</feature>
-	    <feature>pax-jdbc-config</feature>	    
-	    <feature>pax-jdbc-pool-dbcp2</feature>	    
+	    <feature>pax-jdbc-config</feature>
+	    <feature>pax-jdbc-pool-dbcp2</feature>
 	    <feature>cxf</feature>
 	    <feature>hearsay</feature>
           </bootFeatures>
