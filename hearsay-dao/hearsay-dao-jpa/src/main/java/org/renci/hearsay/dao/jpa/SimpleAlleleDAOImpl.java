@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
 @Transactional
 public class SimpleAlleleDAOImpl extends BaseEntityDAOImpl<SimpleAllele, Long> implements SimpleAlleleDAO {
 
-    private final Logger logger = LoggerFactory.getLogger(SimpleAlleleDAOImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(SimpleAlleleDAOImpl.class);
 
     public SimpleAlleleDAOImpl() {
         super();
