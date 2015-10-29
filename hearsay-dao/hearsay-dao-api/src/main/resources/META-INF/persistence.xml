@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" version="1.0">
+  xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" version="2.0">
   <persistence-unit name="hearsay" transaction-type="JTA">
-
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <!-- <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider> -->
 
@@ -27,7 +26,9 @@
     <class>org.renci.hearsay.dao.model.Region</class>
     <class>org.renci.hearsay.dao.model.ReferenceCoordinate</class>
     <class>org.renci.hearsay.dao.model.ReferenceSequence</class>
+    <class>org.renci.hearsay.dao.model.Role</class>
     <class>org.renci.hearsay.dao.model.SimpleAllele</class>
+    <class>org.renci.hearsay.dao.model.User</class>
 
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
@@ -35,6 +36,7 @@
       <property name="hibernate.discriminator.ignore_explicit_for_joined" value="false" />
       <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect" />
       <property name="hibernate.hbm2ddl.auto" value="update" />
+      <property name="hibernate.default_schema" value="hearsay" />
       <!-- <property name="hibernate.ejb.use_class_enhancer" value="true" /> -->
       <!-- <property name="openjpa.Log" value="DefaultLevel=TRACE, Runtime=TRACE, Tool=TRACE, SQL=TRACE" /> -->
       <!-- <property name="openjpa.jdbc.MappingDefaults" value="ForeignKeyDeleteAction=restrict, JoinForeignKeyDeleteAction=restrict" /> -->
