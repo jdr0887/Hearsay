@@ -2,7 +2,7 @@
   <parent>
     <groupId>org.renci.hearsay</groupId>
     <artifactId>parent</artifactId>
-    <version>0.0.19</version>
+    <version>0.0.20-SNAPSHOT</version>
   </parent>
   <name>Hearsay</name>
   <modelVersion>4.0.0</modelVersion>
@@ -28,8 +28,136 @@
     <connection>scm:git:git@github.com:jdr0887/Hearsay.git</connection>
     <tag>HEAD</tag>
   </scm>
+  <properties>
+    <spring.security.version>3.1.4.RELEASE</spring.security.version>
+  </properties>
   <dependencyManagement>
     <dependencies>
+      <dependency>
+	<groupId>org.springframework.ldap</groupId>
+	<artifactId>spring-ldap-core</artifactId>
+	<version>2.0.4.RELEASE</version>
+      </dependency>      
+      <dependency>
+      	<groupId>org.springframework</groupId>
+      	<artifactId>spring-beans</artifactId>
+      	<version>${spring.version}</version>
+      </dependency>
+      <dependency>
+      	<groupId>org.springframework</groupId>
+      	<artifactId>spring-web</artifactId>
+      	<version>${spring.version}</version>
+      </dependency>
+      <dependency>
+      	<groupId>org.springframework</groupId>
+      	<artifactId>spring-orm</artifactId>
+      	<version>${spring.version}</version>
+      </dependency>      
+      <dependency>
+      	<groupId>org.springframework</groupId>
+      	<artifactId>spring-webmvc</artifactId>
+      	<version>${spring.version}</version>
+      </dependency>            
+      <dependency>
+      	<groupId>org.springframework</groupId>
+      	<artifactId>spring-context</artifactId>
+      	<version>${spring.version}</version>
+      </dependency>
+      <dependency>
+      	<groupId>org.springframework</groupId>
+      	<artifactId>spring-context-support</artifactId>
+      	<version>${spring.version}</version>
+      </dependency>
+      <dependency>
+      	<groupId>org.springframework</groupId>
+      	<artifactId>spring-core</artifactId>
+      	<version>${spring.version}</version>
+      </dependency>
+      <dependency>
+	<groupId>org.springframework.security</groupId>
+	<artifactId>spring-security-core</artifactId>
+	<version>${spring.security.version}</version>
+      </dependency>
+      <dependency>
+	<groupId>org.springframework.security</groupId>
+	<artifactId>spring-security-ldap</artifactId>
+	<version>${spring.security.version}</version>
+      </dependency>      
+      <dependency>
+	<groupId>org.springframework.security</groupId>
+	<artifactId>spring-security-web</artifactId>
+	<version>${spring.security.version}</version>
+      </dependency>
+      <dependency>
+	<groupId>org.springframework.security</groupId>
+	<artifactId>spring-security-config</artifactId>
+	<version>${spring.security.version}</version>
+      </dependency>
+      <dependency>
+	<groupId>org.springframework.security</groupId>
+	<artifactId>spring-security-taglibs</artifactId>
+	<version>${spring.security.version}</version>
+      </dependency>    
+      <dependency>
+	<groupId>com.fasterxml.jackson.module</groupId>
+	<artifactId>jackson-module-jaxb-annotations</artifactId>
+	<version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+	<groupId>com.fasterxml.jackson.jaxrs</groupId>
+	<artifactId>jackson-jaxrs-json-provider</artifactId>
+	<version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+	<groupId>com.fasterxml.jackson.core</groupId>
+	<artifactId>jackson-core</artifactId>
+	<version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+	<groupId>com.fasterxml.jackson.core</groupId>
+	<artifactId>jackson-annotations</artifactId>
+	<version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+	<groupId>com.fasterxml.jackson.core</groupId>
+	<artifactId>jackson-databind</artifactId>
+	<version>${jackson.version}</version>
+      </dependency>            
+      <dependency>
+	<groupId>javax.servlet</groupId>
+	<artifactId>javax.servlet-api</artifactId>
+        <version>3.1.0</version>		
+      </dependency>
+      <dependency>
+	<groupId>javax.servlet.jsp</groupId>
+	<artifactId>javax.servlet.jsp-api</artifactId>
+        <version>2.3.1</version>		
+      </dependency>
+      <dependency>
+	<groupId>org.primefaces</groupId>
+	<artifactId>primefaces</artifactId>
+        <version>5.1</version>		
+      </dependency>
+      <dependency>
+	<groupId>javax.faces</groupId>
+	<artifactId>javax.faces-api</artifactId>
+        <version>2.1</version>
+      </dependency>      
+      <dependency>
+	<groupId>javax.enterprise</groupId>
+	<artifactId>cdi-api</artifactId>
+        <version>1.2</version>	
+      </dependency>
+      <dependency>
+        <groupId>org.apache.myfaces.core</groupId>
+        <artifactId>myfaces-api</artifactId>
+        <version>2.2.6</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.myfaces.core</groupId>
+        <artifactId>myfaces-impl</artifactId>
+        <version>2.2.6</version>	
+      </dependency>      
       <dependency>
         <groupId>org.ops4j.pax.cdi</groupId>
         <artifactId>pax-cdi-api</artifactId>
@@ -68,7 +196,7 @@
       <dependency>
       	<groupId>org.osgi</groupId>
       	<artifactId>org.osgi.core</artifactId>
-      	<version>6.0.0</version>
+      	<version>5.0.0</version>
       	<scope>provided</scope>
       </dependency>
       <dependency>
