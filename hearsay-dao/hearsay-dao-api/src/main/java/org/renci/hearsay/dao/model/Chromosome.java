@@ -27,8 +27,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType(propOrder = { "name" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "chromosome", uniqueConstraints = { @UniqueConstraint(columnNames = { "name" }) }, indexes = {
-        @Index(columnList = "name") })
+@Table(schema = "hearsay", name = "chromosome", uniqueConstraints = {
+        @UniqueConstraint(columnNames = { "name" }) }, indexes = { @Index(columnList = "name") })
 @NamedQueries({ @NamedQuery(name = "Chromosome.findAll", query = "FROM Chromosome"),
         @NamedQuery(name = "Chromosome.findByName", query = "FROM Chromosome a where a.name = :name") })
 public class Chromosome implements Persistable {
@@ -38,7 +38,7 @@ public class Chromosome implements Persistable {
     @XmlAttribute(name = "id")
     @Id()
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "chromosome_id_seq")
-    @SequenceGenerator(name = "chromosome_id_seq", sequenceName = "chromosome_id_seq", allocationSize = 1, initialValue = 1)
+    @SequenceGenerator(schema = "hearsay", name = "chromosome_id_seq", sequenceName = "chromosome_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
 

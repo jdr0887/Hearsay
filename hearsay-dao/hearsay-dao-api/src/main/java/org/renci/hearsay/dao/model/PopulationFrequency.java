@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "population_frequency")
+@Table(schema = "hearsay", name = "population_frequency")
 public class PopulationFrequency implements Persistable {
 
     private static final long serialVersionUID = 5211189954981035301L;
@@ -34,7 +34,7 @@ public class PopulationFrequency implements Persistable {
     @XmlAttribute(name = "id")
     @Id()
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "population_frequency_id_seq")
-    @SequenceGenerator(name = "population_frequency_id_seq", sequenceName = "population_frequency_id_seq", allocationSize = 1, initialValue = 1)
+    @SequenceGenerator(schema = "hearsay", name = "population_frequency_id_seq", sequenceName = "population_frequency_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
 

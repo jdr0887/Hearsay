@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType(propOrder = { "id", "start", "end", "strandType" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "intron_offset")
+@Table(schema = "hearsay", name = "intron_offset")
 public class IntronOffset implements Persistable {
 
     private static final long serialVersionUID = -4320424521732996608L;
@@ -33,7 +33,7 @@ public class IntronOffset implements Persistable {
     @XmlAttribute(name = "id")
     @Id()
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "intron_offset_id_seq")
-    @SequenceGenerator(name = "intron_offset_id_seq", sequenceName = "intron_offset_id_seq", allocationSize = 1, initialValue = 1)
+    @SequenceGenerator(schema = "hearsay", name = "intron_offset_id_seq", sequenceName = "intron_offset_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
 

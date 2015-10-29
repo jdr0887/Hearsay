@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
-@Table(name = "region")
+@Table(schema = "hearsay", name = "region")
 public class Region implements Persistable {
 
     private static final long serialVersionUID = -4018421194871513651L;
@@ -38,7 +38,7 @@ public class Region implements Persistable {
     @XmlAttribute
     @Id()
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "region_id_seq")
-    @SequenceGenerator(name = "region_id_seq", sequenceName = "region_id_seq", allocationSize = 1, initialValue = 1)
+    @SequenceGenerator(schema = "hearsay", name = "region_id_seq", sequenceName = "region_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
 

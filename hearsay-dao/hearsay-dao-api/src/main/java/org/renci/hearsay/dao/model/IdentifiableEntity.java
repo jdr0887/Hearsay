@@ -38,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @XmlRootElement(name = "identifiableEntity")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "identifiable_entity")
+@Table(schema = "hearsay", name = "identifiable_entity")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 public abstract class IdentifiableEntity implements Persistable {
@@ -48,7 +48,7 @@ public abstract class IdentifiableEntity implements Persistable {
     @XmlAttribute(name = "id")
     @Id()
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "identifiable_entity_id_seq")
-    @SequenceGenerator(name = "identifiable_entity_id_seq", sequenceName = "identifiable_entity_id_seq", allocationSize = 1, initialValue = 1)
+    @SequenceGenerator(schema = "hearsay", name = "identifiable_entity_id_seq", sequenceName = "identifiable_entity_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     protected Long id;
 
@@ -57,7 +57,7 @@ public abstract class IdentifiableEntity implements Persistable {
     @XmlElementWrapper(name = "identifiers")
     @XmlElement(name = "identifier")
     @ManyToMany(targetEntity = Identifier.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    @JoinTable(name = "entity_identifier", joinColumns = @JoinColumn(name = "entity_fid") , inverseJoinColumns = @JoinColumn(name = "identifier_fid") )
+    @JoinTable(schema = "hearsay", name = "entity_identifier", joinColumns = @JoinColumn(name = "entity_fid") , inverseJoinColumns = @JoinColumn(name = "identifier_fid") )
     protected List<Identifier> identifiers;
 
     public IdentifiableEntity() {

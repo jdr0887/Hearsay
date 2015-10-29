@@ -29,7 +29,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
-@Table(name = "canonical_allele")
+@Table(schema = "hearsay", name = "canonical_allele")
 public class CanonicalAllele extends IdentifiableEntity {
 
     private static final long serialVersionUID = 179947981554563568L;
@@ -137,9 +137,9 @@ public class CanonicalAllele extends IdentifiableEntity {
 
     @Override
     public String toString() {
-        return String
-                .format("CanonicalAllele [id=%s, name=%s, active=%s, version=%s, moleculeType=%s, complexityType=%s, replacementType=%s, split=%s]",
-                        id, name, active, version, moleculeType, complexityType, replacementType, split);
+        return String.format(
+                "CanonicalAllele [id=%s, name=%s, active=%s, version=%s, moleculeType=%s, complexityType=%s, replacementType=%s, split=%s]",
+                id, name, active, version, moleculeType, complexityType, replacementType, split);
     }
 
     @Override

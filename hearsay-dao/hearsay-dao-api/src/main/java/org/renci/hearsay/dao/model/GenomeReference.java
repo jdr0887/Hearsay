@@ -27,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
-@Table(name = "genome_reference", indexes = { @Index(columnList = "name") })
+@Table(schema = "hearsay", name = "genome_reference", indexes = { @Index(columnList = "name") })
 @NamedQueries({ @NamedQuery(name = "GenomeReference.findAll", query = "FROM GenomeReference a order by a.name") })
 public class GenomeReference extends IdentifiableEntity {
 

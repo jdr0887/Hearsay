@@ -27,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "gene_symbol", indexes = { @Index(columnList = "symbol") })
+@Table(schema = "hearsay", name = "gene_symbol", indexes = { @Index(columnList = "symbol") })
 public class GeneSymbol implements Persistable {
 
     private static final long serialVersionUID = -5997799315221166517L;
@@ -35,7 +35,7 @@ public class GeneSymbol implements Persistable {
     @XmlAttribute(name = "id")
     @Id()
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gene_symbol_id_seq")
-    @SequenceGenerator(name = "gene_symbol_id_seq", sequenceName = "gene_symbol_id_seq", allocationSize = 1, initialValue = 1)
+    @SequenceGenerator(schema = "hearsay", name = "gene_symbol_id_seq", sequenceName = "gene_symbol_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
 

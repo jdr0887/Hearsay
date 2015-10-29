@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
-@Table(name = "reference_coordinate")
+@Table(schema = "hearsay", name = "reference_coordinate")
 public class ReferenceCoordinate extends IdentifiableEntity {
 
     private static final long serialVersionUID = 608874481580966242L;
@@ -116,9 +116,9 @@ public class ReferenceCoordinate extends IdentifiableEntity {
 
     @Override
     public String toString() {
-        return String
-                .format("ReferenceCoordinate [id=%s, refAllele=%s, strandType=%s, primaryTranscriptRegionType=%s, ancillaryTranscriptRegionType=%s]",
-                        id, refAllele, strandType, primaryTranscriptRegionType, ancillaryTranscriptRegionType);
+        return String.format(
+                "ReferenceCoordinate [id=%s, refAllele=%s, strandType=%s, primaryTranscriptRegionType=%s, ancillaryTranscriptRegionType=%s]",
+                id, refAllele, strandType, primaryTranscriptRegionType, ancillaryTranscriptRegionType);
     }
 
     @Override

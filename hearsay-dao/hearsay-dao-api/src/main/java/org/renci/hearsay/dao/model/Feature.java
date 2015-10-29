@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlRootElement(name = "feature")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "feature")
+@Table(schema = "hearsay", name = "feature")
 public class Feature implements Persistable {
 
     private static final long serialVersionUID = 1234926307644461359L;
@@ -43,14 +43,14 @@ public class Feature implements Persistable {
     @XmlAttribute(name = "id")
     @Id()
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "feature_id_seq")
-    @SequenceGenerator(name = "feature_id_seq", sequenceName = "feature_id_seq", allocationSize = 1, initialValue = 1)
+    @SequenceGenerator(schema = "hearsay", name = "feature_id_seq", sequenceName = "feature_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
 
     @XmlElementWrapper(name = "locations")
     @XmlElement(name = "location")
     @ManyToMany(targetEntity = Location.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    @JoinTable(name = "feature_location", joinColumns = @JoinColumn(name = "feature_fid"), inverseJoinColumns = @JoinColumn(name = "location_fid"))
+    @JoinTable(schema = "hearsay", name = "feature_location", joinColumns = @JoinColumn(name = "feature_fid") , inverseJoinColumns = @JoinColumn(name = "location_fid") )
     private List<Location> locations;
 
     @JsonInclude(Include.NON_EMPTY)
@@ -64,7 +64,7 @@ public class Feature implements Persistable {
 
     @XmlTransient
     @ManyToMany(targetEntity = ReferenceSequence.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    @JoinTable(name = "reference_sequence_feature", joinColumns = @JoinColumn(name = "feature_fid"), inverseJoinColumns = @JoinColumn(name = "reference_sequence_fid"))
+    @JoinTable(schema = "hearsay", name = "reference_sequence_feature", joinColumns = @JoinColumn(name = "feature_fid") , inverseJoinColumns = @JoinColumn(name = "reference_sequence_fid") )
     private List<ReferenceSequence> referenceSequences;
 
     public Feature() {

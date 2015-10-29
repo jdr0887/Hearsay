@@ -32,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
-@Table(name = "reference_sequence")
+@Table(schema = "hearsay", name = "reference_sequence")
 @NamedQueries({ @NamedQuery(name = "ReferenceSequence.findAll", query = "FROM ReferenceSequence a") })
 public class ReferenceSequence extends IdentifiableEntity {
 
@@ -65,12 +65,12 @@ public class ReferenceSequence extends IdentifiableEntity {
 
     @XmlTransient
     @ManyToMany(targetEntity = Alignment.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
-    @JoinTable(name = "reference_sequence_alignment", joinColumns = @JoinColumn(name = "reference_sequence_fid"), inverseJoinColumns = @JoinColumn(name = "alignment_fid"))
+    @JoinTable(schema = "hearsay", name = "reference_sequence_alignment", joinColumns = @JoinColumn(name = "reference_sequence_fid") , inverseJoinColumns = @JoinColumn(name = "alignment_fid") )
     private List<Alignment> alignments;
 
     @XmlTransient
     @ManyToMany(targetEntity = Feature.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
-    @JoinTable(name = "reference_sequence_feature", joinColumns = @JoinColumn(name = "reference_sequence_fid"), inverseJoinColumns = @JoinColumn(name = "feature_fid"))
+    @JoinTable(schema = "hearsay", name = "reference_sequence_feature", joinColumns = @JoinColumn(name = "reference_sequence_fid") , inverseJoinColumns = @JoinColumn(name = "feature_fid") )
     private List<Feature> features;
 
     public ReferenceSequence() {

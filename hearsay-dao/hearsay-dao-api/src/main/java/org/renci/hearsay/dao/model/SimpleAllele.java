@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
-@Table(name = "simple_allele")
+@Table(schema = "hearsay", name = "simple_allele")
 public class SimpleAllele extends IdentifiableEntity {
 
     private static final long serialVersionUID = 608874481580966242L;

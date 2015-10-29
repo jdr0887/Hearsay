@@ -38,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "alignment")
+@Table(schema = "hearsay", name = "alignment")
 @NamedQueries({ @NamedQuery(name = "Alignment.findAll", query = "FROM Alignment a") })
 public class Alignment implements Persistable {
 
@@ -47,13 +47,13 @@ public class Alignment implements Persistable {
     @XmlAttribute(name = "id")
     @Id()
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "alignment_id_seq")
-    @SequenceGenerator(name = "alignment_id_seq", sequenceName = "alignment_id_seq", allocationSize = 1, initialValue = 1)
+    @SequenceGenerator(schema = "hearsay", name = "alignment_id_seq", sequenceName = "alignment_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
 
     @XmlTransient
     @ManyToMany(targetEntity = ReferenceSequence.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    @JoinTable(name = "reference_sequence_alignment", joinColumns = @JoinColumn(name = "alignment_fid"), inverseJoinColumns = @JoinColumn(name = "reference_sequence_fid"))
+    @JoinTable(schema = "hearsay", name = "reference_sequence_alignment", joinColumns = @JoinColumn(name = "alignment_fid") , inverseJoinColumns = @JoinColumn(name = "reference_sequence_fid") )
     private List<ReferenceSequence> referenceSequences;
 
     @XmlElementWrapper(name = "regions")
