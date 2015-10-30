@@ -1,0 +1,133 @@
+/* Top-level class to avoid conflicts */
+.geneBrowser {
+}
+
+
+/* Gene info */
+.geneBrowser .geneInfo {
+}
+
+.geneBrowser .geneInfo .name {
+	font-size: medium;
+}
+
+.geneBrowser .geneInfo .direction {
+  fill: grey;
+  stroke: none;
+}
+
+.geneBrowser .geneInfo .description {
+  font-size: small;
+}
+
+.geneBrowser .geneInfo .position {
+}
+
+.geneBrowser .geneInfo .position .label {
+	font-size: small;
+}
+
+.geneBrowser .geneInfo .position .line {
+	fill: none;
+	stroke: lightgrey;
+}
+
+.geneBrowser .geneInfo .range {
+	font-size: small;
+}
+
+
+/* Gene summary view */
+.geneBrowser .geneSummary {
+}
+
+.geneBrowser .geneSummary .region {
+}
+
+.geneBrowser .geneSummary .intronCollapse {
+  fill: white;
+}
+
+.geneBrowser .geneSummary .border {
+  fill: none;
+  stroke: lightgrey;
+}
+
+
+/* Gene summary label */
+.geneBrowser .geneSummaryLabel {
+  font-size: small;
+}
+
+
+/* Transcripts */
+.geneBrowser .transcript {
+}
+
+.geneBrowser .transcript .region {
+}
+
+.geneBrowser .transcript .intronCollapse {
+	fill: white;
+	fill-opacity: 1;
+}
+
+.geneBrowser .transcript .feature {
+}
+
+
+/* Transcript labels */
+.geneBrowser .transcriptLabel {
+}
+
+.geneBrowser .transcriptLabel .remove {
+  fill: grey;
+}
+
+.geneBrowser .transcriptLabel .label {
+  cursor: ns-resize;
+  font-size: x-small;
+}
+
+
+/* Variants */
+.geneBrowser .variant {
+}
+
+.geneBrowser .variant .line {
+  stroke: black;
+  stroke-width: 1;
+  stroke-opacity: 0.5;
+}
+
+.geneBrowser .variant .line.highlight {
+  stroke-opacity: 1;
+}
+
+
+.geneBrowser .variant .curve {
+	fill: none;
+  stroke: black;
+  stroke-width: 1;
+  stroke-opacity: 0.5;
+}
+
+.geneBrowser .variant .curve.highlight {
+  stroke-opacity: 1;
+}
+
+.geneBrowser .variant .glyph {
+}
+
+.geneBrowser .variant .glyph .outline {
+	fill: none;
+	stroke: grey;
+}
+
+.geneBrowser .variant .glyph .attribute {
+}
+
+
+/* Population variants */
+.geneBrowser .populationVariant {
+}
