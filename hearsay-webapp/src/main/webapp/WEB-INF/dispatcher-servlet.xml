@@ -14,6 +14,8 @@
   <mvc:annotation-driven />
   <context:component-scan base-package="org.renci.hearsay.web" />
 
+  <mvc:resources mapping="/resources/**" location="/resources/" cache-period="31556926" />
+
   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
     <property name="prefix" value="/WEB-INF/views/" />
@@ -22,10 +24,11 @@
 
   <sec:http auto-config="true" use-expressions="true">
     <sec:intercept-url pattern="/" access="permitAll" />
+    <sec:intercept-url pattern="/resources" access="permitAll" />
     <sec:intercept-url pattern="/login" access="permitAll" />
     <sec:intercept-url pattern="/logout" access="permitAll" />
-    <sec:intercept-url pattern="/carnac" access="hasRole('ROLE_USER')" />
-    <sec:form-login login-page="/login" default-target-url="/list" authentication-failure-url="/login" />
+    <sec:intercept-url pattern="/carnac" access="hasRole('ADMIN')" />
+    <sec:form-login login-page="/login" default-target-url="/carnac" authentication-failure-url="/login" />
     <sec:logout logout-success-url="/logout" />
   </sec:http>
 
@@ -39,7 +42,7 @@
       </sec:user-service>
     </sec:authentication-provider>
     <sec:authentication-provider>
-      <sec:jdbc-user-service data-source-ref="hearsayDataSource"
+      <sec:jdbc-user-service role-prefix="none" data-source-ref="hearsayDataSource"
         users-by-username-query="select a.username, a.password, a.enabled from hearsay.user a where a.username = ?;"
         authorities-by-username-query="select a.username, c.name from hearsay.user a left join hearsay.user_role b on b.user_fid = a.id left join hearsay.role c on c.id = b.role_fid where a.username = ?;" />
     </sec:authentication-provider>
