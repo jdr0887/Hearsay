@@ -1,0 +1,174 @@
+ /*
+ * Copyright (c) 2012  Renaissance Computing Institute. All rights reserved.
+ *
+ * This software is open source. See the bottom of this file for the license.
+ * 
+ * Renaissance Computing Institute, 
+ * (A Joint Institute between the University of North Carolina at Chapel Hill,
+ * North Carolina State University, and Duke University)
+ * http://www.renci.org
+ * 
+ * For questions, comments please contact software@renci.org
+ *
+ */
+ 
+div.err
+{
+	color:Red;
+	font-size:12pt;
+	font-family: Arial;	
+	font-style:italic;
+}
+
+span.err
+{
+	color:Red;
+	font-size:12pt;
+	font-family: Arial;	
+	font-style:italic;
+}
+span.success
+{
+	color:Green;
+	font-size:12pt;
+	font-family: Arial;	
+	font-style:italic;
+}
+
+ table.standard {
+	border-collapse:collapse;
+	border: 1px solid black;
+}
+
+table.standard td {
+	padding: 3px 5px 3px 5px;
+	border: 1px solid black;
+	border-top:0;
+ 	border-right:0;	
+	font-size:10pt;
+	font-family: Arial;
+}
+
+table.standard th {
+	background-color:#3E80BD;
+	padding: 3px 5px 3px 5px;
+	border-left: 1px solid black;
+	border-bottom: 1px solid black;	
+	text-shadow: -2px -2px 2px #003380, 2px -2px 2px #003380, -2px 2px 2px #003380, 2px 2px 2px #003380;
+}
+
+table.standard tfoot td {
+	background-color:#ffccff;
+}
+
+table.standard tr.tbody_header {
+	font-weight:bold;
+	text-align:center;
+	background-color:#dddddd;
+}
+
+table a.pagelink {
+    margin: 0 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/* Striping */
+tr.alternate 
+{
+	background-color:#ffffff;
+}
+
+table.solid
+{
+	border-spacing:0px;
+	border-width:2px;	
+	border-style:solid;
+}
+
+table.stripe
+{
+	border-spacing:0px;
+	border-style:solid;
+	border:1px solid #000000;
+}
+
+td.white
+{
+	color:White;
+	font-size:8pt;
+	font-family: Arial;	
+}
+
+th.dataentry
+{
+	color:White;
+	background:#3E80BD;
+	font-size:9pt;
+}
+
+select.err
+{
+	border:3px solid red
+}
+
+select.success
+{
+	border:3px solid green
+}
+
+select.norm
+{
+	border:1px solid black
+}
+
+/****************************************************************************
+RENCI Open Source Software License
+The University of North Carolina at Chapel Hill
+
+The University of North Carolina at Chapel Hill (the "Licensor") through 
+its Renaissance Computing Institute (RENCI) is making an original work of 
+authorship (the "Software") available through RENCI upon the terms set 
+forth in this Open Source Software License (this "License").  This License 
+applies to any Software that has placed the following notice immediately 
+following the copyright notice for the Software:  Licensed under the RENCI 
+Open Source Software License v. 1.0.
+
+Licensor grants You, free of charge, a world-wide, royalty-free, 
+non-exclusive, perpetual, sublicenseable license to do the following to 
+deal in the Software without restriction, including without limitation the 
+rights to use, copy, modify, merge, publish, distribute, sublicense, 
+and/or sell copies of the Software, and to permit persons to whom the 
+Software is furnished to do so, subject to the following conditions:
+
+. Redistributions of source code must retain the above copyright notice, 
+this list of conditions and the following disclaimers.
+
+. Redistributions in binary form must reproduce the above copyright 
+notice, this list of conditions and the following disclaimers in the 
+documentation and/or other materials provided with the distribution.
+
+. Neither You nor any sublicensor of the Software may use the names of 
+Licensor (or any derivative thereof), of RENCI, or of contributors to the 
+Software without explicit prior written permission.  Nothing in this 
+License shall be deemed to grant any rights to trademarks, copyrights, 
+patents, trade secrets or any other intellectual property of Licensor 
+except as expressly stated herein.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+THE CONTIBUTORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR 
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
+OTHER DEALINGS IN THE SOFTWARE.
+
+You may use the Software in all ways not otherwise restricted or 
+conditioned by this License or by law, and Licensor promises not to 
+interfere with or be responsible for such uses by You.  This Software may 
+be subject to U.S. law dealing with export controls.  If you are in the 
+U.S., please do not mirror this Software unless you fully understand the 
+U.S. export regulations.  Licensees in other countries may face similar 
+restrictions.  In all cases, it is licensee's responsibility to comply 
+with any export regulations applicable in licensee's jurisdiction.
+****************************************************************************/
