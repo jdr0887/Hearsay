@@ -12,6 +12,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.UserDAO;
@@ -51,6 +52,23 @@ public class UserDAOImpl extends BaseEntityDAOImpl<User, Long> implements UserDA
         TypedQuery<User> query = getEntityManager().createQuery(crit);
         List<User> ret = query.getResultList();
         return ret;
+    }
+
+    @Override
+    public User findByUsername(String name) throws HearsayDAOException {
+        logger.debug("ENTERING findByUsername(String)");
+        CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<User> crit = critBuilder.createQuery(getPersistentClass());
+        Root<User> fromUser = crit.from(User.class);
+        List<Predicate> predicates = new ArrayList<Predicate>();
+        predicates.add(critBuilder.equal(fromUser.get(User_.username), name));
+        crit.where(predicates.toArray(new Predicate[predicates.size()]));
+        TypedQuery<User> query = getEntityManager().createQuery(crit);
+        List<User> ret = query.getResultList();
+        if (CollectionUtils.isNotEmpty(ret)) {
+            return ret.get(0);
+        }
+        return null;
     }
 
 }
