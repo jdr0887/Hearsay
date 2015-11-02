@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 @Transactional
 public class GeneDAOImpl extends BaseEntityDAOImpl<Gene, Long> implements GeneDAO {
 
-    private final Logger logger = LoggerFactory.getLogger(GeneDAOImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(GeneDAOImpl.class);
 
     public GeneDAOImpl() {
         super();
