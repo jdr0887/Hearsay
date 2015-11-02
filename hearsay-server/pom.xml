@@ -173,7 +173,6 @@
 	    <feature>spring/${spring.version}_1</feature>
 	    <feature>spring-orm/${spring.version}_1</feature>	    
 	    <feature>spring-web/${spring.version}_1</feature>
-	    <feature>spring-security</feature>
 	    <feature>hibernate/${hibernate.version}</feature>
 	    <feature>pax-cdi</feature>
 	    <feature>pax-jdbc-postgresql</feature>
