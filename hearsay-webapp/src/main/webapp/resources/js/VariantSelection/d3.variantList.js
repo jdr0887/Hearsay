@@ -332,7 +332,6 @@
           d3.select(this).select("rect").attr("visibility", "hidden");
         }
       }).on("click", function(d) {
-        ClearErrorDisplay();
 
         errorDisplay("Gene " + d.geneName + " selected.", 0);
 

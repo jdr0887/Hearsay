@@ -1,11 +1,17 @@
 (function() {
   d3.variantTable = function() {
-    
-    var width = 200, data = [], variants = [], selectedVariant, geneName, sortBy = "hgvsName", order = [],
+    // Size
+    var width = 200,
 
+    // Data
+    data = [], variants = [], selectedVariant, geneName,
+
+    // Parameters
+    sortBy = "hgvsName", order = [],
+
+    // Scales
     effectMap = d3.map(), effectColor = d3.scale.ordinal().domain(d3.range(1, 7)).range(colorbrewer.RdBu[7]),
     // .range(colorbrewer.Reds[7].reverse()),
-
     computedClassColor = d3.scale.ordinal().domain([
         "A", "B", "C", "D", "E", "F"
     ]).range(colorbrewer.RdBu[6]), frequencyColor = d3.scale.threshold().domain([
@@ -13,8 +19,10 @@
     ]).range(colorbrewer.RdBu[5]),
     // .range(colorbrewer.Reds[5].reverse()),
 
+    // Layout
     columnWidths = [],
 
+    // Start with empty selections
     table = d3.select();
 
     // Create a closure
@@ -65,7 +73,7 @@
         drawVariants();
 
         // Get column widths to keep constant when filtering
-        table.select("table > tr").selectAll("td").each(function(d, i) {
+        table.select("tr").selectAll("td").each(function() {
           columnWidths.push(this.offsetWidth);
         });
 
@@ -340,9 +348,10 @@
         var format = d3.format(".2f");
         return format(d * 100);
         /*
-         * // XXX: This keeps all digits... // Get number of digits var g =
-         * d3.format("g"), l = g(d).length; // Multiply and truncate based on
-         * digits var p = d3.format("." + (l - 4) + "%");
+         * // XXX: This keeps all digits...
+         *  // Get number of digits var g = d3.format("g"), l = g(d).length;
+         *  // Multiply and truncate based on digits var p = d3.format("." + (l -
+         * 4) + "%");
          * 
          * return p(d);
          */

@@ -143,6 +143,9 @@ function loadVariantSelectionData(donorCode) {
           hgvsName : hgvs.hgvsName,
           transcripts : null,
           locvarid : geneVarDataSet["data"][i]["loc_var_id"],
+          rsID : geneVarDataSet["data"][i]["rs_id"],
+          ACCNum : geneVarDataSet["data"][i]["acc_num"],
+
           selected : false
         });
       }
