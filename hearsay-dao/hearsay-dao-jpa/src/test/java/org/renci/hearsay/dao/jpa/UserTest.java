@@ -48,6 +48,38 @@ public class UserTest {
 
     }
 
+    @Test
+    public void testAddRoleToExistingUser() throws HearsayDAOException {
+
+        UserDAOImpl userDAO = new UserDAOImpl();
+        userDAO.setEntityManager(em);
+
+        RoleDAOImpl roleDAO = new RoleDAOImpl();
+        roleDAO.setEntityManager(em);
+
+        Role role = roleDAO.findByName("CARNAC");
+        if (role == null) {
+            role = new Role("CARNAC");
+            em.getTransaction().begin();
+            role.setId(roleDAO.save(role));
+            em.getTransaction().commit();
+        }
+
+        String username = "jreilly";
+        User hearsayUser = userDAO.findByUsername(username);
+
+        if (hearsayUser == null) {
+            hearsayUser = new User();
+            hearsayUser.setUsername(username);
+        }
+
+        hearsayUser.getRoles().add(role);
+        em.getTransaction().begin();
+        hearsayUser.setId(userDAO.save(hearsayUser));
+        em.getTransaction().commit();
+
+    }
+
     @AfterClass
     public static void tearDown() {
         em.close();
