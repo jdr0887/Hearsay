@@ -8,7 +8,8 @@
 			   http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd">
 
   <osgi:reference id="chromosomeDAO" interface="org.renci.hearsay.dao.ChromosomeDAO" />
-
+  <osgi:reference id="diagnosticResultDAO" interface="org.renci.hearsay.dao.DiagnosticResultDAO" />
+  <osgi:reference id="participantDAO" interface="org.renci.hearsay.dao.ParticipantDAO" />
   <osgi:reference id="userDAO" interface="org.renci.hearsay.dao.UserDAO" />
 
   <osgi:reference id="hearsayDataSource" interface="javax.sql.DataSource" />
@@ -27,17 +28,13 @@
   <sec:http auto-config="true" use-expressions="true">
     <sec:intercept-url pattern="/" access="permitAll" />
     <sec:intercept-url pattern="/resources" access="permitAll" />
+    <sec:intercept-url pattern="/welcome" access="permitAll" />
     <sec:intercept-url pattern="/login" access="permitAll" />
     <sec:intercept-url pattern="/logout" access="permitAll" />
-    <sec:intercept-url pattern="/carnac" access="hasRole('CARNAC')" />
-    <sec:form-login login-page="/login" default-target-url="/carnac" authentication-failure-url="/login" />
+    <sec:intercept-url pattern="/carnac/**" access="hasRole('CARNAC')" />
+    <sec:form-login login-page="/login" default-target-url="/welcome" authentication-failure-url="/accessdenied" />
     <sec:logout logout-success-url="/logout" />
   </sec:http>
-
-  <bean id="contextSource" class="org.springframework.security.ldap.DefaultSpringSecurityContextSource">
-    <constructor-arg value="ldap://addc0.ad.unc.edu:389/DC=ad,DC=unc,DC=edu" />
-    <property name="anonymousReadOnly" value="true" />
-  </bean>
 
   <bean id="ldapAuthProvider" class="org.springframework.security.ldap.authentication.ad.ActiveDirectoryLdapAuthenticationProvider">
     <constructor-arg value="ad.unc.edu" />
