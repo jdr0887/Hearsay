@@ -12,6 +12,31 @@
   <packaging>war</packaging>
   <dependencies>
     <dependency>
+      <groupId>com.fasterxml.jackson.module</groupId>
+      <artifactId>jackson-module-jaxb-annotations</artifactId>
+      <scope>provided</scope>      
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <scope>provided</scope>      
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <scope>provided</scope>      
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <scope>provided</scope>      
+    </dependency>                
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-collections4</artifactId>
+      <scope>provided</scope>
+    </dependency>    
+    <dependency>
       <groupId>org.renci.hearsay.hearsay-dao</groupId>
       <artifactId>hearsay-dao-api</artifactId>
       <scope>provided</scope>
@@ -26,6 +51,11 @@
       <artifactId>spring-security-web</artifactId>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-taglibs</artifactId>
+      <scope>provided</scope>
+    </dependency>    
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-config</artifactId>
@@ -53,8 +83,13 @@
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
-      <artifactId>spring-web</artifactId>
+      <artifactId>spring-core</artifactId>
       <scope>provided</scope>
+    </dependency>    
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <scope>provided</scope>      
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -64,7 +99,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
-      <scope>provided</scope>
+      <scope>provided</scope>      
     </dependency>    
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -116,10 +151,17 @@
 	      org.springframework.security.ldap.authentication.ad,	      
 	      org.springframework.security.ldap.search,
 	      org.springframework.security.ldap.userdetails,
+	      org.springframework.security.taglibs,
+	      org.springframework.security.taglibs.authz,
+	      org.springframework.security.taglibs.csrf,
+	      org.springframework.security.taglibs.velocity,	      	      	      	      
               org.springframework.osgi.web.context.support,
 	      org.springframework.web.context,
-              org.springframework.web.servlet.view,
               org.springframework.web.servlet,
+              org.springframework.web.servlet.view,
+	      org.springframework.web.servlet.config,
+	      org.springframework.web.servlet.tags,
+	      org.springframework.web.servlet.tags.form,
               *; resolution:=optional
 	    </Import-Package>
             <Export-Package>org.renci.hearsay.web.*,!*</Export-Package>
@@ -142,7 +184,9 @@
 	</executions>
       </plugin>
       <plugin>
+	<groupId>org.apache.maven.plugins</groupId>		
         <artifactId>maven-war-plugin</artifactId>
+	<version>${maven.war.plugin.version}</version>
         <configuration>
           <archive>
             <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
