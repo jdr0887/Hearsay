@@ -40,14 +40,15 @@ var geneTranscriptName = "", geneDescriptionName = "", geneTranscriptData = {}, 
  * 
  * @param selectedVariant
  */
-function donorDemographicsDataListener(donorCode) {
+function donorDemographicsDataListener(donorCode, participantDetails) {
   // returned data set
-  var retVal = new Object;
 
   errorDisplay("donorDemographicsDataListener() - getParticipant() request for: " + donorCode, 0);
 
   // get the participant data
-  retVal = launchDataRequest("getParticipant", "DonorCode=" + donorCode);
+  var retVal = JSON.parse(participantDetails);
+
+  // retVal = launchDataRequest("getParticipant", "DonorCode=" + donorCode);
 
   // did we get a participant data error
   if (typeof retVal["error"] != 'undefined') {

@@ -1,7 +1,7 @@
 /**
  * renders the demographics region
  */
-function renderDemographics(donorCode, container) {
+function renderDemographics(donorCode, participantJSON, container) {
   // get the canvas area
   var c = d3.select(container);
 
@@ -12,7 +12,7 @@ function renderDemographics(donorCode, container) {
   dispatch.on("render_demographics", renderDemographicData);
 
   // initiate the retrieval from the DB
-  dispatch.demographics_data_listener(donorCode);
+  dispatch.demographics_data_listener(donorCode, participantJSON);
 }
 
 /**
@@ -37,10 +37,10 @@ function renderDemographicData(dataSet) {
 
     // display the donor code
     textArea.append("tspan").attr("x", 5).attr("y", 14).attr("font-size", "18").attr("font-style", "bold").text(
-        "Participant: " + dataSet.DONOR_CODE);
+        "Participant: " + dataSet.name);
 
     // display the Dx List Names
-    textArea.append("tspan").attr("x", 250).attr("font-size", "15").attr("font-style", "normal").text(
-        "Gender: " + dataSet.Gender + ", Diagnostic Lists: " + dataSet.DxListNames + ", Incidental Lists: " + dataSet.IncidentalListNames);
+    //textArea.append("tspan").attr("x", 250).attr("font-size", "15").attr("font-style", "normal").text(
+        //"Gender: " + dataSet.Gender + ", Diagnostic Lists: " + dataSet.DxListNames + ", Incidental Lists: " + dataSet.IncidentalListNames);
   }
 }

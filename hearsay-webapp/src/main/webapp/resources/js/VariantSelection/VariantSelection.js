@@ -105,7 +105,7 @@ function renderVariantLegend(container) {
   // Return the variantLegend
   return variantLegend;
 }
-
+//select distinct
 /**
  * gets the variants and their info from the DB into a smaller object for
  * display
