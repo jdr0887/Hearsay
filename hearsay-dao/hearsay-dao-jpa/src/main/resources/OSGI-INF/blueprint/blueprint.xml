@@ -15,6 +15,9 @@
   <bean id="chromosomeDAOImpl" class="org.renci.hearsay.dao.jpa.ChromosomeDAOImpl" ext:field-injection="true" />
   <service ref="chromosomeDAOImpl" interface="org.renci.hearsay.dao.ChromosomeDAO" />
 
+  <bean id="diagnosticResultDAOImpl" class="org.renci.hearsay.dao.jpa.DiagnosticResultDAOImpl" ext:field-injection="true" />
+  <service ref="diagnosticResultDAOImpl" interface="org.renci.hearsay.dao.DiagnosticResultDAO" />
+
   <bean id="featureDAOImpl" class="org.renci.hearsay.dao.jpa.FeatureDAOImpl" ext:field-injection="true" />
   <service ref="featureDAOImpl" interface="org.renci.hearsay.dao.FeatureDAO" />
 
@@ -38,6 +41,9 @@
 
   <bean id="molecularConsequenceDAOImpl" class="org.renci.hearsay.dao.jpa.MolecularConsequenceDAOImpl" ext:field-injection="true" />
   <service ref="molecularConsequenceDAOImpl" interface="org.renci.hearsay.dao.MolecularConsequenceDAO" />
+
+  <bean id="participantDAOImpl" class="org.renci.hearsay.dao.jpa.ParticipantDAOImpl" ext:field-injection="true" />
+  <service ref="participantDAOImpl" interface="org.renci.hearsay.dao.ParticipantDAO" />
 
   <bean id="populationFrequencyDAOImpl" class="org.renci.hearsay.dao.jpa.PopulationFrequencyDAOImpl" ext:field-injection="true" />
   <service ref="populationFrequencyDAOImpl" interface="org.renci.hearsay.dao.PopulationFrequencyDAO" />
