@@ -127,8 +127,8 @@ public class DiagnosticResult implements Persistable {
 
     @Override
     public String toString() {
-        return String.format("DiagnosticResult [id=%s, classId=%s, type=%s, position=%s, rsId=%s, hgvsGenomic=%s]", id,
-                classId, type, position, rsId, hgvsGenomic);
+        return String.format("DiagnosticResult [id=%s, classId=%s, type=%s, position=%s, rsId=%s, hgvsGenomic=%s]", id, classId, type,
+                position, rsId, hgvsGenomic);
     }
 
     @Override

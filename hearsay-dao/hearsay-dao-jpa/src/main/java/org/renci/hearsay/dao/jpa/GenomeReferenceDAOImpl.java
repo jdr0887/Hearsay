@@ -42,8 +42,7 @@ public class GenomeReferenceDAOImpl extends BaseEntityDAOImpl<GenomeReference, L
     @Override
     public List<GenomeReference> findAll() throws HearsayDAOException {
         logger.debug("ENTERING findAll()");
-        TypedQuery<GenomeReference> query = getEntityManager().createNamedQuery("GenomeReference.findAll",
-                GenomeReference.class);
+        TypedQuery<GenomeReference> query = getEntityManager().createNamedQuery("GenomeReference.findAll", GenomeReference.class);
         List<GenomeReference> ret = query.getResultList();
         return ret;
     }

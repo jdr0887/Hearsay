@@ -23,7 +23,6 @@ public interface FeatureService {
 
     @GET
     @Path("/findByReferenceSequenceId/{referenceSequenceId}")
-    public List<Feature> findByReferenceSequenceId(@PathParam("referenceSequenceId") Long referenceSequenceId)
-            throws HearsayDAOException;
+    public List<Feature> findByReferenceSequenceId(@PathParam("referenceSequenceId") Long referenceSequenceId) throws HearsayDAOException;
 
 }

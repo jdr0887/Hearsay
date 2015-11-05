@@ -24,8 +24,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
 @XmlRootElement(name = "canonicalAllele")
-@XmlType(propOrder = { "name", "version", "moleculeType", "complexityType", "replacementType", "parent", "children",
-        "relatedSimpleAlleles", "relatedIdentifiers" })
+@XmlType(propOrder = { "name", "version", "moleculeType", "complexityType", "replacementType", "parent", "children", "relatedSimpleAlleles",
+        "relatedIdentifiers" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @PrimaryKeyJoinColumn(name = "id")

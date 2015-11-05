@@ -65,8 +65,8 @@ public class ListReferenceSequencesAction implements Action {
                             genomicAccession = identifier.getValue();
                         }
                     }
-                    formatter.format(format, refSeq.getId().toString(), rnaAccession, proteinAccession,
-                            genomicAccession, refSeq.getStrandType().toString(), refSeq.getType().toString());
+                    formatter.format(format, refSeq.getId().toString(), rnaAccession, proteinAccession, genomicAccession,
+                            refSeq.getStrandType().toString(), refSeq.getType().toString());
                 }
 
                 formatter.flush();

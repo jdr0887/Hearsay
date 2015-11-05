@@ -17,8 +17,7 @@ import org.renci.hearsay.dao.Persistable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class BaseEntityDAOImpl<T extends Persistable, ID extends Serializable>
-        implements BaseEntityDAO<T, ID> {
+public abstract class BaseEntityDAOImpl<T extends Persistable, ID extends Serializable> implements BaseEntityDAO<T, ID> {
 
     private static final Logger logger = LoggerFactory.getLogger(BaseEntityDAOImpl.class);
 

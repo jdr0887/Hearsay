@@ -105,8 +105,8 @@ public class PopulationFrequency implements Persistable {
 
     @Override
     public String toString() {
-        return String.format("PopulationFrequency [id=%s, population=%s, frequency=%s, source=%s, version=%s]", id,
-                population, frequency, source, version);
+        return String.format("PopulationFrequency [id=%s, population=%s, frequency=%s, source=%s, version=%s]", id, population, frequency,
+                source, version);
     }
 
     @Override

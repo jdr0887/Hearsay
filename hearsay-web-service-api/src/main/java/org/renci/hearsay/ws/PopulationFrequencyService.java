@@ -22,7 +22,6 @@ public interface PopulationFrequencyService {
 
     @GET
     @Path("/findBySourceAndVersion/{source}/{version}")
-    public List<PopulationFrequency> findBySourceAndVersion(@PathParam("source") String source,
-            @PathParam("version") String version);
+    public List<PopulationFrequency> findBySourceAndVersion(@PathParam("source") String source, @PathParam("version") String version);
 
 }

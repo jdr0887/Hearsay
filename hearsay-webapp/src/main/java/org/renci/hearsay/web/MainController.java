@@ -1,6 +1,5 @@
 package org.renci.hearsay.web;
 
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,8 +39,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/carnac/carnac", method = RequestMethod.POST)
-    public ModelAndView carnac(@ModelAttribute(value = "participant") ParticipantForm participant, BindingResult result)
-            throws Exception {
+    public ModelAndView carnac(@ModelAttribute(value = "participant") ParticipantForm participant, BindingResult result) throws Exception {
         ModelAndView modelAndView = new ModelAndView("/carnac/carnac");
         modelAndView.addObject("participantName", participant.getParticipant().getName());
 

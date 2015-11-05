@@ -53,10 +53,8 @@ public class AlignmentDAOImpl extends BaseEntityDAOImpl<Alignment, Long> impleme
         CriteriaQuery<Alignment> crit = critBuilder.createQuery(getPersistentClass());
         Root<Alignment> fromAlignment = crit.from(Alignment.class);
         List<Predicate> predicates = new ArrayList<Predicate>();
-        Join<Alignment, ReferenceSequence> alignmentReferenceSequenceJoin = fromAlignment
-                .join(Alignment_.referenceSequences);
-        predicates
-                .add(critBuilder.equal(alignmentReferenceSequenceJoin.get(ReferenceSequence_.id), referenceSequenceId));
+        Join<Alignment, ReferenceSequence> alignmentReferenceSequenceJoin = fromAlignment.join(Alignment_.referenceSequences);
+        predicates.add(critBuilder.equal(alignmentReferenceSequenceJoin.get(ReferenceSequence_.id), referenceSequenceId));
         // predicates.add(critBuilder.isNotNull(fromAlignment.join(Alignment_.regions)));
         // Join<Alignment, Region> alignmentRegionJoin = fromAlignment.join(Alignment_.regions);
         // predicates.add(critBuilder.isNotNull(alignmentRegionJoin.get(Region_.id)));

@@ -56,11 +56,11 @@ public class ReferenceSequenceTest {
     public void findByIdentifiers() {
 
         try {
-            List<Identifier> rnaNucleotideAccessionIdentifierList = hearsayDAOBean.getIdentifierDAO().findByExample(
-                    new Identifier("www.ncbi.nlm.nih.gov/nuccore", "NM_130787.2"));
+            List<Identifier> rnaNucleotideAccessionIdentifierList = hearsayDAOBean.getIdentifierDAO()
+                    .findByExample(new Identifier("www.ncbi.nlm.nih.gov/nuccore", "NM_130787.2"));
 
-            List<Identifier> proteinAccessionIdentifierList = hearsayDAOBean.getIdentifierDAO().findByExample(
-                    new Identifier("www.ncbi.nlm.nih.gov/protein", "NP_570603.2"));
+            List<Identifier> proteinAccessionIdentifierList = hearsayDAOBean.getIdentifierDAO()
+                    .findByExample(new Identifier("www.ncbi.nlm.nih.gov/protein", "NP_570603.2"));
 
             List<Long> identifierIdList = new ArrayList<Long>();
             for (Identifier identifier : rnaNucleotideAccessionIdentifierList) {
@@ -70,8 +70,7 @@ public class ReferenceSequenceTest {
                 identifierIdList.add(identifier.getId());
             }
 
-            List<ReferenceSequence> potentialRefSeqs = hearsayDAOBean.getReferenceSequenceDAO().findByIdentifiers(
-                    identifierIdList);
+            List<ReferenceSequence> potentialRefSeqs = hearsayDAOBean.getReferenceSequenceDAO().findByIdentifiers(identifierIdList);
 
             assertTrue(CollectionUtils.isNotEmpty(potentialRefSeqs));
             assertTrue(potentialRefSeqs.size() == 1);
@@ -104,8 +103,7 @@ public class ReferenceSequenceTest {
             JAXBContext context = JAXBContext.newInstance(ReferenceSequence.class);
             Marshaller m = context.createMarshaller();
             m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            FileWriter fw = new FileWriter(new File("/tmp", String.format("referenceSequence-%d.xml",
-                    referenceSequence.getId())));
+            FileWriter fw = new FileWriter(new File("/tmp", String.format("referenceSequence-%d.xml", referenceSequence.getId())));
             m.marshal(referenceSequence, fw);
         } catch (IOException e1) {
             e1.printStackTrace();

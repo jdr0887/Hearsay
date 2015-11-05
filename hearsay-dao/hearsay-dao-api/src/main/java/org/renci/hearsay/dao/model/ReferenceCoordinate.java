@@ -125,8 +125,7 @@ public class ReferenceCoordinate extends IdentifiableEntity {
     public int hashCode() {
         final int prime = 31;
         int result = super.hashCode();
-        result = prime * result
-                + ((ancillaryTranscriptRegionType == null) ? 0 : ancillaryTranscriptRegionType.hashCode());
+        result = prime * result + ((ancillaryTranscriptRegionType == null) ? 0 : ancillaryTranscriptRegionType.hashCode());
         result = prime * result + ((primaryTranscriptRegionType == null) ? 0 : primaryTranscriptRegionType.hashCode());
         result = prime * result + ((refAllele == null) ? 0 : refAllele.hashCode());
         result = prime * result + ((strandType == null) ? 0 : strandType.hashCode());

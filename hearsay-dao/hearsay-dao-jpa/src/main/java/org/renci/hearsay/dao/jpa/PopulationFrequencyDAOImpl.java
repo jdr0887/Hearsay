@@ -22,8 +22,7 @@ import org.slf4j.LoggerFactory;
 @OsgiServiceProvider(classes = { PopulationFrequencyDAO.class })
 @Singleton
 @Transactional
-public class PopulationFrequencyDAOImpl extends BaseEntityDAOImpl<PopulationFrequency, Long> implements
-        PopulationFrequencyDAO {
+public class PopulationFrequencyDAOImpl extends BaseEntityDAOImpl<PopulationFrequency, Long> implements PopulationFrequencyDAO {
 
     private final Logger logger = LoggerFactory.getLogger(PopulationFrequencyDAOImpl.class);
 

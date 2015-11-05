@@ -30,8 +30,7 @@ import org.slf4j.LoggerFactory;
 @OsgiServiceProvider(classes = { ReferenceSequenceDAO.class })
 @Singleton
 @Transactional
-public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequence, Long> implements
-        ReferenceSequenceDAO {
+public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequence, Long> implements ReferenceSequenceDAO {
 
     private final Logger logger = LoggerFactory.getLogger(ReferenceSequenceDAOImpl.class);
 
@@ -47,8 +46,7 @@ public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequenc
     @Override
     public List<ReferenceSequence> findAll() throws HearsayDAOException {
         logger.debug("ENTERING findAll()");
-        TypedQuery<ReferenceSequence> query = getEntityManager().createNamedQuery("ReferenceSequence.findAll",
-                ReferenceSequence.class);
+        TypedQuery<ReferenceSequence> query = getEntityManager().createNamedQuery("ReferenceSequence.findAll", ReferenceSequence.class);
         List<ReferenceSequence> ret = query.getResultList();
         return ret;
     }
@@ -76,20 +74,16 @@ public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequenc
         Root<ReferenceSequence> fromReferenceSequence = crit.from(ReferenceSequence.class);
         List<Predicate> predicates = new ArrayList<Predicate>();
         if (referenceSequence.getGene() != null) {
-            Join<ReferenceSequence, Gene> referenceSequenceGeneJoin = fromReferenceSequence
-                    .join(ReferenceSequence_.gene);
-            predicates.add(critBuilder.equal(referenceSequenceGeneJoin.get(Gene_.id), referenceSequence.getGene()
-                    .getId()));
+            Join<ReferenceSequence, Gene> referenceSequenceGeneJoin = fromReferenceSequence.join(ReferenceSequence_.gene);
+            predicates.add(critBuilder.equal(referenceSequenceGeneJoin.get(Gene_.id), referenceSequence.getGene().getId()));
         }
 
         if (referenceSequence.getType() != null) {
-            predicates.add(critBuilder.equal(fromReferenceSequence.get(ReferenceSequence_.type),
-                    referenceSequence.getType()));
+            predicates.add(critBuilder.equal(fromReferenceSequence.get(ReferenceSequence_.type), referenceSequence.getType()));
         }
 
         if (referenceSequence.getStrandType() != null) {
-            predicates.add(critBuilder.equal(fromReferenceSequence.get(ReferenceSequence_.strandType),
-                    referenceSequence.getStrandType()));
+            predicates.add(critBuilder.equal(fromReferenceSequence.get(ReferenceSequence_.strandType), referenceSequence.getStrandType()));
         }
 
         if (referenceSequence.getGenomeReference() != null) {
@@ -103,8 +97,7 @@ public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequenc
             Join<ReferenceSequence, Identifier> referenceSequenceIdentifierJoin = fromReferenceSequence
                     .join(ReferenceSequence_.identifiers);
             for (Identifier identifier : referenceSequence.getIdentifiers()) {
-                predicates.add(critBuilder.equal(referenceSequenceIdentifierJoin.get(Identifier_.id),
-                        identifier.getId()));
+                predicates.add(critBuilder.equal(referenceSequenceIdentifierJoin.get(Identifier_.id), identifier.getId()));
             }
         }
 
@@ -121,8 +114,7 @@ public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequenc
         CriteriaQuery<ReferenceSequence> crit = critBuilder.createQuery(getPersistentClass());
         Root<ReferenceSequence> fromReferenceSequence = crit.from(ReferenceSequence.class);
         List<Predicate> predicates = new ArrayList<Predicate>();
-        Join<ReferenceSequence, Identifier> referenceSequenceIdentifierJoin = fromReferenceSequence
-                .join(ReferenceSequence_.identifiers);
+        Join<ReferenceSequence, Identifier> referenceSequenceIdentifierJoin = fromReferenceSequence.join(ReferenceSequence_.identifiers);
         if (!value.endsWith("%")) {
             value += "%";
         }
@@ -140,8 +132,7 @@ public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequenc
         CriteriaQuery<ReferenceSequence> crit = critBuilder.createQuery(getPersistentClass());
         Root<ReferenceSequence> fromReferenceSequence = crit.from(ReferenceSequence.class);
         List<Predicate> predicates = new ArrayList<Predicate>();
-        Join<ReferenceSequence, Identifier> referenceSequenceIdentifierJoin = fromReferenceSequence
-                .join(ReferenceSequence_.identifiers);
+        Join<ReferenceSequence, Identifier> referenceSequenceIdentifierJoin = fromReferenceSequence.join(ReferenceSequence_.identifiers);
         predicates.add(referenceSequenceIdentifierJoin.get(Identifier_.id).in(idList));
         crit.where(predicates.toArray(new Predicate[predicates.size()]));
         crit.distinct(true);

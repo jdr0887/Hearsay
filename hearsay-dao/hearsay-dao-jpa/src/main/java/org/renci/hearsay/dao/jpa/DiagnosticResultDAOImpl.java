@@ -15,7 +15,6 @@ import javax.transaction.Transactional;
 import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.renci.hearsay.dao.DiagnosticResultDAO;
 import org.renci.hearsay.dao.HearsayDAOException;
-import org.renci.hearsay.dao.model.Alignment;
 import org.renci.hearsay.dao.model.DiagnosticResult;
 import org.renci.hearsay.dao.model.DiagnosticResult_;
 import org.renci.hearsay.dao.model.Participant;
@@ -46,8 +45,7 @@ public class DiagnosticResultDAOImpl extends BaseEntityDAOImpl<DiagnosticResult,
         CriteriaQuery<DiagnosticResult> crit = critBuilder.createQuery(getPersistentClass());
         Root<DiagnosticResult> fromDiagnosticResult = crit.from(DiagnosticResult.class);
         List<Predicate> predicates = new ArrayList<Predicate>();
-        Join<DiagnosticResult, Participant> diagnosticResultParticipantJoin = fromDiagnosticResult
-                .join(DiagnosticResult_.participant);
+        Join<DiagnosticResult, Participant> diagnosticResultParticipantJoin = fromDiagnosticResult.join(DiagnosticResult_.participant);
         predicates.add(critBuilder.equal(diagnosticResultParticipantJoin.get(Participant_.name), name));
         crit.where(predicates.toArray(new Predicate[predicates.size()]));
         TypedQuery<DiagnosticResult> query = getEntityManager().createQuery(crit);
