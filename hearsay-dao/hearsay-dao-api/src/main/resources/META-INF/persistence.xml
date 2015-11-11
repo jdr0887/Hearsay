@@ -3,12 +3,9 @@
   xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" version="2.0">
   <persistence-unit name="hearsay" transaction-type="JTA">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <!-- <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider> -->
 
-    <!-- <jta-data-source>aries:services/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/hearsayJTA)</jta-data-source> -->
-    <!-- <non-jta-data-source>aries:services/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/hearsayNoJTA)</non-jta-data-source> -->
     <jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=hearsayJTA)</jta-data-source>
-    <non-jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=hearsayJTA)</non-jta-data-source>
+    <non-jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=hearsayNoJTA)</non-jta-data-source>
 
     <class>org.renci.hearsay.dao.model.Alignment</class>
     <class>org.renci.hearsay.dao.model.Chromosome</class>
@@ -39,18 +36,6 @@
       <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect" />
       <property name="hibernate.hbm2ddl.auto" value="update" />
       <property name="hibernate.default_schema" value="hearsay" />
-      <!-- <property name="hibernate.ejb.use_class_enhancer" value="true" /> -->
-      <!-- <property name="openjpa.Log" value="DefaultLevel=TRACE, Runtime=TRACE, Tool=TRACE, SQL=TRACE" /> -->
-      <!-- <property name="openjpa.jdbc.MappingDefaults" value="ForeignKeyDeleteAction=restrict, JoinForeignKeyDeleteAction=restrict" /> -->
-      <!-- <property name="openjpa.jdbc.SchemaFactory" value="native(ForeignKeys=true)" /> -->
-      <!-- <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction=add,ForeignKeys=true)" /> -->
-      <!-- <property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=WARN" /> -->
-      <!-- <property name="openjpa.Log" value="slf4j" /> -->
-      <!-- <property name="openjpa.Multithreaded" value="true" /> -->
-      <!-- <property name="openjpa.jdbc.DBDictionary" value="postgres(SearchStringEscape=\, SupportsXMLColumn=false)" /> -->
-      <!-- <property name="openjpa.RemoteCommitProvider" value="sjvm" /> -->
-      <!-- <property name="openjpa.DataCache" value="false" /> -->
-      <!-- <property name="openjpa.QueryCache" value="false" /> -->
     </properties>
 
   </persistence-unit>
