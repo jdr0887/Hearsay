@@ -8,4 +8,6 @@ public interface PopulationFrequencyDAO extends BaseEntityDAO<PopulationFrequenc
 
     public abstract List<PopulationFrequency> findBySourceAndVersion(String source, String version) throws HearsayDAOException;
 
+    public abstract List<PopulationFrequency> findByGeneId(Long geneId) throws HearsayDAOException;
+
 }
