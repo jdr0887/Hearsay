@@ -43,6 +43,10 @@ public class PopulationFrequency implements Persistable {
     @JoinColumn(name = "simple_allele_fid")
     private SimpleAllele simpleAllele;
 
+    @ManyToOne
+    @JoinColumn(name = "gene_fid")
+    private Gene gene;
+
     @Column(name = "population")
     private String population;
 
@@ -55,12 +59,32 @@ public class PopulationFrequency implements Persistable {
     @Column(name = "version")
     private String version;
 
+    @ManyToOne
+    @JoinColumn(name = "position_fid")
+    private Location position;
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Location getPosition() {
+        return position;
+    }
+
+    public void setPosition(Location position) {
+        this.position = position;
+    }
+
+    public Gene getGene() {
+        return gene;
+    }
+
+    public void setGene(Gene gene) {
+        this.gene = gene;
     }
 
     public SimpleAllele getSimpleAllele() {
