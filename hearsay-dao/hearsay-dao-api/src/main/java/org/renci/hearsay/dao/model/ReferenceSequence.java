@@ -77,6 +77,11 @@ public class ReferenceSequence extends IdentifiableEntity {
         super();
     }
 
+    public ReferenceSequence(ReferenceSequenceType type) {
+        super();
+        this.type = type;
+    }
+
     public ReferenceSequenceType getType() {
         return type;
     }
