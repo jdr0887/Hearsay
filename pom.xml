@@ -30,6 +30,7 @@
   </scm>
   <properties>
     <spring.security.version>3.2.8.RELEASE</spring.security.version>
+    <postgresql.version>9.4-1205-jdbc41</postgresql.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -232,7 +233,7 @@
       <dependency>
       	<groupId>org.postgresql</groupId>
       	<artifactId>postgresql</artifactId>
-      	<version>9.3-1102-jdbc41</version>
+      	<version>${postgresql.version}</version>
       </dependency>
       <dependency>
       	<groupId>org.apache.felix</groupId>
