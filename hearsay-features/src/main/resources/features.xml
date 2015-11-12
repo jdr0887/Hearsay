@@ -23,7 +23,7 @@
     <bundle>mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/${jackson.version}</bundle>
     <bundle>mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/${jackson.version}</bundle>
     <bundle>mvn:com.fasterxml.jackson.module/jackson-module-jaxb-annotations/${jackson.version}</bundle>
-    <bundle>mvn:org.renci.osgi.bundles/postgresql-9.3-1102-jdbc41-bundle/0.0.1</bundle>
+    <bundle>mvn:org.postgresql/postgresql/${postgresql.version}</bundle>
     <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.aspectj/1.7.4_1</bundle>
     <bundle start-level="30">mvn:org.springframework.security/spring-security-core/${spring.security.version}</bundle>
     <bundle start-level="30">mvn:org.springframework.security/spring-security-config/${spring.security.version}</bundle>
