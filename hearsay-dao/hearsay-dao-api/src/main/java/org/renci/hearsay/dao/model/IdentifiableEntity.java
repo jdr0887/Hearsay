@@ -1,7 +1,7 @@
 package org.renci.hearsay.dao.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,11 +12,15 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedEntityGraphs;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -39,6 +43,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(schema = "hearsay", name = "identifiable_entity")
+@NamedEntityGraphs({
+        @NamedEntityGraph(name = "graph.IdentifiableEntity.identifiers", attributeNodes = @NamedAttributeNode("identifiers") ) })
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 public abstract class IdentifiableEntity implements Persistable {
@@ -56,13 +62,15 @@ public abstract class IdentifiableEntity implements Persistable {
     @JsonProperty("identifiers")
     @XmlElementWrapper(name = "identifiers")
     @XmlElement(name = "identifier")
-    @ManyToMany(targetEntity = Identifier.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    @JoinTable(schema = "hearsay", name = "entity_identifier", joinColumns = @JoinColumn(name = "entity_fid") , inverseJoinColumns = @JoinColumn(name = "identifier_fid") )
-    protected List<Identifier> identifiers;
+    @ManyToMany(targetEntity = Identifier.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+    @JoinTable(schema = "hearsay", name = "entity_identifier", joinColumns = @JoinColumn(name = "entity_fid") , inverseJoinColumns = @JoinColumn(name = "identifier_fid") , indexes = {
+            @Index(name = "entity_identifier_entity_fid_idx", columnList = "entity_fid"),
+            @Index(name = "entity_identifier_identifier_fid_idx", columnList = "identifier_fid") })
+    protected Set<Identifier> identifiers;
 
     public IdentifiableEntity() {
         super();
-        this.identifiers = new ArrayList<Identifier>();
+        this.identifiers = new HashSet<Identifier>();
     }
 
     public Long getId() {
@@ -73,11 +81,11 @@ public abstract class IdentifiableEntity implements Persistable {
         this.id = id;
     }
 
-    public List<Identifier> getIdentifiers() {
+    public Set<Identifier> getIdentifiers() {
         return identifiers;
     }
 
-    public void setIdentifiers(List<Identifier> identifiers) {
+    public void setIdentifiers(Set<Identifier> identifiers) {
         this.identifiers = identifiers;
     }
 

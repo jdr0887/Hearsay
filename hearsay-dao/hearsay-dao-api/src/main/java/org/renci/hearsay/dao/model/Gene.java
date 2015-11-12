@@ -1,7 +1,7 @@
 package org.renci.hearsay.dao.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +11,9 @@ import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedEntityGraphs;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -34,6 +37,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(schema = "hearsay", name = "gene", indexes = { @Index(name = "gene_symbol_idx", columnList = "symbol") })
+@NamedEntityGraphs({ @NamedEntityGraph(name = "graph.Gene.chromosomes", attributeNodes = @NamedAttributeNode("chromosomes") ),
+        @NamedEntityGraph(name = "graph.Gene.aliases", attributeNodes = @NamedAttributeNode("aliases") ),
+        @NamedEntityGraph(name = "graph.Gene.referenceSequences", attributeNodes = @NamedAttributeNode("referenceSequences") ) })
 @NamedQueries({ @NamedQuery(name = "Gene.findAll", query = "FROM Gene a order by a.symbol") })
 public class Gene extends IdentifiableEntity {
 
@@ -45,9 +51,11 @@ public class Gene extends IdentifiableEntity {
 
     @XmlElementWrapper(name = "chromosomes")
     @XmlElement(name = "chromosome")
-    @ManyToMany(targetEntity = Chromosome.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    @JoinTable(schema = "hearsay", name = "gene_chromosome", joinColumns = @JoinColumn(name = "gene_fid") , inverseJoinColumns = @JoinColumn(name = "chromosome_fid") )
-    private List<Chromosome> chromosomes;
+    @ManyToMany(targetEntity = Chromosome.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+    @JoinTable(schema = "hearsay", name = "gene_chromosome", joinColumns = @JoinColumn(name = "gene_fid") , inverseJoinColumns = @JoinColumn(name = "chromosome_fid") , indexes = {
+            @Index(name = "gene_chromosome_gene_fid_idx", columnList = "gene_fid"),
+            @Index(name = "gene_chromosome_chromosome_fid_idx", columnList = "chromosome_fid") })
+    private Set<Chromosome> chromosomes;
 
     @Column(name = "description", length = 4096)
     private String description;
@@ -56,18 +64,18 @@ public class Gene extends IdentifiableEntity {
     @JsonProperty("aliases")
     @XmlElementWrapper(name = "aliases")
     @XmlElement(name = "alias")
-    @OneToMany(mappedBy = "gene", fetch = FetchType.EAGER)
-    private List<GeneSymbol> aliases;
+    @OneToMany(mappedBy = "gene", fetch = FetchType.LAZY)
+    private Set<GeneSymbol> aliases;
 
     @XmlTransient
     @OneToMany(mappedBy = "gene", fetch = FetchType.LAZY)
-    private List<ReferenceSequence> referenceSequences;
+    private Set<ReferenceSequence> referenceSequences;
 
     public Gene() {
         super();
-        this.aliases = new ArrayList<GeneSymbol>();
-        this.chromosomes = new ArrayList<Chromosome>();
-        this.referenceSequences = new ArrayList<ReferenceSequence>();
+        this.aliases = new HashSet<GeneSymbol>();
+        this.chromosomes = new HashSet<Chromosome>();
+        this.referenceSequences = new HashSet<ReferenceSequence>();
     }
 
     public String getDescription() {
@@ -78,11 +86,11 @@ public class Gene extends IdentifiableEntity {
         this.description = description;
     }
 
-    public List<Chromosome> getChromosomes() {
+    public Set<Chromosome> getChromosomes() {
         return chromosomes;
     }
 
-    public void setChromosomes(List<Chromosome> chromosomes) {
+    public void setChromosomes(Set<Chromosome> chromosomes) {
         this.chromosomes = chromosomes;
     }
 
@@ -94,19 +102,19 @@ public class Gene extends IdentifiableEntity {
         this.symbol = symbol;
     }
 
-    public List<GeneSymbol> getAliases() {
+    public Set<GeneSymbol> getAliases() {
         return aliases;
     }
 
-    public void setAliases(List<GeneSymbol> aliases) {
+    public void setAliases(Set<GeneSymbol> aliases) {
         this.aliases = aliases;
     }
 
-    public List<ReferenceSequence> getReferenceSequences() {
+    public Set<ReferenceSequence> getReferenceSequences() {
         return referenceSequences;
     }
 
-    public void setReferenceSequences(List<ReferenceSequence> referenceSequences) {
+    public void setReferenceSequences(Set<ReferenceSequence> referenceSequences) {
         this.referenceSequences = referenceSequences;
     }
 

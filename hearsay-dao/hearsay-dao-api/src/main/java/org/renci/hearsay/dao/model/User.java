@@ -61,7 +61,9 @@ public class User implements Persistable {
     @XmlElementWrapper(name = "roles")
     @XmlElement(name = "role")
     @ManyToMany(targetEntity = Role.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    @JoinTable(schema = "hearsay", name = "user_role", joinColumns = @JoinColumn(name = "user_fid") , inverseJoinColumns = @JoinColumn(name = "role_fid") )
+    @JoinTable(schema = "hearsay", name = "user_role", joinColumns = @JoinColumn(name = "user_fid") , inverseJoinColumns = @JoinColumn(name = "role_fid") , indexes = {
+            @Index(name = "user_role_user_fid_idx", columnList = "user_fid"),
+            @Index(name = "user_role_role_fid_idx", columnList = "role_fid") })
     private List<Role> roles;
 
     public User() {

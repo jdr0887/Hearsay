@@ -1,11 +1,14 @@
 package org.renci.hearsay.dao.model;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Index;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedEntityGraphs;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -28,6 +31,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
 @Table(schema = "hearsay", name = "genome_reference", indexes = { @Index(name = "genome_reference_name_idx", columnList = "name") })
+@NamedEntityGraphs({
+        @NamedEntityGraph(name = "graph.GenomeReference.referenceSequences", attributeNodes = @NamedAttributeNode("referenceSequences") ) })
 @NamedQueries({ @NamedQuery(name = "GenomeReference.findAll", query = "FROM GenomeReference a order by a.name") })
 public class GenomeReference extends IdentifiableEntity {
 
@@ -39,10 +44,15 @@ public class GenomeReference extends IdentifiableEntity {
 
     @XmlTransient
     @OneToMany(mappedBy = "genomeReference", fetch = FetchType.LAZY)
-    private List<ReferenceSequence> referenceSequences;
+    private Set<ReferenceSequence> referenceSequences;
 
     public GenomeReference() {
         super();
+    }
+
+    public GenomeReference(String name) {
+        super();
+        this.name = name;
     }
 
     public String getName() {
@@ -53,11 +63,11 @@ public class GenomeReference extends IdentifiableEntity {
         this.name = name;
     }
 
-    public List<ReferenceSequence> getReferenceSequences() {
+    public Set<ReferenceSequence> getReferenceSequences() {
         return referenceSequences;
     }
 
-    public void setReferenceSequences(List<ReferenceSequence> referenceSequences) {
+    public void setReferenceSequences(Set<ReferenceSequence> referenceSequences) {
         this.referenceSequences = referenceSequences;
     }
 

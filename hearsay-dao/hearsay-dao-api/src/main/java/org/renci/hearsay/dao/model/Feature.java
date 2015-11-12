@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -49,7 +50,9 @@ public class Feature implements Persistable {
     @XmlElementWrapper(name = "locations")
     @XmlElement(name = "location")
     @ManyToMany(targetEntity = Location.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    @JoinTable(schema = "hearsay", name = "feature_location", joinColumns = @JoinColumn(name = "feature_fid") , inverseJoinColumns = @JoinColumn(name = "location_fid") )
+    @JoinTable(schema = "hearsay", name = "feature_location", joinColumns = @JoinColumn(name = "feature_fid") , inverseJoinColumns = @JoinColumn(name = "location_fid") , indexes = {
+            @Index(name = "feature_location_feature_fid_idx", columnList = "feature_fid"),
+            @Index(name = "feature_location_location_fid_idx", columnList = "location_fid") })
     private List<Location> locations;
 
     @JsonInclude(Include.NON_EMPTY)
@@ -62,7 +65,9 @@ public class Feature implements Persistable {
 
     @XmlTransient
     @ManyToMany(targetEntity = ReferenceSequence.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    @JoinTable(schema = "hearsay", name = "reference_sequence_feature", joinColumns = @JoinColumn(name = "feature_fid") , inverseJoinColumns = @JoinColumn(name = "reference_sequence_fid") )
+    @JoinTable(schema = "hearsay", name = "reference_sequence_feature", joinColumns = @JoinColumn(name = "feature_fid") , inverseJoinColumns = @JoinColumn(name = "reference_sequence_fid") , indexes = {
+            @Index(name = "reference_sequence_feature_feature_fid_idx", columnList = "feature_fid"),
+            @Index(name = "reference_sequence_feature_reference_sequence_fid_idx", columnList = "reference_sequence_fid") })
     private List<ReferenceSequence> referenceSequences;
 
     public Feature() {
