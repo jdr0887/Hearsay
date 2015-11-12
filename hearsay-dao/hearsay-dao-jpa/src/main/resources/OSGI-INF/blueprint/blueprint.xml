@@ -66,4 +66,24 @@
   <bean id="userDAOImpl" class="org.renci.hearsay.dao.jpa.UserDAOImpl" ext:field-injection="true" />
   <service ref="userDAOImpl" interface="org.renci.hearsay.dao.UserDAO" />
 
+  <bean id="hearsayDAOBeanService" class="org.renci.hearsay.dao.HearsayDAOBean">
+    <property name="alignmentDAO" ref="alignmentDAOImpl" />
+    <property name="chromosomeDAO" ref="chromosomeDAOImpl" />
+    <property name="canonicalAlleleDAO" ref="canonicalAlleleDAOImpl" />
+    <property name="featureDAO" ref="featureDAOImpl" />
+    <property name="geneDAO" ref="geneDAOImpl" />
+    <property name="geneSymbolDAO" ref="geneSymbolDAOImpl" />
+    <property name="identifierDAO" ref="identifierDAOImpl" />
+    <property name="intronOffsetDAO" ref="intronOffsetDAOImpl" />
+    <property name="locationDAO" ref="locationDAOImpl" />
+    <property name="molecularConsequenceDAO" ref="molecularConsequenceDAOImpl" />
+    <property name="populationFrequencyDAO" ref="populationFrequencyDAOImpl" />
+    <property name="referenceCoordinateDAO" ref="referenceCoordinateDAOImpl" />
+    <property name="regionDAO" ref="regionDAOImpl" />
+    <property name="genomeReferenceDAO" ref="genomeReferenceDAOImpl" />
+    <property name="referenceSequenceDAO" ref="referenceSequenceDAOImpl" />
+    <property name="simpleAlleleDAO" ref="simpleAlleleDAOImpl" />
+  </bean>
+  <service ref="hearsayDAOBeanService" interface="org.renci.hearsay.dao.HearsayDAOBeanService" />
+
 </blueprint>
