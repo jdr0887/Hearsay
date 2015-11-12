@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(schema = "hearsay", name = "participant", indexes = { @Index(columnList = "name") })
+@Table(schema = "hearsay", name = "participant", indexes = { @Index(name = "participant_name_idx", columnList = "name") })
 @NamedQueries({ @NamedQuery(name = "Participant.findAll", query = "FROM Participant a order by a.name") })
 public class Participant implements Persistable {
 

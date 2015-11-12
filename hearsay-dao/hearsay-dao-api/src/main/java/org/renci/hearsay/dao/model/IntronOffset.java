@@ -40,8 +40,8 @@ public class IntronOffset implements Persistable {
     @Column(name = "start")
     private Integer start;
 
-    @Column(name = "end")
-    private Integer end;
+    @Column(name = "stop")
+    private Integer stop;
 
     @Column(name = "strand_type")
     @Enumerated(EnumType.STRING)
@@ -51,10 +51,10 @@ public class IntronOffset implements Persistable {
         super();
     }
 
-    public IntronOffset(Integer start, Integer end, StrandType strandType) {
+    public IntronOffset(Integer start, Integer stop, StrandType strandType) {
         super();
         this.start = start;
-        this.end = end;
+        this.stop = stop;
         this.strandType = strandType;
     }
 
@@ -74,12 +74,12 @@ public class IntronOffset implements Persistable {
         this.start = start;
     }
 
-    public Integer getEnd() {
-        return end;
+    public Integer getStop() {
+        return stop;
     }
 
-    public void setEnd(Integer end) {
-        this.end = end;
+    public void setStop(Integer stop) {
+        this.stop = stop;
     }
 
     public StrandType getStrandType() {
@@ -92,7 +92,7 @@ public class IntronOffset implements Persistable {
 
     @Override
     public String toString() {
-        return String.format("IntronOffset [id=%s, start=%s, end=%s, strandType=%s]", id, start, end, strandType);
+        return String.format("IntronOffset [id=%s, start=%s, stop=%s, strandType=%s]", id, start, stop, strandType);
     }
 
     @Override
@@ -100,7 +100,7 @@ public class IntronOffset implements Persistable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((strandType == null) ? 0 : strandType.hashCode());
-        result = prime * result + ((end == null) ? 0 : end.hashCode());
+        result = prime * result + ((stop == null) ? 0 : stop.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((start == null) ? 0 : start.hashCode());
         return result;
@@ -117,10 +117,10 @@ public class IntronOffset implements Persistable {
         IntronOffset other = (IntronOffset) obj;
         if (strandType != other.strandType)
             return false;
-        if (end == null) {
-            if (other.end != null)
+        if (stop == null) {
+            if (other.stop != null)
                 return false;
-        } else if (!end.equals(other.end))
+        } else if (!stop.equals(other.stop))
             return false;
         if (id == null) {
             if (other.id != null)

@@ -10,7 +10,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -27,8 +26,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType(propOrder = { "name" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(schema = "hearsay", name = "chromosome", uniqueConstraints = { @UniqueConstraint(columnNames = { "name" }) }, indexes = {
-        @Index(columnList = "name") })
+@Table(schema = "hearsay", name = "chromosome", indexes = { @Index(name = "chromosome_name_idx", unique = true, columnList = "name") })
 @NamedQueries({ @NamedQuery(name = "Chromosome.findAll", query = "FROM Chromosome"),
         @NamedQuery(name = "Chromosome.findByName", query = "FROM Chromosome a where a.name = :name") })
 public class Chromosome implements Persistable {

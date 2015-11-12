@@ -33,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @XmlType(propOrder = { "symbol", "chromosomes", "description", "aliases" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(schema = "hearsay", name = "gene", indexes = { @Index(columnList = "symbol") })
+@Table(schema = "hearsay", name = "gene", indexes = { @Index(name = "gene_symbol_idx", columnList = "symbol") })
 @NamedQueries({ @NamedQuery(name = "Gene.findAll", query = "FROM Gene a order by a.symbol") })
 public class Gene extends IdentifiableEntity {
 

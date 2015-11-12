@@ -24,7 +24,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlRootElement(name = "identifier")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(schema = "hearsay", name = "identifier", indexes = { @Index(columnList = "system"), @Index(columnList = "value") })
+@Table(schema = "hearsay", name = "identifier", indexes = { @Index(name = "identifier_system_idx", columnList = "system"),
+        @Index(name = "identifier_value_idx", columnList = "value") })
 public class Identifier implements Persistable {
 
     private static final long serialVersionUID = 6208779597138958791L;

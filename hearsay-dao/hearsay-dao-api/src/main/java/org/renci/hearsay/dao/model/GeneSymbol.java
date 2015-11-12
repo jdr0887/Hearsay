@@ -27,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(schema = "hearsay", name = "gene_symbol", indexes = { @Index(columnList = "symbol") })
+@Table(schema = "hearsay", name = "gene_symbol", indexes = { @Index(name = "gene_symbol_symbol_idx", columnList = "symbol") })
 public class GeneSymbol implements Persistable {
 
     private static final long serialVersionUID = -5997799315221166517L;
