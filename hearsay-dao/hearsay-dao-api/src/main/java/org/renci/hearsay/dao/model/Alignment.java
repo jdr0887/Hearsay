@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -53,7 +54,9 @@ public class Alignment implements Persistable {
 
     @XmlTransient
     @ManyToMany(targetEntity = ReferenceSequence.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    @JoinTable(schema = "hearsay", name = "reference_sequence_alignment", joinColumns = @JoinColumn(name = "alignment_fid") , inverseJoinColumns = @JoinColumn(name = "reference_sequence_fid") )
+    @JoinTable(schema = "hearsay", name = "reference_sequence_alignment", joinColumns = @JoinColumn(name = "alignment_fid") , inverseJoinColumns = @JoinColumn(name = "reference_sequence_fid") , indexes = {
+            @Index(name = "reference_sequence_alignment_alignment_fid_idx", columnList = "alignment_fid"),
+            @Index(name = "reference_sequence_alignment_reference_sequence_fid_idx", columnList = "reference_sequence_fid") })
     private List<ReferenceSequence> referenceSequences;
 
     @XmlElementWrapper(name = "regions")
