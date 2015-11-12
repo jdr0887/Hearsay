@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Singleton;
+import javax.persistence.EntityGraph;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -14,6 +15,7 @@ import javax.transaction.Transactional;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.annotations.QueryHints;
 import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.renci.hearsay.dao.GeneDAO;
 import org.renci.hearsay.dao.HearsayDAOException;
@@ -45,7 +47,11 @@ public class GeneDAOImpl extends BaseEntityDAOImpl<Gene, Long> implements GeneDA
     @Override
     public List<Gene> findAll() throws HearsayDAOException {
         logger.debug("ENTERING findAll()");
+        EntityGraph<Gene> graph = getEntityManager().createEntityGraph(Gene.class);
+        graph.addSubgraph("chromosomes");
+        graph.addSubgraph("aliases");
         TypedQuery<Gene> query = getEntityManager().createNamedQuery("Gene.findAll", Gene.class);
+        query.setHint(QueryHints.FETCHGRAPH, graph);
         List<Gene> ret = query.getResultList();
         return ret;
     }
@@ -53,6 +59,9 @@ public class GeneDAOImpl extends BaseEntityDAOImpl<Gene, Long> implements GeneDA
     @Override
     public List<Gene> findByIdentifierValue(String value) throws HearsayDAOException {
         logger.debug("ENTERING findByIdentifierValue(String)");
+        EntityGraph<Gene> graph = getEntityManager().createEntityGraph(Gene.class);
+        graph.addSubgraph("chromosomes");
+        graph.addSubgraph("aliases");
         CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Gene> crit = critBuilder.createQuery(getPersistentClass());
         Root<Gene> fromGene = crit.from(Gene.class);
@@ -62,6 +71,7 @@ public class GeneDAOImpl extends BaseEntityDAOImpl<Gene, Long> implements GeneDA
         crit.where(predicates.toArray(new Predicate[predicates.size()]));
         crit.orderBy(critBuilder.asc(fromGene.get(Gene_.symbol)));
         TypedQuery<Gene> query = getEntityManager().createQuery(crit);
+        query.setHint(QueryHints.FETCHGRAPH, graph);
         List<Gene> ret = query.getResultList();
         return ret;
     }
@@ -69,6 +79,9 @@ public class GeneDAOImpl extends BaseEntityDAOImpl<Gene, Long> implements GeneDA
     @Override
     public List<Gene> findBySymbol(String symbol) throws HearsayDAOException {
         logger.debug("ENTERING findBySymbol(Gene)");
+        EntityGraph<Gene> graph = getEntityManager().createEntityGraph(Gene.class);
+        graph.addSubgraph("chromosomes");
+        graph.addSubgraph("aliases");
         CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Gene> crit = critBuilder.createQuery(getPersistentClass());
         Root<Gene> fromGene = crit.from(Gene.class);
@@ -76,6 +89,7 @@ public class GeneDAOImpl extends BaseEntityDAOImpl<Gene, Long> implements GeneDA
         predicates.add(critBuilder.like(fromGene.get(Gene_.symbol), symbol));
         crit.where(predicates.toArray(new Predicate[predicates.size()]));
         TypedQuery<Gene> query = getEntityManager().createQuery(crit);
+        query.setHint(QueryHints.FETCHGRAPH, graph);
         List<Gene> ret = query.getResultList();
         return ret;
     }
@@ -83,6 +97,9 @@ public class GeneDAOImpl extends BaseEntityDAOImpl<Gene, Long> implements GeneDA
     @Override
     public List<Gene> findByExample(Gene gene) throws HearsayDAOException {
         logger.debug("ENTERING findByExample(Gene)");
+        EntityGraph<Gene> graph = getEntityManager().createEntityGraph(Gene.class);
+        graph.addSubgraph("chromosomes");
+        graph.addSubgraph("aliases");
         CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Gene> crit = critBuilder.createQuery(getPersistentClass());
         Root<Gene> fromGene = crit.from(Gene.class);
@@ -102,6 +119,7 @@ public class GeneDAOImpl extends BaseEntityDAOImpl<Gene, Long> implements GeneDA
         }
         crit.where(predicates.toArray(new Predicate[predicates.size()]));
         TypedQuery<Gene> query = getEntityManager().createQuery(crit);
+        query.setHint(QueryHints.FETCHGRAPH, graph);
         List<Gene> ret = query.getResultList();
         return ret;
     }
