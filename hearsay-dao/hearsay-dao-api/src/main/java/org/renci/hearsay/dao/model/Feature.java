@@ -58,8 +58,7 @@ public class Feature implements Persistable {
     private String type;
 
     @JsonInclude(Include.NON_EMPTY)
-    @Lob
-    @Column(name = "note")
+    @Column(name = "note", length = 4096)
     private String note;
 
     @XmlTransient

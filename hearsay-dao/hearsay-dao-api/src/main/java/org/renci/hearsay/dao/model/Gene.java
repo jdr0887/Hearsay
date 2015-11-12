@@ -34,8 +34,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @XmlType(propOrder = { "symbol", "chromosomes", "description", "aliases" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-// @PrimaryKeyJoinColumn(name = "id")
-// @DiscriminatorValue("Gene")
 @Table(schema = "hearsay", name = "gene", indexes = { @Index(columnList = "symbol") })
 @NamedQueries({ @NamedQuery(name = "Gene.findAll", query = "FROM Gene a order by a.symbol") })
 public class Gene extends IdentifiableEntity {
@@ -52,8 +50,7 @@ public class Gene extends IdentifiableEntity {
     @JoinTable(schema = "hearsay", name = "gene_chromosome", joinColumns = @JoinColumn(name = "gene_fid") , inverseJoinColumns = @JoinColumn(name = "chromosome_fid") )
     private List<Chromosome> chromosomes;
 
-    @Lob
-    @Column(name = "description")
+    @Column(name = "description", length = 4096)
     private String description;
 
     @JsonInclude(Include.NON_EMPTY)
