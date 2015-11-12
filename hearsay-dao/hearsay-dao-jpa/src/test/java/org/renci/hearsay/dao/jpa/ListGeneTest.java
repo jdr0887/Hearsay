@@ -13,6 +13,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.renci.hearsay.dao.HearsayDAOBean;
+import org.renci.hearsay.dao.HearsayDAOBeanService;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.model.Gene;
 
@@ -22,7 +23,7 @@ public class ListGeneTest {
 
     private static EntityManager em;
 
-    private final static HearsayDAOBean hearsayDAOBean = new HearsayDAOBean();
+    private final static HearsayDAOBeanService hearsayDAOBean = new HearsayDAOBean();
 
     public ListGeneTest() {
         super();

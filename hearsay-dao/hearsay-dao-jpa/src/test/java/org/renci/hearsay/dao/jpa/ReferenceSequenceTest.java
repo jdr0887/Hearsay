@@ -21,6 +21,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.renci.hearsay.dao.HearsayDAOBean;
+import org.renci.hearsay.dao.HearsayDAOBeanService;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.model.Identifier;
 import org.renci.hearsay.dao.model.ReferenceSequence;
@@ -31,7 +32,7 @@ public class ReferenceSequenceTest {
 
     private static EntityManager em;
 
-    private final static HearsayDAOBean hearsayDAOBean = new HearsayDAOBean();
+    private final static HearsayDAOBeanService hearsayDAOBean = new HearsayDAOBean();
 
     public ReferenceSequenceTest() {
         super();
