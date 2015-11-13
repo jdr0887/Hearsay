@@ -3,7 +3,6 @@ package org.renci.hearsay.dao.jpa;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Singleton;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -12,8 +11,8 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.renci.hearsay.dao.GenomeReferenceDAO;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.model.GenomeReference;
@@ -23,8 +22,6 @@ import org.renci.hearsay.dao.model.Identifier_;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@OsgiServiceProvider(classes = { GenomeReferenceDAO.class })
-@Singleton
 @Transactional
 public class GenomeReferenceDAOImpl extends BaseEntityDAOImpl<GenomeReference, Long> implements GenomeReferenceDAO {
 
@@ -45,6 +42,18 @@ public class GenomeReferenceDAOImpl extends BaseEntityDAOImpl<GenomeReference, L
         TypedQuery<GenomeReference> query = getEntityManager().createNamedQuery("GenomeReference.findAll", GenomeReference.class);
         List<GenomeReference> ret = query.getResultList();
         return ret;
+    }
+
+    @Override
+    public GenomeReference findByName(String name) throws HearsayDAOException {
+        logger.debug("ENTERING findByName(String name)");
+        TypedQuery<GenomeReference> query = getEntityManager().createNamedQuery("GenomeReference.findByName", GenomeReference.class);
+        query.setParameter("name", name);
+        List<GenomeReference> ret = query.getResultList();
+        if (CollectionUtils.isNotEmpty(ret)) {
+            return ret.get(0);
+        }
+        return null;
     }
 
     @Override
