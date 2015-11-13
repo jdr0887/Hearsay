@@ -33,7 +33,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @Table(schema = "hearsay", name = "genome_reference", indexes = { @Index(name = "genome_reference_name_idx", columnList = "name") })
 @NamedEntityGraphs({
         @NamedEntityGraph(name = "graph.GenomeReference.referenceSequences", attributeNodes = @NamedAttributeNode("referenceSequences") ) })
-@NamedQueries({ @NamedQuery(name = "GenomeReference.findAll", query = "FROM GenomeReference a order by a.name") })
+@NamedQueries({ @NamedQuery(name = "GenomeReference.findAll", query = "FROM GenomeReference a order by a.name"),
+        @NamedQuery(name = "GenomeReference.findByName", query = "FROM GenomeReference a where a.name = :name order by a.name") })
 public class GenomeReference extends IdentifiableEntity {
 
     private static final long serialVersionUID = -225305295285554428L;
