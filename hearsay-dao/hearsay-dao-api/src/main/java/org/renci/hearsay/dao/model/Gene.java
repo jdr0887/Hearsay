@@ -52,9 +52,7 @@ public class Gene extends IdentifiableEntity {
     @XmlElementWrapper(name = "chromosomes")
     @XmlElement(name = "chromosome")
     @ManyToMany(targetEntity = Chromosome.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
-    @JoinTable(schema = "hearsay", name = "gene_chromosome", joinColumns = @JoinColumn(name = "gene_fid") , inverseJoinColumns = @JoinColumn(name = "chromosome_fid") , indexes = {
-            @Index(name = "gene_chromosome_gene_fid_idx", columnList = "gene_fid"),
-            @Index(name = "gene_chromosome_chromosome_fid_idx", columnList = "chromosome_fid") })
+    @JoinTable(schema = "hearsay", name = "gene_chromosome", joinColumns = @JoinColumn(name = "gene_fid") , inverseJoinColumns = @JoinColumn(name = "chromosome_fid") )
     private Set<Chromosome> chromosomes;
 
     @Column(name = "description", length = 4096)
