@@ -28,16 +28,6 @@
       <artifactId>commons-collections4</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.ops4j.pax.cdi</groupId>
-      <artifactId>pax-cdi-api</artifactId>
-      <optional>true</optional>      
-    </dependency>          
-    <dependency>
-      <groupId>javax.inject</groupId>
-      <artifactId>javax.inject</artifactId>
-      <optional>true</optional>
-    </dependency>        
-    <dependency>
       <groupId>javax.transaction</groupId>
       <artifactId>javax.transaction-api</artifactId>
     </dependency>
