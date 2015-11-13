@@ -49,7 +49,7 @@ public class Feature implements Persistable {
 
     @XmlElementWrapper(name = "locations")
     @XmlElement(name = "location")
-    @ManyToMany(targetEntity = Location.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = Location.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
     @JoinTable(schema = "hearsay", name = "feature_location", joinColumns = @JoinColumn(name = "feature_fid") , inverseJoinColumns = @JoinColumn(name = "location_fid") , indexes = {
             @Index(name = "feature_location_feature_fid_idx", columnList = "feature_fid"),
             @Index(name = "feature_location_location_fid_idx", columnList = "location_fid") })
