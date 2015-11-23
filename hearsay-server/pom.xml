@@ -144,7 +144,6 @@
           <bootFeatures>
             <feature>feature</feature>
             <feature>shell</feature>
-            <feature>shell-compat</feature>
             <feature>bundle</feature>
             <feature>config</feature>
             <feature>diagnostic</feature>
@@ -154,32 +153,26 @@
             <feature>package</feature>
             <feature>service</feature>
             <feature>system</feature>
-            <feature>scr</feature>	    
-            <feature>kar</feature>
             <feature>ssh</feature>
             <feature>management</feature>
-            <feature>deployer</feature>	    
-            <feature>wrap</feature>
+            <feature>deployer</feature>
 	    <feature>obr</feature>
             <feature>http</feature>
 	    <feature>war</feature>
+	    <feature>jetty</feature>
+	    <feature>scr</feature>
             <feature>jndi</feature>
             <feature>jdbc</feature>
-            <feature>transaction</feature>	    
-            <feature>jpa</feature>
-            <feature>jms</feature>
-            <feature>spring-dm</feature>
-            <feature>spring-dm-web</feature>
+	    <feature>transaction</feature>
+	    <feature>jpa</feature>	    
+	    <feature>/${openjpa.version}</feature>	    
 	    <feature>spring/${spring.version}_1</feature>
-	    <feature>spring-orm/${spring.version}_1</feature>	    
+	    <feature>spring-orm/${spring.version}_1</feature>
 	    <feature>spring-web/${spring.version}_1</feature>
-	    <feature>hibernate/${hibernate.version}</feature>
-	    <feature>pax-cdi</feature>
-	    <feature>pax-jdbc-postgresql</feature>
-	    <feature>pax-jdbc-config</feature>
-	    <feature>pax-jdbc-pool-dbcp2</feature>
+	    <feature>jms</feature>
 	    <feature>cxf</feature>
-	    <feature>hearsay</feature>
+	    <feature>hearsay-commons</feature>
+	    <feature>hearsay-dao</feature>	    
           </bootFeatures>
         </configuration>
       </plugin>

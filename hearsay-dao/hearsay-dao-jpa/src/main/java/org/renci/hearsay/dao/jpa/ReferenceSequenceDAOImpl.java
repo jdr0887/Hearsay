@@ -9,7 +9,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.transaction.Transactional;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.renci.hearsay.dao.HearsayDAOException;
@@ -25,7 +24,6 @@ import org.renci.hearsay.dao.model.ReferenceSequence_;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Transactional
 public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequence, Long> implements ReferenceSequenceDAO {
 
     private final Logger logger = LoggerFactory.getLogger(ReferenceSequenceDAOImpl.class);

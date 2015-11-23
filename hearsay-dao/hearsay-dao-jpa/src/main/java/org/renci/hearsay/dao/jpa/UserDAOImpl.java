@@ -9,7 +9,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.transaction.Transactional;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.renci.hearsay.dao.HearsayDAOException;
@@ -21,7 +20,6 @@ import org.renci.hearsay.dao.model.User_;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Transactional
 public class UserDAOImpl extends BaseEntityDAOImpl<User, Long> implements UserDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(UserDAOImpl.class);

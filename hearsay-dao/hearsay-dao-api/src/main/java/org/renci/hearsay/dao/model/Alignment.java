@@ -2,6 +2,7 @@ package org.renci.hearsay.dao.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,7 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -54,10 +54,8 @@ public class Alignment implements Persistable {
 
     @XmlTransient
     @ManyToMany(targetEntity = ReferenceSequence.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    @JoinTable(schema = "hearsay", name = "reference_sequence_alignment", joinColumns = @JoinColumn(name = "alignment_fid") , inverseJoinColumns = @JoinColumn(name = "reference_sequence_fid") , indexes = {
-            @Index(name = "reference_sequence_alignment_alignment_fid_idx", columnList = "alignment_fid"),
-            @Index(name = "reference_sequence_alignment_reference_sequence_fid_idx", columnList = "reference_sequence_fid") })
-    private List<ReferenceSequence> referenceSequences;
+    @JoinTable(schema = "hearsay", name = "reference_sequence_alignment", joinColumns = @JoinColumn(name = "alignment_fid") , inverseJoinColumns = @JoinColumn(name = "reference_sequence_fid") )
+    private Set<ReferenceSequence> referenceSequences;
 
     @XmlElementWrapper(name = "regions")
     @XmlElement(name = "region")
@@ -85,11 +83,11 @@ public class Alignment implements Persistable {
         this.id = id;
     }
 
-    public List<ReferenceSequence> getReferenceSequences() {
+    public Set<ReferenceSequence> getReferenceSequences() {
         return referenceSequences;
     }
 
-    public void setReferenceSequences(List<ReferenceSequence> referenceSequences) {
+    public void setReferenceSequences(Set<ReferenceSequence> referenceSequences) {
         this.referenceSequences = referenceSequences;
     }
 

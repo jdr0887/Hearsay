@@ -1,7 +1,7 @@
 package org.renci.hearsay.dao.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -25,6 +24,7 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.openjpa.persistence.jdbc.Index;
 import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -36,7 +36,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
-@Table(schema = "hearsay", name = "user", indexes = { @Index(name = "user_usernname_idx", columnList = "username") })
+@Table(schema = "hearsay", name = "user")
 public class User implements Persistable {
 
     private static final long serialVersionUID = -3948438926745579321L;
@@ -49,6 +49,7 @@ public class User implements Persistable {
     private Long id;
 
     @Column(name = "username")
+    @Index(name = "user_usernname_idx")
     private String username;
 
     @Column(name = "password")
@@ -61,15 +62,13 @@ public class User implements Persistable {
     @XmlElementWrapper(name = "roles")
     @XmlElement(name = "role")
     @ManyToMany(targetEntity = Role.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    @JoinTable(schema = "hearsay", name = "user_role", joinColumns = @JoinColumn(name = "user_fid") , inverseJoinColumns = @JoinColumn(name = "role_fid") , indexes = {
-            @Index(name = "user_role_user_fid_idx", columnList = "user_fid"),
-            @Index(name = "user_role_role_fid_idx", columnList = "role_fid") })
-    private List<Role> roles;
+    @JoinTable(schema = "hearsay", name = "user_role", joinColumns = @JoinColumn(name = "user_fid") , inverseJoinColumns = @JoinColumn(name = "role_fid") )
+    private Set<Role> roles;
 
     public User() {
         super();
         this.enabled = Boolean.TRUE;
-        this.roles = new ArrayList<Role>();
+        this.roles = new HashSet<Role>();
     }
 
     public Long getId() {
@@ -104,11 +103,11 @@ public class User implements Persistable {
         this.enabled = enabled;
     }
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 

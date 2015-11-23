@@ -9,7 +9,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.transaction.Transactional;
 
 import org.renci.hearsay.dao.DiagnosticResultDAO;
 import org.renci.hearsay.dao.HearsayDAOException;
@@ -20,7 +19,6 @@ import org.renci.hearsay.dao.model.Participant_;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Transactional
 public class DiagnosticResultDAOImpl extends BaseEntityDAOImpl<DiagnosticResult, Long> implements DiagnosticResultDAO {
 
     private final Logger logger = LoggerFactory.getLogger(DiagnosticResultDAOImpl.class);

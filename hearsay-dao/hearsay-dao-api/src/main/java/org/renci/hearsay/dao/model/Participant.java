@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Index;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
@@ -16,6 +15,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.openjpa.persistence.jdbc.Index;
 import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(schema = "hearsay", name = "participant", indexes = { @Index(name = "participant_name_idx", columnList = "name") })
+@Table(schema = "hearsay", name = "participant")
 @NamedQueries({ @NamedQuery(name = "Participant.findAll", query = "FROM Participant a order by a.name") })
 public class Participant implements Persistable {
 
@@ -40,6 +40,7 @@ public class Participant implements Persistable {
     private Long id;
 
     @Column(name = "name")
+    @Index(name = "participant_name_idx")
     private String name;
 
     public Participant() {

@@ -5,10 +5,6 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Index;
-import javax.persistence.NamedAttributeNode;
-import javax.persistence.NamedEntityGraph;
-import javax.persistence.NamedEntityGraphs;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -21,6 +17,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.openjpa.persistence.jdbc.Index;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -30,9 +28,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
-@Table(schema = "hearsay", name = "genome_reference", indexes = { @Index(name = "genome_reference_name_idx", columnList = "name") })
-@NamedEntityGraphs({
-        @NamedEntityGraph(name = "graph.GenomeReference.referenceSequences", attributeNodes = @NamedAttributeNode("referenceSequences") ) })
+@Table(schema = "hearsay", name = "genome_reference")
 @NamedQueries({ @NamedQuery(name = "GenomeReference.findAll", query = "FROM GenomeReference a order by a.name"),
         @NamedQuery(name = "GenomeReference.findByName", query = "FROM GenomeReference a where a.name = :name order by a.name") })
 public class GenomeReference extends IdentifiableEntity {
@@ -41,6 +37,7 @@ public class GenomeReference extends IdentifiableEntity {
 
     @XmlAttribute
     @Column(name = "name")
+    @Index(name = "genome_reference_name_idx")
     private String name;
 
     @XmlTransient

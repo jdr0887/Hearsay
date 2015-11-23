@@ -3,7 +3,6 @@ package org.renci.hearsay.dao.jpa;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.renci.hearsay.dao.HearsayDAOException;
@@ -12,7 +11,6 @@ import org.renci.hearsay.dao.model.Role;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Transactional
 public class RoleDAOImpl extends BaseEntityDAOImpl<Role, Long> implements RoleDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(RoleDAOImpl.class);

@@ -8,7 +8,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.transaction.Transactional;
 
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.SimpleAlleleDAO;
@@ -17,7 +16,6 @@ import org.renci.hearsay.dao.model.SimpleAllele_;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Transactional
 public class SimpleAlleleDAOImpl extends BaseEntityDAOImpl<SimpleAllele, Long> implements SimpleAlleleDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(SimpleAlleleDAOImpl.class);

@@ -7,13 +7,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedAttributeNode;
-import javax.persistence.NamedEntityGraph;
-import javax.persistence.NamedEntityGraphs;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -27,6 +23,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.openjpa.persistence.jdbc.Index;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -36,10 +34,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @XmlType(propOrder = { "symbol", "chromosomes", "description", "aliases" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(schema = "hearsay", name = "gene", indexes = { @Index(name = "gene_symbol_idx", columnList = "symbol") })
-@NamedEntityGraphs({ @NamedEntityGraph(name = "graph.Gene.chromosomes", attributeNodes = @NamedAttributeNode("chromosomes") ),
-        @NamedEntityGraph(name = "graph.Gene.aliases", attributeNodes = @NamedAttributeNode("aliases") ),
-        @NamedEntityGraph(name = "graph.Gene.referenceSequences", attributeNodes = @NamedAttributeNode("referenceSequences") ) })
+@Table(schema = "hearsay", name = "gene")
 @NamedQueries({ @NamedQuery(name = "Gene.findAll", query = "FROM Gene a order by a.symbol") })
 public class Gene extends IdentifiableEntity {
 
@@ -47,6 +42,7 @@ public class Gene extends IdentifiableEntity {
 
     @XmlAttribute
     @Column(name = "symbol")
+    @Index(name = "gene_symbol_idx")
     private String symbol;
 
     @XmlElementWrapper(name = "chromosomes")

@@ -9,7 +9,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.transaction.Transactional;
 
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.PopulationFrequencyDAO;
@@ -20,7 +19,6 @@ import org.renci.hearsay.dao.model.PopulationFrequency_;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Transactional
 public class PopulationFrequencyDAOImpl extends BaseEntityDAOImpl<PopulationFrequency, Long> implements PopulationFrequencyDAO {
 
     private final Logger logger = LoggerFactory.getLogger(PopulationFrequencyDAOImpl.class);

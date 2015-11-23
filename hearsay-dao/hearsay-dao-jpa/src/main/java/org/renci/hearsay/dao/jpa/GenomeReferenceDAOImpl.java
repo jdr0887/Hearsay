@@ -9,9 +9,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.transaction.Transactional;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.renci.hearsay.dao.GenomeReferenceDAO;
 import org.renci.hearsay.dao.HearsayDAOException;
@@ -22,7 +20,6 @@ import org.renci.hearsay.dao.model.Identifier_;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Transactional
 public class GenomeReferenceDAOImpl extends BaseEntityDAOImpl<GenomeReference, Long> implements GenomeReferenceDAO {
 
     private final Logger logger = LoggerFactory.getLogger(GenomeReferenceDAOImpl.class);
@@ -45,15 +42,12 @@ public class GenomeReferenceDAOImpl extends BaseEntityDAOImpl<GenomeReference, L
     }
 
     @Override
-    public GenomeReference findByName(String name) throws HearsayDAOException {
+    public List<GenomeReference> findByName(String name) throws HearsayDAOException {
         logger.debug("ENTERING findByName(String name)");
         TypedQuery<GenomeReference> query = getEntityManager().createNamedQuery("GenomeReference.findByName", GenomeReference.class);
         query.setParameter("name", name);
         List<GenomeReference> ret = query.getResultList();
-        if (CollectionUtils.isNotEmpty(ret)) {
-            return ret.get(0);
-        }
-        return null;
+        return ret;
     }
 
     @Override

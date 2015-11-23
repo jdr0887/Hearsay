@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Index;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
@@ -16,6 +15,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.openjpa.persistence.jdbc.Index;
 import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType(propOrder = { "name" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(schema = "hearsay", name = "chromosome", indexes = { @Index(name = "chromosome_name_idx", unique = true, columnList = "name") })
+@Table(schema = "hearsay", name = "chromosome")
 @NamedQueries({ @NamedQuery(name = "Chromosome.findAll", query = "FROM Chromosome"),
         @NamedQuery(name = "Chromosome.findByName", query = "FROM Chromosome a where a.name = :name") })
 public class Chromosome implements Persistable {
@@ -42,6 +42,7 @@ public class Chromosome implements Persistable {
 
     @XmlAttribute
     @Column(name = "name")
+    @Index(name = "chromosome_name_idx", unique = true)
     private String name;
 
     public Chromosome() {

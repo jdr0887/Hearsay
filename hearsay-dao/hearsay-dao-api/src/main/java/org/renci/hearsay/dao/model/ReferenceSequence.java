@@ -8,14 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedAttributeNode;
-import javax.persistence.NamedEntityGraph;
-import javax.persistence.NamedEntityGraphs;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -37,8 +33,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
 @Table(schema = "hearsay", name = "reference_sequence")
-@NamedEntityGraphs({ @NamedEntityGraph(name = "graph.ReferenceSequence.alignments", attributeNodes = @NamedAttributeNode("alignments") ),
-        @NamedEntityGraph(name = "graph.ReferenceSequence.features", attributeNodes = @NamedAttributeNode("features") ) })
 @NamedQueries({ @NamedQuery(name = "ReferenceSequence.findAll", query = "FROM ReferenceSequence a") })
 public class ReferenceSequence extends IdentifiableEntity {
 
@@ -71,16 +65,12 @@ public class ReferenceSequence extends IdentifiableEntity {
 
     @XmlTransient
     @ManyToMany(targetEntity = Alignment.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
-    @JoinTable(schema = "hearsay", name = "reference_sequence_alignment", joinColumns = @JoinColumn(name = "reference_sequence_fid") , inverseJoinColumns = @JoinColumn(name = "alignment_fid") , indexes = {
-            @Index(name = "reference_sequence_alignment_reference_sequence_fid_idx", columnList = "reference_sequence_fid"),
-            @Index(name = "reference_sequence_alignment_alignment_fid_idx", columnList = "alignment_fid") })
+    @JoinTable(schema = "hearsay", name = "reference_sequence_alignment", joinColumns = @JoinColumn(name = "reference_sequence_fid") , inverseJoinColumns = @JoinColumn(name = "alignment_fid") )
     private Set<Alignment> alignments;
 
     @XmlTransient
     @ManyToMany(targetEntity = Feature.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
-    @JoinTable(schema = "hearsay", name = "reference_sequence_feature", joinColumns = @JoinColumn(name = "reference_sequence_fid") , inverseJoinColumns = @JoinColumn(name = "feature_fid") , indexes = {
-            @Index(name = "reference_sequence_reference_sequence_fid_idx", columnList = "reference_sequence_fid"),
-            @Index(name = "reference_sequence_feature_feature_fid_idx", columnList = "feature_fid") })
+    @JoinTable(schema = "hearsay", name = "reference_sequence_feature", joinColumns = @JoinColumn(name = "reference_sequence_fid") , inverseJoinColumns = @JoinColumn(name = "feature_fid") )
     private Set<Feature> features;
 
     public ReferenceSequence() {

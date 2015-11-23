@@ -8,7 +8,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.renci.hearsay.dao.HearsayDAOException;
@@ -18,7 +17,6 @@ import org.renci.hearsay.dao.model.Identifier_;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Transactional
 public class IdentifierDAOImpl extends BaseEntityDAOImpl<Identifier, Long> implements IdentifierDAO {
 
     private final Logger logger = LoggerFactory.getLogger(IdentifierDAOImpl.class);

@@ -1,7 +1,7 @@
 package org.renci.hearsay.dao.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -50,10 +49,8 @@ public class Feature implements Persistable {
     @XmlElementWrapper(name = "locations")
     @XmlElement(name = "location")
     @ManyToMany(targetEntity = Location.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
-    @JoinTable(schema = "hearsay", name = "feature_location", joinColumns = @JoinColumn(name = "feature_fid") , inverseJoinColumns = @JoinColumn(name = "location_fid") , indexes = {
-            @Index(name = "feature_location_feature_fid_idx", columnList = "feature_fid"),
-            @Index(name = "feature_location_location_fid_idx", columnList = "location_fid") })
-    private List<Location> locations;
+    @JoinTable(schema = "hearsay", name = "feature_location", joinColumns = @JoinColumn(name = "feature_fid") , inverseJoinColumns = @JoinColumn(name = "location_fid") )
+    private Set<Location> locations;
 
     @JsonInclude(Include.NON_EMPTY)
     @Column(name = "type")
@@ -65,14 +62,12 @@ public class Feature implements Persistable {
 
     @XmlTransient
     @ManyToMany(targetEntity = ReferenceSequence.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    @JoinTable(schema = "hearsay", name = "reference_sequence_feature", joinColumns = @JoinColumn(name = "feature_fid") , inverseJoinColumns = @JoinColumn(name = "reference_sequence_fid") , indexes = {
-            @Index(name = "reference_sequence_feature_feature_fid_idx", columnList = "feature_fid"),
-            @Index(name = "reference_sequence_feature_reference_sequence_fid_idx", columnList = "reference_sequence_fid") })
-    private List<ReferenceSequence> referenceSequences;
+    @JoinTable(schema = "hearsay", name = "reference_sequence_feature", joinColumns = @JoinColumn(name = "feature_fid") , inverseJoinColumns = @JoinColumn(name = "reference_sequence_fid") )
+    private Set<ReferenceSequence> referenceSequences;
 
     public Feature() {
         super();
-        this.locations = new ArrayList<Location>();
+        this.locations = new HashSet<Location>();
     }
 
     public Long getId() {
@@ -83,11 +78,11 @@ public class Feature implements Persistable {
         this.id = id;
     }
 
-    public List<Location> getLocations() {
+    public Set<Location> getLocations() {
         return locations;
     }
 
-    public void setLocations(List<Location> locations) {
+    public void setLocations(Set<Location> locations) {
         this.locations = locations;
     }
 
@@ -107,11 +102,11 @@ public class Feature implements Persistable {
         this.note = note;
     }
 
-    public List<ReferenceSequence> getReferenceSequences() {
+    public Set<ReferenceSequence> getReferenceSequences() {
         return referenceSequences;
     }
 
-    public void setReferenceSequences(List<ReferenceSequence> referenceSequences) {
+    public void setReferenceSequences(Set<ReferenceSequence> referenceSequences) {
         this.referenceSequences = referenceSequences;
     }
 

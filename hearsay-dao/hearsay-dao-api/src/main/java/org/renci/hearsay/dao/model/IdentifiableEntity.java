@@ -12,15 +12,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Index;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedAttributeNode;
-import javax.persistence.NamedEntityGraph;
-import javax.persistence.NamedEntityGraphs;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -43,8 +39,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(schema = "hearsay", name = "identifiable_entity")
-@NamedEntityGraphs({
-        @NamedEntityGraph(name = "graph.IdentifiableEntity.identifiers", attributeNodes = @NamedAttributeNode("identifiers") ) })
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 public abstract class IdentifiableEntity implements Persistable {
@@ -63,9 +57,7 @@ public abstract class IdentifiableEntity implements Persistable {
     @XmlElementWrapper(name = "identifiers")
     @XmlElement(name = "identifier")
     @ManyToMany(targetEntity = Identifier.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
-    @JoinTable(schema = "hearsay", name = "entity_identifier", joinColumns = @JoinColumn(name = "entity_fid") , inverseJoinColumns = @JoinColumn(name = "identifier_fid") , indexes = {
-            @Index(name = "entity_identifier_entity_fid_idx", columnList = "entity_fid"),
-            @Index(name = "entity_identifier_identifier_fid_idx", columnList = "identifier_fid") })
+    @JoinTable(schema = "hearsay", name = "entity_identifier", joinColumns = @JoinColumn(name = "entity_fid") , inverseJoinColumns = @JoinColumn(name = "identifier_fid") )
     protected Set<Identifier> identifiers;
 
     public IdentifiableEntity() {
