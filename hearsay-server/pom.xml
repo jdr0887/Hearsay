@@ -162,17 +162,17 @@
 	    <feature>jetty</feature>
 	    <feature>scr</feature>
             <feature>jndi</feature>
+            <feature>aries-blueprint</feature>
+	    <feature>cxf</feature>	    
             <feature>jdbc</feature>
-	    <feature>transaction</feature>
-	    <feature>jpa</feature>	    
-	    <feature>/${openjpa.version}</feature>	    
+	    <feature>transaction-api/1.1.0</feature>
+	    <feature>jpa/1.0.4</feature>
+	    <feature>openjpa/${openjpa.version}</feature>	    
 	    <feature>spring/${spring.version}_1</feature>
 	    <feature>spring-orm/${spring.version}_1</feature>
 	    <feature>spring-web/${spring.version}_1</feature>
-	    <feature>jms</feature>
-	    <feature>cxf</feature>
 	    <feature>hearsay-commons</feature>
-	    <feature>hearsay-dao</feature>	    
+	    <!-- <feature>hearsay-dao</feature>	     -->
           </bootFeatures>
         </configuration>
       </plugin>
