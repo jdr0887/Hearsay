@@ -27,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(schema = "hearsay", name = "participant")
-@NamedQueries({ @NamedQuery(name = "Participant.findAll", query = "FROM Participant a order by a.name") })
+@NamedQueries({ @NamedQuery(name = "Participant.findAll", query = "SELECT a FROM Participant a order by a.name") })
 public class Participant implements Persistable {
 
     private static final long serialVersionUID = 2885082512756462135L;

@@ -33,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
 @Table(schema = "hearsay", name = "reference_sequence")
-@NamedQueries({ @NamedQuery(name = "ReferenceSequence.findAll", query = "FROM ReferenceSequence a") })
+@NamedQueries({ @NamedQuery(name = "ReferenceSequence.findAll", query = "SELECT a FROM ReferenceSequence a") })
 public class ReferenceSequence extends IdentifiableEntity {
 
     private static final long serialVersionUID = -488057011816731553L;

@@ -28,7 +28,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
 @Table(schema = "hearsay", name = "role")
-@NamedQueries({ @NamedQuery(name = "Role.findByName", query = "FROM Role a where a.name = :name") })
+@NamedQueries({ @NamedQuery(name = "Role.findByName", query = "SELECT a FROM Role a where a.name = :name") })
 public class Role implements Persistable {
 
     private static final long serialVersionUID = -3870518668007547757L;

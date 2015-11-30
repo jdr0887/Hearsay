@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(schema = "hearsay", name = "gene")
-@NamedQueries({ @NamedQuery(name = "Gene.findAll", query = "FROM Gene a order by a.symbol") })
+@NamedQueries({ @NamedQuery(name = "Gene.findAll", query = "SELECT a FROM Gene a order by a.symbol") })
 public class Gene extends IdentifiableEntity {
 
     private static final long serialVersionUID = -5997799315221166517L;
