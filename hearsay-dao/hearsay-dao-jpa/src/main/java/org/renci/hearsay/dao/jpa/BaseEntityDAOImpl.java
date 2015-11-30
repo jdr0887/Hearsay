@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceUnit;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.renci.hearsay.dao.BaseEntityDAO;
@@ -18,7 +18,7 @@ public abstract class BaseEntityDAOImpl<T extends Persistable, ID extends Serial
 
     private static final Logger logger = LoggerFactory.getLogger(BaseEntityDAOImpl.class);
 
-    @PersistenceUnit(name = "hearsay", unitName = "hearsay")
+    @PersistenceContext(name = "hearsay", unitName = "hearsay")
     private EntityManager entityManager;
 
     public BaseEntityDAOImpl() {
