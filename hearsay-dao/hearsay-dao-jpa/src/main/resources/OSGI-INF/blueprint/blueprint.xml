@@ -1,86 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://aries.apache.org/xmlns/transactions/v1.1.0"
-  xmlns:jpa="http://aries.apache.org/xmlns/jpa/v1.1.0" default-activation="eager">
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://aries.apache.org/xmlns/transactions/v1.2.0"
+  xmlns:jpa="http://aries.apache.org/xmlns/jpa/v1.1.0" xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 https://osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
+
+  <jpa:enable />
 
   <bean id="alignmentDAOImpl" class="org.renci.hearsay.dao.jpa.AlignmentDAOImpl">
     <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
   </bean>
   <bean id="canonicalAlleleDAOImpl" class="org.renci.hearsay.dao.jpa.CanonicalAlleleDAOImpl">
     <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
   </bean>
   <bean id="chromosomeDAOImpl" class="org.renci.hearsay.dao.jpa.ChromosomeDAOImpl">
     <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
   </bean>
   <bean id="diagnosticResultDAOImpl" class="org.renci.hearsay.dao.jpa.DiagnosticResultDAOImpl">
     <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
   </bean>
   <bean id="featureDAOImpl" class="org.renci.hearsay.dao.jpa.FeatureDAOImpl">
     <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
   </bean>
   <bean id="geneDAOImpl" class="org.renci.hearsay.dao.jpa.GeneDAOImpl">
     <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
   </bean>
   <bean id="geneSymbolDAOImpl" class="org.renci.hearsay.dao.jpa.GeneSymbolDAOImpl">
     <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
   </bean>
   <bean id="genomeReferenceDAOImpl" class="org.renci.hearsay.dao.jpa.GenomeReferenceDAOImpl">
     <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
   </bean>
   <bean id="identifierDAOImpl" class="org.renci.hearsay.dao.jpa.IdentifierDAOImpl">
     <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
   </bean>
   <bean id="intronOffsetDAOImpl" class="org.renci.hearsay.dao.jpa.IntronOffsetDAOImpl">
     <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
   </bean>
   <bean id="locationDAOImpl" class="org.renci.hearsay.dao.jpa.LocationDAOImpl">
     <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
   </bean>
   <bean id="molecularConsequenceDAOImpl" class="org.renci.hearsay.dao.jpa.MolecularConsequenceDAOImpl">
     <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
   </bean>
   <bean id="participantDAOImpl" class="org.renci.hearsay.dao.jpa.ParticipantDAOImpl">
     <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
   </bean>
   <bean id="populationFrequencyDAOImpl" class="org.renci.hearsay.dao.jpa.PopulationFrequencyDAOImpl">
     <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
   </bean>
   <bean id="referenceCoordinateDAOImpl" class="org.renci.hearsay.dao.jpa.ReferenceCoordinateDAOImpl">
     <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
   </bean>
   <bean id="referenceSequenceDAOImpl" class="org.renci.hearsay.dao.jpa.ReferenceSequenceDAOImpl">
     <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
   </bean>
   <bean id="regionDAOImpl" class="org.renci.hearsay.dao.jpa.RegionDAOImpl">
     <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
   </bean>
   <bean id="roleDAOImpl" class="org.renci.hearsay.dao.jpa.RoleDAOImpl">
     <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
   </bean>
   <bean id="simpleAlleleDAOImpl" class="org.renci.hearsay.dao.jpa.SimpleAlleleDAOImpl">
     <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
   </bean>
   <bean id="userDAOImpl" class="org.renci.hearsay.dao.jpa.UserDAOImpl">
     <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
   </bean>
 
   <service ref="alignmentDAOImpl" interface="org.renci.hearsay.dao.AlignmentDAO" />
