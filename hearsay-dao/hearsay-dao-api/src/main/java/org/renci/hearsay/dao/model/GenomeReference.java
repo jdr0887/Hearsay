@@ -17,6 +17,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.openjpa.persistence.FetchAttribute;
+import org.apache.openjpa.persistence.FetchGroup;
+import org.apache.openjpa.persistence.FetchGroups;
 import org.apache.openjpa.persistence.jdbc.Index;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -31,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @Table(schema = "hearsay", name = "genome_reference")
 @NamedQueries({ @NamedQuery(name = "GenomeReference.findAll", query = "SELECT a FROM GenomeReference a order by a.name"),
         @NamedQuery(name = "GenomeReference.findByName", query = "SELECT a FROM GenomeReference a where a.name = :name order by a.name") })
+@FetchGroups({ @FetchGroup(name = "includeAll", attributes = { @FetchAttribute(name = "referenceSequences") }) })
 public class GenomeReference extends IdentifiableEntity {
 
     private static final long serialVersionUID = -225305295285554428L;

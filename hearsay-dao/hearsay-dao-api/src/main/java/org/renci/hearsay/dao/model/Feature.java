@@ -24,6 +24,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.openjpa.persistence.FetchAttribute;
+import org.apache.openjpa.persistence.FetchGroup;
+import org.apache.openjpa.persistence.FetchGroups;
 import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -35,6 +38,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(schema = "hearsay", name = "feature")
+@FetchGroups({ @FetchGroup(name = "includeAll", attributes = { @FetchAttribute(name = "locations"),
+        @FetchAttribute(name = "referenceSequences") }) })
 public class Feature implements Persistable {
 
     private static final long serialVersionUID = 1234926307644461359L;
@@ -46,12 +51,6 @@ public class Feature implements Persistable {
     @Column(name = "id")
     private Long id;
 
-    @XmlElementWrapper(name = "locations")
-    @XmlElement(name = "location")
-    @ManyToMany(targetEntity = Location.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
-    @JoinTable(schema = "hearsay", name = "feature_location", joinColumns = @JoinColumn(name = "feature_fid") , inverseJoinColumns = @JoinColumn(name = "location_fid") )
-    private Set<Location> locations;
-
     @JsonInclude(Include.NON_EMPTY)
     @Column(name = "type")
     private String type;
@@ -60,8 +59,14 @@ public class Feature implements Persistable {
     @Column(name = "note", length = 4096)
     private String note;
 
+    @XmlElementWrapper(name = "locations")
+    @XmlElement(name = "location")
+    @ManyToMany(targetEntity = Location.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+    @JoinTable(schema = "hearsay", name = "feature_location", joinColumns = @JoinColumn(name = "feature_fid") , inverseJoinColumns = @JoinColumn(name = "location_fid") )
+    private Set<Location> locations;
+
     @XmlTransient
-    @ManyToMany(targetEntity = ReferenceSequence.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = ReferenceSequence.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
     @JoinTable(schema = "hearsay", name = "reference_sequence_feature", joinColumns = @JoinColumn(name = "feature_fid") , inverseJoinColumns = @JoinColumn(name = "reference_sequence_fid") )
     private Set<ReferenceSequence> referenceSequences;
 

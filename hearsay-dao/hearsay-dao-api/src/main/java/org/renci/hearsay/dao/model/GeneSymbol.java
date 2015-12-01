@@ -16,6 +16,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.openjpa.persistence.FetchAttribute;
+import org.apache.openjpa.persistence.FetchGroup;
+import org.apache.openjpa.persistence.FetchGroups;
 import org.apache.openjpa.persistence.jdbc.Index;
 import org.renci.hearsay.dao.Persistable;
 
@@ -28,6 +31,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(schema = "hearsay", name = "gene_symbol")
+@FetchGroups({ @FetchGroup(name = "includeManyToOnes", attributes = { @FetchAttribute(name = "gene") }) })
 public class GeneSymbol implements Persistable {
 
     private static final long serialVersionUID = -5997799315221166517L;

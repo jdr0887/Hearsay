@@ -7,7 +7,6 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,6 +28,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.openjpa.persistence.FetchAttribute;
+import org.apache.openjpa.persistence.FetchGroup;
+import org.apache.openjpa.persistence.FetchGroups;
 import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -41,6 +43,11 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @Entity
 @Table(schema = "hearsay", name = "alignment")
 @NamedQueries({ @NamedQuery(name = "Alignment.findAll", query = "SELECT a FROM Alignment a") })
+@FetchGroups({
+        @FetchGroup(name = "includeManyToOnes", attributes = { @FetchAttribute(name = "proteinLocation"),
+                @FetchAttribute(name = "CDSLocation") }),
+        @FetchGroup(name = "includeAll", fetchGroups = { "includeManyToOnes" }, attributes = { @FetchAttribute(name = "referenceSequences"),
+                @FetchAttribute(name = "regions") }) })
 public class Alignment implements Persistable {
 
     private static final long serialVersionUID = 240726999951481482L;
@@ -53,13 +60,13 @@ public class Alignment implements Persistable {
     private Long id;
 
     @XmlTransient
-    @ManyToMany(targetEntity = ReferenceSequence.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = ReferenceSequence.class, cascade = { CascadeType.ALL })
     @JoinTable(schema = "hearsay", name = "reference_sequence_alignment", joinColumns = @JoinColumn(name = "alignment_fid") , inverseJoinColumns = @JoinColumn(name = "reference_sequence_fid") )
     private Set<ReferenceSequence> referenceSequences;
 
     @XmlElementWrapper(name = "regions")
     @XmlElement(name = "region")
-    @OneToMany(mappedBy = "alignment", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "alignment")
     private List<Region> regions;
 
     @ManyToOne

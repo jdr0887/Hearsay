@@ -15,6 +15,9 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.openjpa.persistence.FetchAttribute;
+import org.apache.openjpa.persistence.FetchGroup;
+import org.apache.openjpa.persistence.FetchGroups;
 import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -27,6 +30,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(schema = "hearsay", name = "population_frequency")
+@FetchGroups({ @FetchGroup(name = "includeManyToOnes", attributes = { @FetchAttribute(name = "simpleAllele"),
+        @FetchAttribute(name = "gene"), @FetchAttribute(name = "position") }) })
 public class PopulationFrequency implements Persistable {
 
     private static final long serialVersionUID = 5211189954981035301L;
@@ -37,15 +42,6 @@ public class PopulationFrequency implements Persistable {
     @SequenceGenerator(schema = "hearsay", name = "population_frequency_id_seq", sequenceName = "population_frequency_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
-
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "simple_allele_fid")
-    private SimpleAllele simpleAllele;
-
-    @ManyToOne
-    @JoinColumn(name = "gene_fid")
-    private Gene gene;
 
     @Column(name = "population")
     private String population;
@@ -58,6 +54,15 @@ public class PopulationFrequency implements Persistable {
 
     @Column(name = "version")
     private String version;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "simple_allele_fid")
+    private SimpleAllele simpleAllele;
+
+    @ManyToOne
+    @JoinColumn(name = "gene_fid")
+    private Gene gene;
 
     @ManyToOne
     @JoinColumn(name = "position_fid")

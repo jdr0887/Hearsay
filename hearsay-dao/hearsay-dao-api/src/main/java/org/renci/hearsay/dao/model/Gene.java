@@ -6,7 +6,6 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -23,6 +22,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.openjpa.persistence.FetchAttribute;
+import org.apache.openjpa.persistence.FetchGroup;
+import org.apache.openjpa.persistence.FetchGroups;
 import org.apache.openjpa.persistence.jdbc.Index;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -36,6 +38,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 @Table(schema = "hearsay", name = "gene")
 @NamedQueries({ @NamedQuery(name = "Gene.findAll", query = "SELECT a FROM Gene a order by a.symbol") })
+@FetchGroups({ @FetchGroup(name = "includeAll", attributes = { @FetchAttribute(name = "chromosomes"), @FetchAttribute(name = "aliases"),
+        @FetchAttribute(name = "referenceSequences") }) })
 public class Gene extends IdentifiableEntity {
 
     private static final long serialVersionUID = -5997799315221166517L;
@@ -45,24 +49,24 @@ public class Gene extends IdentifiableEntity {
     @Index(name = "gene_symbol_idx")
     private String symbol;
 
-    @XmlElementWrapper(name = "chromosomes")
-    @XmlElement(name = "chromosome")
-    @ManyToMany(targetEntity = Chromosome.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
-    @JoinTable(schema = "hearsay", name = "gene_chromosome", joinColumns = @JoinColumn(name = "gene_fid") , inverseJoinColumns = @JoinColumn(name = "chromosome_fid") )
-    private Set<Chromosome> chromosomes;
-
     @Column(name = "description", length = 4096)
     private String description;
+
+    @XmlElementWrapper(name = "chromosomes")
+    @XmlElement(name = "chromosome")
+    @ManyToMany(targetEntity = Chromosome.class, cascade = { CascadeType.ALL })
+    @JoinTable(schema = "hearsay", name = "gene_chromosome", joinColumns = @JoinColumn(name = "gene_fid") , inverseJoinColumns = @JoinColumn(name = "chromosome_fid") )
+    private Set<Chromosome> chromosomes;
 
     @JsonInclude(Include.NON_EMPTY)
     @JsonProperty("aliases")
     @XmlElementWrapper(name = "aliases")
     @XmlElement(name = "alias")
-    @OneToMany(mappedBy = "gene", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "gene")
     private Set<GeneSymbol> aliases;
 
     @XmlTransient
-    @OneToMany(mappedBy = "gene", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "gene")
     private Set<ReferenceSequence> referenceSequences;
 
     public Gene() {

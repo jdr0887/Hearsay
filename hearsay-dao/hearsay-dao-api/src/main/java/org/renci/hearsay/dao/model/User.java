@@ -6,7 +6,6 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,6 +23,9 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.openjpa.persistence.FetchAttribute;
+import org.apache.openjpa.persistence.FetchGroup;
+import org.apache.openjpa.persistence.FetchGroups;
 import org.apache.openjpa.persistence.jdbc.Index;
 import org.renci.hearsay.dao.Persistable;
 
@@ -37,6 +39,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
 @Table(schema = "hearsay", name = "user")
+@FetchGroups({ @FetchGroup(name = "includeAll", attributes = { @FetchAttribute(name = "roles") }) })
 public class User implements Persistable {
 
     private static final long serialVersionUID = -3948438926745579321L;
@@ -49,7 +52,7 @@ public class User implements Persistable {
     private Long id;
 
     @Column(name = "username")
-    @Index(name = "user_usernname_idx")
+    @Index(name = "user_username_idx")
     private String username;
 
     @Column(name = "password")
@@ -61,7 +64,7 @@ public class User implements Persistable {
 
     @XmlElementWrapper(name = "roles")
     @XmlElement(name = "role")
-    @ManyToMany(targetEntity = Role.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = Role.class, cascade = { CascadeType.ALL })
     @JoinTable(schema = "hearsay", name = "user_role", joinColumns = @JoinColumn(name = "user_fid") , inverseJoinColumns = @JoinColumn(name = "role_fid") )
     private Set<Role> roles;
 

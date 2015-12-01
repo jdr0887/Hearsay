@@ -7,7 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -23,6 +22,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.openjpa.persistence.FetchAttribute;
+import org.apache.openjpa.persistence.FetchGroup;
+import org.apache.openjpa.persistence.FetchGroups;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -34,6 +37,11 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @PrimaryKeyJoinColumn(name = "id")
 @Table(schema = "hearsay", name = "reference_sequence")
 @NamedQueries({ @NamedQuery(name = "ReferenceSequence.findAll", query = "SELECT a FROM ReferenceSequence a") })
+@FetchGroups({
+        @FetchGroup(name = "includeManyToOnes", attributes = { @FetchAttribute(name = "genomicLocation"), @FetchAttribute(name = "gene"),
+                @FetchAttribute(name = "genomeReference") }),
+        @FetchGroup(name = "includeAll", fetchGroups = { "includeManyToOnes" }, attributes = { @FetchAttribute(name = "alignments"),
+                @FetchAttribute(name = "features") }) })
 public class ReferenceSequence extends IdentifiableEntity {
 
     private static final long serialVersionUID = -488057011816731553L;
@@ -64,12 +72,12 @@ public class ReferenceSequence extends IdentifiableEntity {
     private ReferenceSequenceRelationshipType relationshipType;
 
     @XmlTransient
-    @ManyToMany(targetEntity = Alignment.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+    @ManyToMany(targetEntity = Alignment.class, cascade = { CascadeType.ALL })
     @JoinTable(schema = "hearsay", name = "reference_sequence_alignment", joinColumns = @JoinColumn(name = "reference_sequence_fid") , inverseJoinColumns = @JoinColumn(name = "alignment_fid") )
     private Set<Alignment> alignments;
 
     @XmlTransient
-    @ManyToMany(targetEntity = Feature.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+    @ManyToMany(targetEntity = Feature.class, cascade = { CascadeType.ALL })
     @JoinTable(schema = "hearsay", name = "reference_sequence_feature", joinColumns = @JoinColumn(name = "reference_sequence_fid") , inverseJoinColumns = @JoinColumn(name = "feature_fid") )
     private Set<Feature> features;
 

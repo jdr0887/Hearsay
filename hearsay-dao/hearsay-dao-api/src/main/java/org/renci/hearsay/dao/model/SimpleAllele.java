@@ -7,7 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -20,6 +19,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.openjpa.persistence.FetchAttribute;
+import org.apache.openjpa.persistence.FetchGroup;
+import org.apache.openjpa.persistence.FetchGroups;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -30,6 +33,11 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
 @Table(schema = "hearsay", name = "simple_allele")
+@FetchGroups({
+        @FetchGroup(name = "includeManyToOnes", attributes = { @FetchAttribute(name = "canonicalAllele"),
+                @FetchAttribute(name = "referenceCoordinate") }),
+        @FetchGroup(name = "includeAll", fetchGroups = { "includeManyToOnes" }, attributes = {
+                @FetchAttribute(name = "molecularConsequences"), @FetchAttribute(name = "populationFrequencies") }) })
 public class SimpleAllele extends IdentifiableEntity {
 
     private static final long serialVersionUID = 608874481580966242L;
@@ -56,10 +64,10 @@ public class SimpleAllele extends IdentifiableEntity {
     @JoinColumn(name = "reference_coordinate_fid")
     private ReferenceCoordinate referenceCoordinate;
 
-    @OneToMany(mappedBy = "simpleAllele", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "simpleAllele")
     private Set<MolecularConsequence> molecularConsequences;
 
-    @OneToMany(mappedBy = "simpleAllele", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "simpleAllele")
     private Set<PopulationFrequency> populationFrequencies;
 
     public SimpleAllele() {

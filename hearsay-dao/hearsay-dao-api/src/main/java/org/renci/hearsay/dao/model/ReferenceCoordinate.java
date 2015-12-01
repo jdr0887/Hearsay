@@ -13,6 +13,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.openjpa.persistence.FetchAttribute;
+import org.apache.openjpa.persistence.FetchGroup;
+import org.apache.openjpa.persistence.FetchGroups;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -23,6 +27,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
 @Table(schema = "hearsay", name = "reference_coordinate")
+@FetchGroups({ @FetchGroup(name = "includeManyToOnes", attributes = { @FetchAttribute(name = "location"),
+        @FetchAttribute(name = "intronOffset"), @FetchAttribute(name = "referenceSequence") }) })
 public class ReferenceCoordinate extends IdentifiableEntity {
 
     private static final long serialVersionUID = 608874481580966242L;

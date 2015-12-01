@@ -15,6 +15,9 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.openjpa.persistence.FetchAttribute;
+import org.apache.openjpa.persistence.FetchGroup;
+import org.apache.openjpa.persistence.FetchGroups;
 import org.renci.hearsay.dao.Persistable;
 
 @XmlRootElement(name = "diagnosticResult")
@@ -22,6 +25,8 @@ import org.renci.hearsay.dao.Persistable;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(schema = "hearsay", name = "diagnostic_result")
+@FetchGroups({ @FetchGroup(name = "includeManyToOnes", attributes = { @FetchAttribute(name = "participant"),
+        @FetchAttribute(name = "referenceSequence") }) })
 public class DiagnosticResult implements Persistable {
 
     private static final long serialVersionUID = 976203482191768104L;

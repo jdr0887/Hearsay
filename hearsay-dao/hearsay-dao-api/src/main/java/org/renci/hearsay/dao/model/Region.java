@@ -19,6 +19,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.openjpa.persistence.FetchAttribute;
+import org.apache.openjpa.persistence.FetchGroup;
+import org.apache.openjpa.persistence.FetchGroups;
 import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -31,6 +34,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
 @Table(schema = "hearsay", name = "region")
+@FetchGroups({ @FetchGroup(name = "includeManyToOnes", attributes = { @FetchAttribute(name = "alignment"),
+        @FetchAttribute(name = "regionLocation"), @FetchAttribute(name = "cdsLocation"), @FetchAttribute(name = "transcriptLocation") }) })
 public class Region implements Persistable {
 
     private static final long serialVersionUID = -4018421194871513651L;
