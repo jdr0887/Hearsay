@@ -11,6 +11,9 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.openjpa.meta.FetchGroup;
+import org.apache.openjpa.persistence.OpenJPAPersistence;
+import org.apache.openjpa.persistence.OpenJPAQuery;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.ReferenceSequenceDAO;
 import org.renci.hearsay.dao.model.Gene;
@@ -41,7 +44,11 @@ public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequenc
     public List<ReferenceSequence> findAll() throws HearsayDAOException {
         logger.debug("ENTERING findAll()");
         TypedQuery<ReferenceSequence> query = getEntityManager().createNamedQuery("ReferenceSequence.findAll", ReferenceSequence.class);
-        List<ReferenceSequence> ret = query.getResultList();
+        OpenJPAQuery<ReferenceSequence> openjpaQuery = OpenJPAPersistence.cast(query);
+        //openjpaQuery.getFetchPlan().addFetchGroup("includeManyToOnes");
+        openjpaQuery.getFetchPlan().addFetchGroup("includeAll");
+        
+        List<ReferenceSequence> ret = openjpaQuery.getResultList();
         return ret;
     }
 
@@ -56,7 +63,9 @@ public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequenc
         predicates.add(critBuilder.equal(referenceSequenceGeneJoin.get(Gene_.id), geneId));
         crit.where(predicates.toArray(new Predicate[predicates.size()]));
         TypedQuery<ReferenceSequence> query = getEntityManager().createQuery(crit);
-        List<ReferenceSequence> ret = query.getResultList();
+        OpenJPAQuery<ReferenceSequence> openjpaQuery = OpenJPAPersistence.cast(query);
+        openjpaQuery.getFetchPlan().addFetchGroup("includeAll");
+        List<ReferenceSequence> ret = openjpaQuery.getResultList();
         return ret;
     }
 
