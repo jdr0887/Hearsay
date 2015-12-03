@@ -1,40 +1,80 @@
-package org.renci.hearsay.dao;
+package org.renci.hearsay.dao.jpa;
 
-public class HearsayDAOBean implements HearsayDAOBeanService {
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
+import org.ops4j.pax.cdi.api.OsgiServiceProvider;
+import org.renci.hearsay.dao.AlignmentDAO;
+import org.renci.hearsay.dao.CanonicalAlleleDAO;
+import org.renci.hearsay.dao.ChromosomeDAO;
+import org.renci.hearsay.dao.FeatureDAO;
+import org.renci.hearsay.dao.GeneDAO;
+import org.renci.hearsay.dao.GeneSymbolDAO;
+import org.renci.hearsay.dao.GenomeReferenceDAO;
+import org.renci.hearsay.dao.HearsayDAOBeanService;
+import org.renci.hearsay.dao.IdentifierDAO;
+import org.renci.hearsay.dao.IntronOffsetDAO;
+import org.renci.hearsay.dao.LocationDAO;
+import org.renci.hearsay.dao.MolecularConsequenceDAO;
+import org.renci.hearsay.dao.PopulationFrequencyDAO;
+import org.renci.hearsay.dao.ReferenceCoordinateDAO;
+import org.renci.hearsay.dao.ReferenceSequenceDAO;
+import org.renci.hearsay.dao.RegionDAO;
+import org.renci.hearsay.dao.SimpleAlleleDAO;
+
+@OsgiServiceProvider(classes = { HearsayDAOBeanService.class })
+@Singleton
+public class HearsayDAOBeanServiceImpl implements HearsayDAOBeanService {
+
+    @Inject
     private AlignmentDAO alignmentDAO;
 
+    @Inject
     private ChromosomeDAO chromosomeDAO;
 
+    @Inject
     private CanonicalAlleleDAO canonicalAlleleDAO;
 
+    @Inject
     private FeatureDAO featureDAO;
 
+    @Inject
     private GeneDAO geneDAO;
 
+    @Inject
     private GeneSymbolDAO geneSymbolDAO;
 
+    @Inject
     private IdentifierDAO identifierDAO;
 
+    @Inject
     private IntronOffsetDAO intronOffsetDAO;
 
+    @Inject
     private LocationDAO locationDAO;
 
+    @Inject
     private MolecularConsequenceDAO molecularConsequenceDAO;
 
+    @Inject
     private PopulationFrequencyDAO populationFrequencyDAO;
 
+    @Inject
     private ReferenceCoordinateDAO referenceCoordinateDAO;
 
+    @Inject
     private RegionDAO regionDAO;
 
+    @Inject
     private GenomeReferenceDAO genomeReferenceDAO;
 
+    @Inject
     private ReferenceSequenceDAO referenceSequenceDAO;
 
+    @Inject
     private SimpleAlleleDAO simpleAlleleDAO;
 
-    public HearsayDAOBean() {
+    public HearsayDAOBeanServiceImpl() {
         super();
     }
 

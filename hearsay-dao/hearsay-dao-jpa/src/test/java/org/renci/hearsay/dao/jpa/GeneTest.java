@@ -12,7 +12,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.renci.hearsay.dao.HearsayDAOBean;
 import org.renci.hearsay.dao.HearsayDAOBeanService;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.model.Gene;
@@ -23,7 +22,7 @@ public class GeneTest {
 
     private static EntityManager em;
 
-    private final static HearsayDAOBeanService hearsayDAOBean = new HearsayDAOBean();
+    private final static HearsayDAOBeanService hearsayDAOBean = new HearsayDAOBeanServiceImpl();
 
     public GeneTest() {
         super();

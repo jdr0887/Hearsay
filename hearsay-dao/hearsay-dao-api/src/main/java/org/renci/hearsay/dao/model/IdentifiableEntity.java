@@ -56,13 +56,12 @@ public abstract class IdentifiableEntity implements Persistable {
     @JsonProperty("identifiers")
     @XmlElementWrapper(name = "identifiers")
     @XmlElement(name = "identifier")
-    @ManyToMany(targetEntity = Identifier.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+    @ManyToMany(targetEntity = Identifier.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
     @JoinTable(schema = "hearsay", name = "entity_identifier", joinColumns = @JoinColumn(name = "entity_fid") , inverseJoinColumns = @JoinColumn(name = "identifier_fid") )
     protected Set<Identifier> identifiers;
 
     public IdentifiableEntity() {
         super();
-        this.identifiers = new HashSet<Identifier>();
     }
 
     public Long getId() {
@@ -74,6 +73,9 @@ public abstract class IdentifiableEntity implements Persistable {
     }
 
     public Set<Identifier> getIdentifiers() {
+        if (this.identifiers == null) {
+            this.identifiers = new HashSet<Identifier>();
+        }
         return identifiers;
     }
 

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import org.renci.hearsay.dao.BaseEntityDAO;
 import org.renci.hearsay.dao.HearsayDAOException;
@@ -14,6 +15,7 @@ import org.renci.hearsay.dao.Persistable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Transactional
 public abstract class BaseEntityDAOImpl<T extends Persistable, ID extends Serializable> implements BaseEntityDAO<T, ID> {
 
     private static final Logger logger = LoggerFactory.getLogger(BaseEntityDAOImpl.class);
@@ -34,6 +36,7 @@ public abstract class BaseEntityDAOImpl<T extends Persistable, ID extends Serial
             entity = entityManager.merge(entity);
         } else {
             entityManager.persist(entity);
+            entityManager.flush();
         }
         return entity.getId();
     }

@@ -12,6 +12,14 @@
   <packaging>bundle</packaging>
   <dependencies>
     <dependency>
+      <groupId>javax.inject</groupId>
+      <artifactId>javax.inject</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.cdi</groupId>
+      <artifactId>pax-cdi-api</artifactId>
+    </dependency>    
+    <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
     </dependency>
@@ -36,9 +44,9 @@
       <artifactId>geronimo-jpa_2.0_spec</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-jta_1.1_spec</artifactId>
-    </dependency>
+      <groupId>javax.transaction</groupId>
+      <artifactId>javax.transaction-api</artifactId>
+    </dependency>        
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
@@ -76,6 +84,15 @@
             <Private-Package>org.renci.hearsay.dao.jpa.*</Private-Package>
             <Export-Package>org.renci.hearsay.dao.jpa.*</Export-Package>
           </instructions>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.aries.blueprint</groupId>
+        <artifactId>blueprint-maven-plugin</artifactId>
+        <configuration>
+          <scanPaths>
+            <scanPath>org.renci.hearsay.dao.jpa</scanPath>
+          </scanPaths>
         </configuration>
       </plugin>
     </plugins>

@@ -162,17 +162,23 @@
 	    <feature>jetty</feature>
 	    <feature>scr</feature>
             <feature>jndi</feature>
+	    <feature>pax-cdi</feature>
             <feature>aries-blueprint</feature>
 	    <feature>cxf</feature>	    
             <feature>jdbc</feature>
 	    <feature>transaction-api/1.2.0</feature>
 	    <feature>transaction</feature>
 	    <feature>jpa</feature>
+	    <feature>spring-dm</feature>
+	    <feature>spring-dm-web</feature>	    	    
 	    <feature>spring/${spring.version}_1</feature>
 	    <feature>spring-orm/${spring.version}_1</feature>
 	    <feature>spring-web/${spring.version}_1</feature>
 	    <feature>hearsay-commons</feature>
-	    <!-- <feature>hearsay-dao</feature>	     -->
+	    <feature>hearsay-dao</feature>
+	    <feature>hearsay-commands</feature>    
+	    <feature>hearsay-web-services</feature>
+	    <!-- <feature>hearsay-webapp</feature>    	     -->
           </bootFeatures>
         </configuration>
       </plugin>

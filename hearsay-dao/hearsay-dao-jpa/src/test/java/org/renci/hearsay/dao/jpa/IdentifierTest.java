@@ -7,7 +7,6 @@ import javax.persistence.Persistence;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.renci.hearsay.dao.HearsayDAOBean;
 import org.renci.hearsay.dao.HearsayDAOBeanService;
 import org.renci.hearsay.dao.HearsayDAOException;
 
@@ -17,7 +16,7 @@ public class IdentifierTest {
 
     private static EntityManager em;
 
-    private final static HearsayDAOBeanService hearsayDAOBean = new HearsayDAOBean();
+    private final static HearsayDAOBeanService hearsayDAOBean = new HearsayDAOBeanServiceImpl();
 
     public IdentifierTest() {
         super();

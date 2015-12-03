@@ -2,14 +2,20 @@ package org.renci.hearsay.dao.jpa;
 
 import java.util.List;
 
+import javax.inject.Singleton;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
+import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.renci.hearsay.dao.ChromosomeDAO;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.model.Chromosome;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@OsgiServiceProvider(classes = { ChromosomeDAO.class })
+@Singleton
+@Transactional
 public class ChromosomeDAOImpl extends BaseEntityDAOImpl<Chromosome, Long> implements ChromosomeDAO {
 
     private final Logger logger = LoggerFactory.getLogger(ChromosomeDAOImpl.class);

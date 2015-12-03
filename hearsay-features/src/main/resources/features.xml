@@ -58,7 +58,7 @@
     <bundle>mvn:org.renci.hearsay/hearsay-web-service-api/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-alignment/${project.version}</bundle>    
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-canonical-allele/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-feature/${project.version}</bundle>    
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-feature/${project.version}</bundle>  
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-gene/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-gene-symbol/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-genome-reference/${project.version}</bundle>    
@@ -80,9 +80,9 @@
   </feature>
 
   <feature name="hearsay" version="${project.version}" resolver="(obr)">
-    <feature version="${project.version}">hearsay-commands</feature>
     <feature version="${project.version}">hearsay-commons</feature>
     <feature version="${project.version}">hearsay-dao</feature>
+    <feature version="${project.version}">hearsay-commands</feature>    
     <feature version="${project.version}">hearsay-web-services</feature>
     <feature version="${project.version}">hearsay-webapp</feature>    
   </feature>

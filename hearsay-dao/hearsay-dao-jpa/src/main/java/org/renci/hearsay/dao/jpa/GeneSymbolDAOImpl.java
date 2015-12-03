@@ -3,12 +3,15 @@ package org.renci.hearsay.dao.jpa;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Singleton;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 
+import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.renci.hearsay.dao.GeneSymbolDAO;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.model.GeneSymbol;
@@ -16,6 +19,9 @@ import org.renci.hearsay.dao.model.GeneSymbol_;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@OsgiServiceProvider(classes = { GeneSymbolDAO.class })
+@Singleton
+@Transactional
 public class GeneSymbolDAOImpl extends BaseEntityDAOImpl<GeneSymbol, Long> implements GeneSymbolDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(GeneSymbolDAOImpl.class);

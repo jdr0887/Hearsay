@@ -4,7 +4,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -45,7 +44,7 @@ public class GenomeReference extends IdentifiableEntity {
     private String name;
 
     @XmlTransient
-    @OneToMany(mappedBy = "genomeReference", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "genomeReference")
     private Set<ReferenceSequence> referenceSequences;
 
     public GenomeReference() {
