@@ -69,7 +69,7 @@ public class ListGeneTest {
     public void findByIdentifierValue() {
         List<Gene> geneList = new ArrayList<Gene>();
         try {
-            geneList.addAll(hearsayDAOBean.getGeneDAO().findByIdentifierValue("2720"));
+            geneList.addAll(hearsayDAOBean.getGeneDAO().findByIdentifierSystemAndValue("www.ncbi.nlm.nih.gov/gene", "2720"));
         } catch (HearsayDAOException e) {
             e.printStackTrace();
         }
