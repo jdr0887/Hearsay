@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 
 @OsgiServiceProvider(classes = { IdentifierDAO.class })
 @Singleton
-@Transactional
+@Transactional(Transactional.TxType.SUPPORTS)
 public class IdentifierDAOImpl extends BaseEntityDAOImpl<Identifier, Long> implements IdentifierDAO {
 
     private final Logger logger = LoggerFactory.getLogger(IdentifierDAOImpl.class);

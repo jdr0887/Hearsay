@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 
 @OsgiServiceProvider(classes = { UserDAO.class })
 @Singleton
-@Transactional
+@Transactional(Transactional.TxType.SUPPORTS)
 public class UserDAOImpl extends BaseEntityDAOImpl<User, Long> implements UserDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(UserDAOImpl.class);

@@ -32,11 +32,14 @@ public abstract class BaseEntityDAOImpl<T extends Persistable, ID extends Serial
     @Override
     public Long save(T entity) throws HearsayDAOException {
         logger.debug("ENTERING save(T)");
-        if (!entityManager.contains(entity) && entity.getId() != null) {
-            entity = entityManager.merge(entity);
-        } else {
-            entityManager.persist(entity);
-            entityManager.flush();
+        try {
+            if (!entityManager.contains(entity) && entity.getId() != null) {
+                entity = entityManager.merge(entity);
+            } else {
+                entityManager.persist(entity);
+            }
+        } catch (Exception e) {
+            throw new HearsayDAOException(e.getMessage());
         }
         return entity.getId();
     }
@@ -44,26 +47,40 @@ public abstract class BaseEntityDAOImpl<T extends Persistable, ID extends Serial
     @Override
     public void delete(T entity) throws HearsayDAOException {
         logger.debug("ENTERING delete(T)");
-        T foundEntity = entityManager.find(getPersistentClass(), entity.getId());
-        entityManager.remove(foundEntity);
+        try {
+            T foundEntity = entityManager.find(getPersistentClass(), entity.getId());
+            entityManager.remove(foundEntity);
+        } catch (Exception e) {
+            throw new HearsayDAOException(e.getMessage());
+        }
     }
 
     @Override
     public void delete(List<T> entityList) throws HearsayDAOException {
         logger.debug("ENTERING delete(List<T>)");
-        List<Long> idList = new ArrayList<Long>();
-        for (T t : entityList) {
-            idList.add(t.getId());
+        try {
+            List<Long> idList = new ArrayList<Long>();
+            for (T t : entityList) {
+                idList.add(t.getId());
+            }
+            Query qDelete = entityManager.createQuery("delete from " + getPersistentClass().getSimpleName() + " a where a.id in (?1)");
+            qDelete.setParameter(1, idList);
+            qDelete.executeUpdate();
+        } catch (Exception e) {
+            throw new HearsayDAOException(e.getMessage());
         }
-        Query qDelete = entityManager.createQuery("delete from " + getPersistentClass().getSimpleName() + " a where a.id in (?1)");
-        qDelete.setParameter(1, idList);
-        qDelete.executeUpdate();
     }
 
+    @Transactional(Transactional.TxType.SUPPORTS)
     @Override
     public T findById(ID id) throws HearsayDAOException {
         logger.debug("ENTERING findById(T)");
-        T ret = entityManager.find(getPersistentClass(), id);
+        T ret;
+        try {
+            ret = entityManager.find(getPersistentClass(), id);
+        } catch (Exception e) {
+            throw new HearsayDAOException(e.getMessage());
+        }
         return ret;
     }
 

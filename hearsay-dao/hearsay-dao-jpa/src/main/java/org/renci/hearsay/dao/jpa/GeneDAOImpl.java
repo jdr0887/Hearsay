@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
 
 @OsgiServiceProvider(classes = { GeneDAO.class })
 @Singleton
-@Transactional
+@Transactional(Transactional.TxType.SUPPORTS)
 public class GeneDAOImpl extends BaseEntityDAOImpl<Gene, Long> implements GeneDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(GeneDAOImpl.class);
@@ -51,13 +51,14 @@ public class GeneDAOImpl extends BaseEntityDAOImpl<Gene, Long> implements GeneDA
     }
 
     @Override
-    public List<Gene> findByIdentifierValue(String value) throws HearsayDAOException {
+    public List<Gene> findByIdentifierSystemAndValue(String system, String value) throws HearsayDAOException {
         logger.debug("ENTERING findByIdentifierValue(String)");
         CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Gene> crit = critBuilder.createQuery(getPersistentClass());
         Root<Gene> fromGene = crit.from(Gene.class);
         List<Predicate> predicates = new ArrayList<Predicate>();
         Join<Gene, Identifier> geneIdentifierJoin = fromGene.join(Gene_.identifiers);
+        predicates.add(critBuilder.like(geneIdentifierJoin.get(Identifier_.system), system));
         predicates.add(critBuilder.like(geneIdentifierJoin.get(Identifier_.value), value));
         crit.where(predicates.toArray(new Predicate[predicates.size()]));
         crit.orderBy(critBuilder.asc(fromGene.get(Gene_.symbol)));

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Singleton;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -27,13 +25,10 @@ import org.slf4j.LoggerFactory;
 
 @OsgiServiceProvider(classes = { GenomeReferenceDAO.class })
 @Singleton
-@Transactional
+@Transactional(Transactional.TxType.SUPPORTS)
 public class GenomeReferenceDAOImpl extends BaseEntityDAOImpl<GenomeReference, Long> implements GenomeReferenceDAO {
 
     private final Logger logger = LoggerFactory.getLogger(GenomeReferenceDAOImpl.class);
-
-    @PersistenceContext(name = "hearsay", unitName = "hearsay")
-    private EntityManager entityManager;
 
     public GenomeReferenceDAOImpl() {
         super();
@@ -45,63 +40,72 @@ public class GenomeReferenceDAOImpl extends BaseEntityDAOImpl<GenomeReference, L
     }
 
     @Override
-    public Long save(GenomeReference entity) throws HearsayDAOException {
-        logger.debug("ENTERING save(T)");
-        if (!getEntityManager().contains(entity) && entity.getId() != null) {
-            entity = getEntityManager().merge(entity);
-        } else {
-            getEntityManager().persist(entity);
-            getEntityManager().flush();
-        }
-        return entity.getId();
-    }
-
-    @Override
     public List<GenomeReference> findAll() throws HearsayDAOException {
         logger.debug("ENTERING findAll()");
-        TypedQuery<GenomeReference> query = getEntityManager().createNamedQuery("GenomeReference.findAll", GenomeReference.class);
-        List<GenomeReference> ret = query.getResultList();
+        List<GenomeReference> ret = new ArrayList<GenomeReference>();
+        try {
+            TypedQuery<GenomeReference> query = getEntityManager().createNamedQuery("GenomeReference.findAll", GenomeReference.class);
+            ret.addAll(query.getResultList());
+        } catch (Exception e) {
+            throw new HearsayDAOException(e);
+        }
         return ret;
     }
 
     @Override
     public List<GenomeReference> findByName(String name) throws HearsayDAOException {
         logger.debug("ENTERING findByName(String name)");
-        TypedQuery<GenomeReference> query = getEntityManager().createNamedQuery("GenomeReference.findByName", GenomeReference.class);
-        query.setParameter("name", name);
-        List<GenomeReference> ret = query.getResultList();
+        List<GenomeReference> ret = new ArrayList<GenomeReference>();
+        try {
+            TypedQuery<GenomeReference> query = getEntityManager().createNamedQuery("GenomeReference.findByName", GenomeReference.class);
+            query.setParameter("name", name);
+            ret.addAll(query.getResultList());
+        } catch (Exception e) {
+            throw new HearsayDAOException(e);
+        }
         return ret;
     }
 
     @Override
     public List<GenomeReference> findByExample(GenomeReference genomeReference) throws HearsayDAOException {
         logger.debug("ENTERING findByExample(GenomeReference)");
-        CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
-        CriteriaQuery<GenomeReference> crit = critBuilder.createQuery(getPersistentClass());
-        Root<GenomeReference> root = crit.from(GenomeReference.class);
-        List<Predicate> predicates = new ArrayList<Predicate>();
-        if (StringUtils.isNotEmpty(genomeReference.getName())) {
-            predicates.add(critBuilder.like(root.get(GenomeReference_.name), genomeReference.getName()));
+        List<GenomeReference> ret = new ArrayList<GenomeReference>();
+        try {
+            CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+            CriteriaQuery<GenomeReference> crit = critBuilder.createQuery(getPersistentClass());
+            Root<GenomeReference> root = crit.from(GenomeReference.class);
+            List<Predicate> predicates = new ArrayList<Predicate>();
+            if (StringUtils.isNotEmpty(genomeReference.getName())) {
+                predicates.add(critBuilder.like(root.get(GenomeReference_.name), genomeReference.getName()));
+            }
+            crit.where(predicates.toArray(new Predicate[predicates.size()]));
+            TypedQuery<GenomeReference> query = getEntityManager().createQuery(crit);
+            ret.addAll(query.getResultList());
+        } catch (Exception e) {
+            throw new HearsayDAOException(e);
         }
-        crit.where(predicates.toArray(new Predicate[predicates.size()]));
-        TypedQuery<GenomeReference> query = getEntityManager().createQuery(crit);
-        List<GenomeReference> ret = query.getResultList();
         return ret;
     }
 
     @Override
-    public List<GenomeReference> findByIdentifierValue(String value) throws HearsayDAOException {
+    public List<GenomeReference> findByIdentifierSystemAndValue(String system, String value) throws HearsayDAOException {
         logger.debug("ENTERING findByIdentifierValue(String)");
-        CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
-        CriteriaQuery<GenomeReference> crit = critBuilder.createQuery(getPersistentClass());
-        Root<GenomeReference> root = crit.from(GenomeReference.class);
-        List<Predicate> predicates = new ArrayList<Predicate>();
-        Join<GenomeReference, Identifier> genomeReferenceIdentifierJoin = root.join(GenomeReference_.identifiers);
-        predicates.add(critBuilder.like(genomeReferenceIdentifierJoin.get(Identifier_.value), value));
-        crit.where(predicates.toArray(new Predicate[predicates.size()]));
-        crit.orderBy(critBuilder.asc(root.get(GenomeReference_.name)));
-        TypedQuery<GenomeReference> query = getEntityManager().createQuery(crit);
-        List<GenomeReference> ret = query.getResultList();
+        List<GenomeReference> ret = new ArrayList<GenomeReference>();
+        try {
+            CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+            CriteriaQuery<GenomeReference> crit = critBuilder.createQuery(getPersistentClass());
+            Root<GenomeReference> root = crit.from(GenomeReference.class);
+            List<Predicate> predicates = new ArrayList<Predicate>();
+            Join<GenomeReference, Identifier> genomeReferenceIdentifierJoin = root.join(GenomeReference_.identifiers);
+            predicates.add(critBuilder.like(genomeReferenceIdentifierJoin.get(Identifier_.system), system));
+            predicates.add(critBuilder.like(genomeReferenceIdentifierJoin.get(Identifier_.value), value));
+            crit.where(predicates.toArray(new Predicate[predicates.size()]));
+            crit.orderBy(critBuilder.asc(root.get(GenomeReference_.name)));
+            TypedQuery<GenomeReference> query = getEntityManager().createQuery(crit);
+            ret.addAll(query.getResultList());
+        } catch (Exception e) {
+            throw new HearsayDAOException(e);
+        }
         return ret;
     }
 

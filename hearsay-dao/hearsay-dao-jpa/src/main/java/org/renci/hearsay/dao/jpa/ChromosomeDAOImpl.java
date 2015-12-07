@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 
 @OsgiServiceProvider(classes = { ChromosomeDAO.class })
 @Singleton
-@Transactional
+@Transactional(Transactional.TxType.SUPPORTS)
 public class ChromosomeDAOImpl extends BaseEntityDAOImpl<Chromosome, Long> implements ChromosomeDAO {
 
     private final Logger logger = LoggerFactory.getLogger(ChromosomeDAOImpl.class);

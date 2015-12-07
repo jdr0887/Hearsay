@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
 
 @OsgiServiceProvider(classes = { DiagnosticResultDAO.class })
 @Singleton
-@Transactional
+@Transactional(Transactional.TxType.SUPPORTS)
 public class DiagnosticResultDAOImpl extends BaseEntityDAOImpl<DiagnosticResult, Long> implements DiagnosticResultDAO {
 
     private final Logger logger = LoggerFactory.getLogger(DiagnosticResultDAOImpl.class);

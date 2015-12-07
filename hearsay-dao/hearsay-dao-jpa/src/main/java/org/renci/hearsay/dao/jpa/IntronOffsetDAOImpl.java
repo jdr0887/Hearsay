@@ -9,7 +9,7 @@ import org.renci.hearsay.dao.model.IntronOffset;
 
 @OsgiServiceProvider(classes = { IntronOffsetDAO.class })
 @Singleton
-@Transactional
+@Transactional(Transactional.TxType.SUPPORTS)
 public class IntronOffsetDAOImpl extends BaseEntityDAOImpl<IntronOffset, Long> implements IntronOffsetDAO {
 
     public IntronOffsetDAOImpl() {

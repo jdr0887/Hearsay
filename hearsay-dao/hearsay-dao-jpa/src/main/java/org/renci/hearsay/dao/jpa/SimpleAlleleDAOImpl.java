@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
 
 @OsgiServiceProvider(classes = { SimpleAlleleDAO.class })
 @Singleton
-@Transactional
+@Transactional(Transactional.TxType.SUPPORTS)
 public class SimpleAlleleDAOImpl extends BaseEntityDAOImpl<SimpleAllele, Long> implements SimpleAlleleDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(SimpleAlleleDAOImpl.class);

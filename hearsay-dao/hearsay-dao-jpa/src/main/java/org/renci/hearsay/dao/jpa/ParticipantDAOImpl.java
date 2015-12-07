@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 
 @OsgiServiceProvider(classes = { ParticipantDAO.class })
 @Singleton
-@Transactional
+@Transactional(Transactional.TxType.SUPPORTS)
 public class ParticipantDAOImpl extends BaseEntityDAOImpl<Participant, Long> implements ParticipantDAO {
 
     private final Logger logger = LoggerFactory.getLogger(ParticipantDAOImpl.class);

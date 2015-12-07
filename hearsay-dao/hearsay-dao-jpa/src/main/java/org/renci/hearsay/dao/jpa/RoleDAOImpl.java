@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 
 @OsgiServiceProvider(classes = { RoleDAO.class })
 @Singleton
-@Transactional
+@Transactional(Transactional.TxType.SUPPORTS)
 public class RoleDAOImpl extends BaseEntityDAOImpl<Role, Long> implements RoleDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(RoleDAOImpl.class);

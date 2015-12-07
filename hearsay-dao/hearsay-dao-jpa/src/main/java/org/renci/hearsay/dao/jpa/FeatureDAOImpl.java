@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
 
 @OsgiServiceProvider(classes = { FeatureDAO.class })
 @Singleton
-@Transactional
+@Transactional(Transactional.TxType.SUPPORTS)
 public class FeatureDAOImpl extends BaseEntityDAOImpl<Feature, Long> implements FeatureDAO {
 
     private final Logger logger = LoggerFactory.getLogger(FeatureDAOImpl.class);

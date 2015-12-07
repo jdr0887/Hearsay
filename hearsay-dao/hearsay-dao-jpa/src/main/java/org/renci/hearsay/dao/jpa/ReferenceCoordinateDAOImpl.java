@@ -9,7 +9,7 @@ import org.renci.hearsay.dao.model.ReferenceCoordinate;
 
 @OsgiServiceProvider(classes = { ReferenceCoordinateDAO.class })
 @Singleton
-@Transactional
+@Transactional(Transactional.TxType.SUPPORTS)
 public class ReferenceCoordinateDAOImpl extends BaseEntityDAOImpl<ReferenceCoordinate, Long> implements ReferenceCoordinateDAO {
 
     public ReferenceCoordinateDAOImpl() {

@@ -9,7 +9,7 @@ import org.renci.hearsay.dao.model.MolecularConsequence;
 
 @OsgiServiceProvider(classes = { MolecularConsequenceDAO.class })
 @Singleton
-@Transactional
+@Transactional(Transactional.TxType.SUPPORTS)
 public class MolecularConsequenceDAOImpl extends BaseEntityDAOImpl<MolecularConsequence, Long> implements MolecularConsequenceDAO {
 
     public MolecularConsequenceDAOImpl() {

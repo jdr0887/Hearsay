@@ -9,7 +9,7 @@ import org.renci.hearsay.dao.model.Region;
 
 @OsgiServiceProvider(classes = { RegionDAO.class })
 @Singleton
-@Transactional
+@Transactional(Transactional.TxType.SUPPORTS)
 public class RegionDAOImpl extends BaseEntityDAOImpl<Region, Long> implements RegionDAO {
 
     public RegionDAOImpl() {

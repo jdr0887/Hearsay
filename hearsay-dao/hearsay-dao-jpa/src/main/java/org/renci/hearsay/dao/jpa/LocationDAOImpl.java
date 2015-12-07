@@ -9,7 +9,7 @@ import org.renci.hearsay.dao.model.Location;
 
 @OsgiServiceProvider(classes = { LocationDAO.class })
 @Singleton
-@Transactional
+@Transactional(Transactional.TxType.SUPPORTS)
 public class LocationDAOImpl extends BaseEntityDAOImpl<Location, Long> implements LocationDAO {
 
     public LocationDAOImpl() {

@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
 
 @OsgiServiceProvider(classes = { GeneSymbolDAO.class })
 @Singleton
-@Transactional
+@Transactional(Transactional.TxType.SUPPORTS)
 public class GeneSymbolDAOImpl extends BaseEntityDAOImpl<GeneSymbol, Long> implements GeneSymbolDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(GeneSymbolDAOImpl.class);

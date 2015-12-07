@@ -9,7 +9,7 @@ import org.renci.hearsay.dao.model.CanonicalAllele;
 
 @OsgiServiceProvider(classes = { CanonicalAlleleDAO.class })
 @Singleton
-@Transactional
+@Transactional(Transactional.TxType.SUPPORTS)
 public class CanonicalAlleleDAOImpl extends BaseEntityDAOImpl<CanonicalAllele, Long> implements CanonicalAlleleDAO {
 
     public CanonicalAlleleDAOImpl() {

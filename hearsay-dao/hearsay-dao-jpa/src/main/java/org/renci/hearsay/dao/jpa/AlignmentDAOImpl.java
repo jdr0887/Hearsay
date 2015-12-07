@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Singleton;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -25,14 +23,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @OsgiServiceProvider(classes = { AlignmentDAO.class })
-@Transactional
+@Transactional(Transactional.TxType.SUPPORTS)
 @Singleton
 public class AlignmentDAOImpl extends BaseEntityDAOImpl<Alignment, Long> implements AlignmentDAO {
 
     private final Logger logger = LoggerFactory.getLogger(AlignmentDAOImpl.class);
-
-    @PersistenceContext(name = "hearsay", unitName = "hearsay")
-    private EntityManager entityManager;
 
     public AlignmentDAOImpl() {
         super();
