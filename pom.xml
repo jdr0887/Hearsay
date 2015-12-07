@@ -30,7 +30,7 @@
   </scm>
   <properties>
     <spring.security.version>3.2.8.RELEASE</spring.security.version>
-    <postgresql.version>9.4-1205-jdbc41</postgresql.version>
+    <postgresql.version>9.4-1206-jdbc42</postgresql.version>
   </properties>
   <dependencyManagement>
     <dependencies>
