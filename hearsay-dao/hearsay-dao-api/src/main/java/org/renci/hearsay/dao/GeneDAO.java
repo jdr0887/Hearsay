@@ -12,6 +12,6 @@ public interface GeneDAO extends BaseEntityDAO<Gene, Long> {
 
     public List<Gene> findByExample(Gene gene) throws HearsayDAOException;
 
-    public List<Gene> findByIdentifierValue(String value) throws HearsayDAOException;
+    public List<Gene> findByIdentifierSystemAndValue(String system, String value) throws HearsayDAOException;
 
 }
