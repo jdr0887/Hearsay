@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.openjpa.persistence.FetchAttribute;
 import org.apache.openjpa.persistence.FetchGroup;
 import org.apache.openjpa.persistence.FetchGroups;
@@ -54,7 +55,7 @@ public class Gene extends IdentifiableEntity {
 
     @XmlElementWrapper(name = "chromosomes")
     @XmlElement(name = "chromosome")
-    @ManyToMany(targetEntity = Chromosome.class, cascade = { CascadeType.ALL })
+    @ManyToMany(targetEntity = Chromosome.class)
     @JoinTable(schema = "hearsay", name = "gene_chromosome", joinColumns = @JoinColumn(name = "gene_fid") , inverseJoinColumns = @JoinColumn(name = "chromosome_fid") )
     private Set<Chromosome> chromosomes;
 
@@ -71,9 +72,6 @@ public class Gene extends IdentifiableEntity {
 
     public Gene() {
         super();
-        this.aliases = new HashSet<GeneSymbol>();
-        this.chromosomes = new HashSet<Chromosome>();
-        this.referenceSequences = new HashSet<ReferenceSequence>();
     }
 
     public String getDescription() {
@@ -85,6 +83,9 @@ public class Gene extends IdentifiableEntity {
     }
 
     public Set<Chromosome> getChromosomes() {
+        if (CollectionUtils.isEmpty(this.chromosomes)) {
+            this.chromosomes = new HashSet<Chromosome>();
+        }
         return chromosomes;
     }
 
@@ -101,6 +102,9 @@ public class Gene extends IdentifiableEntity {
     }
 
     public Set<GeneSymbol> getAliases() {
+        if (CollectionUtils.isEmpty(this.aliases)) {
+            this.aliases = new HashSet<GeneSymbol>();
+        }
         return aliases;
     }
 
@@ -109,6 +113,9 @@ public class Gene extends IdentifiableEntity {
     }
 
     public Set<ReferenceSequence> getReferenceSequences() {
+        if (CollectionUtils.isEmpty(this.referenceSequences)) {
+            this.referenceSequences = new HashSet<ReferenceSequence>();
+        }
         return referenceSequences;
     }
 
