@@ -12,6 +12,6 @@ public interface GenomeReferenceDAO extends BaseEntityDAO<GenomeReference, Long>
 
     public List<GenomeReference> findByExample(GenomeReference genomeReference) throws HearsayDAOException;
 
-    public List<GenomeReference> findByIdentifierValue(String value) throws HearsayDAOException;
+    public List<GenomeReference> findByIdentifierSystemAndValue(String system, String value) throws HearsayDAOException;
 
 }
