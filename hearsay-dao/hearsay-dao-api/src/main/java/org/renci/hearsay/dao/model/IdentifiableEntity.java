@@ -3,7 +3,6 @@ package org.renci.hearsay.dao.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -56,7 +55,7 @@ public abstract class IdentifiableEntity implements Persistable {
     @JsonProperty("identifiers")
     @XmlElementWrapper(name = "identifiers")
     @XmlElement(name = "identifier")
-    @ManyToMany(targetEntity = Identifier.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = Identifier.class, fetch = FetchType.EAGER)
     @JoinTable(schema = "hearsay", name = "entity_identifier", joinColumns = @JoinColumn(name = "entity_fid") , inverseJoinColumns = @JoinColumn(name = "identifier_fid") )
     protected Set<Identifier> identifiers;
 
