@@ -86,15 +86,15 @@
           </instructions>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.apache.aries.blueprint</groupId>
-        <artifactId>blueprint-maven-plugin</artifactId>
-        <configuration>
-          <scanPaths>
-            <scanPath>org.renci.hearsay.dao.jpa</scanPath>
-          </scanPaths>
-        </configuration>
-      </plugin>
+      <!-- <plugin> -->
+      <!--   <groupId>org.apache.aries.blueprint</groupId> -->
+      <!--   <artifactId>blueprint-maven-plugin</artifactId> -->
+      <!--   <configuration> -->
+      <!--     <scanPaths> -->
+      <!--       <scanPath>org.renci.hearsay.dao.jpa</scanPath> -->
+      <!--     </scanPaths> -->
+      <!--   </configuration> -->
+      <!-- </plugin> -->
     </plugins>
   </build>
 </project>
