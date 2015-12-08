@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -60,7 +59,7 @@ public class Alignment implements Persistable {
     private Long id;
 
     @XmlTransient
-    @ManyToMany(targetEntity = ReferenceSequence.class, cascade = { CascadeType.ALL })
+    @ManyToMany(targetEntity = ReferenceSequence.class)
     @JoinTable(schema = "hearsay", name = "reference_sequence_alignment", joinColumns = @JoinColumn(name = "alignment_fid") , inverseJoinColumns = @JoinColumn(name = "reference_sequence_fid") )
     private Set<ReferenceSequence> referenceSequences;
 
