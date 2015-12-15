@@ -1,3 +1,4 @@
+org.renci.hearsay.commands.AddAlignmentUTRsAction
 org.renci.hearsay.commands.ListGeneAction
 org.renci.hearsay.commands.ListGenomeReferenceAction
 org.renci.hearsay.commands.ListReferenceSequenceAction
