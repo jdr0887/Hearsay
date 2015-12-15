@@ -9,6 +9,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -16,10 +17,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.openjpa.persistence.DataCache;
 import org.apache.openjpa.persistence.FetchAttribute;
 import org.apache.openjpa.persistence.FetchGroup;
 import org.apache.openjpa.persistence.FetchGroups;
-import org.apache.openjpa.persistence.jdbc.Index;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -30,9 +31,10 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
-@Table(schema = "hearsay", name = "genome_reference")
+@Table(schema = "hearsay", name = "genome_reference", uniqueConstraints = { @UniqueConstraint(columnNames = "name") })
 @NamedQueries({ @NamedQuery(name = "GenomeReference.findAll", query = "SELECT a FROM GenomeReference a order by a.name"),
         @NamedQuery(name = "GenomeReference.findByName", query = "SELECT a FROM GenomeReference a where a.name = :name order by a.name") })
+@DataCache(timeout = 300000)
 @FetchGroups({ @FetchGroup(name = "includeAll", attributes = { @FetchAttribute(name = "referenceSequences") }) })
 public class GenomeReference extends IdentifiableEntity {
 
@@ -40,7 +42,6 @@ public class GenomeReference extends IdentifiableEntity {
 
     @XmlAttribute
     @Column(name = "name")
-    @Index(name = "genome_reference_name_idx")
     private String name;
 
     @XmlTransient
