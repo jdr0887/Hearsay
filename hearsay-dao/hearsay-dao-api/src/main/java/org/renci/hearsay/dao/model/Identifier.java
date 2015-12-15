@@ -7,13 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.apache.openjpa.persistence.jdbc.Index;
+import org.apache.openjpa.persistence.DataCache;
 import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -24,7 +25,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlRootElement(name = "identifier")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(schema = "hearsay", name = "identifier")
+@Table(schema = "hearsay", name = "identifier", uniqueConstraints = { @UniqueConstraint(columnNames = { "system", "value" }) })
+@DataCache(timeout = 300000)
 public class Identifier implements Persistable {
 
     private static final long serialVersionUID = 6208779597138958791L;
@@ -38,12 +40,10 @@ public class Identifier implements Persistable {
 
     @XmlAttribute
     @Column(name = "system")
-    @Index(name = "identifier_system_idx")
     private String system;
 
     @XmlAttribute
     @Column(name = "value")
-    @Index(name = "identifier_value_idx")
     private String value;
 
     public Identifier() {
