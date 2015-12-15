@@ -56,19 +56,21 @@ public class ReferenceSequenceTest {
     public void findByIdentifiers() {
 
         try {
+            // List<Identifier> rnaNucleotideAccessionIdentifierList = hearsayDAOBean.getIdentifierDAO()
+            // .findByExample(new Identifier("www.ncbi.nlm.nih.gov/nuccore", "NM_130787.2"));
+            //
+            // List<Identifier> proteinAccessionIdentifierList = hearsayDAOBean.getIdentifierDAO()
+            // .findByExample(new Identifier("www.ncbi.nlm.nih.gov/protein", "NP_570603.2"));
+                            
             List<Identifier> rnaNucleotideAccessionIdentifierList = hearsayDAOBean.getIdentifierDAO()
-                    .findByExample(new Identifier("www.ncbi.nlm.nih.gov/nuccore", "NM_130787.2"));
+                    .findByExample(new Identifier("canvas/refseq/transcript/versionId", "NM_020898.2"));
 
-            List<Identifier> proteinAccessionIdentifierList = hearsayDAOBean.getIdentifierDAO()
-                    .findByExample(new Identifier("www.ncbi.nlm.nih.gov/protein", "NP_570603.2"));
+            List<Identifier> genomeAccessionIdentifierList = hearsayDAOBean.getIdentifierDAO()
+                    .findByExample(new Identifier("canvas/ref/genomeRefSeq/verAccession", "NC_000012.11"));
 
             List<Long> identifierIdList = new ArrayList<Long>();
-            for (Identifier identifier : rnaNucleotideAccessionIdentifierList) {
-                identifierIdList.add(identifier.getId());
-            }
-            for (Identifier identifier : proteinAccessionIdentifierList) {
-                identifierIdList.add(identifier.getId());
-            }
+            identifierIdList.add(rnaNucleotideAccessionIdentifierList.get(0).getId());
+            identifierIdList.add(genomeAccessionIdentifierList.get(0).getId());
 
             List<ReferenceSequence> potentialRefSeqs = hearsayDAOBean.getReferenceSequenceDAO().findByIdentifiers(identifierIdList);
 
