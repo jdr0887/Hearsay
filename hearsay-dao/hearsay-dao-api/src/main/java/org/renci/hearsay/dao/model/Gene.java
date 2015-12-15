@@ -3,7 +3,6 @@ package org.renci.hearsay.dao.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -13,6 +12,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -23,10 +23,10 @@ import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.openjpa.persistence.DataCache;
 import org.apache.openjpa.persistence.FetchAttribute;
 import org.apache.openjpa.persistence.FetchGroup;
 import org.apache.openjpa.persistence.FetchGroups;
-import org.apache.openjpa.persistence.jdbc.Index;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -37,17 +37,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @XmlType(propOrder = { "symbol", "chromosomes", "description", "aliases" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(schema = "hearsay", name = "gene")
+@Table(schema = "hearsay", name = "gene", uniqueConstraints = { @UniqueConstraint(columnNames = "symbol") })
 @NamedQueries({ @NamedQuery(name = "Gene.findAll", query = "SELECT a FROM Gene a order by a.symbol") })
-@FetchGroups({ @FetchGroup(name = "includeAll", attributes = { @FetchAttribute(name = "chromosomes"), @FetchAttribute(name = "aliases"),
-        @FetchAttribute(name = "referenceSequences") }) })
+@DataCache(timeout = 300000)
+@FetchGroups({
+        @FetchGroup(name = "withChromosomesAndAliases", attributes = { @FetchAttribute(name = "chromosomes"),
+                @FetchAttribute(name = "aliases") }),
+        @FetchGroup(name = "includeAll", fetchGroups = { "withChromosomesAndAliases" }, attributes = {
+                @FetchAttribute(name = "referenceSequences") }) })
 public class Gene extends IdentifiableEntity {
 
     private static final long serialVersionUID = -5997799315221166517L;
 
     @XmlAttribute
     @Column(name = "symbol")
-    @Index(name = "gene_symbol_idx")
     private String symbol;
 
     @Column(name = "description", length = 4096)
@@ -72,6 +75,11 @@ public class Gene extends IdentifiableEntity {
 
     public Gene() {
         super();
+    }
+
+    public Gene(String symbol) {
+        super();
+        this.symbol = symbol;
     }
 
     public String getDescription() {
