@@ -1,12 +1,14 @@
 package org.renci.hearsay.dao.jpa;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.inject.Singleton;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -155,7 +157,7 @@ public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequenc
     }
 
     @Override
-    public List<ReferenceSequence> findByIdentifiers(List<Long> idList) throws HearsayDAOException {
+    public List<ReferenceSequence> findByIdentifiers(List<Identifier> idList) throws HearsayDAOException {
         logger.debug("ENTERING findByIdentifiers(Identifier)");
         List<ReferenceSequence> ret = new ArrayList<ReferenceSequence>();
         try {
@@ -163,13 +165,13 @@ public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequenc
             CriteriaQuery<ReferenceSequence> crit = critBuilder.createQuery(getPersistentClass());
             Root<ReferenceSequence> fromReferenceSequence = crit.from(ReferenceSequence.class);
             List<Predicate> predicates = new ArrayList<Predicate>();
-            Join<ReferenceSequence, Identifier> referenceSequenceIdentifierJoin = fromReferenceSequence
-                    .join(ReferenceSequence_.identifiers);
-            predicates.add(referenceSequenceIdentifierJoin.get(Identifier_.id).in(idList));
+            idList.forEach(a -> predicates.add(critBuilder.isMember(a, fromReferenceSequence.<Collection> get("identifiers"))));
             crit.where(predicates.toArray(new Predicate[predicates.size()]));
             crit.distinct(true);
             TypedQuery<ReferenceSequence> query = getEntityManager().createQuery(crit);
-            ret.addAll(query.getResultList());
+            OpenJPAQuery<ReferenceSequence> openjpaQuery = OpenJPAPersistence.cast(query);
+            openjpaQuery.getFetchPlan().addFetchGroup("includeManyToOnes");
+            ret.addAll(openjpaQuery.getResultList());
         } catch (Exception e) {
             throw new HearsayDAOException(e);
         }

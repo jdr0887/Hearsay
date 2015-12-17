@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -61,19 +62,27 @@ public class ReferenceSequenceTest {
             //
             // List<Identifier> proteinAccessionIdentifierList = hearsayDAOBean.getIdentifierDAO()
             // .findByExample(new Identifier("www.ncbi.nlm.nih.gov/protein", "NP_570603.2"));
-                            
+
             List<Identifier> rnaNucleotideAccessionIdentifierList = hearsayDAOBean.getIdentifierDAO()
-                    .findByExample(new Identifier("canvas/refseq/transcript/versionId", "NM_020898.2"));
+                    .findByExample(new Identifier("canvas/refseq/transcript/versionId", "NM_002570.3"));
 
             List<Identifier> genomeAccessionIdentifierList = hearsayDAOBean.getIdentifierDAO()
-                    .findByExample(new Identifier("canvas/ref/genomeRefSeq/verAccession", "NC_000012.11"));
+                    .findByExample(new Identifier("canvas/ref/genomeRefSeq/verAccession", "NC_000015.9"));
 
-            List<Long> identifierIdList = new ArrayList<Long>();
-            identifierIdList.add(rnaNucleotideAccessionIdentifierList.get(0).getId());
-            identifierIdList.add(genomeAccessionIdentifierList.get(0).getId());
+            List<Identifier> proteinAccessionIdentifierList = hearsayDAOBean.getIdentifierDAO()
+                    .findByExample(new Identifier("canvas/refseq/cds/proteinId", "NP_002561.1"));
+
+            // List<Long> identifierIdList = new ArrayList<Long>();
+            // identifierIdList.add(rnaNucleotideAccessionIdentifierList.get(0).getId());
+            // identifierIdList.add(genomeAccessionIdentifierList.get(0).getId());
+            // identifierIdList.add(proteinAccessionIdentifierList.get(0).getId());
+
+            List<Identifier> identifierIdList = new ArrayList<Identifier>();
+            identifierIdList.add(rnaNucleotideAccessionIdentifierList.get(0));
+            identifierIdList.add(genomeAccessionIdentifierList.get(0));
+            identifierIdList.add(proteinAccessionIdentifierList.get(0));
 
             List<ReferenceSequence> potentialRefSeqs = hearsayDAOBean.getReferenceSequenceDAO().findByIdentifiers(identifierIdList);
-
             assertTrue(CollectionUtils.isNotEmpty(potentialRefSeqs));
             assertTrue(potentialRefSeqs.size() == 1);
             serialize(potentialRefSeqs.get(0));
