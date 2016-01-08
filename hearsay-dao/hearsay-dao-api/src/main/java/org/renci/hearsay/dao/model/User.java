@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -65,7 +66,8 @@ public class User implements Persistable {
     @XmlElementWrapper(name = "roles")
     @XmlElement(name = "role")
     @ManyToMany(targetEntity = Role.class, cascade = { CascadeType.ALL })
-    @JoinTable(schema = "hearsay", name = "user_role", joinColumns = @JoinColumn(name = "user_fid") , inverseJoinColumns = @JoinColumn(name = "role_fid") )
+    @JoinTable(schema = "hearsay", name = "user_role", joinColumns = @JoinColumn(name = "user_fid") , inverseJoinColumns = @JoinColumn(name = "role_fid") , uniqueConstraints = {
+            @UniqueConstraint(columnNames = { "user_fid", "role_fid" }) })
     private Set<Role> roles;
 
     public User() {
