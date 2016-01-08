@@ -22,8 +22,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.openjpa.persistence.DataCache;
 import org.apache.openjpa.persistence.FetchAttribute;
 import org.apache.openjpa.persistence.FetchGroup;
 import org.apache.openjpa.persistence.FetchGroups;
@@ -39,7 +37,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 @Table(schema = "hearsay", name = "gene", uniqueConstraints = { @UniqueConstraint(columnNames = "symbol") })
 @NamedQueries({ @NamedQuery(name = "Gene.findAll", query = "SELECT a FROM Gene a order by a.symbol") })
-@DataCache(timeout = 300000)
 @FetchGroups({
         @FetchGroup(name = "withChromosomesAndAliases", attributes = { @FetchAttribute(name = "chromosomes"),
                 @FetchAttribute(name = "aliases") }),
@@ -59,7 +56,8 @@ public class Gene extends IdentifiableEntity {
     @XmlElementWrapper(name = "chromosomes")
     @XmlElement(name = "chromosome")
     @ManyToMany(targetEntity = Chromosome.class)
-    @JoinTable(schema = "hearsay", name = "gene_chromosome", joinColumns = @JoinColumn(name = "gene_fid") , inverseJoinColumns = @JoinColumn(name = "chromosome_fid") )
+    @JoinTable(schema = "hearsay", name = "gene_chromosome", joinColumns = @JoinColumn(name = "gene_fid") , inverseJoinColumns = @JoinColumn(name = "chromosome_fid") , uniqueConstraints = {
+            @UniqueConstraint(columnNames = { "gene_fid", "chromosome_fid" }) })
     private Set<Chromosome> chromosomes;
 
     @JsonInclude(Include.NON_EMPTY)
@@ -75,10 +73,12 @@ public class Gene extends IdentifiableEntity {
 
     public Gene() {
         super();
+        this.aliases = new HashSet<GeneSymbol>();
+        this.chromosomes = new HashSet<Chromosome>();
     }
 
     public Gene(String symbol) {
-        super();
+        this();
         this.symbol = symbol;
     }
 
@@ -91,9 +91,6 @@ public class Gene extends IdentifiableEntity {
     }
 
     public Set<Chromosome> getChromosomes() {
-        if (CollectionUtils.isEmpty(this.chromosomes)) {
-            this.chromosomes = new HashSet<Chromosome>();
-        }
         return chromosomes;
     }
 
@@ -110,9 +107,6 @@ public class Gene extends IdentifiableEntity {
     }
 
     public Set<GeneSymbol> getAliases() {
-        if (CollectionUtils.isEmpty(this.aliases)) {
-            this.aliases = new HashSet<GeneSymbol>();
-        }
         return aliases;
     }
 
@@ -121,9 +115,6 @@ public class Gene extends IdentifiableEntity {
     }
 
     public Set<ReferenceSequence> getReferenceSequences() {
-        if (CollectionUtils.isEmpty(this.referenceSequences)) {
-            this.referenceSequences = new HashSet<ReferenceSequence>();
-        }
         return referenceSequences;
     }
 
