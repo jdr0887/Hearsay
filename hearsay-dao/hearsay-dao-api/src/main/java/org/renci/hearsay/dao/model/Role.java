@@ -48,7 +48,7 @@ public class Role implements Persistable {
     }
 
     public Role(String name) {
-        super();
+        this();
         this.name = name;
     }
 
