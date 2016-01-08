@@ -48,7 +48,7 @@ public class Participant implements Persistable {
     }
 
     public Participant(String name) {
-        super();
+        this();
         this.name = name;
     }
 
