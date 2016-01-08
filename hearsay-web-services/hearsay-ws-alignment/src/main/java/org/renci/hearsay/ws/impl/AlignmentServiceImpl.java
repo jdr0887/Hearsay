@@ -30,14 +30,6 @@ public class AlignmentServiceImpl implements AlignmentService {
         Alignment ret = null;
         try {
             ret = alignmentDAO.findById(id);
-            if (ret != null && CollectionUtils.isNotEmpty(ret.getRegions())) {
-                Collections.sort(ret.getRegions(), new Comparator<Region>() {
-                    @Override
-                    public int compare(Region o1, Region o2) {
-                        return o1.getRegionLocation().getStart().compareTo(o2.getRegionLocation().getStart());
-                    }
-                });
-            }
         } catch (HearsayDAOException e) {
             logger.error("Error", e);
         }
