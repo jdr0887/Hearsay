@@ -14,19 +14,19 @@
       <cm:property name="validationQuery" value="SELECT 1" />
       <cm:property name="defaultReadOnly" value="false" />
       <cm:property name="defaultAutoCommit" value="true" />
-      <cm:property name="maxActive" value="24" />
+      <cm:property name="maxActive" value="16" />
       <cm:property name="whenExhaustedAction" value="2" />
       <cm:property name="maxWait" value="-1" />
-      <cm:property name="maxIdle" value="20" />
-      <cm:property name="minIdle" value="18" />
-      <cm:property name="testOnBorrow" value="true" />
-      <cm:property name="testOnReturn" value="true" />
+      <cm:property name="maxIdle" value="10" />
+      <cm:property name="minIdle" value="8" />
+      <cm:property name="testOnBorrow" value="false" />
+      <cm:property name="testOnReturn" value="false" />
       <cm:property name="timeBetweenEvictionRunsMillis" value="-1" />
       <cm:property name="numTestsPerEvictionRun" value="3" />
       <cm:property name="minEvictableIdleTimeMillis" value="1800000" />
-      <cm:property name="testWhileIdle" value="true" />
+      <cm:property name="testWhileIdle" value="false" />
       <cm:property name="softMinEvictableIdleTimeMillis" value="-1" />
-      <cm:property name="lifo" value="true" />
+      <cm:property name="lifo" value="false" />
     </cm:default-properties>
   </cm:property-placeholder>
 
