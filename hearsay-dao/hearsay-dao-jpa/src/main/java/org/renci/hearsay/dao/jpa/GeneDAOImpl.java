@@ -25,7 +25,6 @@ import org.renci.hearsay.dao.model.Gene;
 import org.renci.hearsay.dao.model.Gene_;
 import org.renci.hearsay.dao.model.Identifier;
 import org.renci.hearsay.dao.model.Identifier_;
-import org.renci.hearsay.dao.model.ReferenceSequence;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
