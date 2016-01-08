@@ -3,7 +3,6 @@ package org.renci.hearsay.dao.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -61,18 +61,30 @@ public class Feature implements Persistable {
 
     @XmlElementWrapper(name = "locations")
     @XmlElement(name = "location")
-    @ManyToMany(targetEntity = Location.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
-    @JoinTable(schema = "hearsay", name = "feature_location", joinColumns = @JoinColumn(name = "feature_fid") , inverseJoinColumns = @JoinColumn(name = "location_fid") )
+    @ManyToMany(targetEntity = Location.class, fetch = FetchType.LAZY)
+    @JoinTable(schema = "hearsay", name = "feature_location", joinColumns = @JoinColumn(name = "feature_fid") , inverseJoinColumns = @JoinColumn(name = "location_fid") , uniqueConstraints = {
+            @UniqueConstraint(columnNames = { "feature_fid", "location_fid" }) })
     private Set<Location> locations;
 
     @XmlTransient
-    @ManyToMany(targetEntity = ReferenceSequence.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
-    @JoinTable(schema = "hearsay", name = "reference_sequence_feature", joinColumns = @JoinColumn(name = "feature_fid") , inverseJoinColumns = @JoinColumn(name = "reference_sequence_fid") )
+    @ManyToMany(mappedBy = "features")
     private Set<ReferenceSequence> referenceSequences;
 
     public Feature() {
         super();
+        this.referenceSequences = new HashSet<ReferenceSequence>();
         this.locations = new HashSet<Location>();
+    }
+
+    public Feature(String type) {
+        this();
+        this.type = type;
+    }
+
+    public Feature(String type, String note) {
+        this();
+        this.type = type;
+        this.note = note;
     }
 
     public Long getId() {
