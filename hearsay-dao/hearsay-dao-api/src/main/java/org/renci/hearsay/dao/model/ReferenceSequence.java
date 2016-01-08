@@ -2,11 +2,11 @@ package org.renci.hearsay.dao.model;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -15,6 +15,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -72,13 +73,15 @@ public class ReferenceSequence extends IdentifiableEntity {
     private ReferenceSequenceRelationshipType relationshipType;
 
     @XmlTransient
-    @ManyToMany(targetEntity = Alignment.class, cascade = { CascadeType.ALL })
-    @JoinTable(schema = "hearsay", name = "reference_sequence_alignment", joinColumns = @JoinColumn(name = "reference_sequence_fid") , inverseJoinColumns = @JoinColumn(name = "alignment_fid") )
+    @ManyToMany(targetEntity = Alignment.class, fetch = FetchType.LAZY)
+    @JoinTable(schema = "hearsay", name = "reference_sequence_alignment", joinColumns = @JoinColumn(name = "reference_sequence_fid") , inverseJoinColumns = @JoinColumn(name = "alignment_fid") , uniqueConstraints = {
+            @UniqueConstraint(columnNames = { "reference_sequence_fid", "alignment_fid" }) })
     private Set<Alignment> alignments;
 
     @XmlTransient
-    @ManyToMany(targetEntity = Feature.class, cascade = { CascadeType.ALL })
-    @JoinTable(schema = "hearsay", name = "reference_sequence_feature", joinColumns = @JoinColumn(name = "reference_sequence_fid") , inverseJoinColumns = @JoinColumn(name = "feature_fid") )
+    @ManyToMany(targetEntity = Feature.class, fetch = FetchType.LAZY)
+    @JoinTable(schema = "hearsay", name = "reference_sequence_feature", joinColumns = @JoinColumn(name = "reference_sequence_fid") , inverseJoinColumns = @JoinColumn(name = "feature_fid") , uniqueConstraints = {
+            @UniqueConstraint(columnNames = { "reference_sequence_fid", "feature_fid" }) })
     private Set<Feature> features;
 
     public ReferenceSequence() {
