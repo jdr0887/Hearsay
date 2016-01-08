@@ -1,6 +1,7 @@
 package org.renci.hearsay.dao.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -10,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -45,8 +45,9 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @FetchGroups({
         @FetchGroup(name = "includeManyToOnes", attributes = { @FetchAttribute(name = "proteinLocation"),
                 @FetchAttribute(name = "CDSLocation") }),
-        @FetchGroup(name = "includeAll", fetchGroups = { "includeManyToOnes" }, attributes = { @FetchAttribute(name = "referenceSequences"),
-                @FetchAttribute(name = "regions") }) })
+        @FetchGroup(name = "includeRegions", fetchGroups = { "includeManyToOnes" }, attributes = { @FetchAttribute(name = "regions") }),
+        @FetchGroup(name = "includeAll", fetchGroups = { "includeRegions" }, attributes = {
+                @FetchAttribute(name = "referenceSequences"), }) })
 public class Alignment implements Persistable {
 
     private static final long serialVersionUID = 240726999951481482L;
@@ -59,8 +60,7 @@ public class Alignment implements Persistable {
     private Long id;
 
     @XmlTransient
-    @ManyToMany(targetEntity = ReferenceSequence.class)
-    @JoinTable(schema = "hearsay", name = "reference_sequence_alignment", joinColumns = @JoinColumn(name = "alignment_fid") , inverseJoinColumns = @JoinColumn(name = "reference_sequence_fid") )
+    @ManyToMany(mappedBy = "alignments")
     private Set<ReferenceSequence> referenceSequences;
 
     @XmlElementWrapper(name = "regions")
@@ -78,6 +78,7 @@ public class Alignment implements Persistable {
 
     public Alignment() {
         super();
+        this.referenceSequences = new HashSet<ReferenceSequence>();
         this.regions = new ArrayList<Region>();
     }
 
