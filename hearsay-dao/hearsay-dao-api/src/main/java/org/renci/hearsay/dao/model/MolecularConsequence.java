@@ -59,7 +59,7 @@ public class MolecularConsequence implements Persistable {
     }
 
     public MolecularConsequence(Integer soTermId, MolecularConsequenceType type) {
-        super();
+        this();
         this.soTermId = soTermId;
         this.type = type;
     }
