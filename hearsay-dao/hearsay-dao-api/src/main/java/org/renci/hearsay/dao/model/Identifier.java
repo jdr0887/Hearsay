@@ -14,7 +14,6 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.apache.openjpa.persistence.DataCache;
 import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -26,7 +25,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(schema = "hearsay", name = "identifier", uniqueConstraints = { @UniqueConstraint(columnNames = { "system", "value" }) })
-@DataCache(timeout = 300000)
 public class Identifier implements Persistable {
 
     private static final long serialVersionUID = 6208779597138958791L;
@@ -51,7 +49,7 @@ public class Identifier implements Persistable {
     }
 
     public Identifier(String system, String value) {
-        super();
+        this();
         this.system = system;
         this.value = value;
     }
