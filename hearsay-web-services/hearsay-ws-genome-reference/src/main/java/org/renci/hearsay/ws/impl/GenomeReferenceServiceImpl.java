@@ -19,7 +19,7 @@ public class GenomeReferenceServiceImpl implements GenomeReferenceService {
     public GenomeReferenceServiceImpl() {
         super();
     }
-    
+
     @Override
     public GenomeReference findById(Long id) {
         logger.debug("ENTERING findById(Long)");
