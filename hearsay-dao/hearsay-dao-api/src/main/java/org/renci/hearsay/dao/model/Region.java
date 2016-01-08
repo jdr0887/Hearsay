@@ -74,7 +74,7 @@ public class Region implements Persistable {
     }
 
     public Region(RegionType regionType) {
-        super();
+        this();
         this.regionType = regionType;
     }
 
