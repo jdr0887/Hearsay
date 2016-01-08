@@ -49,7 +49,7 @@ public class Location implements Persistable {
     }
 
     public Location(Integer start, Integer stop) {
-        super();
+        this();
         this.start = start;
         this.stop = stop;
     }
