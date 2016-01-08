@@ -18,6 +18,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -56,11 +57,13 @@ public abstract class IdentifiableEntity implements Persistable {
     @XmlElementWrapper(name = "identifiers")
     @XmlElement(name = "identifier")
     @ManyToMany(targetEntity = Identifier.class, fetch = FetchType.EAGER)
-    @JoinTable(schema = "hearsay", name = "entity_identifier", joinColumns = @JoinColumn(name = "entity_fid") , inverseJoinColumns = @JoinColumn(name = "identifier_fid") )
+    @JoinTable(schema = "hearsay", name = "entity_identifier", joinColumns = @JoinColumn(name = "entity_fid") , inverseJoinColumns = @JoinColumn(name = "identifier_fid") , uniqueConstraints = {
+            @UniqueConstraint(columnNames = { "entity_fid", "identifier_fid" }) })
     protected Set<Identifier> identifiers;
 
     public IdentifiableEntity() {
         super();
+        this.identifiers = new HashSet<Identifier>();
     }
 
     public Long getId() {
@@ -72,9 +75,6 @@ public abstract class IdentifiableEntity implements Persistable {
     }
 
     public Set<Identifier> getIdentifiers() {
-        if (this.identifiers == null) {
-            this.identifiers = new HashSet<Identifier>();
-        }
         return identifiers;
     }
 
