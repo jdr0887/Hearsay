@@ -52,7 +52,7 @@ public class IntronOffset implements Persistable {
     }
 
     public IntronOffset(Integer start, Integer stop, StrandType strandType) {
-        super();
+        this();
         this.start = start;
         this.stop = stop;
         this.strandType = strandType;
