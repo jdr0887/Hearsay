@@ -2,6 +2,7 @@ package org.renci.hearsay.dao.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -73,13 +74,13 @@ public class ReferenceSequence extends IdentifiableEntity {
     private ReferenceSequenceRelationshipType relationshipType;
 
     @XmlTransient
-    @ManyToMany(targetEntity = Alignment.class, fetch = FetchType.LAZY)
+    @ManyToMany(targetEntity = Alignment.class, cascade = { CascadeType.PERSIST }, fetch = FetchType.LAZY)
     @JoinTable(schema = "hearsay", name = "reference_sequence_alignment", joinColumns = @JoinColumn(name = "reference_sequence_fid") , inverseJoinColumns = @JoinColumn(name = "alignment_fid") , uniqueConstraints = {
             @UniqueConstraint(columnNames = { "reference_sequence_fid", "alignment_fid" }) })
     private Set<Alignment> alignments;
 
     @XmlTransient
-    @ManyToMany(targetEntity = Feature.class, fetch = FetchType.LAZY)
+    @ManyToMany(targetEntity = Feature.class, cascade = { CascadeType.PERSIST }, fetch = FetchType.LAZY)
     @JoinTable(schema = "hearsay", name = "reference_sequence_feature", joinColumns = @JoinColumn(name = "reference_sequence_fid") , inverseJoinColumns = @JoinColumn(name = "feature_fid") , uniqueConstraints = {
             @UniqueConstraint(columnNames = { "reference_sequence_fid", "feature_fid" }) })
     private Set<Feature> features;

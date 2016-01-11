@@ -67,7 +67,8 @@ public class Feature implements Persistable {
     private Set<Location> locations;
 
     @XmlTransient
-    @ManyToMany(mappedBy = "features")
+    @ManyToMany(targetEntity = ReferenceSequence.class, fetch = FetchType.LAZY)
+    @JoinTable(schema = "hearsay", name = "reference_sequence_feature", joinColumns = @JoinColumn(name = "feature_fid") , inverseJoinColumns = @JoinColumn(name = "reference_sequence_fid") )
     private Set<ReferenceSequence> referenceSequences;
 
     public Feature() {
