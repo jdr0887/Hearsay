@@ -1,5 +1,9 @@
 package org.renci.hearsay.ws.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.collections.CollectionUtils;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.IdentifierDAO;
 import org.renci.hearsay.dao.model.Identifier;
@@ -27,6 +31,33 @@ public class IdentifierServiceImpl implements IdentifierService {
             e.printStackTrace();
         }
         return ret;
+    }
+
+    @Override
+    public List<Identifier> findBySystem(String system) {
+        logger.debug("ENTERING findBySystem(String)");
+        List<Identifier> identifierList = new ArrayList<Identifier>();
+        try {
+            identifierList.addAll(identifierDAO.findByExample(new Identifier(system, null)));
+        } catch (HearsayDAOException e) {
+            e.printStackTrace();
+        }
+        return identifierList;
+    }
+
+    @Override
+    public Identifier findBySystemAndValue(String system, String value) {
+        logger.debug("ENTERING findBySystemAndValue(String, String)");
+        List<Identifier> identifierList = new ArrayList<Identifier>();
+        try {
+            identifierList.addAll(identifierDAO.findByExample(new Identifier(system, value)));
+        } catch (HearsayDAOException e) {
+            e.printStackTrace();
+        }
+        if (CollectionUtils.isNotEmpty(identifierList)) {
+            return identifierList.get(0);
+        }
+        return null;
     }
 
     public IdentifierDAO getIdentifierDAO() {
