@@ -44,13 +44,14 @@ public class Feature implements Persistable {
 
     private static final long serialVersionUID = 1234926307644461359L;
 
-    @XmlAttribute(name = "id")
+    @XmlAttribute
     @Id()
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "feature_id_seq")
     @SequenceGenerator(schema = "hearsay", name = "feature_id_seq", sequenceName = "feature_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
 
+    @XmlAttribute
     @JsonInclude(Include.NON_EMPTY)
     @Column(name = "type")
     private String type;
