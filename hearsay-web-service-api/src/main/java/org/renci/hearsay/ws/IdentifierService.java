@@ -1,5 +1,7 @@
 package org.renci.hearsay.ws;
 
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -17,5 +19,13 @@ public interface IdentifierService {
     @GET
     @Path("/findById/{id}")
     public Identifier findById(@PathParam("id") Long id);
+
+    @GET
+    @Path("/findBySystem/{system}")
+    public List<Identifier> findBySystem(@PathParam("system") String system);
+
+    @GET
+    @Path("/findBySystemAndValue/{system}/{value}")
+    public Identifier findBySystemAndValue(@PathParam("system") String system, @PathParam("value") String value);
 
 }
