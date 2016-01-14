@@ -47,22 +47,6 @@ public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequenc
     }
 
     @Override
-    public List<ReferenceSequence> findAll() throws HearsayDAOException {
-        logger.debug("ENTERING findAll()");
-        List<ReferenceSequence> ret = new ArrayList<ReferenceSequence>();
-        try {
-            TypedQuery<ReferenceSequence> query = getEntityManager().createNamedQuery("ReferenceSequence.findAll", ReferenceSequence.class);
-            OpenJPAQuery<ReferenceSequence> openjpaQuery = OpenJPAPersistence.cast(query);
-            // openjpaQuery.getFetchPlan().addFetchGroup("includeManyToOnes");
-            openjpaQuery.getFetchPlan().addFetchGroup("includeAll");
-            ret.addAll(openjpaQuery.getResultList());
-        } catch (Exception e) {
-            throw new HearsayDAOException(e);
-        }
-        return ret;
-    }
-
-    @Override
     public List<ReferenceSequence> findByGeneId(Long geneId) throws HearsayDAOException {
         logger.debug("ENTERING findByGeneId(Long)");
         List<ReferenceSequence> ret = new ArrayList<ReferenceSequence>();
@@ -132,8 +116,17 @@ public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequenc
     }
 
     @Override
-    public List<ReferenceSequence> findByIdentifierValue(String value) throws HearsayDAOException {
-        logger.debug("ENTERING findByIdentifierValue(String)");
+    public List<ReferenceSequence> findByIdentifierSystemAndValue(String system, String value) throws HearsayDAOException {
+        logger.debug("ENTERING findByIdentifierSystemAndValue(String, String)");
+        List<ReferenceSequence> ret = new ArrayList<ReferenceSequence>();
+        ret.addAll(findByIdentifierSystemAndValue("includeManyToOnes", system, value));
+        return ret;
+    }
+
+    @Override
+    public List<ReferenceSequence> findByIdentifierSystemAndValue(String fetchPlan, String system, String value)
+            throws HearsayDAOException {
+        logger.debug("ENTERING findByIdentifierSystemAndValue(String, String, String)");
         List<ReferenceSequence> ret = new ArrayList<ReferenceSequence>();
         try {
             CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
@@ -146,9 +139,43 @@ public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequenc
                 value += "%";
             }
             predicates.add(critBuilder.like(referenceSequenceIdentifierJoin.get(Identifier_.value), value));
+            predicates.add(critBuilder.equal(referenceSequenceIdentifierJoin.get(Identifier_.system), system));
             crit.where(predicates.toArray(new Predicate[predicates.size()]));
             TypedQuery<ReferenceSequence> query = getEntityManager().createQuery(crit);
-            ret.addAll(query.getResultList());
+            OpenJPAQuery<ReferenceSequence> openjpaQuery = OpenJPAPersistence.cast(query);
+            openjpaQuery.getFetchPlan().addFetchGroup(fetchPlan);
+            ret.addAll(openjpaQuery.getResultList());
+        } catch (Exception e) {
+            throw new HearsayDAOException(e);
+        }
+        return ret;
+    }
+
+    @Override
+    public List<ReferenceSequence> findByIdentifierSystem(String system) throws HearsayDAOException {
+        logger.debug("ENTERING findByIdentifierSystem(String)");
+        List<ReferenceSequence> ret = new ArrayList<ReferenceSequence>();
+        ret.addAll(findByIdentifierSystem("includeManyToOnes", system));
+        return ret;
+    }
+
+    @Override
+    public List<ReferenceSequence> findByIdentifierSystem(String fetchPlan, String system) throws HearsayDAOException {
+        logger.debug("ENTERING findByIdentifierSystem(String, String)");
+        List<ReferenceSequence> ret = new ArrayList<ReferenceSequence>();
+        try {
+            CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+            CriteriaQuery<ReferenceSequence> crit = critBuilder.createQuery(getPersistentClass());
+            Root<ReferenceSequence> fromReferenceSequence = crit.from(ReferenceSequence.class);
+            List<Predicate> predicates = new ArrayList<Predicate>();
+            Join<ReferenceSequence, Identifier> referenceSequenceIdentifierJoin = fromReferenceSequence
+                    .join(ReferenceSequence_.identifiers);
+            predicates.add(critBuilder.equal(referenceSequenceIdentifierJoin.get(Identifier_.system), system));
+            crit.where(predicates.toArray(new Predicate[predicates.size()]));
+            TypedQuery<ReferenceSequence> query = getEntityManager().createQuery(crit);
+            OpenJPAQuery<ReferenceSequence> openjpaQuery = OpenJPAPersistence.cast(query);
+            openjpaQuery.getFetchPlan().addFetchGroup(fetchPlan);
+            ret.addAll(openjpaQuery.getResultList());
         } catch (Exception e) {
             throw new HearsayDAOException(e);
         }
