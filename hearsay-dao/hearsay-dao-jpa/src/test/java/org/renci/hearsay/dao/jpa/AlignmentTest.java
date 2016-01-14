@@ -346,28 +346,22 @@ public class AlignmentTest {
 
         try {
 
-            // has plus strand
-            ReferenceSequence referenceSequence = referenceSequenceDAO.findById(55965L);
-            List<Alignment> alignmentList = alignmentDAO.findByReferenceSequenceId(55965L);
+            // minus strand example
+            // ReferenceSequence referenceSequence = referenceSequenceDAO.findById(94696L);
 
-            // has plus strand
-            // ReferenceSequence referenceSequence = referenceSequenceDAO.findById(55830L);
-            // List<Alignment> alignmentList = alignmentDAO.findByReferenceSequenceId(55830L);
+            // minus strand example with entire protein in one exon range
+            ReferenceSequence referenceSequence = referenceSequenceDAO.findById(80781L);
 
-            // has protein start/stop in the last exon
-            // ReferenceSequence referenceSequence = referenceSequenceDAO.findById(55824L);
-            // List<Alignment> alignmentList = alignmentDAO.findByReferenceSequenceId(55824L);
+            // plus strand example
+            // ReferenceSequence referenceSequence = referenceSequenceDAO.findById(75712L);
 
-            // ReferenceSequence referenceSequence = referenceSequenceDAO.findById(93637L);
-            // List<Alignment> alignmentList = alignmentDAO.findByReferenceSequenceId(93637L);
-
-            // ReferenceSequence referenceSequence = referenceSequenceDAO.findById(65751L);
-            // List<Alignment> alignmentList = alignmentDAO.findByReferenceSequenceId(65751L);
+            // plus strand example with entire protein in one exon range
+            // ReferenceSequence referenceSequence = referenceSequenceDAO.findById(87545L);
 
             StrandType strandType = referenceSequence.getStrandType();
             System.out.println(strandType.toString());
 
-            for (Alignment alignment : alignmentList) {
+            for (Alignment alignment : referenceSequence.getAlignments()) {
                 Location proteinLocation = alignment.getProteinLocation();
                 System.out.printf("Protein: %s%n", proteinLocation.toString());
 
@@ -376,25 +370,25 @@ public class AlignmentTest {
 
                 printRegions(regionList);
 
-                for (Region region : regionList) {
-                    Location transcriptLocation = region.getTranscriptLocation();
-                    if (transcriptLocation == null) {
-                        continue;
-                    }
-                    int transcriptStart = transcriptLocation.getStart();
-                    int transcriptStop = transcriptLocation.getStop();
-                    Range<Integer> transcriptRange = transcriptLocation.toRange();
+                if (strandType.equals(StrandType.MINUS)) {
 
-                    Location regionLocation = region.getRegionLocation();
-                    int regionStart = regionLocation.getStart();
-                    int regionStop = regionLocation.getStop();
+                    for (Region region : regionList) {
+                        Location transcriptLocation = region.getTranscriptLocation();
+                        if (transcriptLocation == null) {
+                            continue;
+                        }
+                        int transcriptStart = transcriptLocation.getStart();
+                        int transcriptStop = transcriptLocation.getStop();
+                        Range<Integer> transcriptRange = transcriptLocation.toRange();
 
-                    if (strandType.equals(StrandType.MINUS)) {
+                        Location regionLocation = region.getRegionLocation();
+                        int regionStart = regionLocation.getStart();
+                        int regionStop = regionLocation.getStop();
 
                         if (transcriptRange.contains(proteinLocation.getStart()) && transcriptRange.contains(proteinLocation.getStop())) {
 
                             transcriptLocation.setStop(proteinLocation.getStart() - 1);
-                            regionLocation.setStop(regionStop - transcriptLocation.diff());
+                            regionLocation.setStop(regionStart + transcriptLocation.diff());
 
                             Region newRegion = createRegion(alignment, proteinLocation.getStart(), proteinLocation.getStop(),
                                     regionLocation.getStop() + 1,
@@ -402,35 +396,46 @@ public class AlignmentTest {
                             utrRegionList.add(newRegion);
 
                             newRegion = createRegion(alignment, proteinLocation.getStop() + 1, transcriptStop,
-                                    newRegion.getRegionLocation().getStop() + 1,
-                                    newRegion.getRegionLocation().getStop() + 1 + (transcriptStop - proteinLocation.getStop() - 1));
+                                    newRegion.getRegionLocation().getStop() + 1, regionStop);
                             utrRegionList.add(newRegion);
 
                         } else if (transcriptRange.contains(proteinLocation.getStart())) {
 
-                            transcriptLocation.setStart(proteinLocation.getStart() - 1);
+                            transcriptLocation.setStop(proteinLocation.getStart() - 1);
                             regionLocation.setStart(regionStop - transcriptLocation.diff());
 
-                            Region newRegion = createRegion(alignment, transcriptStart, proteinLocation.getStart(),
-                                    regionLocation.getStart() - 1 - (transcriptStart - proteinLocation.getStart()),
+                            Region newRegion = createRegion(alignment, proteinLocation.getStart(), transcriptStop,
+                                    regionLocation.getStart() - 1 - (transcriptStop - proteinLocation.getStart()),
                                     regionLocation.getStart() - 1);
                             utrRegionList.add(newRegion);
 
                         } else if (transcriptRange.contains(proteinLocation.getStop())) {
 
-                            transcriptLocation.setStart(proteinLocation.getStop());
-                            regionLocation.setStart(regionLocation.getStop() - transcriptLocation.diff());
+                            transcriptLocation.setStart(proteinLocation.getStop() + 1);
+                            regionLocation.setStop(regionStart + transcriptLocation.diff());
 
-                            Region newRegion = createRegion(alignment, transcriptStart, proteinLocation.getStop() + 1,
-                                    regionLocation.getStart() - (transcriptStart - proteinLocation.getStop()),
-                                    regionLocation.getStart() - 1);
+                            Region newRegion = createRegion(alignment, transcriptStart, proteinLocation.getStop(),
+                                    regionLocation.getStop() + 1,
+                                    regionLocation.getStop() + 1 + (proteinLocation.getStop() - transcriptStart));
                             utrRegionList.add(newRegion);
 
                         }
 
                     }
 
-                    if (strandType.equals(StrandType.PLUS)) {
+                } else {
+                    for (Region region : regionList) {
+                        Location transcriptLocation = region.getTranscriptLocation();
+                        if (transcriptLocation == null) {
+                            continue;
+                        }
+                        int transcriptStart = transcriptLocation.getStart();
+                        int transcriptStop = transcriptLocation.getStop();
+                        Range<Integer> transcriptRange = transcriptLocation.toRange();
+
+                        Location regionLocation = region.getRegionLocation();
+                        int regionStart = regionLocation.getStart();
+                        int regionStop = regionLocation.getStop();
 
                         if (transcriptRange.contains(proteinLocation.getStart()) && transcriptRange.contains(proteinLocation.getStop())) {
 
@@ -459,20 +464,22 @@ public class AlignmentTest {
 
                         } else if (transcriptRange.contains(proteinLocation.getStop())) {
 
-                            transcriptLocation.setStop(proteinLocation.getStop() - 1);
-                            regionLocation.setStop(regionStart + transcriptLocation.diff());
+                            transcriptLocation.setStart(proteinLocation.getStop() + 1);
+                            regionLocation.setStart(regionStop - transcriptLocation.diff());
 
-                            Region newRegion = createRegion(alignment, proteinLocation.getStop(), transcriptStop,
-                                    regionStop - (transcriptStop - proteinLocation.getStop() + 1), regionStop);
+                            Region newRegion = createRegion(alignment, transcriptStart, proteinLocation.getStop(),
+                                    regionLocation.getStart() - 1 - (proteinLocation.getStop() - transcriptStart),
+                                    regionLocation.getStart() - 1);
                             utrRegionList.add(newRegion);
 
                         }
 
                     }
-
                 }
 
                 regionList.addAll(utrRegionList);
+
+                printRegions(regionList);
 
                 for (Region region : regionList) {
 
@@ -556,11 +563,11 @@ public class AlignmentTest {
     }
 
     private void printRegions(List<Region> regionList) {
-        Collections.sort(regionList, new Comparator<Region>() {
-            @Override
-            public int compare(Region o1, Region o2) {
-                return Integer.compare(o1.getRegionLocation().getStart(), o2.getRegionLocation().getStart());
+        regionList.sort((a, b) -> {
+            if (a != null && b != null) {
+                return a.getRegionLocation().getStart().compareTo(b.getRegionLocation().getStart());
             }
+            return 0;
         });
         System.out.println("-----------");
         for (Region region : regionList) {
