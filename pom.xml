@@ -31,9 +31,15 @@
   <properties>
     <spring.security.version>3.2.8.RELEASE</spring.security.version>
     <postgresql.version>9.4-1206-jdbc42</postgresql.version>
+    <gff3.parser.version>0.0.5</gff3.parser.version>    
   </properties>
   <dependencyManagement>
     <dependencies>
+      <dependency>
+	<groupId>org.renci.gff</groupId>
+	<artifactId>gff3-parser</artifactId>
+	<version>${gff3.parser.version}</version>	
+      </dependency>            
       <dependency>
 	<groupId>javax.transaction</groupId>
 	<artifactId>javax.transaction-api</artifactId>
