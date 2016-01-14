@@ -92,21 +92,6 @@ public class ReferenceSequenceTest {
 
     }
 
-    @Test
-    public void findAll() {
-
-        try {
-            long startTime = System.currentTimeMillis();
-            List<ReferenceSequence> potentialRefSeqs = hearsayDAOBean.getReferenceSequenceDAO().findAll();
-            long endTime = System.currentTimeMillis();
-            System.out.printf("duration: %d minutes", (endTime - startTime) / 1000 / 60);
-            assertTrue(CollectionUtils.isNotEmpty(potentialRefSeqs));
-        } catch (HearsayDAOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
     private void serialize(ReferenceSequence referenceSequence) {
 
         try {
