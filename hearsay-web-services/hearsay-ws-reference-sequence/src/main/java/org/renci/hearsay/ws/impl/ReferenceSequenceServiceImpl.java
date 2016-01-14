@@ -45,11 +45,23 @@ public class ReferenceSequenceServiceImpl implements ReferenceSequenceService {
     }
 
     @Override
-    public List<ReferenceSequence> findByIdentifierValue(String value) {
-        logger.debug("ENTERING findByGeneId(Long)");
+    public List<ReferenceSequence> findByIdentifierSystem(String system) {
+        logger.debug("ENTERING findByIdentifierSystem(String)");
         List<ReferenceSequence> ret = new ArrayList<ReferenceSequence>();
         try {
-            ret.addAll(referenceSequenceDAO.findByIdentifierValue(value));
+            ret.addAll(referenceSequenceDAO.findByIdentifierSystem(system));
+        } catch (HearsayDAOException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    @Override
+    public List<ReferenceSequence> findByIdentifierSystemAndValue(String system, String value) {
+        logger.debug("ENTERING findByIdentifierSystemAndValue(String, String)");
+        List<ReferenceSequence> ret = new ArrayList<ReferenceSequence>();
+        try {
+            ret.addAll(referenceSequenceDAO.findByIdentifierSystemAndValue(system, value));
         } catch (HearsayDAOException e) {
             e.printStackTrace();
         }
