@@ -45,11 +45,11 @@ public class AlignmentServiceImpl implements AlignmentService {
             if (CollectionUtils.isNotEmpty(ret)) {
                 for (Alignment alignment : ret) {
                     if (CollectionUtils.isNotEmpty(alignment.getRegions())) {
-                        Collections.sort(alignment.getRegions(), new Comparator<Region>() {
-                            @Override
-                            public int compare(Region o1, Region o2) {
-                                return o1.getRegionLocation().getStart().compareTo(o2.getRegionLocation().getStart());
+                        alignment.getRegions().sort((a, b) -> {
+                            if (a.getTranscriptLocation() != null && b.getTranscriptLocation() != null) {
+                                return a.getTranscriptLocation().getStart().compareTo(b.getTranscriptLocation().getStart());
                             }
+                            return 0;
                         });
                     }
                 }
