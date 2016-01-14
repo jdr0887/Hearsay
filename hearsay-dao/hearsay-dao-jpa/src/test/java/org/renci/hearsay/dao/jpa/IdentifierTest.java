@@ -42,7 +42,7 @@ public class IdentifierTest {
         // Identifier identifier = new Identifier("www.ncbi.nlm.nih.gov/snp", "61748497");
         // hearsayDAOBean.getIdentifierDAO().findByExample(identifier);
 
-        hearsayDAOBean.getReferenceSequenceDAO().findByIdentifierValue("NM_000552.3");
+        hearsayDAOBean.getReferenceSequenceDAO().findByIdentifierSystemAndValue("www.ncbi.nlm.nih.gov/nuccore", "NM_000552.3");
 
     }
 
