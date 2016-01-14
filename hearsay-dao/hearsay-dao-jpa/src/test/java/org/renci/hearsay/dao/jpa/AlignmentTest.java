@@ -9,16 +9,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.Range;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -333,6 +334,76 @@ public class AlignmentTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void testReferenceSequenceRetrieval() {
+
+        IdentifierDAOImpl identifierDAO = new IdentifierDAOImpl();
+        identifierDAO.setEntityManager(em);
+
+        ReferenceSequenceDAOImpl referenceSequenceDAO = new ReferenceSequenceDAOImpl();
+        referenceSequenceDAO.setEntityManager(em);
+
+        Map<ReferenceSequence, Integer> metrics = new HashMap<ReferenceSequence, Integer>();
+        try {
+            List<String> lines = FileUtils.readLines(new File("/tmp", "refseq-protein.txt"));
+
+            for (String line : lines) {
+                String[] split = line.split("\\|");
+                String proteinId = split[0];
+                String refSeqVersionedAccession = split[1];
+
+                List<Identifier> identifierList = new ArrayList<Identifier>();
+
+                // find by rna nucleotide accession
+                List<Identifier> rnaNucleotideAccessionIdentifierList = identifierDAO
+                        .findByExample(new Identifier("www.ncbi.nlm.nih.gov/nuccore", refSeqVersionedAccession));
+                if (CollectionUtils.isNotEmpty(rnaNucleotideAccessionIdentifierList)) {
+                    identifierList.add(rnaNucleotideAccessionIdentifierList.get(0));
+                }
+
+                // find by protein id
+                List<Identifier> proteinAccessionIdentifierList = identifierDAO
+                        .findByExample(new Identifier("www.ncbi.nlm.nih.gov/protein", proteinId));
+                if (CollectionUtils.isNotEmpty(proteinAccessionIdentifierList)) {
+                    identifierList.add(proteinAccessionIdentifierList.get(0));
+                }
+
+                if (identifierList.size() != 2) {
+                    continue;
+                }
+
+                List<ReferenceSequence> potentialRefSeqs = referenceSequenceDAO.findByIdentifiers(identifierList);
+
+                if (CollectionUtils.isEmpty(potentialRefSeqs)) {
+                    System.out.println("Could not find ReferenceSequence");
+                } else {
+                    ReferenceSequence referenceSequence = potentialRefSeqs.get(0);
+                    if (!metrics.containsKey(referenceSequence)) {
+                        metrics.put(referenceSequence, 1);
+                    } else {
+                        Integer value = metrics.get(referenceSequence);
+                        metrics.put(referenceSequence, value + 1);
+                    }
+
+                    System.out.printf("identifierList.size(): %s%n", identifierList.size());
+                    System.out.printf("proteinId: %s%n", proteinId);
+                    System.out.printf("refSeqVersionedAccession: %s%n", refSeqVersionedAccession);
+                    System.out.printf("potentialRefSeqs.size(): %s%n", potentialRefSeqs.size());
+                    System.out.println(referenceSequence.toString());
+                }
+
+            }
+
+            for (ReferenceSequence referenceSequence : metrics.keySet()) {
+                System.out.printf("%s:%d%n", referenceSequence, metrics.get(referenceSequence));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Test
