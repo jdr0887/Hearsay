@@ -42,6 +42,9 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @FetchGroups({
         @FetchGroup(name = "includeManyToOnes", attributes = { @FetchAttribute(name = "genomicLocation"), @FetchAttribute(name = "gene"),
                 @FetchAttribute(name = "genomeReference") }),
+        @FetchGroup(name = "includeAlignments", fetchGroups = { "includeManyToOnes" }, attributes = {
+                @FetchAttribute(name = "alignments") }),
+        @FetchGroup(name = "includeFeatures", fetchGroups = { "includeManyToOnes" }, attributes = { @FetchAttribute(name = "features") }),
         @FetchGroup(name = "includeAll", fetchGroups = { "includeManyToOnes" }, attributes = { @FetchAttribute(name = "alignments"),
                 @FetchAttribute(name = "features") }) })
 public class ReferenceSequence extends IdentifiableEntity {
