@@ -35,7 +35,7 @@ import org.slf4j.LoggerFactory;
 @Transactional(Transactional.TxType.SUPPORTS)
 public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequence, Long> implements ReferenceSequenceDAO {
 
-    private final Logger logger = LoggerFactory.getLogger(ReferenceSequenceDAOImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(ReferenceSequenceDAOImpl.class);
 
     public ReferenceSequenceDAOImpl() {
         super();
