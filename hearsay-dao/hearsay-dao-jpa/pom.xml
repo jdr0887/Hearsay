@@ -12,6 +12,11 @@
   <packaging>bundle</packaging>
   <dependencies>
     <dependency>
+      <groupId>org.renci.gff</groupId>
+      <artifactId>gff3-parser</artifactId>
+      <scope>test</scope>
+    </dependency>      
+    <dependency>
       <groupId>javax.inject</groupId>
       <artifactId>javax.inject</artifactId>
     </dependency>
