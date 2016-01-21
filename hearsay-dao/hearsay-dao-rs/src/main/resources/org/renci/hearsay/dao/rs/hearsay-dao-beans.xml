@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
-<beans>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-  <bean id="transcriptRefSeqDAO" class="org.renci.hearsay.dao.rs.TranscriptRefSeqDAOImpl" init-method="init" singleton="true" />
-
-  <bean id="hearsayDAOBean" class="org.renci.hearsay.dao.HearsayDAOBean">
-    <property name="transcriptRefSeqDAO" ref="transcriptRefSeqDAO" />
-  </bean>
+  <context:component-scan base-package="org.renci.hearsay.dao.rs" />
+  <context:annotation-config />
 
 </beans>
