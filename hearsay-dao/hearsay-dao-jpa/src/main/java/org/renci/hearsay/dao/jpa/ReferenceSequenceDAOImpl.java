@@ -60,7 +60,7 @@ public class ReferenceSequenceDAOImpl extends BaseEntityDAOImpl<ReferenceSequenc
             crit.where(predicates.toArray(new Predicate[predicates.size()]));
             TypedQuery<ReferenceSequence> query = getEntityManager().createQuery(crit);
             OpenJPAQuery<ReferenceSequence> openjpaQuery = OpenJPAPersistence.cast(query);
-            openjpaQuery.getFetchPlan().addFetchGroup("includeAll");
+            openjpaQuery.getFetchPlan().addFetchGroup("includeManyToOnes");
             ret.addAll(openjpaQuery.getResultList());
         } catch (Exception e) {
             throw new HearsayDAOException(e);
