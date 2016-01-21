@@ -1,15 +1,12 @@
 package org.renci.hearsay.ws.impl;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.renci.hearsay.dao.AlignmentDAO;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.model.Alignment;
-import org.renci.hearsay.dao.model.Region;
 import org.renci.hearsay.ws.AlignmentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,8 +43,8 @@ public class AlignmentServiceImpl implements AlignmentService {
                 for (Alignment alignment : ret) {
                     if (CollectionUtils.isNotEmpty(alignment.getRegions())) {
                         alignment.getRegions().sort((a, b) -> {
-                            if (a.getTranscriptLocation() != null && b.getTranscriptLocation() != null) {
-                                return a.getTranscriptLocation().getStart().compareTo(b.getTranscriptLocation().getStart());
+                            if (a.getRegionLocation() != null && b.getRegionLocation() != null) {
+                                return a.getRegionLocation().getStart().compareTo(b.getRegionLocation().getStart());
                             }
                             return 0;
                         });
