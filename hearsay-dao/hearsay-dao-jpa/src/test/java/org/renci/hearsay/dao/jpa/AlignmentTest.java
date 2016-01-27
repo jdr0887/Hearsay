@@ -554,23 +554,19 @@ public class AlignmentTest {
 
                 for (Region region : regionList) {
 
-                    if (strandType.equals(StrandType.PLUS)
-                            && region.getTranscriptLocation().getStop() < alignment.getProteinLocation().getStart()) {
+                    if (strandType.equals(StrandType.PLUS) && region.getTranscriptLocation().getStop() < proteinLocation.getStart()) {
                         region.setRegionType(RegionType.UTR5);
                     }
 
-                    if (strandType.equals(StrandType.PLUS)
-                            && region.getTranscriptLocation().getStop() > alignment.getProteinLocation().getStop()) {
+                    if (strandType.equals(StrandType.PLUS) && region.getTranscriptLocation().getStop() > proteinLocation.getStop()) {
                         region.setRegionType(RegionType.UTR3);
                     }
 
-                    if (strandType.equals(StrandType.MINUS)
-                            && region.getTranscriptLocation().getStop() < alignment.getProteinLocation().getStart()) {
+                    if (strandType.equals(StrandType.MINUS) && region.getTranscriptLocation().getStop() < proteinLocation.getStart()) {
                         region.setRegionType(RegionType.UTR5);
                     }
 
-                    if (strandType.equals(StrandType.MINUS)
-                            && region.getTranscriptLocation().getStop() > alignment.getProteinLocation().getStop()) {
+                    if (strandType.equals(StrandType.MINUS) && region.getTranscriptLocation().getStop() > proteinLocation.getStop()) {
                         region.setRegionType(RegionType.UTR3);
                     }
 
