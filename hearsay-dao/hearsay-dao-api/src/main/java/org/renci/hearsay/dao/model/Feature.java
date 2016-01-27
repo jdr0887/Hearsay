@@ -38,8 +38,9 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(schema = "hearsay", name = "feature")
-@FetchGroups({ @FetchGroup(name = "includeAll", attributes = { @FetchAttribute(name = "locations"),
-        @FetchAttribute(name = "referenceSequences") }) })
+@FetchGroups({ @FetchGroup(name = "includeLocations", attributes = { @FetchAttribute(name = "locations") }),
+        @FetchGroup(name = "includeAll", attributes = { @FetchAttribute(name = "locations"),
+                @FetchAttribute(name = "referenceSequences") }) })
 public class Feature implements Persistable {
 
     private static final long serialVersionUID = 1234926307644461359L;
