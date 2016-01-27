@@ -8,4 +8,6 @@ public interface FeatureDAO extends BaseEntityDAO<Feature, Long> {
 
     public List<Feature> findByReferenceSequenceId(Long referenceSequenceId) throws HearsayDAOException;
 
+    public List<Feature> findByReferenceSequenceId(String fetchGroup, Long referenceSequenceId) throws HearsayDAOException;
+
 }
