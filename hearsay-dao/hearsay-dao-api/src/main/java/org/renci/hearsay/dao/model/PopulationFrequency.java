@@ -68,6 +68,17 @@ public class PopulationFrequency implements Persistable {
     @JoinColumn(name = "position_fid")
     private Location position;
 
+    public PopulationFrequency() {
+        super();
+    }
+
+    public PopulationFrequency(Double frequency, String source, String version) {
+        super();
+        this.frequency = frequency;
+        this.source = source;
+        this.version = version;
+    }
+
     public Long getId() {
         return id;
     }
