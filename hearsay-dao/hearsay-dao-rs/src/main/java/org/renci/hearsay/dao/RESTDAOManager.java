@@ -1,6 +1,5 @@
 package org.renci.hearsay.dao;
 
-import org.renci.hearsay.dao.HearsayDAOBeanService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
