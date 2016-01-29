@@ -14,7 +14,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -36,7 +35,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType(propOrder = { "type", "genomicLocation", "strandType", "gene", "genomeReference", "relationshipType" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@PrimaryKeyJoinColumn(name = "id")
 @Table(schema = "hearsay", name = "reference_sequence")
 @NamedQueries({ @NamedQuery(name = "ReferenceSequence.findAll", query = "SELECT a FROM ReferenceSequence a") })
 @FetchGroups({
