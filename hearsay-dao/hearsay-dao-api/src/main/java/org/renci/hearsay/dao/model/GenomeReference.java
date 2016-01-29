@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -29,7 +28,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType(propOrder = { "name" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@PrimaryKeyJoinColumn(name = "id")
 @Table(schema = "hearsay", name = "genome_reference", uniqueConstraints = { @UniqueConstraint(columnNames = "name") })
 @NamedQueries({ @NamedQuery(name = "GenomeReference.findAll", query = "SELECT a FROM GenomeReference a order by a.name"),
         @NamedQuery(name = "GenomeReference.findByName", query = "SELECT a FROM GenomeReference a where a.name = :name order by a.name") })
