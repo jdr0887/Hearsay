@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(schema = "hearsay", name = "population_frequency")
-@FetchGroups({ @FetchGroup(name = "includeManyToOnes", attributes = { @FetchAttribute(name = "simpleAllele"),
+@FetchGroups({ @FetchGroup(name = "includeManyToOnes", attributes = { @FetchAttribute(name = "contextualAllele"),
         @FetchAttribute(name = "gene"), @FetchAttribute(name = "position") }) })
 public class PopulationFrequency implements Persistable {
 
@@ -57,8 +57,8 @@ public class PopulationFrequency implements Persistable {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "simple_allele_fid")
-    private SimpleAllele simpleAllele;
+    @JoinColumn(name = "contextual_allele_fid")
+    private ContextualAllele contextualAllele;
 
     @ManyToOne
     @JoinColumn(name = "gene_fid")
@@ -103,12 +103,12 @@ public class PopulationFrequency implements Persistable {
         this.gene = gene;
     }
 
-    public SimpleAllele getSimpleAllele() {
-        return simpleAllele;
+    public ContextualAllele getContextualAllele() {
+        return contextualAllele;
     }
 
-    public void setSimpleAllele(SimpleAllele simpleAllele) {
-        this.simpleAllele = simpleAllele;
+    public void setContextualAllele(ContextualAllele contextualAllele) {
+        this.contextualAllele = contextualAllele;
     }
 
     public String getPopulation() {
