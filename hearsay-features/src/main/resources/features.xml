@@ -58,6 +58,7 @@
     <bundle>mvn:org.renci.hearsay/hearsay-web-service-api/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-alignment/${project.version}</bundle>    
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-canonical-allele/${project.version}</bundle>
+    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-contextual-allele/${project.version}</bundle>    
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-feature/${project.version}</bundle>  
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-gene/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-gene-symbol/${project.version}</bundle>
@@ -68,7 +69,6 @@
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-region/${project.version}</bundle>    
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-reference-coordinate/${project.version}</bundle>
     <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-reference-sequence/${project.version}</bundle>
-    <bundle>mvn:org.renci.hearsay.hearsay-web-services/hearsay-ws-simple-allele/${project.version}</bundle>
   </feature>
 
   <feature name="hearsay-commands" version="${project.version}" resolver="(obr)">
