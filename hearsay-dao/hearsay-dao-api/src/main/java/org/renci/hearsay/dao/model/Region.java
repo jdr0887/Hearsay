@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -32,7 +31,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType(propOrder = { "id", "regionType", "regionLocation", "cdsLocation", "transcriptLocation" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@PrimaryKeyJoinColumn(name = "id")
 @Table(schema = "hearsay", name = "region")
 @FetchGroups({ @FetchGroup(name = "includeManyToOnes", attributes = { @FetchAttribute(name = "alignment"),
         @FetchAttribute(name = "regionLocation"), @FetchAttribute(name = "cdsLocation"), @FetchAttribute(name = "transcriptLocation") }) })
