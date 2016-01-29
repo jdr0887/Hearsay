@@ -9,7 +9,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -28,7 +27,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
         "relatedIdentifiers" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@PrimaryKeyJoinColumn(name = "id")
 @Table(schema = "hearsay", name = "canonical_allele")
 public class CanonicalAllele extends IdentifiableEntity {
 
@@ -45,38 +43,40 @@ public class CanonicalAllele extends IdentifiableEntity {
     @Column(name = "version")
     private String version;
 
-    @Column(name = "molecule_type")
     @Enumerated(EnumType.STRING)
-    private ReferenceSequenceType moleculeType;
+    @Column(name = "type")
+    private CanonicalAlleleType type;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "complexity_type")
-    @Enumerated(EnumType.STRING)
     private ComplexityType complexityType;
-
-    @Column(name = "replacement_type")
-    @Enumerated(EnumType.STRING)
-    private ReplacementType replacementType;
 
     @XmlAttribute
     @Column(name = "split")
     private Boolean split;
 
-    @XmlElementWrapper(name = "simpleAlleles")
-    @XmlElement(name = "simpleAllele")
+    @XmlElementWrapper(name = "replacements")
+    @XmlElement(name = "replacements")
     @OneToMany(mappedBy = "canonicalAllele", fetch = FetchType.LAZY)
-    private List<SimpleAllele> simpleAlleles;
+    private List<CanonicalAlleleReplacement> replacements;
+
+    @XmlElementWrapper(name = "contextualAlleles")
+    @XmlElement(name = "contextualAllele")
+    @OneToMany(mappedBy = "canonicalAllele", fetch = FetchType.LAZY)
+    private List<ContextualAllele> contextualAlleles;
 
     public CanonicalAllele() {
         super();
-        this.simpleAlleles = new ArrayList<SimpleAllele>();
+        this.replacements = new ArrayList<CanonicalAlleleReplacement>();
+        this.contextualAlleles = new ArrayList<ContextualAllele>();
     }
 
-    public List<SimpleAllele> getSimpleAlleles() {
-        return simpleAlleles;
+    public List<ContextualAllele> getContextualAlleles() {
+        return contextualAlleles;
     }
 
-    public void setSimpleAlleles(List<SimpleAllele> simpleAlleles) {
-        this.simpleAlleles = simpleAlleles;
+    public void setContextualAlleles(List<ContextualAllele> contextualAlleles) {
+        this.contextualAlleles = contextualAlleles;
     }
 
     public Boolean getActive() {
@@ -103,12 +103,12 @@ public class CanonicalAllele extends IdentifiableEntity {
         this.name = name;
     }
 
-    public ReferenceSequenceType getMoleculeType() {
-        return moleculeType;
+    public CanonicalAlleleType getType() {
+        return type;
     }
 
-    public void setMoleculeType(ReferenceSequenceType moleculeType) {
-        this.moleculeType = moleculeType;
+    public void setType(CanonicalAlleleType type) {
+        this.type = type;
     }
 
     public ComplexityType getComplexityType() {
@@ -119,12 +119,12 @@ public class CanonicalAllele extends IdentifiableEntity {
         this.complexityType = complexityType;
     }
 
-    public ReplacementType getReplacementType() {
-        return replacementType;
+    public List<CanonicalAlleleReplacement> getReplacements() {
+        return replacements;
     }
 
-    public void setReplacementType(ReplacementType replacementType) {
-        this.replacementType = replacementType;
+    public void setReplacements(List<CanonicalAlleleReplacement> replacements) {
+        this.replacements = replacements;
     }
 
     public Boolean getSplit() {
@@ -137,21 +137,19 @@ public class CanonicalAllele extends IdentifiableEntity {
 
     @Override
     public String toString() {
-        return String.format(
-                "CanonicalAllele [id=%s, name=%s, active=%s, version=%s, moleculeType=%s, complexityType=%s, replacementType=%s, split=%s]",
-                id, name, active, version, moleculeType, complexityType, replacementType, split);
+        return String.format("CanonicalAllele [id=%s, name=%s, active=%s, version=%s, type=%s, complexityType=%s, split=%s]", id, name,
+                active, version, type, complexityType, split);
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = 1;
+        int result = super.hashCode();
         result = prime * result + ((active == null) ? 0 : active.hashCode());
         result = prime * result + ((complexityType == null) ? 0 : complexityType.hashCode());
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((replacementType == null) ? 0 : replacementType.hashCode());
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((split == null) ? 0 : split.hashCode());
-        result = prime * result + ((moleculeType == null) ? 0 : moleculeType.hashCode());
+        result = prime * result + ((type == null) ? 0 : type.hashCode());
         result = prime * result + ((version == null) ? 0 : version.hashCode());
         return result;
     }
@@ -160,7 +158,7 @@ public class CanonicalAllele extends IdentifiableEntity {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null)
+        if (!super.equals(obj))
             return false;
         if (getClass() != obj.getClass())
             return false;
@@ -172,19 +170,17 @@ public class CanonicalAllele extends IdentifiableEntity {
             return false;
         if (complexityType != other.complexityType)
             return false;
-        if (id == null) {
-            if (other.id != null)
+        if (name == null) {
+            if (other.name != null)
                 return false;
-        } else if (!id.equals(other.id))
-            return false;
-        if (replacementType != other.replacementType)
+        } else if (!name.equals(other.name))
             return false;
         if (split == null) {
             if (other.split != null)
                 return false;
         } else if (!split.equals(other.split))
             return false;
-        if (moleculeType != other.moleculeType)
+        if (type != other.type)
             return false;
         if (version == null) {
             if (other.version != null)
