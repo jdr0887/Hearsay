@@ -10,9 +10,17 @@ public interface HearsayDAOBeanService {
 
     public void setChromosomeDAO(ChromosomeDAO chromosomeDAO);
 
+    public ContextualAlleleNameDAO getContextualAlleleNameDAO();
+
+    public void setContextualAlleleNameDAO(ContextualAlleleNameDAO contextualAlleleNameDAO);
+
     public CanonicalAlleleDAO getCanonicalAlleleDAO();
 
     public void setCanonicalAlleleDAO(CanonicalAlleleDAO canonicalAlleleDAO);
+
+    public CanonicalAlleleReplacementDAO getCanonicalAlleleReplacementDAO();
+
+    public void setCanonicalAlleleReplacementDAO(CanonicalAlleleReplacementDAO canonicalAlleleReplacementDAO);
 
     public FeatureDAO getFeatureDAO();
 
@@ -62,8 +70,8 @@ public interface HearsayDAOBeanService {
 
     public void setReferenceSequenceDAO(ReferenceSequenceDAO referenceSequenceDAO);
 
-    public SimpleAlleleDAO getSimpleAlleleDAO();
+    public ContextualAlleleDAO getContextualAlleleDAO();
 
-    public void setSimpleAlleleDAO(SimpleAlleleDAO simpleAlleleDAO);
+    public void setContextualAlleleDAO(ContextualAlleleDAO contextualAlleleDAO);
 
 }
