@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -26,7 +25,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType(propOrder = {})
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@PrimaryKeyJoinColumn(name = "id")
 @Table(schema = "hearsay", name = "role")
 @NamedQueries({ @NamedQuery(name = "Role.findByName", query = "SELECT a FROM Role a where a.name = :name") })
 public class Role implements Persistable {
