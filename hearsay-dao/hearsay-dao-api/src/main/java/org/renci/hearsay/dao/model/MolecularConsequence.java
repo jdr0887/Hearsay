@@ -31,7 +31,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(schema = "hearsay", name = "molecular_consequence")
-@FetchGroups({ @FetchGroup(name = "includeManyToOnes", attributes = { @FetchAttribute(name = "simpleAllele") }) })
+@FetchGroups({ @FetchGroup(name = "includeManyToOnes", attributes = { @FetchAttribute(name = "contextualAllele") }) })
 public class MolecularConsequence implements Persistable {
 
     private static final long serialVersionUID = -1712420135432481226L;
@@ -47,11 +47,11 @@ public class MolecularConsequence implements Persistable {
     private Integer soTermId;
 
     @ManyToOne
-    @JoinColumn(name = "simple_allele_fid")
-    private SimpleAllele simpleAllele;
+    @JoinColumn(name = "contextual_allele_fid")
+    private ContextualAllele contextualAllele;
 
-    @Column(name = "strand_type")
     @Enumerated(EnumType.STRING)
+    @Column(name = "type")
     private MolecularConsequenceType type;
 
     public MolecularConsequence() {
@@ -80,12 +80,12 @@ public class MolecularConsequence implements Persistable {
         this.soTermId = soTermId;
     }
 
-    public SimpleAllele getSimpleAllele() {
-        return simpleAllele;
+    public ContextualAllele getContextualAllele() {
+        return contextualAllele;
     }
 
-    public void setSimpleAllele(SimpleAllele simpleAllele) {
-        this.simpleAllele = simpleAllele;
+    public void setContextualAllele(ContextualAllele contextualAllele) {
+        this.contextualAllele = contextualAllele;
     }
 
     public MolecularConsequenceType getType() {
