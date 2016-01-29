@@ -79,6 +79,7 @@
   <modules>
     <module>hearsay-ws-alignment</module>
     <module>hearsay-ws-canonical-allele</module>
+    <module>hearsay-ws-contextual-allele</module>    
     <module>hearsay-ws-feature</module>
     <module>hearsay-ws-gene</module>
     <module>hearsay-ws-gene-symbol</module>
@@ -90,6 +91,5 @@
     <module>hearsay-ws-region</module>
     <module>hearsay-ws-reference-coordinate</module>
     <module>hearsay-ws-reference-sequence</module>
-    <module>hearsay-ws-simple-allele</module>
   </modules>
 </project>
