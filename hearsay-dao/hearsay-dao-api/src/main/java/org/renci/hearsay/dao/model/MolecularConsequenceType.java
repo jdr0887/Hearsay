@@ -2,8 +2,12 @@ package org.renci.hearsay.dao.model;
 
 public enum MolecularConsequenceType {
 
-    PRIMARY,
+    PRIMARY_NUCLEOTIDE,
 
-    ANCILLARY;
+    PRIMARY_AMINO_ACID,
+
+    ANCILLARY_NUCLEOTIDE,
+
+    ANCILLARY_AMINO_ACID;
 
 }
