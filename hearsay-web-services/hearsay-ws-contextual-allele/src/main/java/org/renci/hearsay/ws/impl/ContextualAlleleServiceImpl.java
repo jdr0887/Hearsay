@@ -3,8 +3,8 @@ package org.renci.hearsay.ws.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.ContextualAlleleDAO;
+import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.model.ContextualAllele;
 import org.renci.hearsay.ws.ContextualAlleleService;
 import org.slf4j.Logger;
