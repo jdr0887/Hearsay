@@ -10,6 +10,9 @@
     <class>org.renci.hearsay.dao.model.Alignment</class>
     <class>org.renci.hearsay.dao.model.Chromosome</class>
     <class>org.renci.hearsay.dao.model.CanonicalAllele</class>
+    <class>org.renci.hearsay.dao.model.CanonicalAlleleReplacement</class>
+    <class>org.renci.hearsay.dao.model.ContextualAllele</class>
+    <class>org.renci.hearsay.dao.model.ContextualAlleleName</class>
     <class>org.renci.hearsay.dao.model.DiagnosticResult</class>
     <class>org.renci.hearsay.dao.model.Feature</class>
     <class>org.renci.hearsay.dao.model.Gene</class>
@@ -26,13 +29,12 @@
     <class>org.renci.hearsay.dao.model.ReferenceCoordinate</class>
     <class>org.renci.hearsay.dao.model.ReferenceSequence</class>
     <class>org.renci.hearsay.dao.model.Role</class>
-    <class>org.renci.hearsay.dao.model.SimpleAllele</class>
     <class>org.renci.hearsay.dao.model.User</class>
 
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
     <properties>
-      <property name="javax.persistence.query.timeout" value="300000"/>
+      <property name="javax.persistence.query.timeout" value="300000" />
       <property name="openjpa.jdbc.MappingDefaults" value="ForeignKeyDeleteAction=restrict, JoinForeignKeyDeleteAction=restrict" />
       <property name="openjpa.jdbc.SchemaFactory" value="native(ForeignKeys=true)" />
       <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true,Sequences=false)" />
