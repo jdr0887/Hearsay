@@ -7,7 +7,13 @@
   </bean>
   <bean id="canonicalAlleleDAOImpl" class="org.renci.hearsay.dao.jpa.CanonicalAlleleDAOImpl" ext:field-injection="true">
   </bean>
+  <bean id="canonicalAlleleReplacementDAOImpl" class="org.renci.hearsay.dao.jpa.CanonicalAlleleReplacementDAOImpl" ext:field-injection="true">
+  </bean>
   <bean id="chromosomeDAOImpl" class="org.renci.hearsay.dao.jpa.ChromosomeDAOImpl" ext:field-injection="true">
+  </bean>
+  <bean id="contextualAlleleDAOImpl" class="org.renci.hearsay.dao.jpa.ContextualAlleleDAOImpl" ext:field-injection="true">
+  </bean>
+  <bean id="contextualAlleleNameDAOImpl" class="org.renci.hearsay.dao.jpa.ContextualAlleleNameDAOImpl" ext:field-injection="true">
   </bean>
   <bean id="diagnosticResultDAOImpl" class="org.renci.hearsay.dao.jpa.DiagnosticResultDAOImpl" ext:field-injection="true">
   </bean>
@@ -22,7 +28,10 @@
   <bean id="hearsayDAOBeanServiceImpl" class="org.renci.hearsay.dao.jpa.HearsayDAOBeanServiceImpl" ext:field-injection="true">
     <property name="alignmentDAO" ref="alignmentDAOImpl" />
     <property name="canonicalAlleleDAO" ref="canonicalAlleleDAOImpl" />
+    <property name="canonicalAlleleReplacementDAO" ref="canonicalAlleleReplacementDAOImpl" />
     <property name="chromosomeDAO" ref="chromosomeDAOImpl" />
+    <property name="contextualAlleleDAO" ref="contextualAlleleDAOImpl" />
+    <property name="contextualAlleleNameDAO" ref="contextualAlleleNameDAOImpl" />
     <property name="featureDAO" ref="featureDAOImpl" />
     <property name="geneDAO" ref="geneDAOImpl" />
     <property name="geneSymbolDAO" ref="geneSymbolDAOImpl" />
@@ -35,7 +44,6 @@
     <property name="referenceCoordinateDAO" ref="referenceCoordinateDAOImpl" />
     <property name="referenceSequenceDAO" ref="referenceSequenceDAOImpl" />
     <property name="regionDAO" ref="regionDAOImpl" />
-    <property name="simpleAlleleDAO" ref="simpleAlleleDAOImpl" />
   </bean>
   <bean id="identifierDAOImpl" class="org.renci.hearsay.dao.jpa.IdentifierDAOImpl" ext:field-injection="true">
   </bean>
@@ -57,13 +65,14 @@
   </bean>
   <bean id="roleDAOImpl" class="org.renci.hearsay.dao.jpa.RoleDAOImpl" ext:field-injection="true">
   </bean>
-  <bean id="simpleAlleleDAOImpl" class="org.renci.hearsay.dao.jpa.SimpleAlleleDAOImpl" ext:field-injection="true">
-  </bean>
   <bean id="userDAOImpl" class="org.renci.hearsay.dao.jpa.UserDAOImpl" ext:field-injection="true">
   </bean>
   <service ref="alignmentDAOImpl" interface="org.renci.hearsay.dao.AlignmentDAO" />
   <service ref="canonicalAlleleDAOImpl" interface="org.renci.hearsay.dao.CanonicalAlleleDAO" />
+  <service ref="canonicalAlleleReplacementDAOImpl" interface="org.renci.hearsay.dao.CanonicalAlleleReplacementDAO" />
   <service ref="chromosomeDAOImpl" interface="org.renci.hearsay.dao.ChromosomeDAO" />
+  <service ref="contextualAlleleDAOImpl" interface="org.renci.hearsay.dao.ContextualAlleleDAO" />
+  <service ref="contextualAlleleNameDAOImpl" interface="org.renci.hearsay.dao.ContextualAlleleNameDAO" />
   <service ref="diagnosticResultDAOImpl" interface="org.renci.hearsay.dao.DiagnosticResultDAO" />
   <service ref="featureDAOImpl" interface="org.renci.hearsay.dao.FeatureDAO" />
   <service ref="geneDAOImpl" interface="org.renci.hearsay.dao.GeneDAO" />
@@ -80,7 +89,6 @@
   <service ref="referenceSequenceDAOImpl" interface="org.renci.hearsay.dao.ReferenceSequenceDAO" />
   <service ref="regionDAOImpl" interface="org.renci.hearsay.dao.RegionDAO" />
   <service ref="roleDAOImpl" interface="org.renci.hearsay.dao.RoleDAO" />
-  <service ref="simpleAlleleDAOImpl" interface="org.renci.hearsay.dao.SimpleAlleleDAO" />
   <service ref="userDAOImpl" interface="org.renci.hearsay.dao.UserDAO" />
 </blueprint>
 
