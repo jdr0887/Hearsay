@@ -1,7 +1,5 @@
 package org.renci.hearsay.dao.rs;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.ws.rs.core.MediaType;
@@ -9,7 +7,6 @@ import javax.ws.rs.core.MediaType;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.renci.hearsay.dao.HearsayDAOException;
 import org.renci.hearsay.dao.ReferenceSequenceDAO;
-import org.renci.hearsay.dao.model.Gene;
 import org.renci.hearsay.dao.model.Identifier;
 import org.renci.hearsay.dao.model.ReferenceSequence;
 import org.slf4j.Logger;
