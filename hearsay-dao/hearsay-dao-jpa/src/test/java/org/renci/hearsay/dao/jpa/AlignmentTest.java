@@ -104,6 +104,33 @@ public class AlignmentTest {
     }
 
     @Test
+    public void findByReferenceSequenceId() {
+
+        ReferenceSequenceDAOImpl referenceSequenceDAO = new ReferenceSequenceDAOImpl();
+        referenceSequenceDAO.setEntityManager(em);
+
+        AlignmentDAOImpl alignmentDAO = new AlignmentDAOImpl();
+        alignmentDAO.setEntityManager(em);
+
+        try {
+            List<ReferenceSequence> foundReferenceSequences = referenceSequenceDAO
+                    .findByIdentifierSystemAndValue("www.ncbi.nlm.nih.gov/nuccore", "NM_001014794.2");
+            assertTrue(CollectionUtils.isNotEmpty(foundReferenceSequences));
+            List<Alignment> alignmentList = alignmentDAO.findByReferenceSequenceId(foundReferenceSequences.get(0).getId());
+            assertTrue(CollectionUtils.isNotEmpty(alignmentList));
+            List<Region> regions = alignmentList.get(0).getRegions();
+            assertTrue(CollectionUtils.isNotEmpty(regions));
+            regions.sort((a, b) -> {
+                return a.getRegionLocation().getStart().compareTo(b.getRegionLocation().getStart());
+            });
+            regions.forEach(a -> System.out.println(a.getRegionLocation().toString()));
+        } catch (HearsayDAOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
     public void findNonContigousRegions() {
 
         GeneDAOImpl geneDAO = new GeneDAOImpl();
