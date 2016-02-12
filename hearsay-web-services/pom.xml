@@ -79,13 +79,13 @@
   <modules>
     <module>hearsay-ws-alignment</module>
     <module>hearsay-ws-canonical-allele</module>
-    <module>hearsay-ws-contextual-allele</module>    
+    <module>hearsay-ws-contextual-allele</module>
+    <module>hearsay-ws-external-offset-position</module>    
     <module>hearsay-ws-feature</module>
     <module>hearsay-ws-gene</module>
     <module>hearsay-ws-gene-symbol</module>
     <module>hearsay-ws-genome-reference</module>    
     <module>hearsay-ws-identifier</module>
-    <module>hearsay-ws-intron-offset</module>
     <module>hearsay-ws-molecular-consequence</module>
     <module>hearsay-ws-population-frequency</module>    
     <module>hearsay-ws-region</module>
