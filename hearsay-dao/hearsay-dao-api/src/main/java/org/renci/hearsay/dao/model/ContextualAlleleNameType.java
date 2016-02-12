@@ -16,7 +16,9 @@ public enum ContextualAlleleNameType {
 
     HGVS_NCRNA("hgvs-ncrna"),
 
-    IVS("ivs");
+    IVS("ivs"),
+
+    CUSTOM("custom");
 
     private String value;
 
