@@ -38,9 +38,9 @@ public interface HearsayDAOBeanService {
 
     public void setIdentifierDAO(IdentifierDAO identifierDAO);
 
-    public IntronOffsetDAO getIntronOffsetDAO();
+    public ExternalOffsetPositionDAO getExternalOffsetPositionDAO();
 
-    public void setIntronOffsetDAO(IntronOffsetDAO intronOffsetDAO);
+    public void setExternalOffsetPositionDAO(ExternalOffsetPositionDAO externalOffsetPositionDAO);
 
     public LocationDAO getLocationDAO();
 
