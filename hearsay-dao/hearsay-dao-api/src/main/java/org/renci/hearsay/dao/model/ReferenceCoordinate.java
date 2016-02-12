@@ -2,8 +2,6 @@ package org.renci.hearsay.dao.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -25,8 +23,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(schema = "hearsay", name = "reference_coordinate")
-@FetchGroups({ @FetchGroup(name = "includeManyToOnes", attributes = { @FetchAttribute(name = "location"),
-        @FetchAttribute(name = "intronOffset"), @FetchAttribute(name = "referenceSequence") }) })
+@FetchGroups({ @FetchGroup(name = "includeManyToOnes", attributes = { @FetchAttribute(name = "start"), @FetchAttribute(name = "end"),
+        @FetchAttribute(name = "referenceSequence") }) })
 public class ReferenceCoordinate extends IdentifiableEntity {
 
     private static final long serialVersionUID = 608874481580966242L;
@@ -35,28 +33,16 @@ public class ReferenceCoordinate extends IdentifiableEntity {
     private String refAllele;
 
     @ManyToOne
-    @JoinColumn(name = "location_fid")
-    private Location location;
-
-    @Column(name = "strand_type")
-    @Enumerated(EnumType.STRING)
-    private StrandType strandType;
+    @JoinColumn(name = "start_fid")
+    private ExternalOffsetPosition start;
 
     @ManyToOne
-    @JoinColumn(name = "intron_offset_fid")
-    private IntronOffset intronOffset;
+    @JoinColumn(name = "end_fid")
+    private ExternalOffsetPosition end;
 
     @ManyToOne
     @JoinColumn(name = "reference_sequence_fid")
     private ReferenceSequence referenceSequence;
-
-    @Column(name = "primary_transcript_region_type")
-    @Enumerated(EnumType.STRING)
-    private RegionType primaryTranscriptRegionType;
-
-    @Column(name = "ancillary_transcript_region_type")
-    @Enumerated(EnumType.STRING)
-    private RegionType ancillaryTranscriptRegionType;
 
     public ReferenceCoordinate() {
         super();
@@ -70,28 +56,20 @@ public class ReferenceCoordinate extends IdentifiableEntity {
         this.refAllele = refAllele;
     }
 
-    public Location getLocation() {
-        return location;
+    public ExternalOffsetPosition getStart() {
+        return start;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setStart(ExternalOffsetPosition start) {
+        this.start = start;
     }
 
-    public StrandType getStrandType() {
-        return strandType;
+    public ExternalOffsetPosition getEnd() {
+        return end;
     }
 
-    public void setStrandType(StrandType strandType) {
-        this.strandType = strandType;
-    }
-
-    public IntronOffset getIntronOffset() {
-        return intronOffset;
-    }
-
-    public void setIntronOffset(IntronOffset intronOffset) {
-        this.intronOffset = intronOffset;
+    public void setEnd(ExternalOffsetPosition end) {
+        this.end = end;
     }
 
     public ReferenceSequence getReferenceSequence() {
@@ -102,37 +80,16 @@ public class ReferenceCoordinate extends IdentifiableEntity {
         this.referenceSequence = referenceSequence;
     }
 
-    public RegionType getPrimaryTranscriptRegionType() {
-        return primaryTranscriptRegionType;
-    }
-
-    public void setPrimaryTranscriptRegionType(RegionType primaryTranscriptRegionType) {
-        this.primaryTranscriptRegionType = primaryTranscriptRegionType;
-    }
-
-    public RegionType getAncillaryTranscriptRegionType() {
-        return ancillaryTranscriptRegionType;
-    }
-
-    public void setAncillaryTranscriptRegionType(RegionType ancillaryTranscriptRegionType) {
-        this.ancillaryTranscriptRegionType = ancillaryTranscriptRegionType;
-    }
-
     @Override
     public String toString() {
-        return String.format(
-                "ReferenceCoordinate [id=%s, refAllele=%s, strandType=%s, primaryTranscriptRegionType=%s, ancillaryTranscriptRegionType=%s]",
-                id, refAllele, strandType, primaryTranscriptRegionType, ancillaryTranscriptRegionType);
+        return String.format("ReferenceCoordinate [id=%s, refAllele=%s]", id, refAllele);
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = super.hashCode();
-        result = prime * result + ((ancillaryTranscriptRegionType == null) ? 0 : ancillaryTranscriptRegionType.hashCode());
-        result = prime * result + ((primaryTranscriptRegionType == null) ? 0 : primaryTranscriptRegionType.hashCode());
         result = prime * result + ((refAllele == null) ? 0 : refAllele.hashCode());
-        result = prime * result + ((strandType == null) ? 0 : strandType.hashCode());
         return result;
     }
 
@@ -145,16 +102,10 @@ public class ReferenceCoordinate extends IdentifiableEntity {
         if (getClass() != obj.getClass())
             return false;
         ReferenceCoordinate other = (ReferenceCoordinate) obj;
-        if (ancillaryTranscriptRegionType != other.ancillaryTranscriptRegionType)
-            return false;
-        if (primaryTranscriptRegionType != other.primaryTranscriptRegionType)
-            return false;
         if (refAllele == null) {
             if (other.refAllele != null)
                 return false;
         } else if (!refAllele.equals(other.refAllele))
-            return false;
-        if (strandType != other.strandType)
             return false;
         return true;
     }
