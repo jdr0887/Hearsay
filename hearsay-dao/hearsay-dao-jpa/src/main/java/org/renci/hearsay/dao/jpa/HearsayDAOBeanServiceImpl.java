@@ -16,7 +16,7 @@ import org.renci.hearsay.dao.GeneSymbolDAO;
 import org.renci.hearsay.dao.GenomeReferenceDAO;
 import org.renci.hearsay.dao.HearsayDAOBeanService;
 import org.renci.hearsay.dao.IdentifierDAO;
-import org.renci.hearsay.dao.IntronOffsetDAO;
+import org.renci.hearsay.dao.ExternalOffsetPositionDAO;
 import org.renci.hearsay.dao.LocationDAO;
 import org.renci.hearsay.dao.MolecularConsequenceDAO;
 import org.renci.hearsay.dao.PopulationFrequencyDAO;
@@ -59,7 +59,7 @@ public class HearsayDAOBeanServiceImpl implements HearsayDAOBeanService {
     private IdentifierDAO identifierDAO;
 
     @Inject
-    private IntronOffsetDAO intronOffsetDAO;
+    private ExternalOffsetPositionDAO externalOffsetPositionDAO;
 
     @Inject
     private LocationDAO locationDAO;
@@ -166,12 +166,12 @@ public class HearsayDAOBeanServiceImpl implements HearsayDAOBeanService {
         this.identifierDAO = identifierDAO;
     }
 
-    public IntronOffsetDAO getIntronOffsetDAO() {
-        return intronOffsetDAO;
+    public ExternalOffsetPositionDAO getExternalOffsetPositionDAO() {
+        return externalOffsetPositionDAO;
     }
 
-    public void setIntronOffsetDAO(IntronOffsetDAO intronOffsetDAO) {
-        this.intronOffsetDAO = intronOffsetDAO;
+    public void setExternalOffsetPositionDAO(ExternalOffsetPositionDAO externalOffsetPositionDAO) {
+        this.externalOffsetPositionDAO = externalOffsetPositionDAO;
     }
 
     public LocationDAO getLocationDAO() {
