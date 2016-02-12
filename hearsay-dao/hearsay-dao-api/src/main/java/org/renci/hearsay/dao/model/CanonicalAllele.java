@@ -18,22 +18,24 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.openjpa.persistence.FetchAttribute;
+import org.apache.openjpa.persistence.FetchGroup;
+import org.apache.openjpa.persistence.FetchGroups;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
 @XmlRootElement(name = "canonicalAllele")
-@XmlType(propOrder = { "name", "version", "moleculeType", "complexityType", "replacementType", "parent", "children", "relatedSimpleAlleles",
-        "relatedIdentifiers" })
+@XmlType(propOrder = { "active", "version", "type", "complexityType", "replacements", "contextualAlleles" })
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(schema = "hearsay", name = "canonical_allele")
+@FetchGroups({ @FetchGroup(name = "includeAll", attributes = { @FetchAttribute(name = "replacements"),
+        @FetchAttribute(name = "contextualAlleles") }) })
 public class CanonicalAllele extends IdentifiableEntity {
 
     private static final long serialVersionUID = 179947981554563568L;
-
-    @Column(name = "name")
-    private String name;
 
     @XmlAttribute
     @Column(name = "active")
@@ -50,10 +52,6 @@ public class CanonicalAllele extends IdentifiableEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "complexity_type")
     private ComplexityType complexityType;
-
-    @XmlAttribute
-    @Column(name = "split")
-    private Boolean split;
 
     @XmlElementWrapper(name = "replacements")
     @XmlElement(name = "replacements")
@@ -95,14 +93,6 @@ public class CanonicalAllele extends IdentifiableEntity {
         this.version = version;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public CanonicalAlleleType getType() {
         return type;
     }
@@ -127,18 +117,10 @@ public class CanonicalAllele extends IdentifiableEntity {
         this.replacements = replacements;
     }
 
-    public Boolean getSplit() {
-        return split;
-    }
-
-    public void setSplit(Boolean split) {
-        this.split = split;
-    }
-
     @Override
     public String toString() {
-        return String.format("CanonicalAllele [id=%s, name=%s, active=%s, version=%s, type=%s, complexityType=%s, split=%s]", id, name,
-                active, version, type, complexityType, split);
+        return String.format("CanonicalAllele [id=%s, active=%s, version=%s, type=%s, complexityType=%s]", id, active, version, type,
+                complexityType);
     }
 
     @Override
@@ -147,8 +129,6 @@ public class CanonicalAllele extends IdentifiableEntity {
         int result = super.hashCode();
         result = prime * result + ((active == null) ? 0 : active.hashCode());
         result = prime * result + ((complexityType == null) ? 0 : complexityType.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((split == null) ? 0 : split.hashCode());
         result = prime * result + ((type == null) ? 0 : type.hashCode());
         result = prime * result + ((version == null) ? 0 : version.hashCode());
         return result;
@@ -169,16 +149,6 @@ public class CanonicalAllele extends IdentifiableEntity {
         } else if (!active.equals(other.active))
             return false;
         if (complexityType != other.complexityType)
-            return false;
-        if (name == null) {
-            if (other.name != null)
-                return false;
-        } else if (!name.equals(other.name))
-            return false;
-        if (split == null) {
-            if (other.split != null)
-                return false;
-        } else if (!split.equals(other.split))
             return false;
         if (type != other.type)
             return false;
