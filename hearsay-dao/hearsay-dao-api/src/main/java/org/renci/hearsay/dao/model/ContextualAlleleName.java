@@ -60,6 +60,12 @@ public class ContextualAlleleName implements Persistable {
         super();
     }
 
+    public ContextualAlleleName(String name, ContextualAlleleNameType type) {
+        super();
+        this.name = name;
+        this.type = type;
+    }
+
     public Long getId() {
         return id;
     }
@@ -98,6 +104,14 @@ public class ContextualAlleleName implements Persistable {
 
     public void setContextualAllele(ContextualAllele contextualAllele) {
         this.contextualAllele = contextualAllele;
+    }
+
+    public ContextualAlleleNameType getType() {
+        return type;
+    }
+
+    public void setType(ContextualAlleleNameType type) {
+        this.type = type;
     }
 
     @Override
