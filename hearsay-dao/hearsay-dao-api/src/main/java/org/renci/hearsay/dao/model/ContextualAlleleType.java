@@ -6,24 +6,24 @@ package org.renci.hearsay.dao.model;
  */
 public enum ContextualAlleleType {
 
-    GENOMIC("HGVS, genomic, top level"),
+    GENOMIC("genomic"),
 
-    TRANSCRIPT("HGVS, coding, RefSeq"),
+    TRANSCRIPT("transcript"),
 
-    AMINO_ACID("HGVS, protein, RefSeq");
+    AMINO_ACID("amino acid");
 
-    private String type;
+    private String value;
 
-    private ContextualAlleleType(String type) {
-        this.type = type;
+    private ContextualAlleleType(String value) {
+        this.value = value;
     }
 
-    public String getType() {
-        return type;
+    public String getValue() {
+        return value;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setValue(String value) {
+        this.value = value;
     }
 
 }
