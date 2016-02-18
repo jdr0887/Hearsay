@@ -22,7 +22,6 @@ import org.renci.hearsay.dao.model.CanonicalAllele;
 import org.renci.hearsay.dao.model.CanonicalAllele_;
 import org.renci.hearsay.dao.model.Identifier;
 import org.renci.hearsay.dao.model.Identifier_;
-import org.renci.hearsay.dao.model.ReferenceSequence;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
