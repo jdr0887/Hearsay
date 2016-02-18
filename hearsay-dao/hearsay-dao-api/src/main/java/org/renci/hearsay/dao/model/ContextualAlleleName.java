@@ -7,8 +7,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -17,6 +15,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.openjpa.persistence.jdbc.Index;
 import org.renci.hearsay.dao.Persistable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -44,6 +43,7 @@ public class ContextualAlleleName implements Persistable {
     private ContextualAlleleNameType type;
 
     @Column(name = "name")
+    @Index(name = "contextual_allele_name_name_idx")
     private String name;
 
     @Column(name = "legacy")
@@ -51,10 +51,6 @@ public class ContextualAlleleName implements Persistable {
 
     @Column(name = "preferred")
     private Boolean preferred;
-
-    @ManyToOne
-    @JoinColumn(name = "contextual_allele_fid")
-    private ContextualAllele contextualAllele;
 
     public ContextualAlleleName() {
         super();
@@ -96,14 +92,6 @@ public class ContextualAlleleName implements Persistable {
 
     public void setPreferred(Boolean preferred) {
         this.preferred = preferred;
-    }
-
-    public ContextualAllele getContextualAllele() {
-        return contextualAllele;
-    }
-
-    public void setContextualAllele(ContextualAllele contextualAllele) {
-        this.contextualAllele = contextualAllele;
     }
 
     public ContextualAlleleNameType getType() {
