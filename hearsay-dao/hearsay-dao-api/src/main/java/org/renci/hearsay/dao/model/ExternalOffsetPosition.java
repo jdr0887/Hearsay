@@ -63,6 +63,18 @@ public class ExternalOffsetPosition implements Persistable {
         super();
     }
 
+    public ExternalOffsetPosition(Integer index) {
+        super();
+        this.index = index;
+    }
+
+    public ExternalOffsetPosition(DirectionType direction, Integer index, Integer length) {
+        super();
+        this.direction = direction;
+        this.index = index;
+        this.length = length;
+    }
+
     public Long getId() {
         return id;
     }
