@@ -8,12 +8,17 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
@@ -58,7 +63,11 @@ public class ContextualAllele extends IdentifiableEntity {
     @JoinColumn(name = "reference_coordinate_fid")
     private ReferenceCoordinate referenceCoordinate;
 
-    @OneToMany(mappedBy = "contextualAllele")
+    @XmlElementWrapper(name = "alleleNames")
+    @XmlElement(name = "name")
+    @ManyToMany(targetEntity = ContextualAlleleName.class)
+    @JoinTable(schema = "hearsay", name = "contextual_allele_contextual_allele_name", joinColumns = @JoinColumn(name = "contextual_allele_fid") , inverseJoinColumns = @JoinColumn(name = "contextual_allele_name_fid") , uniqueConstraints = {
+            @UniqueConstraint(columnNames = { "contextual_allele_fid", "contextual_allele_name_fid" }) })
     private Set<ContextualAlleleName> alleleNames;
 
     @OneToMany(mappedBy = "contextualAllele")
