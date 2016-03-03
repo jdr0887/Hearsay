@@ -69,6 +69,11 @@ public class CanonicalAllele extends IdentifiableEntity {
         this.contextualAlleles = new ArrayList<ContextualAllele>();
     }
 
+    public CanonicalAllele(CanonicalAlleleType type) {
+        this();
+        this.type = type;
+    }
+
     public List<ContextualAllele> getContextualAlleles() {
         return contextualAlleles;
     }

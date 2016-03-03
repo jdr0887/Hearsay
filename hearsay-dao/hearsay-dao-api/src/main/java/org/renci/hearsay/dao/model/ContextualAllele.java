@@ -83,6 +83,11 @@ public class ContextualAllele extends IdentifiableEntity {
         this.populationFrequencies = new HashSet<PopulationFrequency>();
     }
 
+    public ContextualAllele(ContextualAlleleType type) {
+        this();
+        this.type = type;
+    }
+
     public CanonicalAllele getCanonicalAllele() {
         return canonicalAllele;
     }
