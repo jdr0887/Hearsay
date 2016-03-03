@@ -21,17 +21,16 @@ public class RESTDAOManager {
 
     private RESTDAOManager() {
         super();
-        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-                "classpath:/org/renci/hearsay/dao/rs/hearsay-dao-beans.xml");
-        this.hearsayDAOBeanService = applicationContext.getBean(HearsayDAOBeanService.class);
+        try (ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
+                "classpath:/org/renci/hearsay/dao/rs/hearsay-dao-beans.xml")) {
+            this.hearsayDAOBeanService = applicationContext.getBean(HearsayDAOBeanService.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public HearsayDAOBeanService getHearsayDAOBeanService() {
         return hearsayDAOBeanService;
-    }
-
-    public void setHearsayDAOBeanService(HearsayDAOBeanService hearsayDAOBeanService) {
-        this.hearsayDAOBeanService = hearsayDAOBeanService;
     }
 
 }
